@@ -178,11 +178,29 @@ namespace Dsp
 		return lhs.getSamples() < rhs.getSamples();
 	}
 
+	template <class T>
+	bool operator<(const Signal<T>& lhs, const T& value)
+	{
+		// Look for the first element that is greater than or equal to value
+		auto lb = std::lower_bound(lhs.begin(), lhs.end(), value);
+		// If no such element was found, all elements are less than value
+		return lb == lhs.end();
+	}
+
 	template< class T>
 	bool operator<=(const Signal<T>& lhs, const Signal<T>& rhs)
 	{
 		if (lhs.getSamplingRate_Hz() != rhs.getSamplingRate_Hz()) { throw std::logic_error("Signals have different sampling rates!"); }
 		return lhs.getSamples() <= rhs.getSamples();
+	}
+
+	template <class T>
+	bool operator<=(const Signal<T>& lhs, const T& value)
+	{
+		// Look for an element that is greater than value
+		auto it = std::upper_bound(lhs.begin(), lhs.end(), value);
+		// If no such element was found, all elements are less than or equal to value
+		return it == lhs.end();
 	}
 
 	template< class T>
@@ -192,11 +210,29 @@ namespace Dsp
 		return lhs.getSamples() > rhs.getSamples();
 	}
 
+	template <class T>
+	bool operator>(const Signal<T>& lhs, const T& value)
+	{
+		// Look for an element that is smaller than or equal to value
+		auto it = std::find_if(lhs.begin(), lhs.end(), [value](T x) {x <= value; });
+		// If no such element was found, all elements are greater than value
+		return it == lhs.end();
+	}
+
 	template< class T>
 	bool operator>=(const Signal<T>& lhs, const Signal<T>& rhs)
 	{
 		if (lhs.getSamplingRate_Hz() != rhs.getSamplingRate_Hz()) { throw std::logic_error("Signals have different sampling rates!"); }
 		return lhs.getSamples() >= rhs.getSamples();
+	}
+
+	template <class T>
+	bool operator>=(const Signal<T>& lhs, const T& value)
+	{
+		// Look for an element that is smaller than value
+		auto it = std::find_if(lhs.begin(), lhs.end(), [value](T x) {x < value; });
+		// If no such element was found, all elements are greater than or equal to value
+		return it == lhs.end();
 	}
 
 	template< class T>

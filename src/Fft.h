@@ -95,13 +95,13 @@ namespace Dsp
 	}
 
 	/// <summary>
-	/// The Inverse Fast Fourier Transform for complex-valued signals
+	/// The Inverse Fast Fourier Transform for complex-valued signals (You probably dont' want this, but irfft()!)
 	/// </summary>
 	/// <typeparam name="T">Data type of the complex values. Should be float, double or long double, other types will cause undefined behavior.</typeparam>
 	/// <param name="x">The complex-valued transformed signal.</param>
 	/// <param name="n">The length of the IFFT. Will be expanded to the next power of two, if it is not already a power of two.</param>
 	/// <param name="mode">The normalization mode: "backward" means normalization by n on the inverse transformation only, "forward" means on the forward transformation only, and "ortho" means divide by sqrt(n) in both directions.</param>
-	/// <returns>A complex-valued signal containing the original complex signal.</returns>
+	/// <returns>The original complex-valued signal.</returns>
 	template<class T>
 	auto ifft(Signal<std::complex<T>>& X, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward)
 	{
@@ -124,7 +124,15 @@ namespace Dsp
 
 		return x;
 	}
-	
+
+	/// <summary>
+	/// The Fast Fourier Transform for real-valued signals.
+	/// </summary>
+	/// <typeparam name="T">Data type of the samples. Should be float, double or long double, other types will cause undefined behavior.</typeparam>
+	/// <param name="x">The real-valued original signal.</param>
+	/// <param name="n">The length of the FFT. Will be expanded to the next power of two, if it is not already a power of two.</param>
+	/// <param name="mode">The normalization mode: "backward" means normalization by n on the inverse transformation only, "forward" means on the forward transformation only, and "ortho" means divide by sqrt(n) in both directions.</param>
+	/// <returns>A complex-valued signal containing the complex Fourier spectrum.</returns>
 	template<class T>
 	auto rfft(Signal<T>& x, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward)
 	{
@@ -216,15 +224,23 @@ namespace Dsp
 		return X;
 	}
 
+	/// <summary>
+	/// The Inverse Fast Fourier Transform for real-valued original signals.
+	/// </summary>
+	/// <typeparam name="T">Data type of the complex values. Should be float, double or long double, other types will cause undefined behavior.</typeparam>
+	/// <param name="x">The complex-valued transformed signal.</param>
+	/// <param name="n">The length of the real IFFT. Will be expanded to the next power of two, if it is not already a power of two.</param>
+	/// <param name="mode">The normalization mode: "backward" means normalization by n on the inverse transformation only, "forward" means on the forward transformation only, and "ortho" means divide by sqrt(n) in both directions.</param>
+	/// <returns>The original real-valued signal.</returns>
 	template<class T>
 	auto irfft(Signal<std::complex<T>>& X, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward)
 	{
 		// Returned signal is a number of the same type
 		Signal<T> x(X.getSamplingRate_Hz());
 		// Default length is the length of the signal
-		n = n == 0 ? static_cast<unsigned>(X.size()) : n;
+		const auto n_out = n == 0 ? static_cast<unsigned>(X.size()) : n;
 		// Length should be power of two for speed
-		const auto exponent = nextpow2(n);
+		const auto exponent = nextpow2(n_out);
 		n = 1 << exponent;
 		// Resize signal (will be truncated or zero-padded if necessary)
 		x.resize(n, 0.0);
@@ -248,6 +264,9 @@ namespace Dsp
 			x[k] = s[k].real() + s[k].imag();
 		}
 
+		// Resize to requested output length
+		x.resize(n_out, 0.0);
+
 		// Normalize
 		switch (mode)
 		{
@@ -263,23 +282,6 @@ namespace Dsp
 		}
 		return x;
 	}
-
-	inline auto fft(Signal<float>& x, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward)
-	{
-		return rfft(x, n, mode);
-	}
-
-	inline auto fft(Signal<double>& x, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward)
-	{
-		return rfft(x, n, mode);
-	}
-
-	inline auto fft(Signal<long double>& x, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward)
-	{
-		return rfft(x, n, mode);
-	}
-
-
 
 	// TODO:
 	//fft2();
