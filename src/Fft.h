@@ -14,8 +14,17 @@ namespace Dsp
 
 	 // Fast Fourier Transforms (FFT)
 	enum class NormalizationMode { backward, ortho, forward };
+
+	/// <summary>
+	/// The Fast Fourier Transform for complex-valued signals
+	/// </summary>
+	/// <typeparam name="T">Data type of the complex values. Should be float, double or long double, other types will cause undefined behavior.</typeparam>
+	/// <param name="x">The complex-valued original signal.</param>
+	/// <param name="n">The length of the FFT. Will be expanded to the next power of two, if it is not already a power of two.</param>
+	/// <param name="mode">The normalization mode: "backward" means normalization by n on the inverse transformation only, "forward" means on the forward transformation only, and "ortho" means divide by sqrt(n) in both directions.</param>
+	/// <returns>A complex-valued signal containing the complex Fourier spectrum.</returns>
 	template<class T>
-	auto fft(Signal<std::complex<T>>& x, unsigned n, NormalizationMode mode = NormalizationMode::backward)
+	auto fft(Signal<std::complex<T>>& x, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward)
 	{
 		// Returned signal is complex number of the same type
 		Signal<std::complex<T>> X(x);
@@ -85,6 +94,37 @@ namespace Dsp
 		return X;
 	}
 
+	/// <summary>
+	/// The Inverse Fast Fourier Transform for complex-valued signals
+	/// </summary>
+	/// <typeparam name="T">Data type of the complex values. Should be float, double or long double, other types will cause undefined behavior.</typeparam>
+	/// <param name="x">The complex-valued transformed signal.</param>
+	/// <param name="n">The length of the IFFT. Will be expanded to the next power of two, if it is not already a power of two.</param>
+	/// <param name="mode">The normalization mode: "backward" means normalization by n on the inverse transformation only, "forward" means on the forward transformation only, and "ortho" means divide by sqrt(n) in both directions.</param>
+	/// <returns>A complex-valued signal containing the original complex signal.</returns>
+	template<class T>
+	auto ifft(Signal<std::complex<T>>& X, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward)
+	{
+		// Returned signal is complex number of the same type
+		Signal<std::complex<T>> x(X);
+		// Default length is the length of the signal
+		n = n == 0 ? static_cast<unsigned>(X.size()) : n;
+		// Length should be power of two for speed
+		const auto exponent = nextpow2(n);
+		n = 1 << exponent;
+		// Resize signal (will be truncated or zero-padded if necessary)
+		x.resize(n, { 0, 0 });
+
+		x = conj(x);
+
+		if (mode == NormalizationMode::backward) { mode = NormalizationMode::forward; }
+		x = fft(x, n, mode);
+
+		x = conj(x);
+
+		return x;
+	}
+	
 	template<class T>
 	auto rfft(Signal<T>& x, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward)
 	{
@@ -176,27 +216,76 @@ namespace Dsp
 		return X;
 	}
 
-	auto fft(Signal<float>& x, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward)
+	template<class T>
+	auto irfft(Signal<std::complex<T>>& X, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward)
+	{
+		// Returned signal is a number of the same type
+		Signal<T> x(X.getSamplingRate_Hz());
+		// Default length is the length of the signal
+		n = n == 0 ? static_cast<unsigned>(X.size()) : n;
+		// Length should be power of two for speed
+		const auto exponent = nextpow2(n);
+		n = 1 << exponent;
+		// Resize signal (will be truncated or zero-padded if necessary)
+		x.resize(n, 0.0);
+
+		// Force spectrum to be symmetric
+		for (auto k = n/2 + 1; k < n; ++k)
+		{
+			X[k] = std::conj(X[n - k]);
+		}
+
+		// Add up real and imaginary part
+		for (unsigned k = 0; k < n; ++k)
+		{
+			x[k] = X[k].real() + X[k].imag();
+		}
+		auto s = rfft(x, n, NormalizationMode::backward);  // Don't normalize just yet
+
+		// Post-processing
+		for (unsigned k = 0; k < n; ++k)
+		{
+			x[k] = s[k].real() + s[k].imag();
+		}
+
+		// Normalize
+		switch (mode)
+		{
+			case NormalizationMode::backward:
+				x /= n;
+				break;
+			case NormalizationMode::ortho:
+				x /= static_cast<T>(sqrt(n));
+				break;
+			case NormalizationMode::forward:
+				x /= static_cast<T>(n);
+				break;
+		}
+		return x;
+	}
+
+	inline auto fft(Signal<float>& x, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward)
 	{
 		return rfft(x, n, mode);
 	}
-	auto fft(Signal<double>& x, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward)
+
+	inline auto fft(Signal<double>& x, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward)
 	{
 		return rfft(x, n, mode);
 	}
-	auto fft(Signal<long double>& x, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward)
+
+	inline auto fft(Signal<long double>& x, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward)
 	{
 		return rfft(x, n, mode);
 	}
 
 
-	//ifft();
+
 	// TODO:
 	//fft2();
 	//ifft2();
 	//fftn();
 	//ifftn();
-	//irfft();
 	//rfft2();
 	//irfft2();
 	//rfftn();
