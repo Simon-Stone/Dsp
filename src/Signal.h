@@ -345,6 +345,32 @@ namespace Dsp
 		return lhs;
 	}
 
+	
+	template<class T>
+	auto pow(Signal<T> signal, int exponent)
+	{
+		Signal<T> powSignal(signal.getSamplingRate_Hz());
+		powSignal.reserve(signal.size());
+		
+		std::transform(signal.begin(), signal.end(), std::back_inserter(powSignal),
+			[exponent](auto s) {return std::pow(s, exponent); });
+
+		return powSignal;
+	}
+	
+	template<class T>
+	auto pow(std::vector<T> vec, int exponent)
+	{
+		std::vector<T> powVec;
+		powVec.reserve(vec.size());
+
+		std::transform(vec.begin(), vec.end(), std::back_inserter(powVec),
+			[exponent](auto x) {return std::pow(x, exponent); });
+
+		return powVec;
+	}
+
+	
 	template<class T>
 	auto abs(Signal<T> signal)
 	{
@@ -356,6 +382,19 @@ namespace Dsp
 		std::transform(signal.begin(), signal.end(), std::back_inserter(absoluteSignal), [](auto x) {return std::abs(x); });
 
 		return absoluteSignal;
+	}
+
+	template<class T>
+	auto abs(std::vector<T> vec)
+	{
+		// The returned signal should have the return type of the std::abs() function applied to the vector's elements
+		using U = decltype(std::abs(std::declval<T>()));
+		std::vector<U> absVec;
+		absVec.reserve(vec.size());
+
+		std::transform(vec.begin(), vec.end(), std::back_inserter(absVec), [](auto x) {return std::abs(x); });
+
+		return absVec;
 	}
 
 	template<class T>

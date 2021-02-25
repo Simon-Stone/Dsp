@@ -3,6 +3,8 @@
 #include <stdexcept>
 #include <vector>
 
+
+#include "Dsp.h"
 #include "Utilities.h"
 
 namespace Dsp::Window
@@ -32,12 +34,7 @@ namespace Dsp::Window
 	/// <param name="sym">Whether the window is symmetric. Has no effect for boxcar.</param>
 	/// <returns>The window, with the maximum value normalized to 1.</returns>
 	template<class T>
-	std::vector<T> boxcar(unsigned N, bool sym = true)
-	{
-		if (N <= 0) return std::vector<T>();
-
-		return std::vector<T>(N, 1);
-	}
+	std::vector<T> boxcar(unsigned N, bool sym = true);
 
 	/// <summary>
 	/// Return a triangular window.
@@ -48,32 +45,7 @@ namespace Dsp::Window
 	/// generates a periodic window, for use in spectral analysis.</param>
 	/// <returns>The window, with the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is true).</returns>
 	template<class T>
-	std::vector<T> triang(unsigned N, bool sym = true)
-	{
-		if (N <= 0) return std::vector<T>();
-
-		auto [M, needs_trunc] = Utilities::extend(N, sym);
-		auto n = Dsp::arange(1.0, static_cast<T>((M + 1) / 2 + 1));
-
-		std::vector<T> w;
-		w.resize(n.size(), 0.0);
-		if (M % 2 == 0)
-		{
-			std::transform(n.begin(), n.end(),
-				w.begin(), 
-				[M](auto n) {return (2 * n - 1.0) / M; });
-			w.insert(w.end(), w.rbegin(), w.rend());
-		}
-		else
-		{
-			std::transform(n.begin(), n.end(),
-				w.begin(),
-				[M](auto n) {return 2 * n / (M + 1.0); });
-			w.insert(w.end(), w.rbegin() + 1, w.rend());
-		}
-
-		return Utilities::truncate(w, needs_trunc);
-	}
+	std::vector<T> triang(unsigned N, bool sym = true);
 
 	/// <summary>
 	/// Generic weighted sum of cosine terms window
@@ -86,25 +58,13 @@ namespace Dsp::Window
 	/// generates a periodic window, for use in spectral analysis.</param>
 	/// <returns></returns>
 	template<class T>
-	std::vector<T> general_cosine(unsigned N, const std::vector<T>& a, bool sym = true)
-	{
-		if (N <= 0) return std::vector<T>();
+	std::vector<T> general_cosine(unsigned N, const std::vector<T>& a, bool sym = true);
 
-		auto [M, needs_trunc] = Utilities::extend(N, sym);
-
-		auto fac = Dsp::linspace<T>(-pi, pi, M);
-		std::vector<T> w(M, 0);
-		for (size_t k = 0; k < a.size(); ++k)
-		{
-			auto ak = a[k];
-			std::transform(w.begin(), w.end(),
-				fac.begin(),
-				w.begin(),
-				[k, ak](auto w, auto fac){return w + ak * std::cos(k * fac); });
-		}
-		return Utilities::truncate(w, needs_trunc);
-	}
-
+	/// <summary>
+	/// Return a generalized Hamming window.
+	/// </summary>	
+	template<class T>
+	std::vector<T> general_hamming(unsigned N, double alpha, bool sym = true);
 	
 	/// <summary>
 	/// Return a Blackman window.
@@ -119,10 +79,63 @@ namespace Dsp::Window
 	/// generates a periodic window, for use in spectral analysis.</param>
 	/// <returns>The window, with the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is true).</returns>
 	template<class T>
-	std::vector<T> blackman(unsigned N, bool sym = true)
-	{
-		return general_cosine<T>(N, { 0.42, 0.50, 0.08 }, sym);
-	}
+	std::vector<T> blackman(unsigned N, bool sym = true);
+
+	/// <summary>
+	///Return a Hamming window.
+	///
+	///The Hamming window is a taper formed by using a raised cosine with non - zero endpoints, optimized to minimize the nearest side lobe.
+	/// </summary>
+	/// <typeparam name="T">Type of returned values.</typeparam>
+	/// <param name="N">Number of points in the output window. If zero or less, an empty array is returned.</param>
+	/// <param name="sym">When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis.</param>
+	/// <returns>The window, with the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is True).</returns>
+	template<class T>
+	std::vector<T> hamming(unsigned N, bool sym = true);
+
+	/// <summary>
+	/// Return a Hann window.
+	/// The Hann window is a taper formed by using a raised cosine or sine - squared with ends that touch zero.
+	/// </summary>
+	/// <typeparam name="T">Type of returned values.</typeparam>
+	/// <param name="N">Number of points in the output window. If zero or less, an empty array is returned.</param>
+	/// <param name="sym">When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis.</param>
+	/// <returns>The window, with the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is True).</returns>
+	template<class T>
+	std::vector<T> hann(unsigned N, bool sym = true);
+
+	/// <summary>
+	/// Return a Bartlett window.
+	///
+	/// The Bartlett window is very similar to a triangular window, except that the end points are at zero. It is often used in signal processing for tapering a signal, without generating too much ripple in the frequency domain.
+	/// </summary>
+	/// <typeparam name="T">Type of returned values.</typeparam>
+	/// <param name="N">Number of points in the output window. If zero or less, an empty array is returned.</param>
+	/// <param name="sym">When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis.</param>
+	/// <returns>The triangular window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is True).</returns>
+	template<class T>
+	std::vector<T> bartlett(unsigned N, bool sym = true);
+	
+	/// <summary>
+	/// Return a flat top window.
+	/// </summary>
+	/// <typeparam name="T">Type of returned values.</typeparam>
+	/// <param name="N">Number of points in the output window. If zero or less, an empty array is returned.</param>
+	/// <param name="sym">When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis.</param>
+	/// <returns>The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is True).</returns>
+	template<class T>
+	std::vector<T> flattop(unsigned N, bool sym = true);
+
+	/// <summary>
+	/// Return a Parzen window.
+	/// </summary>
+	/// <typeparam name="T">Type of returned values.</typeparam>
+	/// <param name="N">Number of points in the output window. If zero or less, an empty array is returned.</param>
+	/// <param name="sym">When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis.</param>
+	/// <returns>The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is True).</returns>
+	template<class T>
+	std::vector<T> parzen(unsigned N, bool sym = true);
+
 	
 	template<class T, class ... Types>
 	std::vector<T> getWindow(std::tuple<Types ...> window, unsigned N, bool fftbins)
