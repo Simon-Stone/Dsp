@@ -1,7 +1,12 @@
 #include "Signal.h"
 
 template<class T>
-Dsp::Signal<T>::Signal(const Signal& other) : samplingRate_Hz_(other.getSamplingRate_Hz()), samples_(other.getSamples())
+Dsp::Signal<T>::Signal(const Signal& other) : samplingRate_Hz_(other.samplingRate_Hz_), samples_(other.samples_)
+{
+}
+
+template <class T>
+Dsp::Signal<T>::Signal(Signal&& other) noexcept : samplingRate_Hz_(other.samplingRate_Hz_), samples_(std::move(other.samples_))
 {
 }
 
@@ -403,6 +408,15 @@ Dsp::Signal<T>& Dsp::Signal<T>::operator=(const Signal& other)
 		samplingRate_Hz_ = other.getSamplingRate_Hz();
 		samples_ = other.getSamples();
 	}
+	return *this;
+}
+
+template <class T>
+Dsp::Signal<T>& Dsp::Signal<T>::operator=(Signal&& other) noexcept
+{
+	this->samplingRate_Hz_ = other.samplingRate_Hz_;
+	this->samples_ = std::move(other.samples_);
+
 	return *this;
 }
 

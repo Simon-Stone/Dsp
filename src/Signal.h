@@ -21,6 +21,7 @@ namespace Dsp
 	public:
 		Signal() = default;
 		Signal(const Signal& other);
+		Signal(Signal&& other) noexcept;
 		explicit Signal(unsigned samplingRate_Hz);
 		explicit Signal(const std::vector<T>& samples);
 		explicit Signal(unsigned samplingRate_Hz, const std::vector<T>& samples);
@@ -150,6 +151,7 @@ namespace Dsp
 
 		// Operators
 		Signal& operator=(const Signal& other);
+		Signal& operator=(Signal&& other) noexcept;
 		reference& operator[](size_type pos);
 		const_reference& operator[](size_type pos) const;
 		// More operators are defined as non-member functions below		
