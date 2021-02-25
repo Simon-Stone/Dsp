@@ -67,6 +67,16 @@ Dsp::Signal<T>& Dsp::Signal<T>::operator+=(const Signal<T>& rhs)
 }
 
 template <class T>
+Dsp::Signal<T>& Dsp::Signal<T>::operator+=(const std::vector<T>& vec)
+{
+	if (this->size() != vec.size()) { throw std::logic_error("Signal and vector have different lengths!"); }
+
+	std::transform(vec.begin(), vec.end(), this->begin(), this->begin(), std::plus<T>());
+
+	return *this;
+}
+
+template <class T>
 Dsp::Signal<T>& Dsp::Signal<T>::operator+=(const_reference value)
 {
 	std::transform(this->begin(), this->end(), this->begin(), [&value](auto& y) {return y + value; });
@@ -80,6 +90,16 @@ Dsp::Signal<T>& Dsp::Signal<T>::operator-=(const Signal<T>& rhs)
 	if (this->size() != rhs.size()) { throw std::logic_error("Signals have different lengths!"); }
 
 	std::transform(rhs.begin(), rhs.end(), this->begin(), this->begin(), std::minus<T>());
+
+	return *this;
+}
+
+template <class T>
+Dsp::Signal<T>& Dsp::Signal<T>::operator-=(const std::vector<T>& vec)
+{
+	if (this->size() != vec.size()) { throw std::logic_error("Signal and vector have different lengths!"); }
+
+	std::transform(vec.begin(), vec.end(), this->begin(), this->begin(), std::minus<T>());
 
 	return *this;
 }
@@ -110,12 +130,32 @@ Dsp::Signal<T>& Dsp::Signal<T>::operator*=(const_reference value)
 }
 
 template <class T>
+Dsp::Signal<T>& Dsp::Signal<T>::operator*=(const std::vector<T>& vec)
+{
+	if (this->size() != vec.size()) { throw std::logic_error("Signal and vector have different lengths!"); }
+
+	std::transform(vec.begin(), vec.end(), this->begin(), this->begin(), std::multiplies<T>());
+
+	return *this;
+}
+
+template <class T>
 Dsp::Signal<T>& Dsp::Signal<T>::operator/=(const Signal<T>& rhs)
 {
 	if (this->samplingRate_Hz_ != rhs.getSamplingRate_Hz()) { throw std::logic_error("Signals have different sampling rates!"); }
 	if (this->size() != rhs.size()) { throw std::logic_error("Signals have different lengths!"); }
 
 	std::transform(rhs.begin(), rhs.end(), this->begin(), this->begin(), std::divides<T>());
+
+	return *this;
+}
+
+template <class T>
+Dsp::Signal<T>& Dsp::Signal<T>::operator/=(const std::vector<T>& vec)
+{
+	if (this->size() != vec.size()) { throw std::logic_error("Signal and vector have different lengths!"); }
+
+	std::transform(vec.begin(), vec.end(), this->begin(), this->begin(), std::divides<T>());
 
 	return *this;
 }

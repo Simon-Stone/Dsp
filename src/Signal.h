@@ -68,15 +68,19 @@ namespace Dsp
 		 * Arithmetic operations
 		 */
 		Signal<T>& operator+=(const Signal<T>& rhs);
+		Signal<T>& operator+=(const std::vector<T>& vec);
 		Signal<T>& operator+=(const_reference value);
 
-		Signal<T>& operator-=(const Signal<T>& rhs);		
+		Signal<T>& operator-=(const Signal<T>& rhs);
+		Signal<T>& operator-=(const std::vector<T>& vec);
 		Signal<T>& operator-=(const_reference value);
 
 		Signal<T>& operator*=(const Signal<T>& rhs);
+		Signal<T>& operator*=(const std::vector<T>& vec);
 		Signal<T>& operator*=(const_reference value);
 
 		Signal<T>& operator/=(const Signal<T>& rhs);
+		Signal<T>& operator/=(const std::vector<T>& vec);
 		Signal<T>& operator/=(const_reference value);
 		
 		// More operators are defined out of class for symmetry
@@ -254,6 +258,14 @@ namespace Dsp
 	}
 
 	template<class T>
+	Signal<T> operator+(Signal<T>& lhs, const std::vector<T>& rhs)
+	{
+		lhs += rhs;
+
+		return lhs;
+	}
+
+	template<class T>
 	Signal<T> operator+(Signal<T>& lhs, typename Signal<T>::const_reference value)
 	{
 		lhs += value;
@@ -263,6 +275,14 @@ namespace Dsp
 
 	template<class T>
 	Signal<T> operator-(Signal<T>& lhs, const Signal<T>& rhs)
+	{
+		lhs -= rhs;
+
+		return lhs;
+	}
+
+	template<class T>
+	Signal<T> operator-(Signal<T>& lhs, const std::vector<T>& rhs)
 	{
 		lhs -= rhs;
 
@@ -286,6 +306,14 @@ namespace Dsp
 	}
 
 	template<class T>
+	Signal<T> operator*(Signal<T>& lhs, const std::vector<T>& rhs)
+	{
+		lhs *= rhs;
+
+		return lhs;
+	}
+
+	template<class T>
 	Signal<T> operator*(Signal<T>& lhs, typename Signal<T>::const_reference value)
 	{
 		lhs *= value;
@@ -295,6 +323,14 @@ namespace Dsp
 
 	template<class T>
 	Signal<T> operator/(Signal<T>& lhs, const Signal<T>& rhs)
+	{
+		lhs /= rhs;
+
+		return lhs;
+	}
+
+	template<class T>
+	Signal<T> operator/(Signal<T>& lhs, const std::vector<T>& rhs)
 	{
 		lhs /= rhs;
 
