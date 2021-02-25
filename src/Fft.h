@@ -108,7 +108,7 @@ namespace Dsp
 		// Returned signal is complex number of the same type
 		Signal<std::complex<T>> x(X);
 		// Default length is the length of the signal
-		n = n == 0 ? static_cast<unsigned>(X.size()) : n;
+		const auto n_out = n == 0 ? static_cast<unsigned>(X.size()) : n;
 		// Length should be power of two for speed
 		const auto exponent = nextpow2(n);
 		n = 1 << exponent;
@@ -121,6 +121,9 @@ namespace Dsp
 		x = fft(x, n, mode);
 
 		x = conj(x);
+
+		// Resize to requested output length
+		x.resize(n_out, { 0.0, 0.0 });
 
 		return x;
 	}
