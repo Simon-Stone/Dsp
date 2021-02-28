@@ -1,6 +1,6 @@
-#include "Utilities.h"
+#include "utilities.h"
 
-std::pair<unsigned, bool> Dsp::Window::Utilities::extend(unsigned N, bool sym)
+std::pair<unsigned, bool> dsp::window::utilities::extend(unsigned N, bool sym)
 {
 	if (!sym)
 	{

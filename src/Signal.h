@@ -6,7 +6,7 @@
 #include <stdexcept>
 #include <vector>
 
-namespace Dsp
+namespace dsp
 {
 	/// <summary>
 	/// This class represents a signal.

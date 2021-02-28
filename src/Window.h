@@ -1,13 +1,8 @@
 #pragma once
 
-#include <stdexcept>
 #include <vector>
 
-
-#include "Dsp.h"
-#include "Utilities.h"
-
-namespace Dsp::Window
+namespace dsp::window
 {
 	/*
 	* The free functions implemented in this module are intended to have a
@@ -65,7 +60,7 @@ namespace Dsp::Window
 	/// </summary>	
 	template<class T>
 	std::vector<T> general_hamming(unsigned N, double alpha, bool sym = true);
-	
+
 	/// <summary>
 	/// Return a Blackman window.
 	///
@@ -115,7 +110,7 @@ namespace Dsp::Window
 	/// <returns>The triangular window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is True).</returns>
 	template<class T>
 	std::vector<T> bartlett(unsigned N, bool sym = true);
-	
+
 	/// <summary>
 	/// Return a flat top window.
 	/// </summary>
@@ -136,18 +131,95 @@ namespace Dsp::Window
 	template<class T>
 	std::vector<T> parzen(unsigned N, bool sym = true);
 
-	
-	template<class T, class ... Types>
-	std::vector<T> getWindow(std::tuple<Types ...> window, unsigned N, bool fftbins)
-	{
-		switch (std::get<0>(window))
-		{
-		case window::boxcar:
-			return boxcar<T>(N, !fftbins);
-		default:
-			throw std::logic_error("Window type is not implemented yet!");
-		}
-	}
+	/// <summary>
+	/// Return a Bohman window.
+	/// </summary>
+	/// <typeparam name="T">Type of returned values.</typeparam>
+	/// <param name="N">Number of points in the output window. If zero or less, an empty array is returned.</param>
+	/// <param name="sym">When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis.</param>
+	/// <returns>The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is True).</returns>
+	template<class T>
+	std::vector<T> bohman(unsigned N, bool sym = true);
+
+	/// <summary>
+	/// Return a minimum 4-term Blackman-Harris window.
+	/// </summary>
+	/// <typeparam name="T">Type of returned values.</typeparam>
+	/// <param name="N">Number of points in the output window. If zero or less, an empty array is returned.</param>
+	/// <param name="sym">When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis.</param>
+	/// <returns>The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is True).</returns>
+	template<class T>
+	std::vector<T> blackmanharris(unsigned N, bool sym = true);
+
+	/// <summary>
+	/// Return a minimum 4-term Blackman-Harris window according to Nuttall.
+	/// </summary>
+	/// <typeparam name="T">Type of returned values.</typeparam>
+	/// <param name="N">Number of points in the output window. If zero or less, an empty array is returned.</param>
+	/// <param name="sym">When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis.</param>
+	/// <returns>The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is True).</returns>
+	template<class T>
+	std::vector<T> nuttall(unsigned N, bool sym = true);
+
+	/// <summary>
+	/// Return a modified Bartlett-Hann window.
+	/// </summary>
+	/// <typeparam name="T">Type of returned values.</typeparam>
+	/// <param name="N">Number of points in the output window. If zero or less, an empty array is returned.</param>
+	/// <param name="sym">When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis.</param>
+	/// <returns>The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is True).</returns>
+	template<class T>
+	std::vector<T> barthann(unsigned N, bool sym = true);
+
+	/// <summary>
+	/// Return a Kaiser window.
+	///
+	/// The Kaiser window is a taper formed by using a Bessel function.
+	/// </summary>
+	/// <typeparam name="T">Type of returned values.</typeparam>
+	/// <param name="N">Number of points in the output window. If zero or less, an empty array is returned.</param>
+	/// <param name="beta">Shape parameter, determines trade-off between main-lobe width and side lobe level. As beta gets large, the window narrows.</param>
+	/// <param name="sym">When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis.</param>
+	/// <returns>The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is True).</returns>
+	template<class T>
+	std::vector<T> kaiser(unsigned N, double beta, bool sym = true);
+
+	/// <summary>
+	/// Return a Gaussian window.
+	/// </summary>
+/// <typeparam name="T">Type of returned values.</typeparam>
+	/// <param name="N">Number of points in the output window. If zero or less, an empty array is returned.</param>
+	/// <param name="std">The standard deviation, sigma.</param>
+	/// <param name="sym">When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis.</param>
+	/// <returns>The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is True).</returns>
+	template<class T>
+	std::vector<T> gaussian(unsigned N, double std, bool sym = true);
+
+	/// <summary>
+	/// Return a window with a generalized Gaussian shape.
+	/// </summary>
+	/// <typeparam name="T"></typeparam>
+	/// <param name="N">Number of points in the output window. If zero or less, an empty array is returned.</param>
+	/// <param name="p">Shape parameter. p = 1 is identical to gaussian, p = 0.5 is the same shape as the Laplace distribution.</param>
+	/// <param name="sig">The standard deviation, sigma.</param>
+	/// <param name="sym">When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis.</param>
+	/// <returns>The window, with the maximum value normalized to 1 (though the value 1 does not appear if M is even and sym is True).</returns>
+	template<class T>
+	std::vector<T> general_gaussian(unsigned N, double p, double sig, bool sym = true);
+
+
+	//TODO: dpss window (https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.windows.dpss.html#scipy.signal.windows.dpss)
+
+	/// <summary>
+	/// Return a Dolph-Chebyshev window.
+	/// </summary>
+	/// <typeparam name="T"></typeparam>
+	/// <param name="N">Number of points in the output window. If zero or less, an empty array is returned.</param>
+	/// <param name="at">Attenuation (in dB).</param>
+	/// <param name="sym">When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis.</param>
+	/// <returns>The window, with the maximum value always normalized to 1</returns>
+	template<class T>
+	std::vector<T> chebwin(unsigned N, double at, bool sym = true);
 
 }
 

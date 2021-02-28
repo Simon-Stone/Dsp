@@ -1,7 +1,7 @@
 #pragma once
 #include "Signal.h"
 
-namespace Dsp
+namespace dsp
 {
 	// Constants
 	const double pi = 3.14159265358979311600;
@@ -35,7 +35,7 @@ namespace Dsp
 		return results;
 	}
 
-
+	
 	/// <summary>
 	/// Return a sampled sinusoid signal
 	/// </summary>

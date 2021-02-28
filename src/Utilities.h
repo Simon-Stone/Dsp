@@ -2,7 +2,7 @@
 #include <utility>
 #include <vector>
 
-namespace Dsp
+namespace dsp
 {
 	/// <summary>
 	/// Return evenly spaced values within a given interval.
@@ -59,9 +59,9 @@ namespace Dsp
 		return xs;
 	}
 	
-	namespace Window
+	namespace window
 	{
-		namespace Utilities
+		namespace utilities
 		{
 			/// <summary>
 			/// Extend window length by 1 sample if needed for DFT-even symmetry

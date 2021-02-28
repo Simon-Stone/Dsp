@@ -19,18 +19,20 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Dsp.h" />
-    <ClInclude Include="src\Fft.h" />
+    <ClInclude Include="src\dsp.h" />
+    <ClInclude Include="src\fft.h" />
     <ClInclude Include="src\Signal.h" />
-    <ClInclude Include="src\Utilities.h" />
-    <ClInclude Include="src\Window.h" />
+    <ClInclude Include="src\special.h" />
+    <ClInclude Include="src\utilities.h" />
+    <ClInclude Include="src\window.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Dsp.cpp" />
-    <ClCompile Include="src\Fft.cpp" />
+    <ClCompile Include="src\dsp.cpp" />
+    <ClCompile Include="src\fft.cpp" />
     <ClCompile Include="src\Signal.cpp" />
-    <ClCompile Include="src\Utilities.cpp" />
-    <ClCompile Include="src\Window.cpp" />
+    <ClCompile Include="src\special.cpp" />
+    <ClCompile Include="src\utilities.cpp" />
+    <ClCompile Include="src\window.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -96,6 +98,18 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
+  <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <VcpkgUseStatic>true</VcpkgUseStatic>
+  </PropertyGroup>
+  <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <VcpkgUseStatic>true</VcpkgUseStatic>
+  </PropertyGroup>
+  <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <VcpkgUseStatic>true</VcpkgUseStatic>
+  </PropertyGroup>
+  <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <VcpkgUseStatic>true</VcpkgUseStatic>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -151,6 +165,10 @@
       </SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
