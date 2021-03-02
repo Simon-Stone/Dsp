@@ -109,37 +109,32 @@ namespace dsp::fft
 	}
 
 	// TODO: ifft_
+
+	template<class T>
+	auto resize_fft_input(std::vector<T> x, unsigned n)
+	{
+		x.resize(n, T());
+		return x;
+	}
 	
 	template<class T>
 	std::vector<std::complex<T>> rfft_(std::vector<T>& x, unsigned n, NormalizationMode mode, bool overwrite_x)
 	{
-		if (x.empty()) return std::vector<std::complex<T>>();
+		if (x.empty()) return {};
 
 		unsigned N = get_fft_length(x, n);
 
-		std::vector<T> x_copy;
-		std::vector<T> *in;
+		std::vector<T> in = resize_fft_input(x, n);
 
-		if (overwrite_x)
-		{
-			x.resize(N, 0.0);
-			in = &x;
-		}
-		else
-		{
-			x_copy = x;
-			x_copy.resize(N, 0.0);
-			in = &x_copy;
-		}
 		std::vector<std::complex<T>> out(N);
 
 		for(unsigned i = 0; i < N/2; ++i)
 		{
-			out[i].real(in->at(2 * i));
-			out[i].imag(in->at(2 * i + 1));
+			out[i].real(in[2 * i]);
+			out[i].imag(in[2 * i + 1]);
 		}
 
-		out = fft_(out, N / 2, NormalizationMode::backward, overwrite_x);
+		out = fft_(out, N / 2, NormalizationMode::backward, true);
 		out.resize(N, { 0.0, 0.0 });
 
 		unsigned nm1 = N - 1;
@@ -409,7 +404,8 @@ namespace dsp::fft
 				X.begin(), [N](auto X) {return X / static_cast<double>(N); });
 			break;
 		}
-		X.insert(X.end(), X.rbegin() + 1, X.rend() - 1);
+		auto Xconj = dsp::conj(X);
+		X.insert(X.end(), Xconj.rbegin() + 1, Xconj.rend() - 1);
 		fftw_destroy_plan(p);
 		return X;
 	}
@@ -453,6 +449,9 @@ namespace dsp::fft
 				X.begin(), [N](auto X) {return X / static_cast<float>(N); });
 			break;
 		}
+
+		auto Xconj = dsp::conj(X);
+		X.insert(X.end(), Xconj.rbegin() + 1, Xconj.rend() - 1);
 
 		fftwf_destroy_plan(p);
 		return X;
@@ -498,6 +497,9 @@ namespace dsp::fft
 			break;
 		}
 
+		auto Xconj = dsp::conj(X);
+		X.insert(X.end(), Xconj.rbegin() + 1, Xconj.rend() - 1);
+		
 		fftwl_destroy_plan(p);
 		return X;
 	}
@@ -642,7 +644,7 @@ std::vector<std::complex<T>> dsp::fft::fft(std::vector<std::complex<T>>& x, unsi
 	{
 		
 	case backend::automatic:
-		if(n > 10000)
+		if(n > 10000000)
 		{
 			return fftw(x, n, FFTW_FORWARD, FFTW_ESTIMATE, mode, overwrite_x);
 		}
@@ -668,7 +670,7 @@ std::vector<std::complex<T>> dsp::fft::rfft(std::vector<T>& x, unsigned n, Norma
 	switch(backend)
 	{
 	case backend::automatic:
-		if(n > 100000)
+		if(n > 1000000)
 		{
 			return rfftw(x, n, FFTW_ESTIMATE, mode, overwrite_x);
 		}

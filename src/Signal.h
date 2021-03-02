@@ -424,6 +424,17 @@ namespace dsp
 	}
 
 	template<class T>
+	auto conj(std::vector<std::complex<T>> z)
+	{
+		std::vector<std::complex<T>> z_conj;
+		z_conj.reserve(z.size());
+
+		std::transform(z.begin(), z.end(), std::back_inserter(z_conj), [](auto x) {return std::conj(x); });
+
+		return z_conj;
+	}
+	
+	template<class T>
 	auto conj(Signal<T> signal)
 	{
 		// The returned signal should have the return type of the std::conj() function applied to the signal's sample
