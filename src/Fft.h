@@ -1,8 +1,5 @@
 #pragma once
 #include "dsp.h"
-#include "Signal.h"
-
-#include <cmath>
 
 namespace dsp
 {
@@ -14,295 +11,88 @@ namespace dsp
 		 *
 		 */
 
+		/// <summary>
+		/// Normalization mode for the various transforms: "backward" means normalization by n on the inverse transformation only, "forward" means on the forward transformation only, and "ortho" means divide by sqrt(n) in both directions.
+		/// </summary>
 		enum class NormalizationMode { backward, ortho, forward };
 
-		template<class T>
-		auto fft(std::vector<std::complex<T>>& x, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward)
-		{
-			// Returned signal is complex number of the same type
-			std::vector<std::complex<T>> X(x);
-			// Default length is the length of the signal
-			n = n == 0 ? static_cast<unsigned>(x.size()) : n;
-			// Length should be power of two for speed
-			const auto exponent = nextpow2(n);
-			n = 1 << exponent;
-			// Resize signal (will be truncated or zero-padded if necessary)
-			X.resize(n, { 0, 0 });
-
-			auto nm1 = n - 1;
-			auto nd2 = n / 2;
-
-			auto j = nd2;
-			for (unsigned i = 1; i <= n - 2; ++i)
-			{
-				if (i < j)
-				{
-					std::swap(X[j], X[i]);
-				}
-				auto k = nd2;
-
-				while (k <= j)
-				{
-					j -= k;
-					k /= 2;
-				}
-				j += k;
-			}
-
-			for (unsigned l = 1; l <= exponent; ++l)
-			{
-				const unsigned le{ static_cast<unsigned>(1) << l };
-				const unsigned le2{ le / 2 };
-				std::complex<T> u{ 1.0, 0.0 };
-				std::complex<T> s{ static_cast<T>(std::cos(pi / static_cast<T>(le2))), static_cast<T>(-std::sin(pi / static_cast<T>(le2))) };
-
-				for (j = 1; j <= le2; ++j)
-				{
-					const auto jm1 = j - 1;
-					std::complex<T> t;
-					for (unsigned i = jm1; i <= nm1; i += le)
-					{
-						auto ip = i + le2;
-						t = { X[ip].real() * u.real() - X[ip].imag() * u.imag(), X[ip].real() * u.imag() + X[ip].imag() * u.real() };
-						X[ip] = X[i] - t;
-						X[i] += t;
-					}
-
-					t.real(u.real());
-					u = { t.real() * s.real() - u.imag() * s.imag(), t.real() * s.imag() + u.imag() * s.real() };
-				}
-			}
-			switch (mode)
-			{
-			case NormalizationMode::backward:
-				// No normalization on the forward transform
-				break;
-			case NormalizationMode::ortho:
-				std::transform(X.begin(), X.end(),
-					X.begin(), [n](auto X) {return X / static_cast<T>(sqrt(n)); });
-				break;
-			case NormalizationMode::forward:
-				std::transform(X.begin(), X.end(),
-					X.begin(), [n](auto X) {return X / static_cast<T>(n); });
-				break;
-			}
-			return X;
-		}
-
 		/// <summary>
-		/// The Fast Fourier Transform for complex-valued signals
+		/// Backend choices for performing the actual transformations
+		/// </summary>
+		enum class backend { automatic, simple, fftw };
+		
+		/// <summary>
+		/// Compute the 1-D discrete Fourier Transform.
+		///
+		/// This function computes the 1-D n-point discrete Fourier Transform (DFT) with the efficient Fast Fourier Transform(FFT) algorithm for complex input signals.
 		/// </summary>
 		/// <typeparam name="T">Data type of the complex values. Should be float, double or long double, other types will cause undefined behavior.</typeparam>
-		/// <param name="x">The complex-valued original signal.</param>
-		/// <param name="n">The length of the FFT. Will be expanded to the next power of two, if it is not already a power of two.</param>
+		/// <param name="x">Complex input.</param>
+		/// <param name="n">Length of the transformed output. If n is smaller than the length of the input, the input is cropped. If it is larger, the input is padded with zeros. If n is 0 (default), the length of the input is used.</param>
 		/// <param name="mode">The normalization mode: "backward" means normalization by n on the inverse transformation only, "forward" means on the forward transformation only, and "ortho" means divide by sqrt(n) in both directions.</param>
-		/// <returns>A complex-valued signal containing the complex Fourier spectrum.</returns>
+		/// <param name="overwrite_x">If true, the contents of x can be destroyed; the default is false.</param>
+		/// <returns>The transformed truncated or zero-padded input.</returns>
 		template<class T>
-		auto fft(Signal<std::complex<T>>& x, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward)
-		{
-			return Signal<std::complex<T>>(x.getSamplingRate_Hz(), fft(x.getSamples, n, mode));
-		}
+		std::vector<std::complex<T>> fft(std::vector<std::complex<T>>& x, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward, bool overwrite_x = false, backend backend = backend::automatic);
 
 		/// <summary>
-		/// The Inverse Fast Fourier Transform for complex-valued signals (You probably dont' want this, but irfft()!)
+		/// Compute the 1-D inverse discrete Fourier Transform.
+		///	This function computes the inverse of the 1-D n-point discrete Fourier transform computed by fft. In other words, ifft(fft(x)) == x to within numerical accuracy.
 		/// </summary>
 		/// <typeparam name="T">Data type of the complex values. Should be float, double or long double, other types will cause undefined behavior.</typeparam>
-		/// <param name="x">The complex-valued transformed signal.</param>
-		/// <param name="n">The length of the IFFT. Will be expanded to the next power of two, if it is not already a power of two.</param>
+		/// <param name="X">Complex input.</param>
+		/// <param name="n">Length of the transformed output. If n is smaller than the length of the input, the input is cropped. If it is larger, the input is padded with zeros. If n is 0 (default), the length of the input is used.</param>
 		/// <param name="mode">The normalization mode: "backward" means normalization by n on the inverse transformation only, "forward" means on the forward transformation only, and "ortho" means divide by sqrt(n) in both directions.</param>
-		/// <returns>The original complex-valued signal.</returns>
+		/// <param name="overwrite_X">If true, the contents of X can be destroyed; the default is false.</param>
+		/// <returns>The transformed truncated or zero-padded input.</returns>
 		template<class T>
-		auto ifft(Signal<std::complex<T>>& X, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward)
-		{
-			// Returned signal is complex number of the same type
-			Signal<std::complex<T>> x(X);
-			// Default length is the length of the signal
-			const auto n_out = n == 0 ? static_cast<unsigned>(X.size()) : n;
-			// Length should be power of two for speed
-			const auto exponent = nextpow2(n);
-			n = 1 << exponent;
-			// Resize signal (will be truncated or zero-padded if necessary)
-			x.resize(n, { 0, 0 });
-
-			x = conj(x);
-
-			if (mode == NormalizationMode::backward) { mode = NormalizationMode::forward; }
-			x = fft(x, n, mode);
-
-			x = conj(x);
-
-			// Resize to requested output length
-			x.resize(n_out, { 0.0, 0.0 });
-
-			return x;
-		}
-
-		template<class T>
-		auto rfft(std::vector<T>& x, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward)
-		{
-			// Returned signal is complex number of the same type
-			std::vector<std::complex<T>> X;
-			X.resize(x.size());
-			std::transform(x.begin(), x.end(), X.begin(), [](T re) {return std::complex<T>(re, 0.0); });
-
-			// Default length is the length of the signal
-			n = n == 0 ? static_cast<unsigned>(x.size()) : n;
-			// Length should be power of two for speed
-			const auto exponent = nextpow2(n);
-			n = 1 << exponent;
-			// Resize signal (will be truncated or zero-padded if necessary)
-			X.resize(n, { 0, 0 });
-
-			// Divide in even and odd points
-			for (unsigned i = 0; i < n / 2; ++i)
-			{
-				X[i].real(X[2 * i].real());
-				X[i].imag(X[2 * i + 1].real());
-			}
-
-			// Calculate complex FFT for n/2 number of points
-			X = fft(X, n / 2);
-			X.resize(n, 0.0);
-
-			auto nm1 = n - 1;
-			auto nd2 = n / 2;
-			auto n4 = (n / 4) - 1;
-
-			for (unsigned i = 1; i <= n4; ++i)
-			{
-				unsigned im = nd2 - i;
-				unsigned ip2 = i + nd2;
-				unsigned ipm = im + nd2;
-				X[ip2].real((X[i].imag() + X[im].imag()) / 2);
-				X[ipm].real(X[ip2].real());
-				X[ip2].imag(-(X[i].real() - X[im].real()) / 2);
-				X[ipm].imag(-X[ip2].imag());
-
-				X[i].real((X[i].real() + X[im].real()) / 2);
-				X[im].real(X[i].real());
-				X[i].imag((X[i].imag() - X[im].imag()) / 2);
-				X[im].imag(-X[i].imag());
-			}
-
-			X[(n * 3 / 4)] = { X[n / 4].imag(), 0.0 };
-			X[nd2] = { X[0].imag(), 0.0 };
-			X[n / 4].imag(0.0);
-			X[0].imag(0.0);
-
-			auto l = exponent;
-			auto le = 1 << l;
-			auto le2 = le / 2;
-			std::complex<T> u{ 1.0, 0.0 };
-			std::complex<T> s{ static_cast<T>(std::cos(dsp::pi / static_cast<T>(le2))), static_cast<T>(-std::sin(dsp::pi / static_cast<T>(le2))) };
-			std::complex<T> t;
-			for (int j = 1; j <= le2; ++j)
-			{
-				auto jm1 = j - 1;
-				for (unsigned i = jm1; i <= nm1; i += le)
-				{
-					auto ip = i + le2;
-					t = { X[ip].real() * u.real() - X[ip].imag() * u.imag(), X[ip].real() * u.imag() + X[ip].imag() * u.real() };
-					X[ip] = X[i] - t;
-					X[i] += t;
-				}
-
-				t.real(u.real());
-				u.real(t.real() * s.real() - u.imag() * s.imag());
-				u.imag(t.real() * s.imag() + u.imag() * s.real());
-			}
-
-			switch (mode)
-			{
-			case NormalizationMode::backward:
-				// No normalization on the forward transform
-				break;
-			case NormalizationMode::ortho:
-				std::transform(X.begin(), X.end(),
-					X.begin(), [n](auto X) {return X / static_cast<T>(sqrt(n)); });
-				break;
-			case NormalizationMode::forward:
-				std::transform(X.begin(), X.end(),
-					X.begin(), [n](auto X) {return X / static_cast<T>(n); });
-				break;
-			}
-			return X;
-		}
+		std::vector<std::complex<T>> ifft(std::vector<std::complex<T>>& X, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward, bool overwrite_X = false, backend backend = backend::automatic);
 
 		/// <summary>
-		/// The Fast Fourier Transform for real-valued signals.
+		/// Compute the 1-D discrete Fourier Transform for real input.
+		/// This function computes the 1-D n-point discrete Fourier Transform (DFT) of a real-valued vector by means of an efficient algorithm called the Fast Fourier Transform (FFT).
 		/// </summary>
-		/// <typeparam name="T">Data type of the samples. Should be float, double or long double, other types will cause undefined behavior.</typeparam>
-		/// <param name="x">The real-valued original signal.</param>
-		/// <param name="n">The length of the FFT. Will be expanded to the next power of two, if it is not already a power of two.</param>
+		/// <typeparam name="T">Data type of the real values. Should be float, double or long double, other types will cause undefined behavior.</typeparam>
+		/// <param name="x">Real input</param>
+		/// <param name="n">Length of the transformed output. If n is smaller than the length of the input, the input is cropped. If it is larger, the input is padded with zeros. If n is 0 (default), the length of the input is used.</param>
 		/// <param name="mode">The normalization mode: "backward" means normalization by n on the inverse transformation only, "forward" means on the forward transformation only, and "ortho" means divide by sqrt(n) in both directions.</param>
-		/// <returns>A complex-valued signal containing the complex Fourier spectrum.</returns>
+		/// <param name="overwrite_x">If true, the contents of x can be destroyed; the default is false.</param>
+		/// <returns>The forward-transformed truncated or zero-padded input.</returns>
 		template<class T>
-		auto rfft(Signal<T>& x, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward)
-		{
-			return Signal<T>(x.getSamplingRate_Hz(), rfft(x.getSamples(), n, mode));
-		}
-
-
+		std::vector<std::complex<T>> rfft(std::vector<T>& x, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward, bool overwrite_x = false, backend backend = backend::automatic);
 
 		/// <summary>
-		/// The Inverse Fast Fourier Transform for real-valued original signals.
+		/// Alias for rfft.
+		/// </summary>		
+		template<class T>
+		std::vector<std::complex<T>> fft(std::vector<T>& x, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward, bool overwrite_x = false, backend backend = backend::automatic)
+		{
+			return rfft(x, n, mode, overwrite_x, backend);
+		}
+		
+		/// <summary>
+		/// Computes the inverse of rfft.
+		///
+		/// This function computes the inverse of the 1-D n-point discrete Fourier Transform of real input computed by rfft. In other words, irfft(rfft(x), x.size()) == x to within numerical accuracy. 
 		/// </summary>
 		/// <typeparam name="T">Data type of the complex values. Should be float, double or long double, other types will cause undefined behavior.</typeparam>
-		/// <param name="x">The complex-valued transformed signal.</param>
-		/// <param name="n">The length of the real IFFT. Will be expanded to the next power of two, if it is not already a power of two.</param>
+		/// <param name="X">Complex input.</param>
+		/// <param name="n">Length of the transformed output. If n is smaller than the length of the input, the input is cropped. If it is larger, the input is padded with zeros. If n is 0 (default), the length of the input is used.</param>
 		/// <param name="mode">The normalization mode: "backward" means normalization by n on the inverse transformation only, "forward" means on the forward transformation only, and "ortho" means divide by sqrt(n) in both directions.</param>
-		/// <returns>The original real-valued signal.</returns>
+		/// <param name="overwrite_X">If true, the contents of x can be destroyed; the default is false.</param>
+		/// <returns>The backward-transformed truncated or zero-padded input.</returns>
 		template<class T>
-		auto irfft(Signal<std::complex<T>>& X, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward)
+		std::vector<T> irfft(std::vector<std::complex<T>>& X, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward, bool overwrite_X = false, backend backend = backend::automatic);
+
+		/// <summary>
+		/// Alias for irfft()
+		/// </summary>
+		template<class T>
+		std::vector<T> ifft(std::vector<std::complex<T>>& X, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward, bool overwrite_X = false, backend backend = backend::automatic)
 		{
-			// Returned signal is a number of the same type
-			Signal<T> x(X.getSamplingRate_Hz());
-			// Default length is the length of the signal
-			const auto n_out = n == 0 ? static_cast<unsigned>(X.size()) : n;
-			// Length should be power of two for speed
-			const auto exponent = nextpow2(n_out);
-			n = 1 << exponent;
-			// Resize signal (will be truncated or zero-padded if necessary)
-			x.resize(n, 0.0);
-
-			// Force spectrum to be symmetric
-			for (auto k = n / 2 + 1; k < n; ++k)
-			{
-				X[k] = std::conj(X[n - k]);
-			}
-
-			// Add up real and imaginary part
-			for (unsigned k = 0; k < n; ++k)
-			{
-				x[k] = X[k].real() + X[k].imag();
-			}
-			auto s = rfft(x, n, NormalizationMode::backward);  // Don't normalize just yet
-
-			// Post-processing
-			for (unsigned k = 0; k < n; ++k)
-			{
-				x[k] = s[k].real() + s[k].imag();
-			}
-
-			// Resize to requested output length
-			x.resize(n_out, 0.0);
-
-			// Normalize
-			switch (mode)
-			{
-			case NormalizationMode::backward:
-				x /= n;
-				break;
-			case NormalizationMode::ortho:
-				x /= static_cast<T>(sqrt(n));
-				break;
-			case NormalizationMode::forward:
-				x /= static_cast<T>(n);
-				break;
-			}
-			return x;
+			return ifft(X, n, mode, overwrite_X, backend);
 		}
-
+		
 		// TODO:
 		//fft2();
 		//ifft2();
@@ -331,6 +121,7 @@ namespace dsp
 		//idstn();
 
 		// Helper functions
+		// TODO:
 		//fftshift();
 		//ifftshift();
 		//fftfreq();

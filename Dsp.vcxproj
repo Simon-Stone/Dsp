@@ -21,6 +21,8 @@
   <ItemGroup>
     <ClInclude Include="src\dsp.h" />
     <ClInclude Include="src\fft.h" />
+    <ClInclude Include="src\Legacy\LegacyDsp.h" />
+    <ClInclude Include="src\Legacy\LegacySignal.h" />
     <ClInclude Include="src\Signal.h" />
     <ClInclude Include="src\special.h" />
     <ClInclude Include="src\utilities.h" />
@@ -29,6 +31,8 @@
   <ItemGroup>
     <ClCompile Include="src\dsp.cpp" />
     <ClCompile Include="src\fft.cpp" />
+    <ClCompile Include="src\Legacy\LegacyDsp.cpp" />
+    <ClCompile Include="src\Legacy\LegacySignal.cpp" />
     <ClCompile Include="src\Signal.cpp" />
     <ClCompile Include="src\special.cpp" />
     <ClCompile Include="src\utilities.cpp" />
@@ -150,7 +154,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>
@@ -159,6 +163,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeaderOutputFile />
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>

@@ -1,5 +1,6 @@
 #pragma once
 #include "Signal.h"
+#include "window.h"
 
 namespace dsp
 {
@@ -35,6 +36,17 @@ namespace dsp
 		return results;
 	}
 
+	/// <summary>
+	/// Return a window of a given length and type.
+	/// </summary>
+	/// <typeparam name="T">Data type of the samples.</typeparam>
+	/// <typeparam name="...Args">Types of the elements in window. First is always dsp::window::type, others are optional (see below).</typeparam>
+	/// <param name="window">First element must be the window type. If the window requires more parameters, they must be provided here as further elements.</param>
+	/// <param name="Nx">The number of samples in the window.</param>
+	/// <param name="fftbins">If true (default), create a “periodic” window, ready to use with ifftshift and be multiplied by the result of an FFT (see also fftfreq). If false, create a “symmetric” window, for use in filter design.</param>
+	/// <returns>Returns a window of length Nx and type window.</returns>
+	template<class T, class... Args>
+	std::vector<T> get_window(std::tuple<Args...> window, unsigned Nx, bool fftbins = true);
 	
 	/// <summary>
 	/// Return a sampled sinusoid signal
@@ -47,5 +59,5 @@ namespace dsp
 	/// <param name="phase">Starting phase angle of the sinusoid in rad</param>
 	/// <returns>A signal containing the specified sinusoid</returns>
 	template <class T>
-	Signal<T> sin(unsigned frequency_Hz, unsigned length_s, unsigned samplingRate_Hz, double amplitude = 1.0, double phase = 0.0);
+	Signal<T> sin(unsigned frequency_Hz, double length_s, unsigned samplingRate_Hz, double amplitude = 1.0, double phase = 0.0);
 }

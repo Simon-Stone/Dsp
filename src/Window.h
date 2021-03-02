@@ -13,7 +13,7 @@ namespace dsp::window
 	/// <summary>
 	/// Types of windows
 	/// </summary>
-	enum class window {
+	enum class type {
 		boxcar, triang, blackman, hamming, hann, bartlett, flattop,
 		parzen, bohman, blackmanharris, nuttal, barthann, kaiser, gaussian,
 		general_gaussian, dpss, chebwin, exponential, tukey, taylor

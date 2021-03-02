@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Legacy">
+      <UniqueIdentifier>{06c2e36a-9acc-4721-98f5-0bb8e1a1ddfc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Signal.h">
@@ -33,6 +36,12 @@
     <ClInclude Include="src\window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Legacy\LegacyDsp.h">
+      <Filter>Legacy</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Legacy\LegacySignal.h">
+      <Filter>Legacy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Signal.cpp">
@@ -52,6 +61,12 @@
     </ClCompile>
     <ClCompile Include="src\window.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Legacy\LegacyDsp.cpp">
+      <Filter>Legacy</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Legacy\LegacySignal.cpp">
+      <Filter>Legacy</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
