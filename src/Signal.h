@@ -8,13 +8,12 @@
 
 namespace dsp
 {
-	/// <summary>
-	/// This class represents a signal.
+	/// @brief This class represents a signal.
 	///
 	/// It is implemented as a facade design pattern wrapped around an STL vector.
+
 	/// Fun fact: It is not derived from std::vector because that class does not have a virtual destructor, potentially producing memory leaks.
-	/// </summary>
-	///
+	/// @tparam T Data type of the samples in the signal. Can be any numeric type, but mind that the arithmetic is at the same precision (which might lead to unexpected results with integer types).
 	template <class T>
 	class Signal
 	{
