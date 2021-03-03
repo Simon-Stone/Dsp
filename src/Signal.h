@@ -385,7 +385,7 @@ namespace dsp
 	}
 
 	template<class T>
-	auto abs(std::vector<T> vec)
+	auto abs(const std::vector<T>& vec)
 	{
 		// The returned signal should have the return type of the std::abs() function applied to the vector's elements
 		using U = decltype(std::abs(std::declval<T>()));
@@ -397,8 +397,20 @@ namespace dsp
 		return absVec;
 	}
 
+
 	template<class T>
-	auto real(Signal<T> signal)
+	auto real(const std::vector<std::complex<T>>& v)
+	{
+		std::vector<T> v_real;
+		v_real.reserve(v.size());
+
+		std::transform(v.begin(), v.end(), std::back_inserter(v_real), [](auto z) {return std::real(z); });
+
+		return v_real;
+	}
+	
+	template<class T>
+	auto real(const Signal<T>& signal)
 	{
 		// The returned signal should have the return type of the std::real() function applied to the signal's sample
 		using U = decltype(std::real(std::declval<T>()));

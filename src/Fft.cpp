@@ -17,106 +17,117 @@ namespace dsp::fft
 		return n;
 	}
 
-	/* Straight-forward FFT implementations (high-performance for short signals) */
-	template<class T>
-	std::vector<std::complex<T>> fft_(std::vector<std::complex<T>>& x, unsigned n, NormalizationMode mode, bool overwrite_x)
-	{
-		if (x.empty()) return std::vector<std::complex<T>>();
-
-		unsigned N = get_fft_length(x, n);
-
-		std::vector<std::complex<T>> x_copy;
-		std::complex<T>* in;
-		
-		if (overwrite_x)
-		{
-			x.resize(N, { 0.0, 0.0 });
-			in = &x[0];
-		}
-		else
-		{
-			x_copy = x;
-			x_copy.resize(N, { 0.0, 0.0 });
-			in = &x_copy[0];
-		}
-		int nm1 = N - 1;
-		int nd2 = N / 2;
-		unsigned j = nd2;
-		for(unsigned i = 1; i <= N-2; ++i)
-		{
-			if(i < j)
-			{
-				std::swap(in[j], in[i]);
-			}
-			unsigned k = nd2;
-
-			while(k <= j)
-			{
-				j -= k;
-				k /= 2;
-			}
-			j += k;
-		}
-		auto exponent = static_cast<unsigned>(std::log2(n));
-		for (unsigned l = 1; l <= exponent; ++l)
-		{
-			auto le = 1 << l;
-			auto le2 = le / 2;
-			std::complex<T> u(1.0, 0.0);
-			std::complex<T> s(static_cast<T>(std::cos(pi / le2)), static_cast<T>(-1 * std::sin(pi / le2)));
-
-			for (auto j = 1; j <= le2; ++j)
-			{
-				auto jm1 = j - 1;
-				std::complex<T> t;
-				for (auto i = jm1; i <= nm1; i += le)
-				{
-					auto ip = i + le2;
-					t = std::complex<T>(in[ip].real() * u.real() - in[ip].imag() * u.imag(), in[ip].real() * u.imag() + in[ip].imag() * u.real());
-					in[ip] = in[i] - t;
-					in[i] += t;
-				}
-
-				t.real(u.real());
-				u = std::complex<T>(t.real() * s.real() - u.imag() * s.imag(), t.real() * s.imag() + u.imag() * s.real());			
-			}
-		}
-
-		std::vector<std::complex<T>>* X;
-		if (overwrite_x)
-		{
-			X = &x;
-		}
-		else
-		{
-			X = &x_copy;
-		}
-		switch (mode)
-		{
-		case NormalizationMode::backward:
-			break;
-		case NormalizationMode::ortho:
-			std::transform(X->begin(), X->end(),
-				X->begin(), [N](auto X) {return X / static_cast<T>(sqrt(N)); });
-			break;
-		case NormalizationMode::forward:
-			std::transform(X->begin(), X->end(),
-				X->begin(), [N](auto X) {return X / static_cast<T>(N); });
-			break;
-		}
-
-		return *X;
-	}
-
-	// TODO: ifft_
-
 	template<class T>
 	auto resize_fft_input(std::vector<T> x, unsigned n)
 	{
 		x.resize(n, T());
 		return x;
 	}
-	
+
+	/* Straight-forward FFT implementations (high-performance for short signals) */
+	template<class T>
+	std::vector<std::complex<T>> fft_(std::vector<std::complex<T>>& x, unsigned n, NormalizationMode mode, bool overwrite_x)
+	{
+		if (x.empty()) return {};
+
+		unsigned N = get_fft_length(x, n);
+
+		std::vector<std::complex<T>> X = resize_fft_input(x, N);
+		auto* in = reinterpret_cast<T*>(&X[0]);
+
+		int nm1 = N - 1;
+		int nd2 = N / 2;
+		unsigned j = nd2;
+		for (unsigned i = 1; i <= N - 2; ++i)
+		{
+			if (i < j)
+			{
+				T t[2] = { in[2 * j], in[2 * j + 1] };
+				in[2 * j] = in[2 * i];
+				in[2 * j + 1] = in[2 * i + 1];
+				in[2 * i] = t[0];
+				in[2 * i + 1] = t[1];
+			}
+			unsigned k = nd2;
+
+			while (k <= j)
+			{
+				j -= k;
+				k /= 2;
+			}
+			j += k;
+		}
+		auto exponent = static_cast<unsigned>(std::log2(N));
+		for (unsigned l = 1; l <= exponent; ++l)
+		{
+			auto le = 1 << l;
+			auto le2 = le / 2;
+			T u[2] = { 1.0, 0.0 };
+			T s[2] = { static_cast<T>(std::cos(pi / le2)), static_cast<T>(-1 * std::sin(pi / le2)) };
+			T t[2];
+			for (auto j = 1; j <= le2; ++j)
+			{
+				auto jm1 = j - 1;
+
+				for (auto i = jm1; i <= nm1; i += le)
+				{
+					auto ip = i + le2;
+					t[0] = in[2 * ip] * u[0] - in[2 * ip + 1] * u[1];
+					t[1] = in[2 * ip] * u[1] + in[2 * ip + 1] * u[0];
+					in[2 * ip] = in[2 * i] - t[0];
+					in[2 * ip + 1] = in[2 * i + 1] - t[1];
+					in[2 * i] += t[0];
+					in[2 * i + 1] += t[1];
+				}
+
+				t[0] = u[0];
+				u[0] = t[0] * s[0] - u[1] * s[1];
+				u[1] = t[0] * s[1] + u[1] * s[0];
+			}
+		}
+
+		switch (mode)
+		{
+		case NormalizationMode::backward:
+			break;
+		case NormalizationMode::ortho:
+			std::transform(X.begin(), X.end(),
+				X.begin(), [N](auto X) {return X / static_cast<T>(sqrt(N)); });
+			break;
+		case NormalizationMode::forward:
+			std::transform(X.begin(), X.end(),
+				X.begin(), [N](auto X) {return X / static_cast<T>(N); });
+			break;
+		}
+
+		return X;
+	}
+
+	template<class T>
+	std::vector<std::complex<T>> ifft_(std::vector<std::complex<T>>& x, unsigned n, NormalizationMode mode, bool overwrite_x)
+	{
+		if (x.empty()) return {};
+
+		unsigned N = get_fft_length(x, n);
+
+		std::vector<std::complex<T>> X = resize_fft_input(x, N);
+
+		X = dsp::conj(X);
+
+		// Switch the mode because we are using the forward transform in the backward transform
+		if (mode == NormalizationMode::backward)
+		{
+			mode = NormalizationMode::forward;
+		}
+		else if (mode == NormalizationMode::forward)
+		{
+			mode = NormalizationMode::backward;
+		}
+		X = fft_(X, N, mode, overwrite_x);
+
+		return dsp::conj(X);
+	}
+
 	template<class T>
 	std::vector<std::complex<T>> rfft_(std::vector<T>& x, unsigned n, NormalizationMode mode, bool overwrite_x)
 	{
@@ -124,18 +135,22 @@ namespace dsp::fft
 
 		unsigned N = get_fft_length(x, n);
 
-		std::vector<T> in = resize_fft_input(x, n);
+		std::vector<T> x_in = resize_fft_input(x, N);
 
-		std::vector<std::complex<T>> out(N);
+		auto* in = reinterpret_cast<T*>(&x_in[0]);
 
-		for(unsigned i = 0; i < N/2; ++i)
+		std::vector<std::complex<T>> X(N);
+
+		for (unsigned i = 0; i < N / 2; ++i)
 		{
-			out[i].real(in[2 * i]);
-			out[i].imag(in[2 * i + 1]);
+			X[i].real(in[2 * i]);
+			X[i].imag(in[2 * i + 1]);
 		}
 
-		out = fft_(out, N / 2, NormalizationMode::backward, true);
-		out.resize(N, { 0.0, 0.0 });
+		X = fft_(X, N / 2, NormalizationMode::backward, overwrite_x);
+		X.resize(N, { 0.0, 0.0 });
+
+		auto* out = reinterpret_cast<T*>(&X[0]);
 
 		unsigned nm1 = N - 1;
 		unsigned nd2 = N / 2;
@@ -146,67 +161,108 @@ namespace dsp::fft
 			auto im = nd2 - i;
 			auto ip2 = i + nd2;
 			auto ipm = im + nd2;
-			out[ip2].real((out[i].imag() + out[im].imag()) / 2);
-			out[ipm].real(out[ip2].real());
-			out[ip2].imag(-(out[i].real() - out[im].real()) / 2);
-			out[ipm].imag(-out[ip2].imag());
+			out[2 * ip2] = (out[2 * i + 1] + out[2 * im + 1]) / 2;
+			out[2 * ipm] = out[2 * ip2];
+			out[2 * ip2 + 1] = -(out[2 * i] - out[2 * im]) / 2;
+			out[2 * ipm + 1] = -out[2 * ip2 + 1];
 
-			out[i].real((out[i].real() + out[im].real()) / 2);
-			out[im].real(out[i].real());
-			out[i].imag((out[i].imag() - out[im].imag()) / 2);
-			out[im].imag(-out[i].imag());
+			out[2 * i] = (out[2 * i] + out[2 * im]) / 2;
+			out[2 * im] = out[2 * i];
+			out[2 * i + 1] = (out[2 * i + 1] - out[2 * im + 1]) / 2;
+			out[2 * im + 1] = -out[2 * i + 1];
 		}
 
-		out[(N * 3) / 4].real(out[N / 4].imag());
-		out[nd2].real(out[0].imag());
-		out[(N * 3 / 4)].imag(0.0);
-		out[nd2].imag(0.0);
-		out[N / 4].imag(0.0);
-		out[0].imag(0.0);
+		out[2 * (N * 3) / 4] = out[2 * (N / 4) + 1];
+		out[2 * nd2] = out[2 * 0 + 1];
+		out[2 * (N * 3 / 4) + 1] = 0.0;
+		out[2 * nd2 + 1] = 0.0;
+		out[2 * (N / 4) + 1] = 0.0;
+		out[2 * 0 + 1] = 0.0;
 
 		auto l = static_cast<unsigned>(std::log2(N));
 		unsigned le = 1 << l;
 		unsigned le2 = le / 2;
 
-		std::complex<T> u(1.0, 0.0);
-		std::complex<T> s(static_cast<T>(std::cos(pi / le2)), static_cast<T>(-std::sin(pi / le2)));
-		std::complex<T> t;
+		T u[2] = { 1.0, 0.0 };
+		T s[2] = { static_cast<T>(std::cos(pi / le2)), static_cast<T>(-std::sin(pi / le2)) };
+		T t[2];
 
 		for (unsigned j = 1; j <= le2; ++j)
 		{
 			auto jm1 = j - 1;
-			for (auto i = jm1; i <= nm1; i+= le)
+			for (auto i = jm1; i <= nm1; i += le)
 			{
 				auto ip = i + le2;
-				t = { out[ip].real() * u.real() - out[ip].imag() * u.imag(), out[ip].real() * u.imag() + out[ip].imag() * u.real() };
-				out[ip] = out[i] - t;
-				out[i] += t;
+				t[0] = out[2 * ip] * u[0] - out[2 * ip + 1] * u[1];
+				t[1] = out[2 * ip] * u[1] + out[2 * ip + 1] * u[0];
+				out[2 * ip] = out[2 * i] - t[0];
+				out[2 * ip + 1] = out[2 * i + 1] - t[1];
+				out[2 * i] += t[0];
+				out[2 * i + 1] += t[1];
 			}
 
-			t.real(u.real());
-			u.real(t.real() * s.real() - u.imag() * s.imag());
-			u.imag(t.real() * s.imag() + u.imag() * s.real());
+			t[0] = u[0];
+			u[0] = t[0] * s[0] - u[1] * s[1];
+			u[1] = t[0] * s[1] + u[1] * s[0];
 		}
-		
-		
+
+
 		switch (mode)
 		{
 		case NormalizationMode::backward:
 			break;
 		case NormalizationMode::ortho:
-			std::transform(out.begin(), out.end(),
-				out.begin(), [N](auto X) {return X / static_cast<T>(sqrt(N)); });
+			std::transform(X.begin(), X.end(),
+				X.begin(), [N](auto X) {return X / static_cast<T>(sqrt(N)); });
 			break;
 		case NormalizationMode::forward:
-			std::transform(out.begin(), out.end(),
-				out.begin(), [N](auto X) {return X / static_cast<T>(N); });
+			std::transform(X.begin(), X.end(),
+				X.begin(), [N](auto X) {return X / static_cast<T>(N); });
 			break;
 		}
 
-		return out;
+		return X;
 	}
-	
-	
+
+	template<class T>
+	std::vector<T> irfft_(std::vector<std::complex<T>>& x, unsigned n, NormalizationMode mode, bool overwrite_x)
+	{
+		if (x.empty()) return {};
+
+		unsigned N = get_fft_length(x, n);
+
+		auto x_in = resize_fft_input(x, N);
+
+		for (unsigned k = N / 2 + 1; k < N; ++k)
+		{
+			x_in[k] = std::conj(x_in[N - k]);
+		}
+		for (auto& z : x_in)
+		{
+			z.real(z.real() + z.imag());
+		}
+
+		// Switch the mode because we are using the forward transform in the backward transform
+		if (mode == NormalizationMode::backward)
+		{
+			mode = NormalizationMode::forward;
+		}
+		else if (mode == NormalizationMode::forward)
+		{
+			mode = NormalizationMode::backward;
+		}
+		auto xre = dsp::real(x_in);
+		auto X = rfft_(xre, N, mode, overwrite_x);
+
+		for (unsigned i = 0; i < N; ++i)
+		{
+			X[i].real(X[i].real() + X[i].imag());
+		}
+
+		return dsp::real(X);
+	}
+
+
 	/* Wrapper functions for FFTW library functions of various precisions (high-performance for long signals) */
 	auto fftw(std::vector<std::complex<float>>& x, unsigned n, int sign, unsigned flags, NormalizationMode mode, bool overwrite_x)
 	{
@@ -370,7 +426,7 @@ namespace dsp::fft
 
 		unsigned N = get_fft_length(x, n);
 
-		std::vector<std::complex<double>> X(static_cast<size_t>(N/2+1));
+		std::vector<std::complex<double>> X(static_cast<size_t>(N / 2 + 1));
 		std::vector<double> x_copy;
 		double* in;
 		if (overwrite_x)
@@ -499,7 +555,7 @@ namespace dsp::fft
 
 		auto Xconj = dsp::conj(X);
 		X.insert(X.end(), Xconj.rbegin() + 1, Xconj.rend() - 1);
-		
+
 		fftwl_destroy_plan(p);
 		return X;
 	}
@@ -640,20 +696,20 @@ namespace dsp::fft
 template<class T>
 std::vector<std::complex<T>> dsp::fft::fft(std::vector<std::complex<T>>& x, unsigned n, dsp::fft::NormalizationMode mode, bool overwrite_x, backend backend)
 {
-	switch(backend)
+	switch (backend)
 	{
-		
+
 	case backend::automatic:
-		if(n > 10000000)
+		if (n > 100000)
 		{
 			return fftw(x, n, FFTW_FORWARD, FFTW_ESTIMATE, mode, overwrite_x);
 		}
 		return fft_(x, n, mode, overwrite_x);
 	case backend::simple:
 		return fft_(x, n, mode, overwrite_x);
-		case backend::fftw: 
+	case backend::fftw:
 		return fftw(x, n, FFTW_FORWARD, FFTW_ESTIMATE, mode, overwrite_x);
-	default: 
+	default:
 		throw std::runtime_error("Unknown backend selected!");
 	}
 }
@@ -661,25 +717,39 @@ std::vector<std::complex<T>> dsp::fft::fft(std::vector<std::complex<T>>& x, unsi
 template <class T>
 std::vector<std::complex<T>> dsp::fft::ifft(std::vector<std::complex<T>>& X, unsigned n, NormalizationMode mode, bool overwrite_X, backend backend)
 {
-	return fftw(X, n, FFTW_BACKWARD, FFTW_ESTIMATE, mode, overwrite_X);
+	switch (backend)
+	{
+	case backend::automatic:
+		if (n > 100000)
+		{
+			return fftw(X, n, FFTW_BACKWARD, FFTW_ESTIMATE, mode, overwrite_X);
+		}
+		return ifft_(X, n, mode, overwrite_X);
+	case backend::simple:
+		return ifft_(X, n, mode, overwrite_X);
+	case backend::fftw:
+		return fftw(X, n, FFTW_BACKWARD, FFTW_ESTIMATE, mode, overwrite_X);
+	default:
+		throw std::runtime_error("Unknown backend selected!");
+	}
 }
 
 template <class T>
 std::vector<std::complex<T>> dsp::fft::rfft(std::vector<T>& x, unsigned n, NormalizationMode mode, bool overwrite_x, backend backend)
 {
-	switch(backend)
+	switch (backend)
 	{
 	case backend::automatic:
-		if(n > 1000000)
+		if (n > 100000)
 		{
 			return rfftw(x, n, FFTW_ESTIMATE, mode, overwrite_x);
 		}
 		return rfft_(x, n, mode, overwrite_x);
 	case backend::simple:
 		return rfft_(x, n, mode, overwrite_x);
-	case backend::fftw: 
+	case backend::fftw:
 		return rfftw(x, n, FFTW_ESTIMATE, mode, overwrite_x);
-	default: 
+	default:
 		throw std::runtime_error("Unknown backend selected!");
 	}
 }
@@ -687,7 +757,21 @@ std::vector<std::complex<T>> dsp::fft::rfft(std::vector<T>& x, unsigned n, Norma
 template <class T>
 std::vector<T> dsp::fft::irfft(std::vector<std::complex<T>>& X, unsigned n, NormalizationMode mode, bool overwrite_X, backend backend)
 {
-	return irfftw(X, n, FFTW_ESTIMATE, mode, overwrite_X);
+	switch (backend)
+	{
+	case backend::automatic:
+		if (n > 100000)
+		{
+			return irfftw(X, n, FFTW_ESTIMATE, mode, overwrite_X);
+		}
+		return irfft_(X, n, mode, overwrite_X);
+	case backend::simple:
+		return irfft_(X, n, mode, overwrite_X);
+	case backend::fftw:
+		return irfftw(X, n, FFTW_ESTIMATE, mode, overwrite_X);
+	default:
+		throw std::runtime_error("Unknown backend selected!");
+	}
 }
 
 // Explicit template instantiation
