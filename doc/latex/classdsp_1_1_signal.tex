@@ -1,0 +1,282 @@
+\hypertarget{classdsp_1_1_signal}{}\doxysection{dsp\+::Signal$<$ T $>$ Class Template Reference}
+\label{classdsp_1_1_signal}\index{dsp::Signal$<$ T $>$@{dsp::Signal$<$ T $>$}}
+
+
+This class represents a signal.  
+
+
+
+
+{\ttfamily \#include $<$Signal.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_aaaabb30292daaf8f51f25e081ceacd59}\label{classdsp_1_1_signal_aaaabb30292daaf8f51f25e081ceacd59}} 
+using {\bfseries value\+\_\+type} = typename std\+::vector$<$ T $>$\+::value\+\_\+type
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a1362dba3fc632d0422078c877a3e8afe}\label{classdsp_1_1_signal_a1362dba3fc632d0422078c877a3e8afe}} 
+using {\bfseries allocator\+\_\+type} = typename std\+::vector$<$ T $>$\+::allocator\+\_\+type
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a97ed0d971f6db03d39194cde43810131}\label{classdsp_1_1_signal_a97ed0d971f6db03d39194cde43810131}} 
+using {\bfseries size\+\_\+type} = typename std\+::vector$<$ T $>$\+::size\+\_\+type
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a1e79b50488917f95da990b14765fbbae}\label{classdsp_1_1_signal_a1e79b50488917f95da990b14765fbbae}} 
+using {\bfseries difference\+\_\+type} = typename std\+::vector$<$ T $>$\+::difference\+\_\+type
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a0a1d24e23ea6f33a792fed79e1148c6b}\label{classdsp_1_1_signal_a0a1d24e23ea6f33a792fed79e1148c6b}} 
+using {\bfseries reference} = typename std\+::vector$<$ T $>$\+::reference
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a32ff51ee955e5cb97a5545995bfd8971}\label{classdsp_1_1_signal_a32ff51ee955e5cb97a5545995bfd8971}} 
+using {\bfseries const\+\_\+reference} = typename std\+::vector$<$ T $>$\+::const\+\_\+reference
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a00277d9776ca433d4778fb312a48f0b6}\label{classdsp_1_1_signal_a00277d9776ca433d4778fb312a48f0b6}} 
+using {\bfseries pointer} = typename std\+::vector$<$ T $>$\+::pointer
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a4c447e1fee42ad961cab9f49e8a35a17}\label{classdsp_1_1_signal_a4c447e1fee42ad961cab9f49e8a35a17}} 
+using {\bfseries const\+\_\+pointer} = typename std\+::vector$<$ T $>$\+::const\+\_\+pointer
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a331c750bcc492779d62da3fdb2d90428}\label{classdsp_1_1_signal_a331c750bcc492779d62da3fdb2d90428}} 
+using {\bfseries iterator} = typename std\+::vector$<$ T $>$\+::iterator
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_ac4ce41112babca7c37909c0e68f8c7d1}\label{classdsp_1_1_signal_ac4ce41112babca7c37909c0e68f8c7d1}} 
+using {\bfseries const\+\_\+iterator} = typename std\+::vector$<$ T $>$\+::const\+\_\+iterator
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_ab10337e87c9c454b2c71d4f589e2e3e0}\label{classdsp_1_1_signal_ab10337e87c9c454b2c71d4f589e2e3e0}} 
+using {\bfseries reverse\+\_\+iterator} = typename std\+::vector$<$ T $>$\+::reverse\+\_\+iterator
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_af1cd92e5bf0606e024569ca98abd3600}\label{classdsp_1_1_signal_af1cd92e5bf0606e024569ca98abd3600}} 
+using {\bfseries const\+\_\+reverse\+\_\+iterator} = typename std\+::vector$<$ T $>$\+::const\+\_\+reverse\+\_\+iterator
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a11921403012b1f6d3646b545306365c5}\label{classdsp_1_1_signal_a11921403012b1f6d3646b545306365c5}} 
+{\bfseries Signal} (const \mbox{\hyperlink{classdsp_1_1_signal}{Signal}} \&other)
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a74deecb216de7c0374d9ef3c131cf567}\label{classdsp_1_1_signal_a74deecb216de7c0374d9ef3c131cf567}} 
+{\bfseries Signal} (\mbox{\hyperlink{classdsp_1_1_signal}{Signal}} \&\&other) noexcept
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a2d5bf6d7fa0d6ba44be9eecfb46df73c}\label{classdsp_1_1_signal_a2d5bf6d7fa0d6ba44be9eecfb46df73c}} 
+{\bfseries Signal} (unsigned sampling\+Rate\+\_\+\+Hz)
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a8ab4d6515bd23ec01a2d9a605fea2d8a}\label{classdsp_1_1_signal_a8ab4d6515bd23ec01a2d9a605fea2d8a}} 
+{\bfseries Signal} (const std\+::vector$<$ T $>$ \&samples)
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_af389bdad6c03f8be93e26434f24502e3}\label{classdsp_1_1_signal_af389bdad6c03f8be93e26434f24502e3}} 
+{\bfseries Signal} (unsigned sampling\+Rate\+\_\+\+Hz, const std\+::vector$<$ T $>$ \&samples)
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_ad73e5d0efc33884529055539130db799}\label{classdsp_1_1_signal_ad73e5d0efc33884529055539130db799}} 
+const std\+::vector$<$ T $>$ \& {\bfseries get\+Samples} () const
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a114bfee2813c115c0685e9067f4a0cc5}\label{classdsp_1_1_signal_a114bfee2813c115c0685e9067f4a0cc5}} 
+std\+::vector$<$ T $>$ \& {\bfseries get\+Samples} ()
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a6a1343f010f761d42b84962f8fc4c808}\label{classdsp_1_1_signal_a6a1343f010f761d42b84962f8fc4c808}} 
+auto {\bfseries real} () const
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a8feb196987344db970173674d9b5fb27}\label{classdsp_1_1_signal_a8feb196987344db970173674d9b5fb27}} 
+auto {\bfseries imag} () const
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_ad8d823b6a6991222336becec777e9b09}\label{classdsp_1_1_signal_ad8d823b6a6991222336becec777e9b09}} 
+unsigned {\bfseries get\+Sampling\+Rate\+\_\+\+Hz} () const
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_acd40c89b8159982923cf19b61ab41000}\label{classdsp_1_1_signal_acd40c89b8159982923cf19b61ab41000}} 
+void {\bfseries set\+Samples} (const std\+::vector$<$ T $>$ \&samples)
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a6d5be5ac24152da55721a22d96ec54b3}\label{classdsp_1_1_signal_a6d5be5ac24152da55721a22d96ec54b3}} 
+void {\bfseries set\+Sampling\+Rate\+\_\+\+Hz} (unsigned new\+Sampling\+Rate\+\_\+\+Hz)
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a29c66425e845bdd13c6b6af4c325be22}\label{classdsp_1_1_signal_a29c66425e845bdd13c6b6af4c325be22}} 
+\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \& {\bfseries operator+=} (const \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \&rhs)
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_aa2934d472ab782f5f6b6eb733d8ad42d}\label{classdsp_1_1_signal_aa2934d472ab782f5f6b6eb733d8ad42d}} 
+\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \& {\bfseries operator+=} (const std\+::vector$<$ T $>$ \&vec)
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a6b36c68fd8f7181ab3e602e255dd4720}\label{classdsp_1_1_signal_a6b36c68fd8f7181ab3e602e255dd4720}} 
+\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \& {\bfseries operator+=} (const\+\_\+reference value)
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a3ce1de007c7d0ccf6705734c76bc2aa4}\label{classdsp_1_1_signal_a3ce1de007c7d0ccf6705734c76bc2aa4}} 
+\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \& {\bfseries operator-\/=} (const \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \&rhs)
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a850e8f72aefb713c895ed07e6d89641a}\label{classdsp_1_1_signal_a850e8f72aefb713c895ed07e6d89641a}} 
+\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \& {\bfseries operator-\/=} (const std\+::vector$<$ T $>$ \&vec)
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a8af7455c27ebb6cf34a1cbc897a129a2}\label{classdsp_1_1_signal_a8af7455c27ebb6cf34a1cbc897a129a2}} 
+\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \& {\bfseries operator-\/=} (const\+\_\+reference value)
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a61d647766020f2d470508f2a2c3f0403}\label{classdsp_1_1_signal_a61d647766020f2d470508f2a2c3f0403}} 
+\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \& {\bfseries operator$\ast$=} (const \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \&rhs)
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a9ab1973cd4fbc45bad6165c5f9290f1e}\label{classdsp_1_1_signal_a9ab1973cd4fbc45bad6165c5f9290f1e}} 
+\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \& {\bfseries operator$\ast$=} (const std\+::vector$<$ T $>$ \&vec)
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a9335ebc0bde88f83578cc7b342e625dc}\label{classdsp_1_1_signal_a9335ebc0bde88f83578cc7b342e625dc}} 
+\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \& {\bfseries operator$\ast$=} (const\+\_\+reference value)
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_abe6520064bdf57f1c664385c717bedd7}\label{classdsp_1_1_signal_abe6520064bdf57f1c664385c717bedd7}} 
+\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \& {\bfseries operator/=} (const \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \&rhs)
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_acda86a8298569e910326c3dc428a6161}\label{classdsp_1_1_signal_acda86a8298569e910326c3dc428a6161}} 
+\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \& {\bfseries operator/=} (const std\+::vector$<$ T $>$ \&vec)
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a61ccbd29fa50d05edded19b2f9bdb86f}\label{classdsp_1_1_signal_a61ccbd29fa50d05edded19b2f9bdb86f}} 
+\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \& {\bfseries operator/=} (const\+\_\+reference value)
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a0367da2380bae27c7ddcc31889441aa3}\label{classdsp_1_1_signal_a0367da2380bae27c7ddcc31889441aa3}} 
+\mbox{\hyperlink{classdsp_1_1_signal}{Signal}} \& {\bfseries assign} (size\+\_\+type count, const T \&value)
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a52aced4a57bebc613ec0b135f9071a64}\label{classdsp_1_1_signal_a52aced4a57bebc613ec0b135f9071a64}} 
+{\footnotesize template$<$class Input\+It $>$ }\\void {\bfseries assign} (Input\+It first, Input\+It last)
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a9419c2179e7e05f52e483d8b726da36c}\label{classdsp_1_1_signal_a9419c2179e7e05f52e483d8b726da36c}} 
+reference {\bfseries at} (size\+\_\+type pos)
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_ac1799c5e25b4d0451bd0ff1b9b0a1263}\label{classdsp_1_1_signal_ac1799c5e25b4d0451bd0ff1b9b0a1263}} 
+const T \& {\bfseries at} (size\+\_\+type pos) const
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_afe2ab6c9c5c6f33e4eac1d0c04028c58}\label{classdsp_1_1_signal_afe2ab6c9c5c6f33e4eac1d0c04028c58}} 
+reference {\bfseries front} ()
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a18821f0fa5f02811c6221656f5f18690}\label{classdsp_1_1_signal_a18821f0fa5f02811c6221656f5f18690}} 
+const T \& {\bfseries front} () const
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_aca085c566f9accec8f2a290ae2050529}\label{classdsp_1_1_signal_aca085c566f9accec8f2a290ae2050529}} 
+reference {\bfseries back} ()
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_ac7e75bfe2fdc96d634857cdb94f31aaa}\label{classdsp_1_1_signal_ac7e75bfe2fdc96d634857cdb94f31aaa}} 
+const T \& {\bfseries back} () const
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_af6b5071ef11ff611236dd7d9f95564b0}\label{classdsp_1_1_signal_af6b5071ef11ff611236dd7d9f95564b0}} 
+T $\ast$ {\bfseries data} ()
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_aaa737bc882d6a8826965c234ed520d07}\label{classdsp_1_1_signal_aaa737bc882d6a8826965c234ed520d07}} 
+const T $\ast$ {\bfseries data} () const
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a1018d1f48d1ca06232b11a63876a4f04}\label{classdsp_1_1_signal_a1018d1f48d1ca06232b11a63876a4f04}} 
+iterator {\bfseries begin} ()
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a674409181f8490a98e7b636df6cd82df}\label{classdsp_1_1_signal_a674409181f8490a98e7b636df6cd82df}} 
+const\+\_\+iterator {\bfseries begin} () const
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_aefd89e6f0ab6cc1e27f276ae0c7bb9a6}\label{classdsp_1_1_signal_aefd89e6f0ab6cc1e27f276ae0c7bb9a6}} 
+iterator {\bfseries end} ()
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a82980453369e8a7ebc4fdcef4c9e38f3}\label{classdsp_1_1_signal_a82980453369e8a7ebc4fdcef4c9e38f3}} 
+const\+\_\+iterator {\bfseries end} () const
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a0ef60569b1ba241aceb8b28a9cc3b5b9}\label{classdsp_1_1_signal_a0ef60569b1ba241aceb8b28a9cc3b5b9}} 
+reverse\+\_\+iterator {\bfseries rbegin} ()
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_acc8b7b6cc95e992ace74111fa8ccedc4}\label{classdsp_1_1_signal_acc8b7b6cc95e992ace74111fa8ccedc4}} 
+const\+\_\+reverse\+\_\+iterator {\bfseries rbegin} () const
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a8a30493cd501cac320cfc10f8d040306}\label{classdsp_1_1_signal_a8a30493cd501cac320cfc10f8d040306}} 
+bool {\bfseries empty} () const
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a5958a2fd85e848830f37ac0e0ae7fed8}\label{classdsp_1_1_signal_a5958a2fd85e848830f37ac0e0ae7fed8}} 
+size\+\_\+type {\bfseries size} () const
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_aed27b39a11b7861571c27750c4f78ab5}\label{classdsp_1_1_signal_aed27b39a11b7861571c27750c4f78ab5}} 
+size\+\_\+type {\bfseries max\+\_\+size} () const
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_aa4c7cbf1deb162b2e2604b2e62248d1d}\label{classdsp_1_1_signal_aa4c7cbf1deb162b2e2604b2e62248d1d}} 
+void {\bfseries reserve} (size\+\_\+type new\+\_\+cap)
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a191f196866046451e0eb335e26971dc7}\label{classdsp_1_1_signal_a191f196866046451e0eb335e26971dc7}} 
+size\+\_\+type {\bfseries capacity} () const
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a96dd0c81a37c2773c43856099a42c4b7}\label{classdsp_1_1_signal_a96dd0c81a37c2773c43856099a42c4b7}} 
+void {\bfseries shrink\+\_\+to\+\_\+fit} ()
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a1d3def37c9f5fae64d653b9ab84b159d}\label{classdsp_1_1_signal_a1d3def37c9f5fae64d653b9ab84b159d}} 
+void {\bfseries clear} ()
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_ab1ab30237ec1b34bece6e6cdf330a987}\label{classdsp_1_1_signal_ab1ab30237ec1b34bece6e6cdf330a987}} 
+iterator {\bfseries insert} (const\+\_\+iterator pos, const value\+\_\+type \&value)
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_afc73abb65c0a898da5796c9551d76272}\label{classdsp_1_1_signal_afc73abb65c0a898da5796c9551d76272}} 
+iterator {\bfseries insert} (const\+\_\+iterator pos, value\+\_\+type \&\&value)
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a1144288c424b008e3d5e7cc4f8730692}\label{classdsp_1_1_signal_a1144288c424b008e3d5e7cc4f8730692}} 
+iterator {\bfseries insert} (const\+\_\+iterator pos, size\+\_\+type count, const value\+\_\+type \&value)
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a0ad444a0ecb053b6b0c0229d60e4736e}\label{classdsp_1_1_signal_a0ad444a0ecb053b6b0c0229d60e4736e}} 
+{\footnotesize template$<$class Input\+It $>$ }\\iterator {\bfseries insert} (const\+\_\+iterator pos, Input\+It first, Input\+It last)
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a7a52cfca66c11728a3dda8c9b4aa4046}\label{classdsp_1_1_signal_a7a52cfca66c11728a3dda8c9b4aa4046}} 
+iterator {\bfseries insert} (const\+\_\+iterator pos, std\+::initializer\+\_\+list$<$ T $>$ ilist)
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a40ccc8fbe9b7d14ceb7eed8e59db1394}\label{classdsp_1_1_signal_a40ccc8fbe9b7d14ceb7eed8e59db1394}} 
+{\footnotesize template$<$class... Args$>$ }\\iterator {\bfseries emplace} (const\+\_\+iterator pos, Args \&\&... args)
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_aa35c4de841b68d10f5b62b61592f9942}\label{classdsp_1_1_signal_aa35c4de841b68d10f5b62b61592f9942}} 
+iterator {\bfseries erase} (const\+\_\+iterator pos)
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a08dc196a18702f43c1b29a7dae6189c1}\label{classdsp_1_1_signal_a08dc196a18702f43c1b29a7dae6189c1}} 
+iterator {\bfseries erase} (const\+\_\+iterator first, const\+\_\+iterator last)
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_ad762e9f54410371092b0e303359e79f1}\label{classdsp_1_1_signal_ad762e9f54410371092b0e303359e79f1}} 
+void {\bfseries push\+\_\+back} (const T \&value)
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a4877a0caf3b6f4fac995034433304e31}\label{classdsp_1_1_signal_a4877a0caf3b6f4fac995034433304e31}} 
+void {\bfseries push\+\_\+back} (T \&\&value)
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a7feba86c6bdca94c1f45d91c04f6093e}\label{classdsp_1_1_signal_a7feba86c6bdca94c1f45d91c04f6093e}} 
+{\footnotesize template$<$class... Args$>$ }\\void {\bfseries emplace\+\_\+back} (Args \&\&... args)
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a325122e43ace2458a024b50b422c9e29}\label{classdsp_1_1_signal_a325122e43ace2458a024b50b422c9e29}} 
+void {\bfseries pop\+\_\+back} ()
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a164a6eed368e07d8d1f75d7581868a80}\label{classdsp_1_1_signal_a164a6eed368e07d8d1f75d7581868a80}} 
+void {\bfseries resize} (size\+\_\+type count)
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a00dfa31797fb4514872abf09f210c6df}\label{classdsp_1_1_signal_a00dfa31797fb4514872abf09f210c6df}} 
+void {\bfseries resize} (size\+\_\+type count, const value\+\_\+type value)
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a01251c45f35748003e4bfbd363e539b9}\label{classdsp_1_1_signal_a01251c45f35748003e4bfbd363e539b9}} 
+void {\bfseries swap} (\mbox{\hyperlink{classdsp_1_1_signal}{Signal}} \&other) noexcept
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a16c58a5871b0aa3e0291a6d76280a56d}\label{classdsp_1_1_signal_a16c58a5871b0aa3e0291a6d76280a56d}} 
+\mbox{\hyperlink{classdsp_1_1_signal}{Signal}} \& {\bfseries operator=} (const \mbox{\hyperlink{classdsp_1_1_signal}{Signal}} \&other)
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a880337756d5678b9977188f680b34939}\label{classdsp_1_1_signal_a880337756d5678b9977188f680b34939}} 
+\mbox{\hyperlink{classdsp_1_1_signal}{Signal}} \& {\bfseries operator=} (\mbox{\hyperlink{classdsp_1_1_signal}{Signal}} \&\&other) noexcept
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a412a5bd0060d03dd228ea9cb19c8cc63}\label{classdsp_1_1_signal_a412a5bd0060d03dd228ea9cb19c8cc63}} 
+reference \& {\bfseries operator\mbox{[}$\,$\mbox{]}} (size\+\_\+type pos)
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_afc1083816c754998b530b3705f6cf2f1}\label{classdsp_1_1_signal_afc1083816c754998b530b3705f6cf2f1}} 
+const\+\_\+reference \& {\bfseries operator\mbox{[}$\,$\mbox{]}} (size\+\_\+type pos) const
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a3ad742acba88641b91988b514ddc88b9}\label{classdsp_1_1_signal_a3ad742acba88641b91988b514ddc88b9}} 
+{\footnotesize template$<$class Input\+It $>$ }\\\mbox{\hyperlink{classdsp_1_1_signal}{dsp\+::\+Signal}}$<$ T $>$\+::iterator {\bfseries insert} (const\+\_\+iterator pos, Input\+It first, Input\+It last)
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a7a394bb6eac115c6bb961386277f161b}\label{classdsp_1_1_signal_a7a394bb6eac115c6bb961386277f161b}} 
+{\footnotesize template$<$class ... Args$>$ }\\\mbox{\hyperlink{classdsp_1_1_signal}{dsp\+::\+Signal}}$<$ T $>$\+::iterator {\bfseries emplace} (const\+\_\+iterator pos, Args \&\&... args)
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_af0b0d36b0aeab988a05ba360c6ddb89c}\label{classdsp_1_1_signal_af0b0d36b0aeab988a05ba360c6ddb89c}} 
+std\+::ostream \& {\bfseries operator$<$$<$} (std\+::ostream \&os, const \mbox{\hyperlink{classdsp_1_1_signal}{Signal}} \&obj)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class T$>$\newline
+class dsp\+::\+Signal$<$ T $>$}
+
+This class represents a signal. 
+
+It is implemented as a facade design pattern wrapped around an STL vector. Fun fact\+: It is not derived from std\+::vector because that class does not have a virtual destructor, potentially producing memory leaks. 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Data type of the samples in the signal. Can be any numeric type, but mind that the arithmetic is at the same precision (which might lead to unexpected results with integer types). \\
+\hline
+\end{DoxyTemplParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Simon Stone/source/repos/\+Dsp/src/Signal.\+h\item 
+C\+:/\+Users/\+Simon Stone/source/repos/\+Dsp/src/Signal.\+cpp\end{DoxyCompactItemize}

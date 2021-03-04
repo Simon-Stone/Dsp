@@ -2,6 +2,7 @@
 
 #include <vector>
 
+/// @brief Window functions
 namespace dsp::window
 {
 	/// @brief Types of windows (not all implemented yet)
@@ -37,7 +38,7 @@ namespace dsp::window
 	/// the origin, so these will typically all be positive numbers, not alternating sign.
 	/// @param sym >When true (default), generates a symmetric window, for use in filter design. When false,
 	/// generates a periodic window, for use in spectral analysis.
-	/// @return 
+	/// @return The window, with the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is true).
 	template<class T>
 	std::vector<T> general_cosine(unsigned N, const std::vector<T>& a, bool sym = true);
 

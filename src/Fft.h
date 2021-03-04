@@ -3,6 +3,7 @@
 
 namespace dsp
 {
+	/// @brief Fast Fourier Transformations
 	namespace fft
 	{
 		/// @brief Normalization mode for the various transforms: "backward" means normalization by n on the inverse transformation only, "forward" means on the forward transformation only, and "ortho" means divide by sqrt(n) in both directions.

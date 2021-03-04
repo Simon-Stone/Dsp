@@ -1,0 +1,77 @@
+\hypertarget{class_complex_signal}{}\doxysection{Complex\+Signal Class Reference}
+\label{class_complex_signal}\index{ComplexSignal@{ComplexSignal}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_complex_signal_a2e11b8f8265816c4f46f3590dff29618}\label{class_complex_signal_a2e11b8f8265816c4f46f3590dff29618}} 
+{\bfseries Complex\+Signal} (int length=0)
+\item 
+\mbox{\Hypertarget{class_complex_signal_a40646e577fafc4fa2fc8edd580760ae5}\label{class_complex_signal_a40646e577fafc4fa2fc8edd580760ae5}} 
+void {\bfseries reset} (int length)
+\item 
+\mbox{\Hypertarget{class_complex_signal_a6501545e89608ae7339115a0b72ea469}\label{class_complex_signal_a6501545e89608ae7339115a0b72ea469}} 
+void {\bfseries dispose} ()
+\item 
+\mbox{\Hypertarget{class_complex_signal_ab931ad32748e9c59f3ae23e9595f7a3e}\label{class_complex_signal_ab931ad32748e9c59f3ae23e9595f7a3e}} 
+void {\bfseries set\+Zero} ()
+\item 
+\mbox{\Hypertarget{class_complex_signal_a9a8c5a7e5293fad7aa4b66a7cc13aee8}\label{class_complex_signal_a9a8c5a7e5293fad7aa4b66a7cc13aee8}} 
+void {\bfseries set\+New\+Length} (int new\+Length)
+\item 
+\mbox{\Hypertarget{class_complex_signal_aa149355b9c64e4ea62a2d57b7e5af3dc}\label{class_complex_signal_aa149355b9c64e4ea62a2d57b7e5af3dc}} 
+void {\bfseries set\+Min\+Length} (int min\+Length)
+\item 
+\mbox{\Hypertarget{class_complex_signal_a4924cb30b2db39cbe1eda4fd4c34a4ea}\label{class_complex_signal_a4924cb30b2db39cbe1eda4fd4c34a4ea}} 
+void {\bfseries limit\+Index} (int \&index)
+\item 
+\mbox{\Hypertarget{class_complex_signal_a8b3e3b2214fd25c998725633e860eddc}\label{class_complex_signal_a8b3e3b2214fd25c998725633e860eddc}} 
+void {\bfseries set\+Value} (int pos, Complex value)
+\item 
+\mbox{\Hypertarget{class_complex_signal_a76ce2ddc7b997cb16dac9a764bcf81d2}\label{class_complex_signal_a76ce2ddc7b997cb16dac9a764bcf81d2}} 
+void {\bfseries set\+Value} (int pos, double new\+Re, double new\+Im)
+\item 
+\mbox{\Hypertarget{class_complex_signal_a67a1f39d7ce00d60878a525b70175db2}\label{class_complex_signal_a67a1f39d7ce00d60878a525b70175db2}} 
+Complex {\bfseries get\+Value} (int pos)
+\item 
+\mbox{\Hypertarget{class_complex_signal_a930d559a5257a946c8e0ac6961270c08}\label{class_complex_signal_a930d559a5257a946c8e0ac6961270c08}} 
+double {\bfseries get\+Magnitude} (int pos)
+\item 
+\mbox{\Hypertarget{class_complex_signal_ae797fb7be3d1a29b3c0add56a777156e}\label{class_complex_signal_ae797fb7be3d1a29b3c0add56a777156e}} 
+double {\bfseries get\+Phase} (int pos)
+\item 
+\mbox{\Hypertarget{class_complex_signal_aca1355defbbc939271753e14a607e5c2}\label{class_complex_signal_aca1355defbbc939271753e14a607e5c2}} 
+double {\bfseries get\+Real\+Part} (int pos)
+\item 
+\mbox{\Hypertarget{class_complex_signal_a7a83ecf392f991f4279897834e97f412}\label{class_complex_signal_a7a83ecf392f991f4279897834e97f412}} 
+double {\bfseries get\+Imaginary\+Part} (int pos)
+\item 
+\mbox{\Hypertarget{class_complex_signal_a01c224d76fa35a6df3cea9ddc30b0506}\label{class_complex_signal_a01c224d76fa35a6df3cea9ddc30b0506}} 
+void {\bfseries operator=} (\mbox{\hyperlink{class_complex_signal}{Complex\+Signal}} \&s)
+\item 
+\mbox{\Hypertarget{class_complex_signal_aeec2bb0e77beeb2f3923be1800a2c88d}\label{class_complex_signal_aeec2bb0e77beeb2f3923be1800a2c88d}} 
+void {\bfseries operator+=} (\mbox{\hyperlink{class_complex_signal}{Complex\+Signal}} \&s)
+\item 
+\mbox{\Hypertarget{class_complex_signal_ab6d566160046898c1930fad41ec2d897}\label{class_complex_signal_ab6d566160046898c1930fad41ec2d897}} 
+void {\bfseries operator$\ast$=} (\mbox{\hyperlink{class_complex_signal}{Complex\+Signal}} \&s)
+\item 
+\mbox{\Hypertarget{class_complex_signal_ae26afe43ade331ad84ce804325970ec4}\label{class_complex_signal_ae26afe43ade331ad84ce804325970ec4}} 
+void {\bfseries operator$\ast$=} (double factor)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_complex_signal_ad8259241613c6c824ecc4715b1abcd5d}\label{class_complex_signal_ad8259241613c6c824ecc4715b1abcd5d}} 
+int {\bfseries N}
+\item 
+\mbox{\Hypertarget{class_complex_signal_a002adf7e8e3818c60907d70343229c75}\label{class_complex_signal_a002adf7e8e3818c60907d70343229c75}} 
+double $\ast$ {\bfseries re}
+\item 
+\mbox{\Hypertarget{class_complex_signal_a0513e30979403998d4ba1f2ae8e22042}\label{class_complex_signal_a0513e30979403998d4ba1f2ae8e22042}} 
+double $\ast$ {\bfseries im}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Simon Stone/source/repos/\+Dsp/src/\+Legacy/Legacy\+Signal.\+h\item 
+C\+:/\+Users/\+Simon Stone/source/repos/\+Dsp/src/\+Legacy/Legacy\+Signal.\+cpp\end{DoxyCompactItemize}

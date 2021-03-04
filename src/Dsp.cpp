@@ -1,6 +1,9 @@
 #include "dsp.h"
+
 #include <cmath>
 #include <functional>
+
+#include "window.h"
 
 unsigned dsp::nextpow2(unsigned n)
 {

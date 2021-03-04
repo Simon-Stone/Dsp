@@ -1,0 +1,319 @@
+\hypertarget{namespacedsp}{}\doxysection{dsp Namespace Reference}
+\label{namespacedsp}\index{dsp@{dsp}}
+
+
+Convenience functions for digital signal processing.  
+
+
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacedsp_1_1fft}{fft}}
+\begin{DoxyCompactList}\small\item\em Fast Fourier Transformations. \end{DoxyCompactList}\item 
+ \mbox{\hyperlink{namespacedsp_1_1special}{special}}
+\begin{DoxyCompactList}\small\item\em Special functions. \end{DoxyCompactList}\item 
+ \mbox{\hyperlink{namespacedsp_1_1window}{window}}
+\begin{DoxyCompactList}\small\item\em Window functions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}
+\begin{DoxyCompactList}\small\item\em This class represents a signal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+unsigned \mbox{\hyperlink{namespacedsp_a11078b40d98913e2a044205d64c1a1a7}{nextpow2}} (unsigned n)
+\begin{DoxyCompactList}\small\item\em Return the next-\/largest power of two k so that n $<$= 2$^\wedge$k. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T , class Pred $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_abe32d93264393a07d8b3844eed53e9c3}{extract}} (Pred condition, const std\+::vector$<$ T $>$ \&vec)
+\begin{DoxyCompactList}\small\item\em Return the elements of a vector that satisfy some condition. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_ab0cdd2fa60d4fd27ec9a72cde38811ef}{arange}} (T start, T stop, T step=1)
+\begin{DoxyCompactList}\small\item\em Return evenly spaced values within a given interval. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_a529bdda638f4dab2d413faac208a65b9}{linspace}} (T start, T stop, size\+\_\+t num=50, bool endpoint=true)
+\begin{DoxyCompactList}\small\item\em Return evenly spaced numbers over a specified interval. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T , class... Args$>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_a7b174ad207e2751c6f1a8fb5522977e0}{get\+\_\+window}} (std\+::tuple$<$ Args... $>$ window, unsigned Nx, bool fftbins=true)
+\begin{DoxyCompactList}\small\item\em Return a window of a given length and type. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \mbox{\hyperlink{namespacedsp_a0b79341eaf211a6ead0565d055d63efb}{sin}} (unsigned frequency\+\_\+\+Hz, double length\+\_\+s, unsigned sampling\+Rate\+\_\+\+Hz, double amplitude=1.\+0, double phase=0.\+0)
+\begin{DoxyCompactList}\small\item\em Return a sampled sinusoid signal. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacedsp_ac49d54afa2f2914214064372aa538495}\label{namespacedsp_ac49d54afa2f2914214064372aa538495}} 
+{\footnotesize template$<$class T $>$ }\\bool {\bfseries operator==} (const \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \&lhs, const \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \&rhs)
+\item 
+\mbox{\Hypertarget{namespacedsp_ae6aeef1f9cbb591149d581cf6bde8642}\label{namespacedsp_ae6aeef1f9cbb591149d581cf6bde8642}} 
+{\footnotesize template$<$class T $>$ }\\bool {\bfseries operator!=} (const \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \&lhs, const \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \&rhs)
+\item 
+\mbox{\Hypertarget{namespacedsp_a1c3399ff111a4fe43e7d104aee429dd6}\label{namespacedsp_a1c3399ff111a4fe43e7d104aee429dd6}} 
+{\footnotesize template$<$class T $>$ }\\bool {\bfseries operator$<$} (const \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \&lhs, const \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \&rhs)
+\item 
+\mbox{\Hypertarget{namespacedsp_a1bd00d18c20869abef5ab0a2321496a8}\label{namespacedsp_a1bd00d18c20869abef5ab0a2321496a8}} 
+{\footnotesize template$<$class T $>$ }\\bool {\bfseries operator$<$} (const \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \&lhs, const T \&value)
+\item 
+\mbox{\Hypertarget{namespacedsp_a46db348d549cd19e7a994afa049b6cd2}\label{namespacedsp_a46db348d549cd19e7a994afa049b6cd2}} 
+{\footnotesize template$<$class T $>$ }\\bool {\bfseries operator$<$=} (const \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \&lhs, const \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \&rhs)
+\item 
+\mbox{\Hypertarget{namespacedsp_a20e8498033254a7a60e5d3683069eba1}\label{namespacedsp_a20e8498033254a7a60e5d3683069eba1}} 
+{\footnotesize template$<$class T $>$ }\\bool {\bfseries operator$<$=} (const \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \&lhs, const T \&value)
+\item 
+\mbox{\Hypertarget{namespacedsp_aa3c0807af1a8dc47dd71039c9e7965bb}\label{namespacedsp_aa3c0807af1a8dc47dd71039c9e7965bb}} 
+{\footnotesize template$<$class T $>$ }\\bool {\bfseries operator$>$} (const \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \&lhs, const \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \&rhs)
+\item 
+\mbox{\Hypertarget{namespacedsp_abe8c4343a3f43bb4e65d4d5a7c78548b}\label{namespacedsp_abe8c4343a3f43bb4e65d4d5a7c78548b}} 
+{\footnotesize template$<$class T $>$ }\\bool {\bfseries operator$>$} (const \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \&lhs, const T \&value)
+\item 
+\mbox{\Hypertarget{namespacedsp_ab77312e39e7887e6f3c9e311e974a913}\label{namespacedsp_ab77312e39e7887e6f3c9e311e974a913}} 
+{\footnotesize template$<$class T $>$ }\\bool {\bfseries operator$>$=} (const \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \&lhs, const \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \&rhs)
+\item 
+\mbox{\Hypertarget{namespacedsp_a3f0ebdb902f2948847b4e678c152c6a3}\label{namespacedsp_a3f0ebdb902f2948847b4e678c152c6a3}} 
+{\footnotesize template$<$class T $>$ }\\bool {\bfseries operator$>$=} (const \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \&lhs, const T \&value)
+\item 
+\mbox{\Hypertarget{namespacedsp_aad25e1445c49802281d6be56496e4182}\label{namespacedsp_aad25e1445c49802281d6be56496e4182}} 
+{\footnotesize template$<$class T $>$ }\\void {\bfseries swap} (\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \&lhs, \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \&rhs) noexcept
+\item 
+\mbox{\Hypertarget{namespacedsp_ab0fab5e02eda0b4efaae6bbf38bcb892}\label{namespacedsp_ab0fab5e02eda0b4efaae6bbf38bcb892}} 
+{\footnotesize template$<$class T $>$ }\\\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ {\bfseries operator+} (\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \&lhs, const \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \&rhs)
+\item 
+\mbox{\Hypertarget{namespacedsp_a4d24443b944bca7795fbdcea54de0ba3}\label{namespacedsp_a4d24443b944bca7795fbdcea54de0ba3}} 
+{\footnotesize template$<$class T $>$ }\\\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ {\bfseries operator+} (\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \&lhs, const std\+::vector$<$ T $>$ \&rhs)
+\item 
+\mbox{\Hypertarget{namespacedsp_af8e39c8a1d52dada481b0653048af687}\label{namespacedsp_af8e39c8a1d52dada481b0653048af687}} 
+{\footnotesize template$<$class T $>$ }\\\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ {\bfseries operator+} (\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \&lhs, typename \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$\+::const\+\_\+reference value)
+\item 
+\mbox{\Hypertarget{namespacedsp_aefc16d715d8a6bfc511b1dd5e7607c9b}\label{namespacedsp_aefc16d715d8a6bfc511b1dd5e7607c9b}} 
+{\footnotesize template$<$class T $>$ }\\\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ {\bfseries operator-\/} (\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \&lhs, const \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \&rhs)
+\item 
+\mbox{\Hypertarget{namespacedsp_ae7f61b6b17771e8a70951b4228148e4b}\label{namespacedsp_ae7f61b6b17771e8a70951b4228148e4b}} 
+{\footnotesize template$<$class T $>$ }\\\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ {\bfseries operator-\/} (\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \&lhs, const std\+::vector$<$ T $>$ \&rhs)
+\item 
+\mbox{\Hypertarget{namespacedsp_a776833ae64c7b5ba05dd96657ef2470e}\label{namespacedsp_a776833ae64c7b5ba05dd96657ef2470e}} 
+{\footnotesize template$<$class T $>$ }\\\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ {\bfseries operator-\/} (\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \&lhs, typename \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$\+::const\+\_\+reference value)
+\item 
+\mbox{\Hypertarget{namespacedsp_aee1f893dca1094ffd8cfd3989a6d334d}\label{namespacedsp_aee1f893dca1094ffd8cfd3989a6d334d}} 
+{\footnotesize template$<$class T $>$ }\\\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ {\bfseries operator$\ast$} (\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \&lhs, const \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \&rhs)
+\item 
+\mbox{\Hypertarget{namespacedsp_a30938925ca9280db69e0bf6cbeee4566}\label{namespacedsp_a30938925ca9280db69e0bf6cbeee4566}} 
+{\footnotesize template$<$class T $>$ }\\\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ {\bfseries operator$\ast$} (\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \&lhs, const std\+::vector$<$ T $>$ \&rhs)
+\item 
+\mbox{\Hypertarget{namespacedsp_af5215955b942c28e7c70e310871910a6}\label{namespacedsp_af5215955b942c28e7c70e310871910a6}} 
+{\footnotesize template$<$class T $>$ }\\\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ {\bfseries operator$\ast$} (\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \&lhs, typename \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$\+::const\+\_\+reference value)
+\item 
+\mbox{\Hypertarget{namespacedsp_acb4cce2b22c19c7c26db03e31edc89e5}\label{namespacedsp_acb4cce2b22c19c7c26db03e31edc89e5}} 
+{\footnotesize template$<$class T $>$ }\\\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ {\bfseries operator/} (\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \&lhs, const \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \&rhs)
+\item 
+\mbox{\Hypertarget{namespacedsp_a517d979b7519de57703a5c2f2feb72eb}\label{namespacedsp_a517d979b7519de57703a5c2f2feb72eb}} 
+{\footnotesize template$<$class T $>$ }\\\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ {\bfseries operator/} (\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \&lhs, const std\+::vector$<$ T $>$ \&rhs)
+\item 
+\mbox{\Hypertarget{namespacedsp_a432e9148b4cd42d3004509e5710a6dea}\label{namespacedsp_a432e9148b4cd42d3004509e5710a6dea}} 
+{\footnotesize template$<$class T $>$ }\\\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ {\bfseries operator/} (\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \&lhs, typename \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$\+::const\+\_\+reference value)
+\item 
+\mbox{\Hypertarget{namespacedsp_a7c782c2e5c688f668841d86e55893768}\label{namespacedsp_a7c782c2e5c688f668841d86e55893768}} 
+{\footnotesize template$<$class T $>$ }\\auto {\bfseries pow} (\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ signal, int exponent)
+\item 
+\mbox{\Hypertarget{namespacedsp_a7237c5be52aad6a7105dfdaa51628742}\label{namespacedsp_a7237c5be52aad6a7105dfdaa51628742}} 
+{\footnotesize template$<$class T $>$ }\\auto {\bfseries pow} (std\+::vector$<$ T $>$ vec, int exponent)
+\item 
+\mbox{\Hypertarget{namespacedsp_a9daf2a67d3ae8f323dccffff80b66b4e}\label{namespacedsp_a9daf2a67d3ae8f323dccffff80b66b4e}} 
+{\footnotesize template$<$class T $>$ }\\auto {\bfseries abs} (\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ signal)
+\item 
+\mbox{\Hypertarget{namespacedsp_a7487e1bf42c1971f6f30acaf3d7cf35b}\label{namespacedsp_a7487e1bf42c1971f6f30acaf3d7cf35b}} 
+{\footnotesize template$<$class T $>$ }\\auto {\bfseries abs} (const std\+::vector$<$ T $>$ \&vec)
+\item 
+\mbox{\Hypertarget{namespacedsp_a61600b3f26920aeb9afeff40e864a1e6}\label{namespacedsp_a61600b3f26920aeb9afeff40e864a1e6}} 
+{\footnotesize template$<$class T $>$ }\\auto {\bfseries real} (const std\+::vector$<$ std\+::complex$<$ T $>$$>$ \&v)
+\item 
+\mbox{\Hypertarget{namespacedsp_a37fa67f8fd37c7fe350e523b102e3046}\label{namespacedsp_a37fa67f8fd37c7fe350e523b102e3046}} 
+{\footnotesize template$<$class T $>$ }\\auto {\bfseries real} (const \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \&signal)
+\item 
+\mbox{\Hypertarget{namespacedsp_accb532b9d20ec1e768fd88e49b716065}\label{namespacedsp_accb532b9d20ec1e768fd88e49b716065}} 
+{\footnotesize template$<$class T $>$ }\\auto {\bfseries imag} (\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ signal)
+\item 
+\mbox{\Hypertarget{namespacedsp_aac605104a4efd67dc40c5e8dd852c3a1}\label{namespacedsp_aac605104a4efd67dc40c5e8dd852c3a1}} 
+{\footnotesize template$<$class T $>$ }\\auto {\bfseries conj} (std\+::vector$<$ std\+::complex$<$ T $>$$>$ z)
+\item 
+\mbox{\Hypertarget{namespacedsp_a6b22fc29caf62e60ab53305efdb8dfd1}\label{namespacedsp_a6b22fc29caf62e60ab53305efdb8dfd1}} 
+{\footnotesize template$<$class T $>$ }\\auto {\bfseries conj} (\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ signal)
+\item 
+\mbox{\Hypertarget{namespacedsp_ad90915d14fda7d97f3ca5d97d3d22944}\label{namespacedsp_ad90915d14fda7d97f3ca5d97d3d22944}} 
+{\footnotesize template$<$class T $>$ }\\auto {\bfseries arg} (\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ signal)
+\item 
+\mbox{\Hypertarget{namespacedsp_afb7a8b7a2cce4364e0a2a779572bc6f8}\label{namespacedsp_afb7a8b7a2cce4364e0a2a779572bc6f8}} 
+{\footnotesize template$<$class T $>$ }\\auto {\bfseries norm} (\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ signal)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{namespacedsp_aab1a36a5c74fdc52ccdafef6511c2eb2}\label{namespacedsp_aab1a36a5c74fdc52ccdafef6511c2eb2}} 
+const double {\bfseries pi} = 3.\+14159265358979311600
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Convenience functions for digital signal processing. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacedsp_ab0cdd2fa60d4fd27ec9a72cde38811ef}\label{namespacedsp_ab0cdd2fa60d4fd27ec9a72cde38811ef}} 
+\index{dsp@{dsp}!arange@{arange}}
+\index{arange@{arange}!dsp@{dsp}}
+\doxysubsubsection{\texorpdfstring{arange()}{arange()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::vector$<$T$>$ dsp\+::arange (\begin{DoxyParamCaption}\item[{T}]{start,  }\item[{T}]{stop,  }\item[{T}]{step = {\ttfamily 1} }\end{DoxyParamCaption})}
+
+
+
+Return evenly spaced values within a given interval. 
+
+Values are generated within the half-\/open interval \mbox{[}start, stop) (in other words, the interval including start but excluding stop). 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type of the elements in vector. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em start} & Start of interval. The interval includes this value. \\
+\hline
+{\em stop} & End of interval. The interval does not include this value. \\
+\hline
+{\em step} & Spacing between values. For any output out, this is the distance between two adjacent values, out\mbox{[}i+1\mbox{]} -\/ out\mbox{[}i\mbox{]}. The default step size is 1. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vector of evenly spaced values 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacedsp_abe32d93264393a07d8b3844eed53e9c3}\label{namespacedsp_abe32d93264393a07d8b3844eed53e9c3}} 
+\index{dsp@{dsp}!extract@{extract}}
+\index{extract@{extract}!dsp@{dsp}}
+\doxysubsubsection{\texorpdfstring{extract()}{extract()}}
+{\footnotesize\ttfamily template$<$class T , class Pred $>$ \\
+std\+::vector$<$T$>$ dsp\+::extract (\begin{DoxyParamCaption}\item[{Pred}]{condition,  }\item[{const std\+::vector$<$ T $>$ \&}]{vec }\end{DoxyParamCaption})}
+
+
+
+Return the elements of a vector that satisfy some condition. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & \\
+\hline
+{\em Pred} & \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em condition} & A predicate which if true indicates the elements of vec to extract. \\
+\hline
+{\em vec} & Input vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vector of values from vec where condition is true. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacedsp_a7b174ad207e2751c6f1a8fb5522977e0}\label{namespacedsp_a7b174ad207e2751c6f1a8fb5522977e0}} 
+\index{dsp@{dsp}!get\_window@{get\_window}}
+\index{get\_window@{get\_window}!dsp@{dsp}}
+\doxysubsubsection{\texorpdfstring{get\_window()}{get\_window()}}
+{\footnotesize\ttfamily template$<$class T , class... Args$>$ \\
+std\+::vector$<$ T $>$ dsp\+::get\+\_\+window (\begin{DoxyParamCaption}\item[{std\+::tuple$<$ Args... $>$}]{window,  }\item[{unsigned}]{Nx,  }\item[{bool}]{fftbins = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Return a window of a given length and type. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Data type of the samples. \\
+\hline
+{\em ...\+Args} & Types of the elements in window. First is always \mbox{\hyperlink{namespacedsp_1_1window_a1cc0dcec4aa9e12640771bdf41f695b8}{dsp\+::window\+::type}}, others are optional (see below). \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em window} & First element must be the window type. If the window requires more parameters, they must be provided here as further elements. \\
+\hline
+{\em Nx} & The number of samples in the window. \\
+\hline
+{\em fftbins} & If true (default), create a “periodic” window, ready to use with ifftshift and be multiplied by the result of an FFT (see also fftfreq). If false, create a “symmetric” window, for use in filter design. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a window of length Nx and type window. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacedsp_a529bdda638f4dab2d413faac208a65b9}\label{namespacedsp_a529bdda638f4dab2d413faac208a65b9}} 
+\index{dsp@{dsp}!linspace@{linspace}}
+\index{linspace@{linspace}!dsp@{dsp}}
+\doxysubsubsection{\texorpdfstring{linspace()}{linspace()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::vector$<$T$>$ dsp\+::linspace (\begin{DoxyParamCaption}\item[{T}]{start,  }\item[{T}]{stop,  }\item[{size\+\_\+t}]{num = {\ttfamily 50},  }\item[{bool}]{endpoint = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Return evenly spaced numbers over a specified interval. 
+
+Returns N evenly spaced samples, calculated over the interval\mbox{[}start, stop\mbox{]}.
+
+The endpoint of the interval can optionally be excluded. 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type of the values in the vector. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em start} & The starting value of the sequence. \\
+\hline
+{\em stop} & The end value of the sequence, unless endpoint is set to False. In that case, the sequence consists of all but the last of num + 1 evenly spaced samples, so that stop is excluded. Note that the step size changes when endpoint is False. \\
+\hline
+{\em num} & Number of samples to generate. Default is 50. \\
+\hline
+{\em endpoint} & If True, stop is the last sample. Otherwise, it is not included. Default is True. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vector of evenly spaced numbers over the specified interval 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacedsp_a11078b40d98913e2a044205d64c1a1a7}\label{namespacedsp_a11078b40d98913e2a044205d64c1a1a7}} 
+\index{dsp@{dsp}!nextpow2@{nextpow2}}
+\index{nextpow2@{nextpow2}!dsp@{dsp}}
+\doxysubsubsection{\texorpdfstring{nextpow2()}{nextpow2()}}
+{\footnotesize\ttfamily unsigned dsp\+::nextpow2 (\begin{DoxyParamCaption}\item[{unsigned}]{n }\end{DoxyParamCaption})}
+
+
+
+Return the next-\/largest power of two k so that n $<$= 2$^\wedge$k. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & Number of which find the next-\/largest power of two. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The next-\/largest power of two so that n $<$= 2$^\wedge$k ~\newline
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacedsp_a0b79341eaf211a6ead0565d055d63efb}\label{namespacedsp_a0b79341eaf211a6ead0565d055d63efb}} 
+\index{dsp@{dsp}!sin@{sin}}
+\index{sin@{sin}!dsp@{dsp}}
+\doxysubsubsection{\texorpdfstring{sin()}{sin()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+template \mbox{\hyperlink{classdsp_1_1_signal}{dsp\+::\+Signal}}$<$ long $>$ dsp\+::sin (\begin{DoxyParamCaption}\item[{unsigned}]{frequency\+\_\+\+Hz,  }\item[{double}]{length\+\_\+s,  }\item[{unsigned}]{sampling\+Rate\+\_\+\+Hz,  }\item[{double}]{amplitude = {\ttfamily 1.0},  }\item[{double}]{phase = {\ttfamily 0.0} }\end{DoxyParamCaption})}
+
+
+
+Return a sampled sinusoid signal. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type of the samples. Should be float, double, or long double. Other types will cause undefined behavior. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em frequency\+\_\+\+Hz} & The frequency of the sinusoid in Hertz \\
+\hline
+{\em length\+\_\+s} & The length of the signal in seconds \\
+\hline
+{\em sampling\+Rate\+\_\+\+Hz} & The sampling rate in Hertz \\
+\hline
+{\em amplitude} & Amplitude of the sinusoid \\
+\hline
+{\em phase} & Starting phase angle of the sinusoid in rad \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A signal containing the specified sinusoid 
+\end{DoxyReturn}

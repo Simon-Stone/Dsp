@@ -3,6 +3,7 @@
 
 namespace dsp
 {
+	/// @brief Special functions
 	namespace special
 	{
 #ifndef ZERO_DEPENDENCIES

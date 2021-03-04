@@ -1,0 +1,552 @@
+\hypertarget{namespacedsp_1_1window}{}\doxysection{dsp\+::window Namespace Reference}
+\label{namespacedsp_1_1window}\index{dsp::window@{dsp::window}}
+
+
+Window functions.  
+
+
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacedsp_1_1window_1_1utilities}{utilities}}
+\begin{DoxyCompactList}\small\item\em Utility functions (probably only interesting for DSP-\/internal use) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{namespacedsp_1_1window_a1cc0dcec4aa9e12640771bdf41f695b8}\label{namespacedsp_1_1window_a1cc0dcec4aa9e12640771bdf41f695b8}} 
+enum class \mbox{\hyperlink{namespacedsp_1_1window_a1cc0dcec4aa9e12640771bdf41f695b8}{type}} \{ \newline
+{\bfseries boxcar}
+, {\bfseries triang}
+, {\bfseries blackman}
+, {\bfseries hamming}
+, \newline
+{\bfseries hann}
+, {\bfseries bartlett}
+, {\bfseries flattop}
+, {\bfseries parzen}
+, \newline
+{\bfseries bohman}
+, {\bfseries blackmanharris}
+, {\bfseries nuttal}
+, {\bfseries barthann}
+, \newline
+{\bfseries kaiser}
+, {\bfseries gaussian}
+, {\bfseries general\+\_\+gaussian}
+, {\bfseries dpss}
+, \newline
+{\bfseries chebwin}
+, {\bfseries exponential}
+, {\bfseries tukey}
+, {\bfseries taylor}
+ \}
+\begin{DoxyCompactList}\small\item\em Types of windows (not all implemented yet) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_1_1window_aec4906fe8edc6620afbd2dd12fa5fa0d}{boxcar}} (unsigned N, bool sym=true)
+\begin{DoxyCompactList}\small\item\em Return a boxcar or rectangular window. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_1_1window_a931f388022b655420037a5e1652621d8}{triang}} (unsigned N, bool sym=true)
+\begin{DoxyCompactList}\small\item\em Return a triangular window. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_1_1window_ad79b183426c99214ead4f2f88670f28b}{general\+\_\+cosine}} (unsigned N, const std\+::vector$<$ T $>$ \&a, bool sym=true)
+\begin{DoxyCompactList}\small\item\em Generic weighted sum of cosine terms window. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacedsp_1_1window_aed7ecc2ad5ace3dbcac015ea224127a6}\label{namespacedsp_1_1window_aed7ecc2ad5ace3dbcac015ea224127a6}} 
+{\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_1_1window_aed7ecc2ad5ace3dbcac015ea224127a6}{general\+\_\+hamming}} (unsigned N, double alpha, bool sym=true)
+\begin{DoxyCompactList}\small\item\em Return a generalized Hamming window. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_1_1window_a10cdac66f0417d5286f11cd27b699e71}{blackman}} (unsigned N, bool sym=true)
+\begin{DoxyCompactList}\small\item\em Return a Blackman window. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_1_1window_ab669d3d273b9edc883f4729b2e801157}{hamming}} (unsigned N, bool sym=true)
+\begin{DoxyCompactList}\small\item\em Return a Hamming window. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_1_1window_a9bb07facf27b284757ddae054c8a3621}{hann}} (unsigned N, bool sym=true)
+\begin{DoxyCompactList}\small\item\em Return a Hann window. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_1_1window_a7b059f993849f7e9048b274071e76335}{bartlett}} (unsigned N, bool sym=true)
+\begin{DoxyCompactList}\small\item\em Return a Bartlett window. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_1_1window_adc37567364a8a61d146b3920d4113e07}{flattop}} (unsigned N, bool sym=true)
+\begin{DoxyCompactList}\small\item\em Return a flat top window. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_1_1window_a479dc86ffddf5e19d595c0c0e751edda}{parzen}} (unsigned N, bool sym=true)
+\begin{DoxyCompactList}\small\item\em Return a Parzen window. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_1_1window_a72327b8f54fe769b2345389ddab7f575}{bohman}} (unsigned N, bool sym=true)
+\begin{DoxyCompactList}\small\item\em Return a Bohman window. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_1_1window_a942b43c2d1291dc4216a971b594a4fcf}{blackmanharris}} (unsigned N, bool sym=true)
+\begin{DoxyCompactList}\small\item\em Return a minimum 4-\/term Blackman-\/\+Harris window. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_1_1window_a28c5c4d7e81acce1c360013c1a3f2fc9}{nuttall}} (unsigned N, bool sym=true)
+\begin{DoxyCompactList}\small\item\em Return a minimum 4-\/term Blackman-\/\+Harris window according to Nuttall. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_1_1window_a706a651f4fc7da094026b341f20138bb}{barthann}} (unsigned N, bool sym=true)
+\begin{DoxyCompactList}\small\item\em Return a modified Bartlett-\/\+Hann window. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_1_1window_a84fcea5f41eba58cf50df8569e2ac290}{kaiser}} (unsigned N, double beta, bool sym=true)
+\begin{DoxyCompactList}\small\item\em Return a Kaiser window. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_1_1window_a392d254078b3f6cac2415c394bff9f01}{gaussian}} (unsigned N, double std, bool sym=true)
+\begin{DoxyCompactList}\small\item\em Return a Gaussian window. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_1_1window_ad196fdbdcdeeac4ad1f6d35bb5b6cf44}{general\+\_\+gaussian}} (unsigned N, double p, double sig, bool sym=true)
+\begin{DoxyCompactList}\small\item\em Return a window with a generalized Gaussian shape. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_1_1window_aef9b174c25e588697edf84c1d1c7f941}{chebwin}} (unsigned N, double at, bool sym=true)
+\begin{DoxyCompactList}\small\item\em Return a Dolph-\/\+Chebyshev window. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacedsp_1_1window_a47acb925f568201e7e815d2a721ac594}\label{namespacedsp_1_1window_a47acb925f568201e7e815d2a721ac594}} 
+template std\+::vector$<$ float $>$ {\bfseries general\+\_\+cosine} (unsigned N, const std\+::vector$<$ float $>$ \&a, bool sym)
+\item 
+\mbox{\Hypertarget{namespacedsp_1_1window_a0ac5f92eef456176382f67ccb208c1e2}\label{namespacedsp_1_1window_a0ac5f92eef456176382f67ccb208c1e2}} 
+template std\+::vector$<$ double $>$ {\bfseries general\+\_\+cosine} (unsigned N, const std\+::vector$<$ double $>$ \&a, bool sym)
+\item 
+\mbox{\Hypertarget{namespacedsp_1_1window_a2e040b86b93865c3837a1002635bccbe}\label{namespacedsp_1_1window_a2e040b86b93865c3837a1002635bccbe}} 
+template std\+::vector$<$ long double $>$ {\bfseries general\+\_\+cosine} (unsigned N, const std\+::vector$<$ long double $>$ \&a, bool sym)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Window functions. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacedsp_1_1window_a706a651f4fc7da094026b341f20138bb}\label{namespacedsp_1_1window_a706a651f4fc7da094026b341f20138bb}} 
+\index{dsp::window@{dsp::window}!barthann@{barthann}}
+\index{barthann@{barthann}!dsp::window@{dsp::window}}
+\doxysubsubsection{\texorpdfstring{barthann()}{barthann()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+std\+::vector$<$ T $>$ dsp\+::window\+::barthann (\begin{DoxyParamCaption}\item[{unsigned}]{N,  }\item[{bool}]{sym = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Return a modified Bartlett-\/\+Hann window. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type of returned values. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em N} & Number of points in the output window. If zero or less, an empty array is returned. \\
+\hline
+{\em sym} & When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is True). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacedsp_1_1window_a7b059f993849f7e9048b274071e76335}\label{namespacedsp_1_1window_a7b059f993849f7e9048b274071e76335}} 
+\index{dsp::window@{dsp::window}!bartlett@{bartlett}}
+\index{bartlett@{bartlett}!dsp::window@{dsp::window}}
+\doxysubsubsection{\texorpdfstring{bartlett()}{bartlett()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+std\+::vector$<$ T $>$ dsp\+::window\+::bartlett (\begin{DoxyParamCaption}\item[{unsigned}]{N,  }\item[{bool}]{sym = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Return a Bartlett window. 
+
+The Bartlett window is very similar to a triangular window, except that the end points are at zero. It is often used in signal processing for tapering a signal, without generating too much ripple in the frequency domain. 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type of returned values \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em N} & Number of points in the output window. If zero or less, an empty array is returned. \\
+\hline
+{\em sym} & When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The triangular window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is True). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacedsp_1_1window_a10cdac66f0417d5286f11cd27b699e71}\label{namespacedsp_1_1window_a10cdac66f0417d5286f11cd27b699e71}} 
+\index{dsp::window@{dsp::window}!blackman@{blackman}}
+\index{blackman@{blackman}!dsp::window@{dsp::window}}
+\doxysubsubsection{\texorpdfstring{blackman()}{blackman()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+std\+::vector$<$ T $>$ dsp\+::window\+::blackman (\begin{DoxyParamCaption}\item[{unsigned}]{N,  }\item[{bool}]{sym = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Return a Blackman window. 
+
+The Blackman window is a taper formed by using the first three terms of a summation of cosines. It was designed to have close to the minimal leakage possible. It is close to optimal, only slightly worse than a Kaiser window. 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type of returned values \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em N} & Number of points in the output window. If zero or less, an empty array is returned. \\
+\hline
+{\em sym} & When true (default), generates a symmetric window, for use in filter design. When false, generates a periodic window, for use in spectral analysis. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The window, with the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is true). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacedsp_1_1window_a942b43c2d1291dc4216a971b594a4fcf}\label{namespacedsp_1_1window_a942b43c2d1291dc4216a971b594a4fcf}} 
+\index{dsp::window@{dsp::window}!blackmanharris@{blackmanharris}}
+\index{blackmanharris@{blackmanharris}!dsp::window@{dsp::window}}
+\doxysubsubsection{\texorpdfstring{blackmanharris()}{blackmanharris()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+std\+::vector$<$ T $>$ dsp\+::window\+::blackmanharris (\begin{DoxyParamCaption}\item[{unsigned}]{N,  }\item[{bool}]{sym = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Return a minimum 4-\/term Blackman-\/\+Harris window. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type of returned values \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em N} & Number of points in the output window. If zero or less, an empty array is returned. \\
+\hline
+{\em sym} & When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is True). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacedsp_1_1window_a72327b8f54fe769b2345389ddab7f575}\label{namespacedsp_1_1window_a72327b8f54fe769b2345389ddab7f575}} 
+\index{dsp::window@{dsp::window}!bohman@{bohman}}
+\index{bohman@{bohman}!dsp::window@{dsp::window}}
+\doxysubsubsection{\texorpdfstring{bohman()}{bohman()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+std\+::vector$<$ T $>$ dsp\+::window\+::bohman (\begin{DoxyParamCaption}\item[{unsigned}]{N,  }\item[{bool}]{sym = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Return a Bohman window. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type of returned values \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em N} & Number of points in the output window. If zero or less, an empty array is returned. \\
+\hline
+{\em sym} & When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is True). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacedsp_1_1window_aec4906fe8edc6620afbd2dd12fa5fa0d}\label{namespacedsp_1_1window_aec4906fe8edc6620afbd2dd12fa5fa0d}} 
+\index{dsp::window@{dsp::window}!boxcar@{boxcar}}
+\index{boxcar@{boxcar}!dsp::window@{dsp::window}}
+\doxysubsubsection{\texorpdfstring{boxcar()}{boxcar()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+std\+::vector$<$ T $>$ dsp\+::window\+::boxcar (\begin{DoxyParamCaption}\item[{unsigned}]{N,  }\item[{bool}]{sym = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Return a boxcar or rectangular window. 
+
+Also known as a rectangular window or Dirichlet window, this is equivalent to no window at all. 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type of returned values. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em N} & Number of points in the window. If zero or less, an empty vector is returned. \\
+\hline
+{\em sym} & Whether the window is symmetric. Has no effect for boxcar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The window, with the maximum value normalized to 1. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacedsp_1_1window_aef9b174c25e588697edf84c1d1c7f941}\label{namespacedsp_1_1window_aef9b174c25e588697edf84c1d1c7f941}} 
+\index{dsp::window@{dsp::window}!chebwin@{chebwin}}
+\index{chebwin@{chebwin}!dsp::window@{dsp::window}}
+\doxysubsubsection{\texorpdfstring{chebwin()}{chebwin()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+std\+::vector$<$ T $>$ dsp\+::window\+::chebwin (\begin{DoxyParamCaption}\item[{unsigned}]{N,  }\item[{double}]{at,  }\item[{bool}]{sym = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Return a Dolph-\/\+Chebyshev window. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type of returned values \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em N} & Number of points in the output window. If zero or less, an empty array is returned. \\
+\hline
+{\em at} & Attenuation (in dB). \\
+\hline
+{\em sym} & When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The window, with the maximum value always normalized to 1 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacedsp_1_1window_adc37567364a8a61d146b3920d4113e07}\label{namespacedsp_1_1window_adc37567364a8a61d146b3920d4113e07}} 
+\index{dsp::window@{dsp::window}!flattop@{flattop}}
+\index{flattop@{flattop}!dsp::window@{dsp::window}}
+\doxysubsubsection{\texorpdfstring{flattop()}{flattop()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+std\+::vector$<$ T $>$ dsp\+::window\+::flattop (\begin{DoxyParamCaption}\item[{unsigned}]{N,  }\item[{bool}]{sym = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Return a flat top window. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type of returned values \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em N} & Number of points in the output window. If zero or less, an empty array is returned. \\
+\hline
+{\em sym} & When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is True). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacedsp_1_1window_a392d254078b3f6cac2415c394bff9f01}\label{namespacedsp_1_1window_a392d254078b3f6cac2415c394bff9f01}} 
+\index{dsp::window@{dsp::window}!gaussian@{gaussian}}
+\index{gaussian@{gaussian}!dsp::window@{dsp::window}}
+\doxysubsubsection{\texorpdfstring{gaussian()}{gaussian()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+std\+::vector$<$ T $>$ dsp\+::window\+::gaussian (\begin{DoxyParamCaption}\item[{unsigned}]{N,  }\item[{double}]{std,  }\item[{bool}]{sym = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Return a Gaussian window. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type of returned values \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em N} & Number of points in the output window. If zero or less, an empty array is returned. \\
+\hline
+{\em std} & The standard deviation, sigma. \\
+\hline
+{\em sym} & When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is True). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacedsp_1_1window_ad79b183426c99214ead4f2f88670f28b}\label{namespacedsp_1_1window_ad79b183426c99214ead4f2f88670f28b}} 
+\index{dsp::window@{dsp::window}!general\_cosine@{general\_cosine}}
+\index{general\_cosine@{general\_cosine}!dsp::window@{dsp::window}}
+\doxysubsubsection{\texorpdfstring{general\_cosine()}{general\_cosine()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+std\+::vector$<$ T $>$ dsp\+::window\+::general\+\_\+cosine (\begin{DoxyParamCaption}\item[{unsigned}]{N,  }\item[{const std\+::vector$<$ T $>$ \&}]{a,  }\item[{bool}]{sym = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Generic weighted sum of cosine terms window. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type of returned values \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em N} & Number of points in the output window. If zero or less, an empty vector is returned. \\
+\hline
+{\em a} & Sequence of weighting coefficients. This uses the convention of being centered on the origin, so these will typically all be positive numbers, not alternating sign. \\
+\hline
+{\em sym} & $>$When true (default), generates a symmetric window, for use in filter design. When false, generates a periodic window, for use in spectral analysis. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The window, with the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is true). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacedsp_1_1window_ad196fdbdcdeeac4ad1f6d35bb5b6cf44}\label{namespacedsp_1_1window_ad196fdbdcdeeac4ad1f6d35bb5b6cf44}} 
+\index{dsp::window@{dsp::window}!general\_gaussian@{general\_gaussian}}
+\index{general\_gaussian@{general\_gaussian}!dsp::window@{dsp::window}}
+\doxysubsubsection{\texorpdfstring{general\_gaussian()}{general\_gaussian()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+std\+::vector$<$ T $>$ dsp\+::window\+::general\+\_\+gaussian (\begin{DoxyParamCaption}\item[{unsigned}]{N,  }\item[{double}]{p,  }\item[{double}]{sig,  }\item[{bool}]{sym = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Return a window with a generalized Gaussian shape. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type of returned values \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em N} & Number of points in the output window. If zero or less, an empty array is returned. \\
+\hline
+{\em p} & Shape parameter. p = 1 is identical to gaussian, p = 0.\+5 is the same shape as the Laplace distribution. \\
+\hline
+{\em sig} & The standard deviation, sigma \\
+\hline
+{\em sym} & When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The window, with the maximum value normalized to 1 (though the value 1 does not appear if M is even and sym is True). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacedsp_1_1window_ab669d3d273b9edc883f4729b2e801157}\label{namespacedsp_1_1window_ab669d3d273b9edc883f4729b2e801157}} 
+\index{dsp::window@{dsp::window}!hamming@{hamming}}
+\index{hamming@{hamming}!dsp::window@{dsp::window}}
+\doxysubsubsection{\texorpdfstring{hamming()}{hamming()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+std\+::vector$<$ T $>$ dsp\+::window\+::hamming (\begin{DoxyParamCaption}\item[{unsigned}]{N,  }\item[{bool}]{sym = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Return a Hamming window. 
+
+The Hamming window is a taper formed by using a raised cosine with non -\/ zero endpoints, optimized to minimize the nearest side lobe. 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type of returned values \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em N} & Number of points in the output window. If zero or less, an empty array is returned. \\
+\hline
+{\em sym} & When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The window, with the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is True). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacedsp_1_1window_a9bb07facf27b284757ddae054c8a3621}\label{namespacedsp_1_1window_a9bb07facf27b284757ddae054c8a3621}} 
+\index{dsp::window@{dsp::window}!hann@{hann}}
+\index{hann@{hann}!dsp::window@{dsp::window}}
+\doxysubsubsection{\texorpdfstring{hann()}{hann()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+std\+::vector$<$ T $>$ dsp\+::window\+::hann (\begin{DoxyParamCaption}\item[{unsigned}]{N,  }\item[{bool}]{sym = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Return a Hann window. 
+
+The Hann window is a taper formed by using a raised cosine or sine -\/ squared with ends that touch zero. 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type of returned values \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em N} & Number of points in the output window. If zero or less, an empty array is returned. \\
+\hline
+{\em sym} & When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The window, with the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is True). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacedsp_1_1window_a84fcea5f41eba58cf50df8569e2ac290}\label{namespacedsp_1_1window_a84fcea5f41eba58cf50df8569e2ac290}} 
+\index{dsp::window@{dsp::window}!kaiser@{kaiser}}
+\index{kaiser@{kaiser}!dsp::window@{dsp::window}}
+\doxysubsubsection{\texorpdfstring{kaiser()}{kaiser()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+std\+::vector$<$ T $>$ dsp\+::window\+::kaiser (\begin{DoxyParamCaption}\item[{unsigned}]{N,  }\item[{double}]{beta,  }\item[{bool}]{sym = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Return a Kaiser window. 
+
+The Kaiser window is a taper formed by using a Bessel function. 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type of returned values \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em N} & Number of points in the output window. If zero or less, an empty array is returned. \\
+\hline
+{\em beta} & Shape parameter, determines trade-\/off between main-\/lobe width and side lobe level. As beta gets large, the window narrows. \\
+\hline
+{\em sym} & When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is True). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacedsp_1_1window_a28c5c4d7e81acce1c360013c1a3f2fc9}\label{namespacedsp_1_1window_a28c5c4d7e81acce1c360013c1a3f2fc9}} 
+\index{dsp::window@{dsp::window}!nuttall@{nuttall}}
+\index{nuttall@{nuttall}!dsp::window@{dsp::window}}
+\doxysubsubsection{\texorpdfstring{nuttall()}{nuttall()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+std\+::vector$<$ T $>$ dsp\+::window\+::nuttall (\begin{DoxyParamCaption}\item[{unsigned}]{N,  }\item[{bool}]{sym = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Return a minimum 4-\/term Blackman-\/\+Harris window according to Nuttall. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type of returned values. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em N} & Number of points in the output window. If zero or less, an empty array is returned. \\
+\hline
+{\em sym} & When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is True). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacedsp_1_1window_a479dc86ffddf5e19d595c0c0e751edda}\label{namespacedsp_1_1window_a479dc86ffddf5e19d595c0c0e751edda}} 
+\index{dsp::window@{dsp::window}!parzen@{parzen}}
+\index{parzen@{parzen}!dsp::window@{dsp::window}}
+\doxysubsubsection{\texorpdfstring{parzen()}{parzen()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+std\+::vector$<$ T $>$ dsp\+::window\+::parzen (\begin{DoxyParamCaption}\item[{unsigned}]{N,  }\item[{bool}]{sym = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Return a Parzen window. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type of returned values \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em N} & Number of points in the output window. If zero or less, an empty array is returned. \\
+\hline
+{\em sym} & When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is True). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacedsp_1_1window_a931f388022b655420037a5e1652621d8}\label{namespacedsp_1_1window_a931f388022b655420037a5e1652621d8}} 
+\index{dsp::window@{dsp::window}!triang@{triang}}
+\index{triang@{triang}!dsp::window@{dsp::window}}
+\doxysubsubsection{\texorpdfstring{triang()}{triang()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+std\+::vector$<$ T $>$ dsp\+::window\+::triang (\begin{DoxyParamCaption}\item[{unsigned}]{N,  }\item[{bool}]{sym = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Return a triangular window. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type of returned values \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em N} & Number of points in the output window. If zero or less, an empty vector is returned. \\
+\hline
+{\em sym} & When true (default), generates a symmetric window, for use in filter design. When false, generates a periodic window, for use in spectral analysis. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The window, with the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is true). 
+\end{DoxyReturn}
