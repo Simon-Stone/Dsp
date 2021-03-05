@@ -6,7 +6,7 @@
 
 
 
-/// @brief Convenience functions for digital signal processing
+/// @brief Convenience functions and constants for digital signal processing
 namespace dsp
 {
 	// Constants
@@ -33,11 +33,28 @@ namespace dsp
 		return values;
 	}
 
+	/// @brief Returns the energy of the passed range.
+	/// @tparam T Type of the elements in range.
+	/// @param start Iterator pointing to the start of the range (e.g. my_signal.begin())
+	/// @param end Iterator pointing to the end of the range (e.g. my_signal.end())
+	/// @return The energy of the range (sum of the squared samples in range)
+	template<class T>
+	T calculateEnergy(typename std::vector<T>::iterator start, 
+		typename std::vector<T>::iterator end);
 
+	/// @brief Returns the mean power of the passed range
+	/// @tparam T Type of the elements in range.
+	/// @param start Iterator pointing to the start of the range (e.g. my_signal.begin())
+	/// @param end Iterator pointing to the end of the range (e.g. my_signal.end())
+	/// @return The mean power of the range (energy divided by length)
+	template<class T>
+	T calculateMeanPower(typename std::vector<T>::iterator start,
+		typename std::vector<T>::iterator end);
+	
 	/// @brief Returns the center portion of a vector
 	/// @tparam T Type of the elements in vector.
-	/// @param vec Input vectr
-	/// @param newlength Length of the extracted, centered portion
+	/// @param vec Input vector
+	/// @param newSize Length of the extracted, centered portion
 	/// @return Centered portion of the vector
 	template<class T>
 	std::vector<T> centered(const std::vector<T>& vec, size_t newSize);
@@ -193,19 +210,22 @@ namespace dsp
 		return xs;
 	}
 
+	/// @brief Return modulus (which is not the same as the remainder for signed values)
+	template <typename T>
+	T mod(T x1, T x2)
+	{
+		if (x2 < 1) { x2 = 1; }
+
+		if (x1 >= 0)
+		{
+			return static_cast<int>(x1) % static_cast<int>(x2);
+		}
+
+		return x2 - static_cast<int>(-x1) % static_cast<int>(x1);
+	}
+	
 	/// @brief Return the next-largest power of two k so that n <= 2^k
 	/// @param n Number of which find the next-largest power of two.
 	/// @return The next-largest power of two so that n <= 2^k 
 	unsigned nextpow2(unsigned n);
-
-	/// @brief Return a sampled sinusoid signal
-	/// @tparam T Type of the samples. Should be float, double, or long double. Other types will cause undefined behavior.
-	/// @param frequency_Hz The frequency of the sinusoid in Hertz
-	/// @param length_s The length of the signal in seconds
-	/// @param samplingRate_Hz The sampling rate in Hertz
-	/// @param amplitude Amplitude of the sinusoid
-	/// @param phase Starting phase angle of the sinusoid in rad
-	/// @return A signal containing the specified sinusoid
-	template <class T>
-	Signal<T> sin(unsigned frequency_Hz, double length_s, unsigned samplingRate_Hz, double amplitude = 1.0, double phase = 0.0);
 }

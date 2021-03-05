@@ -33,6 +33,22 @@ namespace dsp
 }
 
 template <class T>
+T dsp::calculateEnergy(typename std::vector<T>::iterator start, 
+	typename std::vector<T>::iterator end)
+{
+	return static_cast<T>(std::inner_product(start, end, start, T{ 0.0 }));
+}
+
+template <class T>
+T dsp::calculateMeanPower(typename std::vector<T>::iterator start, typename std::vector<T>::iterator end)
+{
+	auto energy = calculateEnergy<T>(start, end);
+	auto numSamples = std::distance(start, end);
+	return static_cast<T>(energy / numSamples);
+	
+}
+
+template <class T>
 std::vector<T> dsp::centered(const std::vector<T>& vec, size_t newSize)
 {
 	auto currentSize = vec.size();
@@ -98,30 +114,7 @@ std::vector<T> dsp::correlate(const std::vector<T>& in1, const std::vector<T>& i
 	}
 }
 
-
-
-template <class T>
-dsp::Signal<T> dsp::sin(unsigned frequency_Hz, double length_s, unsigned samplingRate_Hz, double amplitude, double phase)
-{
-	dsp::Signal<T> sineSignal(samplingRate_Hz);
-	const auto numSamples = length_s * samplingRate_Hz;
-	for (unsigned k = 0; k < numSamples; ++k)
-	{
-		sineSignal.push_back(static_cast<T>(amplitude * std::sin(2.0 * dsp::pi * frequency_Hz * k * 1.0 / samplingRate_Hz + phase)));
-	}
-
-	return sineSignal;
-}
-
-
 // Explicit template instantiation
-template dsp::Signal<float> dsp::sin(unsigned frequency_Hz, double length_s, unsigned samplingRate_Hz, double amplitude, double phase);
-template dsp::Signal<double> dsp::sin(unsigned frequency_Hz, double length_s, unsigned samplingRate_Hz, double amplitude, double phase);
-template dsp::Signal<long double> dsp::sin(unsigned frequency_Hz, double length_s, unsigned samplingRate_Hz, double amplitude, double phase);
-template dsp::Signal<short> dsp::sin(unsigned frequency_Hz, double length_s, unsigned samplingRate_Hz, double amplitude, double phase);
-template dsp::Signal<int> dsp::sin(unsigned frequency_Hz, double length_s, unsigned samplingRate_Hz, double amplitude, double phase);
-template dsp::Signal<long> dsp::sin(unsigned frequency_Hz, double length_s, unsigned samplingRate_Hz, double amplitude, double phase);
-
 template std::vector<float> dsp::centered(const std::vector<float>& vec, size_t newSize);
 template std::vector<double> dsp::centered(const std::vector<double>& vec, size_t newSize);
 template std::vector<long double> dsp::centered(const std::vector<long double>& vec, size_t newSize);
@@ -139,3 +132,17 @@ template std::vector<double> dsp::correlate(const std::vector<double>& in1, cons
 	correlation_mode mode, correlation_method method);
 template std::vector<long double> dsp::correlate(const std::vector<long double>& in1, const std::vector<long double>& in2,
 	correlation_mode mode, correlation_method method);
+
+template float dsp::calculateEnergy(std::vector<float>::iterator start,
+	std::vector<float>::iterator end);
+template double dsp::calculateEnergy(std::vector<double>::iterator start, 
+	std::vector<double>::iterator end);
+template long double dsp::calculateEnergy(std::vector<long double>::iterator start,
+	std::vector<long double>::iterator end);
+
+template float dsp::calculateMeanPower(typename std::vector<float>::iterator start,
+	typename std::vector<float>::iterator end);
+template double dsp::calculateMeanPower(typename std::vector<double>::iterator start,
+	typename std::vector<double>::iterator end);
+template long double dsp::calculateMeanPower(typename std::vector<long double>::iterator start,
+	typename std::vector<long double>::iterator end);
