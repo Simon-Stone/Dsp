@@ -86,26 +86,6 @@ namespace dsp
 		choose_conv_method(const std::vector<T>& in1, const std::vector<T>& in2,
 			convolution_mode mode = convolution_mode::full, bool measure = false);
 
-	using correlation_mode = convolution_mode;
-	using correlation_method = convolution_method;
-	
-	/// @brief Cross-correlate two N-dimensional arrays.
-	/// @tparam T Type of the vector elements
-	/// @param in1 First input
-	/// @param in2 Second input
-	/// @param mode An enum indicating the size of the output:
-	/// full:	The output is the full discrete linear cross-correlation of the inputs. (Default)
-	///	valid: 	The output consists only of those elements that do not rely on the zero-padding. In ‘valid’ mode, either in1 or in2 must be at least as large as the other in every dimension.
-	///	same:	The output is the same size as in1, centered with respect to the ‘full’ output.
-	/// @param method An enum indicating which method to use to calculate the correlation.
-	/// direct:	The correlation is determined directly from sums, the definition of correlation.
-	/// fft:	The Fast Fourier Transform is used to perform the correlation more quickly.
-	/// automatic: Automatically chooses direct or fft method based on an estimate of which is faster (default).
-	/// @return A vector containing a subset of the discrete linear cross-correlation of in1 with in2.
-	template<class T>
-	std::vector<T> correlate(const std::vector<T>& in1, const std::vector<T>& in2,
-		correlation_mode mode = correlation_mode::full, correlation_method method = correlation_method::automatic);
-
 	/// @brief Convolve two N-dimensional arrays.
 	///
 	/// Convolve in1and in2, with the output size determined by the mode argument.
@@ -123,7 +103,45 @@ namespace dsp
 	template<class T>
 	std::vector<T> convolve(const std::vector<T>& in1, const std::vector<T>& in2,
 		convolution_mode mode = convolution_mode::full, convolution_method method = convolution_method::automatic);
+	
+	using correlation_mode = convolution_mode;
+	using correlation_method = convolution_method;
+	
+	/// @brief Cross-correlate two vectors.
+	/// @tparam T Type of the vector elements
+	/// @param in1 First input
+	/// @param in2 Second input
+	/// @param mode An enum indicating the size of the output:
+	/// full:	The output is the full discrete linear cross-correlation of the inputs. (Default)
+	///	valid: 	The output consists only of those elements that do not rely on the zero-padding. In ‘valid’ mode, either in1 or in2 must be at least as large as the other in every dimension.
+	///	same:	The output is the same size as in1, centered with respect to the ‘full’ output.
+	/// @param method An enum indicating which method to use to calculate the correlation.
+	/// direct:	The correlation is determined directly from sums, the definition of correlation.
+	/// fft:	The Fast Fourier Transform is used to perform the correlation more quickly.
+	/// automatic: Automatically chooses direct or fft method based on an estimate of which is faster (default).
+	/// @return A vector containing a subset of the discrete linear cross-correlation of in1 with in2.
+	template<class T>
+	std::vector<T> correlate(const std::vector<T>& in1, const std::vector<T>& in2,
+		correlation_mode mode = correlation_mode::full, correlation_method method = correlation_method::automatic);
 
+	/// @brief Auto-correlate a vector with itself.
+	/// @tparam T Type of the vector elements
+	/// @param in Input vector
+	/// @param mode An enum indicating the size of the output:
+	/// full:	The output is the full discrete linear auto-correlation of the inputs. (Default)
+	///	valid: 	The output consists only of those elements that do not rely on the zero-padding. In ‘valid’ mode, either in1 or in2 must be at least as large as the other in every dimension.
+	///	same:	The output is the same size as in1, centered with respect to the ‘full’ output.
+	/// @param method An enum indicating which method to use to calculate the correlation.
+	/// direct:	The correlation is determined directly from sums, the definition of correlation.
+	/// fft:	The Fast Fourier Transform is used to perform the correlation more quickly.
+	/// automatic: Automatically chooses direct or fft method based on an estimate of which is faster (default).
+	/// @return A vector containing a subset of the discrete linear auto-correlation of in.
+	template<class T>
+	std::vector<T> autocorrelate(const std::vector<T>& in, correlation_mode mode = correlation_mode::full, 
+		correlation_method method = correlation_method::automatic)
+	{
+		return correlate(in, in, mode, method);
+	}
 
 	/// @brief Return the elements of a vector that satisfy some condition.
 	/// @tparam T 

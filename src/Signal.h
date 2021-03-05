@@ -435,7 +435,7 @@ namespace dsp
 	}
 
 	template<class T>
-	auto conj(std::vector<std::complex<T>> z)
+	std::vector<std::complex<T>> conj(const std::vector<std::complex<T>>& z)
 	{
 		std::vector<std::complex<T>> z_conj;
 		z_conj.reserve(z.size());
@@ -446,7 +446,7 @@ namespace dsp
 	}
 	
 	template<class T>
-	auto conj(Signal<T> signal)
+	Signal<T> conj(Signal<T> signal)
 	{
 		// The returned signal should have the return type of the std::conj() function applied to the signal's sample
 		using U = decltype(std::conj(std::declval<T>()));
@@ -458,6 +458,11 @@ namespace dsp
 		return conjugatedSignal;
 	}
 
+	// Some overloads for real numbers
+	inline std::vector<float> conj(const std::vector<float>& z) { return z; }
+	inline std::vector<double> conj(const std::vector<double>& z) { return z; }
+	inline std::vector<long double> conj(const std::vector<long double>& z) { return z; }
+	
 	template<class T>
 	auto arg(Signal<T> signal)
 	{

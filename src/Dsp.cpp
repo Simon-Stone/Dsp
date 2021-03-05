@@ -6,6 +6,7 @@
 
 #include "fft.h"
 
+
 unsigned dsp::nextpow2(unsigned n)
 {
 	return static_cast<unsigned>(ceil(log2(n)));
@@ -19,6 +20,15 @@ namespace dsp
 	{
 		throw std::runtime_error("Direct convolution not yet implemented!");
 		return {};
+	}
+
+	/// @brief Reverse and conjugate a vector
+	template<class T>
+	std::vector<T> _reverse_and_conj(const std::vector<T>& vec)
+	{
+		std::vector<T> reversed_copy(vec.size());
+		std::reverse_copy(vec.begin(), vec.end(), reversed_copy.begin());
+		return dsp::conj(reversed_copy);
 	}
 }
 
@@ -47,14 +57,6 @@ std::pair<dsp::convolution_method, std::map<dsp::convolution_method, double>> ds
 }
 
 template <class T>
-std::vector<T> dsp::correlate(const std::vector<T>& in1, const std::vector<T>& in2,
-	convolution_mode mode, convolution_method method)
-{
-	
-	return {};
-}
-
-template <class T>
 std::vector<T> dsp::convolve(const std::vector<T>& in1, const std::vector<T>& in2,
 	convolution_mode mode, convolution_method method)
 {
@@ -78,6 +80,25 @@ std::vector<T> dsp::convolve(const std::vector<T>& in1, const std::vector<T>& in
 	}
 
 }
+
+template <class T>
+std::vector<T> dsp::correlate(const std::vector<T>& in1, const std::vector<T>& in2,
+	convolution_mode mode, convolution_method method)
+{
+	switch (method)
+	{
+	case convolution_method::automatic: 
+		// Fall through to fft method
+	case convolution_method::fft:		
+		return convolve(in1, _reverse_and_conj(in2), mode, method);
+	case convolution_method::direct:
+		throw std::runtime_error("Direct correlation method not yet implemented!");
+	default:
+		throw std::runtime_error("Unknown correlation method!");
+	}
+}
+
+
 
 template <class T>
 dsp::Signal<T> dsp::sin(unsigned frequency_Hz, double length_s, unsigned samplingRate_Hz, double amplitude, double phase)
@@ -111,3 +132,10 @@ template std::vector<double> dsp::convolve(const std::vector<double>& in1, const
 	convolution_mode mode, convolution_method method);
 template std::vector<long double> dsp::convolve(const std::vector<long double>& in1, const std::vector<long double>& in2,
 	convolution_mode mode, convolution_method method);
+
+template std::vector<float> dsp::correlate(const std::vector<float>& in1, const std::vector<float>& in2,
+	correlation_mode mode, correlation_method method);
+template std::vector<double> dsp::correlate(const std::vector<double>& in1, const std::vector<double>& in2,
+	correlation_mode mode, correlation_method method);
+template std::vector<long double> dsp::correlate(const std::vector<long double>& in1, const std::vector<long double>& in2,
+	correlation_mode mode, correlation_method method);
