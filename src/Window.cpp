@@ -2,8 +2,9 @@
 
 #include <algorithm>
 #include <iostream>
+#include <numeric>
 
-#include "fft.h"
+#include "cfft.h"
 #include "Signal.h"
 #include "special.h"
 #include "utilities.h"
@@ -346,7 +347,7 @@ namespace dsp::window
 		if (M % 2 != 0)
 		{
 			//TODO: The following line does not seem to work!
-			auto W = fft::rfft(p);			
+			auto W = fft::rfft(p);
 			std::transform(W.begin(), W.end(), std::back_inserter(w), [](auto W) {return W.real(); });
 			n = (M + 1) / 2;
 			w = { w.begin(), w.begin() + n };
@@ -355,19 +356,19 @@ namespace dsp::window
 		else
 		{
 			std::vector<std::complex<T>> q;
-			
-			for(auto& c : p)
+
+			for (auto& c : p)
 			{
 				q.emplace_back(c, 0.0);
 			}
-			
+
 			for (unsigned k = 0; k < M; ++k)
 			{
 				q[k] *= std::exp(std::complex<T>(0.0, 1.0 * pi / M * k));
-				auto Q = fft::fft(q);
+				auto Q = fft::cfft(q);
 				std::transform(Q.begin(), Q.end(), w.begin(), [](auto Q) {return Q.real(); });
 				n = M / 2 + 1;
-				w.insert(w.begin(), w.rbegin(), w.rend() -1);
+				w.insert(w.begin(), w.rbegin(), w.rend() - 1);
 			}
 		}
 		auto max_w = *std::max_element(w.begin(), w.end());
@@ -376,6 +377,67 @@ namespace dsp::window
 		return utilities::truncate(w, needs_trunc);
 	}
 
+	template <class T>
+	std::vector<T> exponential(double center, unsigned N, double tau, bool sym)
+	{
+		if (N <= 0) return {};
+
+		if (sym && static_cast<unsigned>(center) != (N - 1) / 2)
+		{
+			throw std::runtime_error("If sym == true, center must be the default value!");
+		}
+
+		auto [M, needs_trunc] = utilities::extend(N, sym);
+
+		auto n = arange<T>(0, M);
+		std::vector<T> w;
+		w.reserve(M);
+		std::transform(n.begin(), n.end(), std::back_inserter(w),
+			[center, tau](auto n)
+			{
+				return std::exp(-std::abs(n - center) / tau);
+			});
+
+		return utilities::truncate(w, needs_trunc);
+	}
+
+	template <class T>
+	std::vector<T> tukey(unsigned N, double alpha, bool sym)
+	{
+		if (N <= 0 || alpha < 0) return {};
+
+		if (alpha < 0) return boxcar<T>(N, sym);
+		if (alpha >= 1.0) return hann<T>(N, sym);
+
+		auto [M, needs_trunc] = utilities::extend(N, sym);
+
+		auto n = arange<T>(0, static_cast<T>(M));
+
+		auto width = static_cast<unsigned>(alpha * (M - 1) / 2.0);
+		std::vector<T> n1 = { n.begin(), n.begin() + width + 1 };
+		std::vector<T> n2 = { n.begin() + width + 1, n.begin() + M - width - 1 };
+		std::vector<T> n3 = { n.begin() + M - width - 1, n.end() };
+
+		std::vector<T> w1;
+		w1.reserve(n1.size());
+		std::transform(n1.begin(), n1.end(), std::back_inserter(w1),
+			[alpha, M](auto n1)
+			{
+				return static_cast<T>(0.5 * (1 + std::cos(pi * (-1 + 2.0 * n1 / alpha / (M - 1)))));
+			});
+
+		std::vector<T> w2(n2.size(), 1.0);
+		std::vector<T> w3;
+		w3.reserve(n3.size());
+		std::transform(n3.begin(), n3.end(), std::back_inserter(w3),
+			[alpha, M](auto n3)
+			{
+				return static_cast<T>(0.5 * (1 + std::cos(pi * (-2.0 / alpha + 1 + 2.0 * n3 / alpha / (M - 1)))));
+			});
+		auto w = dsp::concatenate<T>({ &w1, &w2, &w3 });
+
+		return utilities::truncate(w, needs_trunc);
+	}
 
 	// Explicit template instantiations
 	template std::vector<float> boxcar(unsigned N, bool sym);
@@ -432,5 +494,12 @@ namespace dsp::window
 	//template std::vector<float> chebwin(unsigned N, double at, bool sym);
 	template std::vector<double> chebwin(unsigned N, double at, bool sym);
 	//template std::vector<long double> chebwin(unsigned N, double at, bool sym);
+	//template std::vector<float> exponential(double center, unsigned N, double tau, bool sym);
+	template std::vector<double> exponential(double center, unsigned N, double tau, bool sym);
+	//template std::vector<long double> exponential(double center, unsigned N, double tau, bool sym);
+
+	template std::vector<float> tukey(unsigned N, double alpha, bool sym);
+	template std::vector<double> tukey(unsigned N, double alpha, bool sym);
+	template std::vector<long double> tukey(unsigned N, double alpha, bool sym);
 }
 

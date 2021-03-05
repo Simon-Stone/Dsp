@@ -23,7 +23,7 @@ namespace dsp
 		/// @param backend Can be automatic, simple, or fftw. 'simple' is a low-level straight-forward implementation of the complex FFT and 'fftw' uses the FFTW library. 'simple' is best for a small number fo samples due to the overhead of the FFTW planning stage. For longer inputs, FFTW becomes significantly faster. 'automatic' therefore chooses the 'simple' implementation for input lengths of less than 100 000 samples and 'fftw' for longer inputs.
 		/// @return The transformed truncated or zero-padded input.
 		template<class T>
-		std::vector<std::complex<T>> fft(std::vector<std::complex<T>>& x, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward, bool overwrite_x = false, backend backend = backend::automatic);
+		std::vector<std::complex<T>> cfft(std::vector<std::complex<T>>& x, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward, bool overwrite_x = false, backend backend = backend::automatic);
 
 		/// @brief Compute the 1-D inverse discrete Fourier Transform.
 		///
@@ -36,7 +36,7 @@ namespace dsp
 		/// @param backend Can be automatic, simple, or fftw. 'simple' is a low-level straight-forward implementation of the complex FFT and 'fftw' uses the FFTW library. 'simple' is best for a small number fo samples due to the overhead of the FFTW planning stage. For longer inputs, FFTW becomes significantly faster. 'automatic' therefore chooses the 'simple' implementation for input lengths of less than 100 000 samples and 'fftw' for longer inputs.
 		/// @return The transformed truncated or zero-padded input.
 		template<class T>
-		std::vector<std::complex<T>> ifft(std::vector<std::complex<T>>& X, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward, bool overwrite_X = false, backend backend = backend::automatic);
+		std::vector<std::complex<T>> icfft(std::vector<std::complex<T>>& X, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward, bool overwrite_X = false, backend backend = backend::automatic);
 
 		/// @brief Compute the 1-D discrete Fourier Transform for real input.
 		/// 
@@ -75,7 +75,7 @@ namespace dsp
 		template<class T>
 		std::vector<T> ifft(std::vector<std::complex<T>>& X, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward, bool overwrite_X = false, backend backend = backend::automatic)
 		{
-			return ifft(X, n, mode, overwrite_X, backend);
+			return irfft(X, n, mode, overwrite_X, backend);
 		}
 		
 		// TODO:
@@ -112,5 +112,8 @@ namespace dsp
 		//fftfreq();
 		//rfftfreq();
 		//next_fast_len();
+
+		template<class T>
+		std::vector<T> fftconvolution(const std::vector<T>& volume, const std::vector<T>& kernel, convolution_mode mode = convolution_mode::valid);
 	}
 }

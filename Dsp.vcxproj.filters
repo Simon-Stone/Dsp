@@ -24,9 +24,6 @@
     <ClInclude Include="src\dsp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\fft.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\special.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -42,15 +39,15 @@
     <ClInclude Include="src\Legacy\LegacySignal.h">
       <Filter>Legacy</Filter>
     </ClInclude>
+    <ClInclude Include="src\fft.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Signal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\dsp.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\fft.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\special.cpp">
@@ -67,6 +64,9 @@
     </ClCompile>
     <ClCompile Include="src\Legacy\LegacySignal.cpp">
       <Filter>Legacy</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fft.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

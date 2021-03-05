@@ -64,8 +64,8 @@ namespace dsp::window
 	///The Hamming window is a taper formed by using a raised cosine with non - zero endpoints, optimized to minimize the nearest side lobe.
 	/// @tparam T Type of returned values
 	/// @param N Number of points in the output window. If zero or less, an empty array is returned.
-	/// @param sym When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis.
-	/// @return The window, with the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is True).
+	/// @param sym When true (default), generates a symmetric window, for use in filter design. When false, generates a periodic window, for use in spectral analysis.
+	/// @return The window, with the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is true).
 	template<class T>
 	std::vector<T> hamming(unsigned N, bool sym = true);
 
@@ -74,8 +74,8 @@ namespace dsp::window
 	/// The Hann window is a taper formed by using a raised cosine or sine - squared with ends that touch zero.
 	/// @tparam T Type of returned values
 	/// @param N Number of points in the output window. If zero or less, an empty array is returned.
-	/// @param sym When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis.
-	/// @return The window, with the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is True).
+	/// @param sym When true (default), generates a symmetric window, for use in filter design. When false, generates a periodic window, for use in spectral analysis.
+	/// @return The window, with the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is true).
 	template<class T>
 	std::vector<T> hann(unsigned N, bool sym = true);
 
@@ -84,56 +84,56 @@ namespace dsp::window
 	/// The Bartlett window is very similar to a triangular window, except that the end points are at zero. It is often used in signal processing for tapering a signal, without generating too much ripple in the frequency domain.
 	/// @tparam T Type of returned values
 	/// @param N Number of points in the output window. If zero or less, an empty array is returned.
-	/// @param sym When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis.
-	/// @return The triangular window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is True).
+	/// @param sym When true (default), generates a symmetric window, for use in filter design. When false, generates a periodic window, for use in spectral analysis.
+	/// @return The triangular window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is true).
 	template<class T>
 	std::vector<T> bartlett(unsigned N, bool sym = true);
 
 	/// @brief Return a flat top window.
 	/// @tparam T Type of returned values
 	/// @param N Number of points in the output window. If zero or less, an empty array is returned.
-	/// @param sym When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis.
-	/// @return The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is True).
+	/// @param sym When true (default), generates a symmetric window, for use in filter design. When false, generates a periodic window, for use in spectral analysis.
+	/// @return The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is true).
 	template<class T>
 	std::vector<T> flattop(unsigned N, bool sym = true);
 
 	/// @brief Return a Parzen window.
 	/// @tparam T Type of returned values
 	/// @param N Number of points in the output window. If zero or less, an empty array is returned.
-	/// @param sym When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis.
-	/// @return The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is True).
+	/// @param sym When true (default), generates a symmetric window, for use in filter design. When false, generates a periodic window, for use in spectral analysis.
+	/// @return The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is true).
 	template<class T>
 	std::vector<T> parzen(unsigned N, bool sym = true);
 
 	/// @brief Return a Bohman window.
 	/// @tparam T Type of returned values
 	/// @param N Number of points in the output window. If zero or less, an empty array is returned.
-	/// @param sym When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis.
-	/// @return The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is True).
+	/// @param sym When true (default), generates a symmetric window, for use in filter design. When false, generates a periodic window, for use in spectral analysis.
+	/// @return The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is true).
 	template<class T>
 	std::vector<T> bohman(unsigned N, bool sym = true);
 
 	/// @brief Return a minimum 4-term Blackman-Harris window.
 	/// @tparam T Type of returned values
 	/// @param N Number of points in the output window. If zero or less, an empty array is returned.
-	/// @param sym When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis.
-	/// @return The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is True).
+	/// @param sym When true (default), generates a symmetric window, for use in filter design. When false, generates a periodic window, for use in spectral analysis.
+	/// @return The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is true).
 	template<class T>
 	std::vector<T> blackmanharris(unsigned N, bool sym = true);
 
 	/// @brief Return a minimum 4-term Blackman-Harris window according to Nuttall.
 	/// @tparam T Type of returned values.
 	/// @param N Number of points in the output window. If zero or less, an empty array is returned.
-	/// @param sym When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis.
-	/// @return The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is True).
+	/// @param sym When true (default), generates a symmetric window, for use in filter design. When false, generates a periodic window, for use in spectral analysis.
+	/// @return The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is true).
 	template<class T>
 	std::vector<T> nuttall(unsigned N, bool sym = true);
 
 	/// @brief Return a modified Bartlett-Hann window.
 	/// @tparam T Type of returned values.
 	/// @param N Number of points in the output window. If zero or less, an empty array is returned.
-	/// @param sym When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis.
-	/// @return The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is True).
+	/// @param sym When true (default), generates a symmetric window, for use in filter design. When false, generates a periodic window, for use in spectral analysis.
+	/// @return The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is true).
 	template<class T>
 	std::vector<T> barthann(unsigned N, bool sym = true);
 
@@ -143,8 +143,8 @@ namespace dsp::window
 	/// @tparam T Type of returned values
 	/// @param N Number of points in the output window. If zero or less, an empty array is returned.
 	/// @param beta Shape parameter, determines trade-off between main-lobe width and side lobe level. As beta gets large, the window narrows.
-	/// @param sym When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis.
-	/// @return The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is True).
+	/// @param sym When true (default), generates a symmetric window, for use in filter design. When false, generates a periodic window, for use in spectral analysis.
+	/// @return The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is true).
 	template<class T>
 	std::vector<T> kaiser(unsigned N, double beta, bool sym = true);
 
@@ -152,8 +152,8 @@ namespace dsp::window
 	/// @tparam T Type of returned values
 	/// @param N Number of points in the output window. If zero or less, an empty array is returned.
 	/// @param std The standard deviation, sigma.
-	/// @param sym When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis.
-	/// @return The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is True).
+	/// @param sym When true (default), generates a symmetric window, for use in filter design. When false, generates a periodic window, for use in spectral analysis.
+	/// @return The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is true).
 	template<class T>
 	std::vector<T> gaussian(unsigned N, double std, bool sym = true);
 
@@ -162,8 +162,8 @@ namespace dsp::window
 	/// @param N Number of points in the output window. If zero or less, an empty array is returned.
 	/// @param p Shape parameter. p = 1 is identical to gaussian, p = 0.5 is the same shape as the Laplace distribution.
 	/// @param sig The standard deviation, sigma
-	/// @param sym When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis.
-	/// @return The window, with the maximum value normalized to 1 (though the value 1 does not appear if M is even and sym is True).
+	/// @param sym When true (default), generates a symmetric window, for use in filter design. When false, generates a periodic window, for use in spectral analysis.
+	/// @return The window, with the maximum value normalized to 1 (though the value 1 does not appear if M is even and sym is true).
 	template<class T>
 	std::vector<T> general_gaussian(unsigned N, double p, double sig, bool sym = true);
 
@@ -173,10 +173,38 @@ namespace dsp::window
 	/// @tparam T Type of returned values
 	/// @param N Number of points in the output window. If zero or less, an empty array is returned.
 	/// @param at Attenuation (in dB).
-	/// @param sym When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis.
+	/// @param sym When true (default), generates a symmetric window, for use in filter design. When false, generates a periodic window, for use in spectral analysis.
 	/// @return The window, with the maximum value always normalized to 1
 	template<class T>
 	std::vector<T> chebwin(unsigned N, double at, bool sym = true);
 
+	/// @brief Return an exponential (or Poisson) window.
+	/// @tparam T Type of returned values
+	/// @param center Parameter defining the center location of the window function. The default value if not given is center = (M-1) / 2. This parameter must take its default value for symmetric windows.
+	/// @param N Number of points in the output window. If zero or less, an empty array is returned.
+	/// @param tau Parameter defining the decay. For center = 0 use tau = -(M-1) / ln(x) if x is the fraction of the window remaining at the end.
+	/// @param sym When true (default), generates a symmetric window, for use in filter design. When false, generates a periodic window, for use in spectral analysis.
+	/// @return The window, with the maximum value normalized to 1 (though the value 1 does not appear if M is even and sym is true).
+	template<class T>
+	std::vector<T> exponential(double center, unsigned N, double tau = 1.0, bool sym = true);
+
+	/// @brief Alias for exponential() that provides the default value for center (which depends on N)
+	template<class T>
+	std::vector<T> exponential(unsigned N, double tau = 1.0, bool sym = true)
+	{
+		return exponential<T>((N - 1) / 2, N, tau, sym);
+	}
+
+	/// @brief Return a Tukey window, also known as a tapered cosine window.
+	/// @tparam T Type of returned values
+	/// @param N Number of points in the output window. If zero or less, an empty vector is returned.
+	/// @param alpha Shape parameter of the Tukey window, representing the fraction of the window inside the cosine tapered region. If zero, the Tukey window is equivalent to a rectangular window. If one, the Tukey window is equivalent to a Hann window.
+	/// @param sym When true (default), generates a symmetric window, for use in filter design. When false, generates a periodic window, for use in spectral analysis.
+	/// @return The window, with the maximum value normalized to 1 (though the value 1 does not appear if M is even and sym is true).
+	template <class T>
+	std::vector<T> tukey(unsigned N, double alpha = 0.5, bool sym = true);
+
+
+	// TODO: taylor window https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.windows.taylor.html#scipy.signal.windows.taylor
 }
 

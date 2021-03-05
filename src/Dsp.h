@@ -1,5 +1,10 @@
 #pragma once
+#include <map>
+#include <numeric>
+
 #include "Signal.h"
+
+
 
 /// @brief Convenience functions for digital signal processing
 namespace dsp
@@ -7,10 +12,118 @@ namespace dsp
 	// Constants
 	const double pi = 3.14159265358979311600;
 
-	/// @brief Return the next-largest power of two k so that n <= 2^k
-	/// @param n Number of which find the next-largest power of two.
-	/// @return The next-largest power of two so that n <= 2^k 
-	unsigned nextpow2(unsigned n);
+	/// @brief Return evenly spaced values within a given interval.
+	///
+	/// Values are generated within the half-open interval [start, stop) (in other
+	/// words, the interval including start but excluding stop). 
+	/// @tparam T Type of the elements in vector.
+	/// @param start Start of interval. The interval includes this value.
+	/// @param stop End of interval. The interval does not include this value.
+	/// @param step Spacing between values. For any output out, this is the distance
+	/// between two adjacent values, out[i+1] - out[i]. The default step size is 1. 
+	/// @return Vector of evenly spaced values
+	template<class T>
+	std::vector<T> arange(T start, T stop, T step = 1)
+	{
+		std::vector<T> values;
+		for (T value = start; value < stop; value += step)
+		{
+			values.push_back(value);
+		}
+		return values;
+	}
+
+
+	/// @brief Returns the center portion of a vector
+	/// @tparam T Type of the elements in vector.
+	/// @param vec Input vectr
+	/// @param newlength Length of the extracted, centered portion
+	/// @return Centered portion of the vector
+	template<class T>
+	std::vector<T> centered(const std::vector<T>& vec, size_t newSize);
+
+	
+	/// @brief Join a sequence of vectors.
+	/// @tparam T Type of the vector elements
+	/// @param vectors Vector containing references to the vectors.
+	/// @return The concatenated vector. 
+	template<class T>
+	std::vector<T> concatenate(std::vector<std::vector<T>*> vectors)
+	{
+		std::vector<T> concatenated_vector;
+		for (const auto& v : vectors)
+		{
+			concatenated_vector.insert(concatenated_vector.end(), v->begin(), v->end());
+		}
+
+		return concatenated_vector;
+	}
+
+
+	/* Convolutions and correlations */
+
+	enum class convolution_mode { full, valid, same };
+	enum class convolution_method { automatic, direct, fft };
+	
+
+	/// @brief Find the fastest convolution/correlation method.
+	/// This primarily exists to be called during the method = 'auto' option in
+	/// convolve and correlate. It can also be used to determine the value of
+	/// method for many different convolutions of the same length. In addition,
+	/// it supports timing the convolution to adapt the value of method to a
+	/// particular set of inputs and/or hardware.
+	/// @tparam T Type of the vector elements
+	/// @param in1 The first argument passed into the convolution function.
+	/// @param in2 The second argument passed into the convolution function.
+	/// @param mode An enum indicating the size of the output:
+	/// full:	The output is the full discrete linear cross-correlation of the inputs. (Default)
+	///	valid: 	The output consists only of those elements that do not rely on the zero-padding. In ‘valid’ mode, either in1 or in2 must be at least as large as the other in every dimension.
+	///	same:	The output is the same size as in1, centered with respect to the ‘full’ output.
+	/// @param measure If true, run and time the convolution of in1 and in2 with both methods and return the fastest. If false (default), predict the fastest method using precomputed values.
+	/// @return A pair containing an enum indicating which convolution method is fastest, either ‘direct’ or ‘fft’, and a map containing the times (in seconds) needed for each method. This map is only non-empty if measure=true.
+	template<class T>
+	std::pair<convolution_method, std::map<convolution_method, double>>
+		choose_conv_method(const std::vector<T>& in1, const std::vector<T>& in2,
+			convolution_mode mode = convolution_mode::full, bool measure = false);
+
+	using correlation_mode = convolution_mode;
+	using correlation_method = convolution_method;
+	
+	/// @brief Cross-correlate two N-dimensional arrays.
+	/// @tparam T Type of the vector elements
+	/// @param in1 First input
+	/// @param in2 Second input
+	/// @param mode An enum indicating the size of the output:
+	/// full:	The output is the full discrete linear cross-correlation of the inputs. (Default)
+	///	valid: 	The output consists only of those elements that do not rely on the zero-padding. In ‘valid’ mode, either in1 or in2 must be at least as large as the other in every dimension.
+	///	same:	The output is the same size as in1, centered with respect to the ‘full’ output.
+	/// @param method An enum indicating which method to use to calculate the correlation.
+	/// direct:	The correlation is determined directly from sums, the definition of correlation.
+	/// fft:	The Fast Fourier Transform is used to perform the correlation more quickly.
+	/// automatic: Automatically chooses direct or fft method based on an estimate of which is faster (default).
+	/// @return A vector containing a subset of the discrete linear cross-correlation of in1 with in2.
+	template<class T>
+	std::vector<T> correlate(const std::vector<T>& in1, const std::vector<T>& in2,
+		correlation_mode mode = correlation_mode::full, correlation_method method = correlation_method::automatic);
+
+	/// @brief Convolve two N-dimensional arrays.
+	///
+	/// Convolve in1and in2, with the output size determined by the mode argument.
+	/// @tparam T Type of the vector elements
+	/// @param in1 First input
+	/// @param in2 Second input
+	/// full:	The output is the full discrete convolution of the inputs. (Default)
+	///	valid: 	The output consists only of those elements that do not rely on the zero-padding. In ‘valid’ mode, either in1 or in2 must be at least as large as the other in every dimension.
+	///	same:	The output is the same size as in1, centered with respect to the ‘full’ output.
+	/// @param method An enum indicating which method to use to calculate the convolution.
+	/// direct:	The correlation is determined directly from sums, the definition of correlation.
+	/// fft:	The Fast Fourier Transform is used to perform the correlation more quickly.
+	/// automatic: Automatically chooses direct or fft method based on an estimate of which is faster (default).
+	/// @return A vector containing a subset of the discrete convolution of in1 with in2.
+	template<class T>
+	std::vector<T> convolve(const std::vector<T>& in1, const std::vector<T>& in2,
+		convolution_mode mode = convolution_mode::full, convolution_method method = convolution_method::automatic);
+
 
 	/// @brief Return the elements of a vector that satisfy some condition.
 	/// @tparam T 
@@ -30,27 +143,6 @@ namespace dsp
 			it = std::find_if(std::next(it), vec.end(), condition);
 		}
 		return results;
-	}
-
-	/// @brief Return evenly spaced values within a given interval.
-	///
-	/// Values are generated within the half-open interval [start, stop) (in other
-	/// words, the interval including start but excluding stop). 
-	/// @tparam T Type of the elements in vector.
-	/// @param start Start of interval. The interval includes this value.
-	/// @param stop End of interval. The interval does not include this value.
-	/// @param step Spacing between values. For any output out, this is the distance
-	/// between two adjacent values, out[i+1] - out[i]. The default step size is 1. 
-	/// @return Vector of evenly spaced values
-	template<typename T>
-	std::vector<T> arange(T start, T stop, T step = 1)
-	{
-		std::vector<T> values;
-		for (T value = start; value < stop; value += step)
-		{
-			values.push_back(value);
-		}
-		return values;
 	}
 
 	/// @brief Return evenly spaced numbers over a specified interval.
@@ -83,16 +175,11 @@ namespace dsp
 		return xs;
 	}
 
-	/// @brief Return a window of a given length and type.
-	/// @tparam T Data type of the samples.
-	/// @tparam ...Args Types of the elements in window. First is always dsp::window::type, others are optional (see below).
-	/// @param window First element must be the window type. If the window requires more parameters, they must be provided here as further elements.
-	/// @param Nx The number of samples in the window.
-	/// @param fftbins If true (default), create a “periodic” window, ready to use with ifftshift and be multiplied by the result of an FFT (see also fftfreq). If false, create a “symmetric” window, for use in filter design.
-	/// @return Returns a window of length Nx and type window.
-	template<class T, class... Args>
-	std::vector<T> get_window(std::tuple<Args...> window, unsigned Nx, bool fftbins = true);
-	
+	/// @brief Return the next-largest power of two k so that n <= 2^k
+	/// @param n Number of which find the next-largest power of two.
+	/// @return The next-largest power of two so that n <= 2^k 
+	unsigned nextpow2(unsigned n);
+
 	/// @brief Return a sampled sinusoid signal
 	/// @tparam T Type of the samples. Should be float, double, or long double. Other types will cause undefined behavior.
 	/// @param frequency_Hz The frequency of the sinusoid in Hertz

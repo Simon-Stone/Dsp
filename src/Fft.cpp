@@ -694,7 +694,7 @@ namespace dsp::fft
 }
 
 template<class T>
-std::vector<std::complex<T>> dsp::fft::fft(std::vector<std::complex<T>>& x, unsigned n, dsp::fft::NormalizationMode mode, bool overwrite_x, backend backend)
+std::vector<std::complex<T>> dsp::fft::cfft(std::vector<std::complex<T>>& x, unsigned n, dsp::fft::NormalizationMode mode, bool overwrite_x, backend backend)
 {
 	switch (backend)
 	{
@@ -715,7 +715,7 @@ std::vector<std::complex<T>> dsp::fft::fft(std::vector<std::complex<T>>& x, unsi
 }
 
 template <class T>
-std::vector<std::complex<T>> dsp::fft::ifft(std::vector<std::complex<T>>& X, unsigned n, NormalizationMode mode, bool overwrite_X, backend backend)
+std::vector<std::complex<T>> dsp::fft::icfft(std::vector<std::complex<T>>& X, unsigned n, NormalizationMode mode, bool overwrite_X, backend backend)
 {
 	switch (backend)
 	{
@@ -774,16 +774,53 @@ std::vector<T> dsp::fft::irfft(std::vector<std::complex<T>>& X, unsigned n, Norm
 	}
 }
 
+template <class T>
+std::vector<T> dsp::fft::fftconvolution(const std::vector<T>& volume, const std::vector<T>& kernel, convolution_mode mode)
+{
+	size_t size = static_cast<size_t>(std::pow(2, nextpow2(static_cast<unsigned>(volume.size() + kernel.size()) - 1)));
+	std::vector<T> volume_padded(volume);
+	volume_padded.resize(size);
+	std::vector<T> kernel_padded(kernel);
+	kernel_padded.resize(size);
+
+	auto X = fft(volume_padded, static_cast<unsigned>(size));
+	auto Y = fft(kernel_padded, static_cast<unsigned>(size));
+	std::transform(X.begin(), X.end(), Y.begin(), X.begin(), std::multiplies<>());
+	std::vector<T> result = ifft(X, static_cast<unsigned>(size));
+
+	auto fullSize = volume.size() + kernel.size() - 1;
+	
+	switch (mode)
+	{
+	case convolution_mode::full:
+		return { result.begin(), result.begin() + fullSize };
+	case convolution_mode::valid:
+		return centered<T>({ result.begin(), result.begin() + fullSize }, volume.size() - kernel.size() + 1);
+	case convolution_mode::same:
+		return centered<T>({ result.begin(), result.begin() + fullSize }, volume.size());
+	default:
+		throw std::runtime_error("Unknown convolution mode!");
+		;
+	}
+}
+
 // Explicit template instantiation
-template std::vector<std::complex<float>> dsp::fft::fft(std::vector<std::complex<float>>& x, unsigned n, dsp::fft::NormalizationMode mode, bool overwrite_x, backend backend);
-template std::vector<std::complex<double>> dsp::fft::fft(std::vector<std::complex<double>>& x, unsigned n, dsp::fft::NormalizationMode mode, bool overwrite_x, backend backend);
-template std::vector<std::complex<long double>> dsp::fft::fft(std::vector<std::complex<long double>>& x, unsigned n, dsp::fft::NormalizationMode mode, bool overwrite_x, backend backend);
-template std::vector<std::complex<float>> dsp::fft::ifft(std::vector<std::complex<float>>& X, unsigned n, dsp::fft::NormalizationMode mode, bool overwrite_x, backend backend);
-template std::vector<std::complex<double>> dsp::fft::ifft(std::vector<std::complex<double>>& X, unsigned n, dsp::fft::NormalizationMode mode, bool overwrite_x, backend backend);
-template std::vector<std::complex<long double>> dsp::fft::ifft(std::vector<std::complex<long double>>& X, unsigned n, dsp::fft::NormalizationMode mode, bool overwrite_x, backend backend);
+template std::vector<std::complex<float>> dsp::fft::cfft(std::vector<std::complex<float>>& x, unsigned n, dsp::fft::NormalizationMode mode, bool overwrite_x, backend backend);
+template std::vector<std::complex<double>> dsp::fft::cfft(std::vector<std::complex<double>>& x, unsigned n, dsp::fft::NormalizationMode mode, bool overwrite_x, backend backend);
+template std::vector<std::complex<long double>> dsp::fft::cfft(std::vector<std::complex<long double>>& x, unsigned n, dsp::fft::NormalizationMode mode, bool overwrite_x, backend backend);
+
+template std::vector<std::complex<float>> dsp::fft::icfft(std::vector<std::complex<float>>& X, unsigned n, dsp::fft::NormalizationMode mode, bool overwrite_x, backend backend);
+template std::vector<std::complex<double>> dsp::fft::icfft(std::vector<std::complex<double>>& X, unsigned n, dsp::fft::NormalizationMode mode, bool overwrite_x, backend backend);
+template std::vector<std::complex<long double>> dsp::fft::icfft(std::vector<std::complex<long double>>& X, unsigned n, dsp::fft::NormalizationMode mode, bool overwrite_x, backend backend);
+
 template std::vector<std::complex<float>> dsp::fft::rfft(std::vector<float>& x, unsigned n, dsp::fft::NormalizationMode mode, bool overwrite_x, backend backend);
 template std::vector<std::complex<double>> dsp::fft::rfft(std::vector<double>& x, unsigned n, dsp::fft::NormalizationMode mode, bool overwrite_x, backend backend);
 template std::vector<std::complex<long double>> dsp::fft::rfft(std::vector<long double>& x, unsigned n, dsp::fft::NormalizationMode mode, bool overwrite_x, backend backend);
+
 template std::vector<float> dsp::fft::irfft(std::vector<std::complex<float>>& X, unsigned n, dsp::fft::NormalizationMode mode, bool overwrite_X, backend backend);
 template std::vector<double> dsp::fft::irfft(std::vector<std::complex<double>>& X, unsigned n, dsp::fft::NormalizationMode mode, bool overwrite_X, backend backend);
 template std::vector<long double> dsp::fft::irfft(std::vector<std::complex<long double>>& X, unsigned n, dsp::fft::NormalizationMode mode, bool overwrite_X, backend backend);
+
+template std::vector<float> dsp::fft::fftconvolution(const std::vector<float>& volume, const std::vector<float>& kernel, convolution_mode mode);
+template std::vector<double> dsp::fft::fftconvolution(const std::vector<double>& volume, const std::vector<double>& kernel, convolution_mode mode);
+template std::vector<long double> dsp::fft::fftconvolution(const std::vector<long double>& volume, const std::vector<long double>& kernel, convolution_mode mode);

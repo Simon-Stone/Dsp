@@ -1,62 +1,80 @@
 #include "dsp.h"
 
+#include <chrono>
 #include <cmath>
 #include <functional>
 
-#include "window.h"
+#include "fft.h"
 
 unsigned dsp::nextpow2(unsigned n)
 {
 	return static_cast<unsigned>(ceil(log2(n)));
 }
 
-template <class T, class ... Args>
-std::vector<T> dsp::get_window(std::tuple<Args...> window, unsigned Nx, bool fftbins)
+namespace dsp
 {
-	if (Nx == 0) { return {}; }
-
-	dsp::window::type type = std::get<0>(window);
-	switch (type)
+	template<class T>
+	std::vector<T> direct_convolution(const std::vector<T>& in1, const std::vector<T>& in2,
+		convolution_mode mode)
 	{
-	case window::type::boxcar:
-		return window::boxcar<T>(Nx, !fftbins);
-	case window::type::triang:
-		return window::triang<T>(Nx, !fftbins);
-	case window::type::blackman:
-		return window::blackman<T>(Nx, !fftbins);
-	case window::type::hamming:
-		return window::hamming<T>(Nx, !fftbins);
-	case window::type::hann:
-		return window::hann<T>(Nx, !fftbins);
-	case window::type::bartlett:
-		return window::bartlett<T>(Nx, !fftbins);
-	case window::type::flattop:
-		return window::flattop<T>(Nx, !fftbins);
-	case window::type::parzen:
-		return window::parzen<T>(Nx, !fftbins);
-	case window::type::bohman:
-		return window::bohman<T>(Nx, !fftbins);
-	case window::type::blackmanharris:
-		return window::blackmanharris<T>(Nx, !fftbins);
-	case window::type::nuttal:
-		return window::nuttall<T>(Nx, !fftbins);
-	case window::type::barthann:
-		return window::barthann<T>(Nx, !fftbins);
-	case window::type::kaiser:
-		return window::barthann<T>(Nx, !fftbins);
-	case window::type::gaussian:
-		return window::gaussian<T>(Nx, std::get<1>(window), !fftbins);
-	case window::type::general_gaussian:
-		return window::general_gaussian<T>(Nx, std::get<1>(window), !fftbins);
-	case window::type::chebwin:
-		return window::chebwin<T>(Nx, std::get<1>(window), !fftbins);
-	case window::type::dpss:
-	case window::type::exponential:
-	case window::type::tukey:
-	case window::type::taylor:
-		throw std::runtime_error("Window type not yet implemented!");
+		throw std::runtime_error("Direct convolution not yet implemented!");
+		return {};
+	}
+}
+
+template <class T>
+std::vector<T> dsp::centered(const std::vector<T>& vec, size_t newSize)
+{
+	auto currentSize = vec.size();
+	auto firstIndex = (currentSize - newSize) / 2;
+	auto lastIndex = firstIndex + newSize;
+	return { vec.begin() + firstIndex, vec.begin() + lastIndex };
+}
+
+template <class T>
+std::pair<dsp::convolution_method, std::map<dsp::convolution_method, double>> dsp::choose_conv_method(const std::vector<T>& in1,
+	const std::vector<T>& in2, convolution_mode mode, bool measure)
+{
+	std::map<convolution_method, double> times;
+	if (measure)
+	{
+		// TODO
+		throw std::runtime_error("Not implemented yet!");
+	}
+
+	// TODO: Calculate if FFT-based method is actually faster than direct method
+	return { convolution_method::fft, times };
+}
+
+template <class T>
+std::vector<T> dsp::correlate(const std::vector<T>& in1, const std::vector<T>& in2,
+	convolution_mode mode, convolution_method method)
+{
+	
+	return {};
+}
+
+template <class T>
+std::vector<T> dsp::convolve(const std::vector<T>& in1, const std::vector<T>& in2,
+	convolution_mode mode, convolution_method method)
+{
+	auto volume = in1;
+	auto kernel = in2;
+
+	if (method == convolution_method::automatic)
+	{
+		auto [chosen_method, timing] = choose_conv_method(volume, kernel, mode);
+		method = chosen_method;
+	}
+
+	switch (method)
+	{
+	case convolution_method::direct:
+		return direct_convolution(volume, kernel, mode);
+	case convolution_method::fft:
+		return fft::fftconvolution(volume, kernel, mode);
 	default:
-		throw std::runtime_error("Unknown window type requested!");
+		throw std::runtime_error("Unknown convolution method!");
 	}
 
 }
@@ -76,12 +94,20 @@ dsp::Signal<T> dsp::sin(unsigned frequency_Hz, double length_s, unsigned samplin
 
 
 // Explicit template instantiation
-//template std::vector<float> dsp::get_window(std::tuple<window::type, double> window, unsigned Nx, bool fftbins);
-template std::vector<double> dsp::get_window(std::tuple<window::type, double> window, unsigned Nx, bool fftbins);
-//template std::vector<long double> dsp::get_window(std::tuple<window::type, double> window, unsigned Nx, bool fftbins);
 template dsp::Signal<float> dsp::sin(unsigned frequency_Hz, double length_s, unsigned samplingRate_Hz, double amplitude, double phase);
 template dsp::Signal<double> dsp::sin(unsigned frequency_Hz, double length_s, unsigned samplingRate_Hz, double amplitude, double phase);
 template dsp::Signal<long double> dsp::sin(unsigned frequency_Hz, double length_s, unsigned samplingRate_Hz, double amplitude, double phase);
 template dsp::Signal<short> dsp::sin(unsigned frequency_Hz, double length_s, unsigned samplingRate_Hz, double amplitude, double phase);
 template dsp::Signal<int> dsp::sin(unsigned frequency_Hz, double length_s, unsigned samplingRate_Hz, double amplitude, double phase);
 template dsp::Signal<long> dsp::sin(unsigned frequency_Hz, double length_s, unsigned samplingRate_Hz, double amplitude, double phase);
+
+template std::vector<float> dsp::centered(const std::vector<float>& vec, size_t newSize);
+template std::vector<double> dsp::centered(const std::vector<double>& vec, size_t newSize);
+template std::vector<long double> dsp::centered(const std::vector<long double>& vec, size_t newSize);
+
+template std::vector<float> dsp::convolve(const std::vector<float>& in1, const std::vector<float>& in2,
+	convolution_mode mode, convolution_method method);
+template std::vector<double> dsp::convolve(const std::vector<double>& in1, const std::vector<double>& in2,
+	convolution_mode mode, convolution_method method);
+template std::vector<long double> dsp::convolve(const std::vector<long double>& in1, const std::vector<long double>& in2,
+	convolution_mode mode, convolution_method method);
