@@ -232,6 +232,7 @@ namespace dsp::window
 		return utilities::truncate(w, needs_trunc);
 	}
 
+#ifndef	ZERO_DEPENDENCIES
 	template <class T>
 	std::vector<T> kaiser(unsigned N, double beta, bool sym)
 	{
@@ -252,7 +253,7 @@ namespace dsp::window
 
 		return utilities::truncate(w, needs_trunc);
 	}
-
+#endif
 	template <class T>
 	std::vector<T> gaussian(unsigned N, double std, bool sym)
 	{
@@ -482,9 +483,11 @@ namespace dsp::window
 	template std::vector<float> barthann(unsigned N, bool sym);
 	template std::vector<double> barthann(unsigned N, bool sym);
 	template std::vector<long double> barthann(unsigned N, bool sym);
+#ifndef ZERO_DEPENDENCIES
 	template std::vector<float> kaiser(unsigned N, double beta, bool sym);
 	template std::vector<double> kaiser(unsigned N, double beta, bool sym);
 	template std::vector<long double> kaiser(unsigned N, double beta, bool sym);
+#endif
 	template std::vector<float> gaussian(unsigned N, double std, bool sym);
 	template std::vector<double> gaussian(unsigned N, double std, bool sym);
 	template std::vector<long double> gaussian(unsigned N, double std, bool sym);

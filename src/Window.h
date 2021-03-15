@@ -137,6 +137,7 @@ namespace dsp::window
 	template<class T>
 	std::vector<T> barthann(unsigned N, bool sym = true);
 
+#ifndef ZERO_DEPENDENCIES
 	/// @brief Return a Kaiser window.
 	/// 
 	/// The Kaiser window is a taper formed by using a Bessel function.
@@ -147,7 +148,7 @@ namespace dsp::window
 	/// @return The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is true).
 	template<class T>
 	std::vector<T> kaiser(unsigned N, double beta, bool sym = true);
-
+#endif
 	/// @brief Return a Gaussian window.
 	/// @tparam T Type of returned values
 	/// @param N Number of points in the output window. If zero or less, an empty array is returned.

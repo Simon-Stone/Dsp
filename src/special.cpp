@@ -1,8 +1,12 @@
 #include "special.h"
 
 #include <algorithm>
-#include <boost/math/special_functions/bessel.hpp>
 
+#ifndef ZERO_DEPENDENCIES
+#include <boost/math/special_functions/bessel.hpp>
+#endif
+
+#ifndef ZERO_DEPENDENCIES
 template<class T>
 T dsp::special::i0(T x)
 {
@@ -20,10 +24,14 @@ std::vector<T> dsp::special::i0(std::vector<T> x)
 	return I;
 }
 
+#endif
+
 // Explicit template instantiation
+#ifndef ZERO_DEPENDENCIES
 template float dsp::special::i0(float x);
 template double dsp::special::i0(double x);
 template long double dsp::special::i0(long double x);
 template std::vector<float> dsp::special::i0<float>(std::vector<float> x);
 template std::vector<double> dsp::special::i0<double>(std::vector<double> x);
 template std::vector<long double> dsp::special::i0<long double>(std::vector<long double> x);
+#endif

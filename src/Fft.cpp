@@ -1,7 +1,10 @@
 #include "fft.h"
 
 #include <algorithm>
+
+#ifndef ZERO_DEPENDENCIES
 #include <fftw3.h>
+#endif
 
 #include "Signal.h"
 
@@ -265,7 +268,7 @@ namespace dsp::fft
 		return dsp::real(X);
 	}
 
-
+#ifndef ZERO_DEPENDENCIES
 	/* Wrapper functions for FFTW library functions of various precisions (high-performance for long signals) */
 	auto fftw(std::vector<std::complex<float>>& x, unsigned n, int sign, unsigned flags, NormalizationMode mode, bool overwrite_x)
 	{
@@ -694,7 +697,7 @@ namespace dsp::fft
 		fftwl_destroy_plan(p);
 		return x;
 	}
-
+#endif
 	/// @endcond
 }
 
@@ -707,15 +710,21 @@ std::vector<std::complex<T>> dsp::fft::cfft(std::vector<std::complex<T>>& x, uns
 	{
 
 	case backend::automatic:
+#ifndef ZERO_DEPENDENCIES
 		if (n > 100000)
 		{
 			return fftw(x, n, FFTW_FORWARD, FFTW_ESTIMATE, mode, overwrite_x);
 		}
+#endif
 		return fft_(x, n, mode, overwrite_x);
 	case backend::simple:
 		return fft_(x, n, mode, overwrite_x);
 	case backend::fftw:
+#ifndef ZERO_DEPENDENCIES
 		return fftw(x, n, FFTW_FORWARD, FFTW_ESTIMATE, mode, overwrite_x);
+#else
+		throw std::runtime_error("Library built without FFTW support!");
+#endif
 	default:
 		throw std::runtime_error("Unknown backend selected!");
 	}
@@ -727,15 +736,21 @@ std::vector<std::complex<T>> dsp::fft::icfft(std::vector<std::complex<T>>& X, un
 	switch (backend)
 	{
 	case backend::automatic:
+#ifndef ZERO_DEPENDENCIES
 		if (n > 100000)
 		{
 			return fftw(X, n, FFTW_BACKWARD, FFTW_ESTIMATE, mode, overwrite_X);
 		}
+#endif
 		return ifft_(X, n, mode, overwrite_X);
 	case backend::simple:
 		return ifft_(X, n, mode, overwrite_X);
 	case backend::fftw:
+#ifndef ZERO_DEPENDENCIES
 		return fftw(X, n, FFTW_BACKWARD, FFTW_ESTIMATE, mode, overwrite_X);
+#else
+		throw std::runtime_error("Library built without FFTW support!");
+#endif
 	default:
 		throw std::runtime_error("Unknown backend selected!");
 	}
@@ -747,15 +762,21 @@ std::vector<std::complex<T>> dsp::fft::rfft(std::vector<T>& x, unsigned n, Norma
 	switch (backend)
 	{
 	case backend::automatic:
+#ifndef ZERO_DEPENDENCIES
 		if (n > 100000)
 		{
 			return rfftw(x, n, FFTW_ESTIMATE, mode, overwrite_x);
 		}
+#endif
 		return rfft_(x, n, mode, overwrite_x);
 	case backend::simple:
 		return rfft_(x, n, mode, overwrite_x);
 	case backend::fftw:
+#ifndef ZERO_DEPENDENCIES
 		return rfftw(x, n, FFTW_ESTIMATE, mode, overwrite_x);
+#else
+		throw std::runtime_error("Library built without FFTW support!");
+#endif
 	default:
 		throw std::runtime_error("Unknown backend selected!");
 	}
@@ -767,15 +788,21 @@ std::vector<T> dsp::fft::irfft(std::vector<std::complex<T>>& X, unsigned n, Norm
 	switch (backend)
 	{
 	case backend::automatic:
+#ifndef ZERO_DEPENDENCIES
 		if (n > 100000)
 		{
 			return irfftw(X, n, FFTW_ESTIMATE, mode, overwrite_X);
 		}
+#endif
 		return irfft_(X, n, mode, overwrite_X);
 	case backend::simple:
 		return irfft_(X, n, mode, overwrite_X);
 	case backend::fftw:
+#ifndef ZERO_DEPENDENCIES
 		return irfftw(X, n, FFTW_ESTIMATE, mode, overwrite_X);
+#else
+		throw std::runtime_error("Library built without FFTW support!");
+#endif
 	default:
 		throw std::runtime_error("Unknown backend selected!");
 	}
