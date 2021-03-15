@@ -1,5 +1,10 @@
 #pragma once
-#include "dsp.h"
+
+#include <complex>
+#include <vector>
+
+#include "utilities.h"
+
 
 namespace dsp
 {
@@ -113,6 +118,7 @@ namespace dsp
 		//rfftfreq();
 		//next_fast_len();
 
+		/// @brief Fast convolution using the FFT
 		template<class T>
 		std::vector<T> fftconvolution(const std::vector<T>& volume, const std::vector<T>& kernel, convolution_mode mode = convolution_mode::valid);
 	}

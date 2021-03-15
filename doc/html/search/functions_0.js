@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['arange_51',['arange',['../namespacedsp.html#ab0cdd2fa60d4fd27ec9a72cde38811ef',1,'dsp']]]
+  ['_5freverse_5fand_5fconj_84',['_reverse_and_conj',['../namespacedsp.html#a271d095b81b8b0a68871b9d11c980208',1,'dsp']]]
 ];

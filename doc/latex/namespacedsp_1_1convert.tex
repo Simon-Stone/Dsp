@@ -1,0 +1,288 @@
+\hypertarget{namespacedsp_1_1convert}{}\doxysection{dsp\+::convert Namespace Reference}
+\label{namespacedsp_1_1convert}\index{dsp::convert@{dsp::convert}}
+
+
+Conversions between various scales.  
+
+
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{namespacedsp_1_1convert_a597c04e9527c14c1280a917016852b59}\label{namespacedsp_1_1convert_a597c04e9527c14c1280a917016852b59}} 
+enum class \mbox{\hyperlink{namespacedsp_1_1convert_a597c04e9527c14c1280a917016852b59}{mel\+\_\+method}} \{ {\bfseries slaney}
+, {\bfseries stanley\+\_\+smith}
+, {\bfseries zwicker}
+ \}
+\begin{DoxyCompactList}\small\item\em Method to calculate the Mel frequencies. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class T $>$ }\\T \mbox{\hyperlink{namespacedsp_1_1convert_a0b152543bc9b736fcb0915da5306b323}{hz2bark}} (T hz)
+\begin{DoxyCompactList}\small\item\em Converts from Hertz to Bark scale. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\T \mbox{\hyperlink{namespacedsp_1_1convert_ab44ee4c21ada8c728615e68891b05aa3}{bark2hz}} (T bark)
+\begin{DoxyCompactList}\small\item\em Converts from Bark to Hertz scale. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\T \mbox{\hyperlink{namespacedsp_1_1convert_ac4a9cb55357dd1aee75adf49d8181c44}{hz2mel}} (T hz, \mbox{\hyperlink{namespacedsp_1_1convert_a597c04e9527c14c1280a917016852b59}{mel\+\_\+method}} method=mel\+\_\+method\+::stanley\+\_\+smith)
+\begin{DoxyCompactList}\small\item\em Converts from Hertz to Mel scale. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\T \mbox{\hyperlink{namespacedsp_1_1convert_ac9b36e4ccd67735222b8fc4366612873}{mel2hz}} (T mel, \mbox{\hyperlink{namespacedsp_1_1convert_a597c04e9527c14c1280a917016852b59}{mel\+\_\+method}} method=mel\+\_\+method\+::stanley\+\_\+smith)
+\begin{DoxyCompactList}\small\item\em Converts from Mel to Hertz scale. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\T \mbox{\hyperlink{namespacedsp_1_1convert_a4b8471f6dcaf273511b71a96868df49a}{hz2midi}} (T hz)
+\begin{DoxyCompactList}\small\item\em Converts from Hertz to MIDI note number. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\T \mbox{\hyperlink{namespacedsp_1_1convert_a0750088a2969488bd248817da35129eb}{midi2hz}} (T midi)
+\begin{DoxyCompactList}\small\item\em Converts from MIDI note number to Hertz. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{namespacedsp_1_1convert_a05089a83b452d249f2a41c6b83070da6}{note2midi}} (std\+::string note, bool round\+\_\+midi=true)
+\begin{DoxyCompactList}\small\item\em Converts a spelled note to the corresponding MIDI number. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{namespacedsp_1_1convert_a593b176de512466768766cfa99ef7f6e}{midi2note}} (double midi, bool octave=true, bool cents=false, std\+::string key=\char`\"{}C\+:maj\char`\"{})
+\begin{DoxyCompactList}\small\item\em Converts a MIDI number to a note string. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\T \mbox{\hyperlink{namespacedsp_1_1convert_afe8c6f4bf884c693174872e42be3299e}{hz2st}} (T hz, T reference=k\+Frequency\+\_\+\+C0)
+\begin{DoxyCompactList}\small\item\em Converts from Hertz to semitones. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\T \mbox{\hyperlink{namespacedsp_1_1convert_accb7dd27b34d039ecede139455938e71}{st2hz}} (T st, T reference=k\+Frequency\+\_\+\+C0)
+\begin{DoxyCompactList}\small\item\em Converts from semitones to Hertz. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Conversions between various scales. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacedsp_1_1convert_ab44ee4c21ada8c728615e68891b05aa3}\label{namespacedsp_1_1convert_ab44ee4c21ada8c728615e68891b05aa3}} 
+\index{dsp::convert@{dsp::convert}!bark2hz@{bark2hz}}
+\index{bark2hz@{bark2hz}!dsp::convert@{dsp::convert}}
+\doxysubsubsection{\texorpdfstring{bark2hz()}{bark2hz()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+T dsp\+::convert\+::bark2hz (\begin{DoxyParamCaption}\item[{T}]{bark }\end{DoxyParamCaption})}
+
+
+
+Converts from Bark to Hertz scale. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Data type of the values \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em bark} & Frequency value in Bark \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Frequency value in Hertz 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacedsp_1_1convert_a0b152543bc9b736fcb0915da5306b323}\label{namespacedsp_1_1convert_a0b152543bc9b736fcb0915da5306b323}} 
+\index{dsp::convert@{dsp::convert}!hz2bark@{hz2bark}}
+\index{hz2bark@{hz2bark}!dsp::convert@{dsp::convert}}
+\doxysubsubsection{\texorpdfstring{hz2bark()}{hz2bark()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+T dsp\+::convert\+::hz2bark (\begin{DoxyParamCaption}\item[{T}]{hz }\end{DoxyParamCaption})}
+
+
+
+Converts from Hertz to Bark scale. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Data type of the values \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em hz} & Frequency value in Hertz \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Frequency value in Bark 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacedsp_1_1convert_ac4a9cb55357dd1aee75adf49d8181c44}\label{namespacedsp_1_1convert_ac4a9cb55357dd1aee75adf49d8181c44}} 
+\index{dsp::convert@{dsp::convert}!hz2mel@{hz2mel}}
+\index{hz2mel@{hz2mel}!dsp::convert@{dsp::convert}}
+\doxysubsubsection{\texorpdfstring{hz2mel()}{hz2mel()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+T dsp\+::convert\+::hz2mel (\begin{DoxyParamCaption}\item[{T}]{hz,  }\item[{\mbox{\hyperlink{namespacedsp_1_1convert_a597c04e9527c14c1280a917016852b59}{mel\+\_\+method}}}]{method = {\ttfamily mel\+\_\+method\+:\+:stanley\+\_\+smith} }\end{DoxyParamCaption})}
+
+
+
+Converts from Hertz to Mel scale. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Data type of the values \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em hz} & Frequency value in Hertz \\
+\hline
+{\em method} & The method to calculate the Mel frequencies. \textquotesingle{}stanley\+\_\+smith\textquotesingle{} is the method used by HTK and Matlab (default). \textquotesingle{}slaney\textquotesingle{} is the default method used by librosa. \textquotesingle{}zwicker\textquotesingle{} is the linear conversion from Bark to Mel. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Frequency value in Mel ~\newline
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacedsp_1_1convert_a4b8471f6dcaf273511b71a96868df49a}\label{namespacedsp_1_1convert_a4b8471f6dcaf273511b71a96868df49a}} 
+\index{dsp::convert@{dsp::convert}!hz2midi@{hz2midi}}
+\index{hz2midi@{hz2midi}!dsp::convert@{dsp::convert}}
+\doxysubsubsection{\texorpdfstring{hz2midi()}{hz2midi()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+T dsp\+::convert\+::hz2midi (\begin{DoxyParamCaption}\item[{T}]{hz }\end{DoxyParamCaption})}
+
+
+
+Converts from Hertz to MIDI note number. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Data type of the values \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em hz} & Frequency in Hertz \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+MIDI note number 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacedsp_1_1convert_afe8c6f4bf884c693174872e42be3299e}\label{namespacedsp_1_1convert_afe8c6f4bf884c693174872e42be3299e}} 
+\index{dsp::convert@{dsp::convert}!hz2st@{hz2st}}
+\index{hz2st@{hz2st}!dsp::convert@{dsp::convert}}
+\doxysubsubsection{\texorpdfstring{hz2st()}{hz2st()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+T dsp\+::convert\+::hz2st (\begin{DoxyParamCaption}\item[{T}]{hz,  }\item[{T}]{reference = {\ttfamily kFrequency\+\_\+C0} }\end{DoxyParamCaption})}
+
+
+
+Converts from Hertz to semitones. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Data type of the values \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em hz} & Frequency in Hertz \\
+\hline
+{\em reference} & Reference frequency in Hertz. Default\+: 16.\+35159783 (musical note C0). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Frequency value in semitones relative to reference 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacedsp_1_1convert_ac9b36e4ccd67735222b8fc4366612873}\label{namespacedsp_1_1convert_ac9b36e4ccd67735222b8fc4366612873}} 
+\index{dsp::convert@{dsp::convert}!mel2hz@{mel2hz}}
+\index{mel2hz@{mel2hz}!dsp::convert@{dsp::convert}}
+\doxysubsubsection{\texorpdfstring{mel2hz()}{mel2hz()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+T dsp\+::convert\+::mel2hz (\begin{DoxyParamCaption}\item[{T}]{mel,  }\item[{\mbox{\hyperlink{namespacedsp_1_1convert_a597c04e9527c14c1280a917016852b59}{mel\+\_\+method}}}]{method = {\ttfamily mel\+\_\+method\+:\+:stanley\+\_\+smith} }\end{DoxyParamCaption})}
+
+
+
+Converts from Mel to Hertz scale. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Data type of the values \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em method} & The method to calculate the Mel frequencies. \textquotesingle{}stanley\+\_\+smith\textquotesingle{} is the method used by HTK and Matlab (default). \textquotesingle{}slaney\textquotesingle{} is the default method used by librosa. \textquotesingle{}zwicker\textquotesingle{} is the linear conversion from Bark to Mel. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Frequency value in Hertz 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacedsp_1_1convert_a0750088a2969488bd248817da35129eb}\label{namespacedsp_1_1convert_a0750088a2969488bd248817da35129eb}} 
+\index{dsp::convert@{dsp::convert}!midi2hz@{midi2hz}}
+\index{midi2hz@{midi2hz}!dsp::convert@{dsp::convert}}
+\doxysubsubsection{\texorpdfstring{midi2hz()}{midi2hz()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+T dsp\+::convert\+::midi2hz (\begin{DoxyParamCaption}\item[{T}]{midi }\end{DoxyParamCaption})}
+
+
+
+Converts from MIDI note number to Hertz. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Data type of the values \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em midi} & MIDI note number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Frequency in Hertz 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacedsp_1_1convert_a593b176de512466768766cfa99ef7f6e}\label{namespacedsp_1_1convert_a593b176de512466768766cfa99ef7f6e}} 
+\index{dsp::convert@{dsp::convert}!midi2note@{midi2note}}
+\index{midi2note@{midi2note}!dsp::convert@{dsp::convert}}
+\doxysubsubsection{\texorpdfstring{midi2note()}{midi2note()}}
+{\footnotesize\ttfamily std\+::string dsp\+::convert\+::midi2note (\begin{DoxyParamCaption}\item[{double}]{midi,  }\item[{bool}]{octave = {\ttfamily true},  }\item[{bool}]{cents = {\ttfamily false},  }\item[{std\+::string}]{key = {\ttfamily \char`\"{}C\+:maj\char`\"{}} }\end{DoxyParamCaption})}
+
+
+
+Converts a MIDI number to a note string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em midi} & MIDI number \\
+\hline
+{\em octave} & If true (default), include the octave number \\
+\hline
+{\em cents} & If true, cent markers will be appended for fractional notes, e.\+g., \textquotesingle{}A4+03\textquotesingle{} Default\+: false. \\
+\hline
+{\em key} & key signature to use when resolving enharmonic equivalences \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Note string in the format \textquotesingle{}C0\textquotesingle{}, \textquotesingle{}D\#1\textquotesingle{}, ... 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacedsp_1_1convert_a05089a83b452d249f2a41c6b83070da6}\label{namespacedsp_1_1convert_a05089a83b452d249f2a41c6b83070da6}} 
+\index{dsp::convert@{dsp::convert}!note2midi@{note2midi}}
+\index{note2midi@{note2midi}!dsp::convert@{dsp::convert}}
+\doxysubsubsection{\texorpdfstring{note2midi()}{note2midi()}}
+{\footnotesize\ttfamily double dsp\+::convert\+::note2midi (\begin{DoxyParamCaption}\item[{std\+::string}]{note,  }\item[{bool}]{round\+\_\+midi = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Converts a spelled note to the corresponding MIDI number. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em note} & String spelling out the note. The following notations are allowed\+: Sharp\+: \textquotesingle{}\#\textquotesingle{}, Flat\+: \textquotesingle{}b\textquotesingle{}, \textquotesingle{}!\textquotesingle{}, Natural\+: \textquotesingle{}\textquotesingle{}, \\
+\hline
+{\em round\+\_\+midi} & If true, round the exact number to nearest midi number. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+MIDI number 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacedsp_1_1convert_accb7dd27b34d039ecede139455938e71}\label{namespacedsp_1_1convert_accb7dd27b34d039ecede139455938e71}} 
+\index{dsp::convert@{dsp::convert}!st2hz@{st2hz}}
+\index{st2hz@{st2hz}!dsp::convert@{dsp::convert}}
+\doxysubsubsection{\texorpdfstring{st2hz()}{st2hz()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+T dsp\+::convert\+::st2hz (\begin{DoxyParamCaption}\item[{T}]{st,  }\item[{T}]{reference = {\ttfamily kFrequency\+\_\+C0} }\end{DoxyParamCaption})}
+
+
+
+Converts from semitones to Hertz. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Data type of the values \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em st} & Frequency in semitones \\
+\hline
+{\em reference} & Reference frequency in Hertz. Default\+: 16.\+35159783 (musical note C0). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Frequency value in Hertz 
+\end{DoxyReturn}

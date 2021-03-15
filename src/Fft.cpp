@@ -1,12 +1,15 @@
 #include "fft.h"
 
+#include <algorithm>
 #include <fftw3.h>
+
+#include "Signal.h"
 
 namespace dsp::fft
 {
-	/// <summary>
-	/// Helper function to get the FFT length
-	/// </summary>
+	/// @cond developer-only
+
+	/// @brief Helper function to get the FFT length
 	template<class T>
 	auto get_fft_length(const std::vector<T>& x, unsigned n)
 	{
@@ -691,7 +694,11 @@ namespace dsp::fft
 		fftwl_destroy_plan(p);
 		return x;
 	}
+
+	/// @endcond
 }
+
+
 
 template<class T>
 std::vector<std::complex<T>> dsp::fft::cfft(std::vector<std::complex<T>>& x, unsigned n, dsp::fft::NormalizationMode mode, bool overwrite_x, backend backend)

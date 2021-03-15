@@ -1,6 +1,9 @@
 var searchData=
 [
-  ['i0_27',['i0',['../namespacedsp_1_1special.html#adfe84f30dea1e8d59bd4d870aa3ed704',1,'dsp::special::i0(T x)'],['../namespacedsp_1_1special.html#a4e440dd48c22a2496a51c6473a3fc09e',1,'dsp::special::i0(std::vector&lt; T &gt; x)']]],
-  ['ifft_28',['ifft',['../namespacedsp_1_1fft.html#a947e044af63f255a7be70f0433beea02',1,'dsp::fft::ifft(std::vector&lt; std::complex&lt; T &gt;&gt; &amp;X, unsigned n=0, NormalizationMode mode=NormalizationMode::backward, bool overwrite_X=false, backend backend=backend::automatic)'],['../namespacedsp_1_1fft.html#af56643f8c6484395b2a70f0a4312476a',1,'dsp::fft::ifft(std::vector&lt; std::complex&lt; T &gt;&gt; &amp;X, unsigned n=0, NormalizationMode mode=NormalizationMode::backward, bool overwrite_X=false, backend backend=backend::automatic)']]],
-  ['irfft_29',['irfft',['../namespacedsp_1_1fft.html#ac9f6db704ad42fa5b125b8cde90f2603',1,'dsp::fft']]]
+  ['hamming_41',['hamming',['../namespacedsp_1_1window.html#ab669d3d273b9edc883f4729b2e801157',1,'dsp::window']]],
+  ['hann_42',['hann',['../namespacedsp_1_1window.html#a9bb07facf27b284757ddae054c8a3621',1,'dsp::window']]],
+  ['hz2bark_43',['hz2bark',['../namespacedsp_1_1convert.html#a0b152543bc9b736fcb0915da5306b323',1,'dsp::convert']]],
+  ['hz2mel_44',['hz2mel',['../namespacedsp_1_1convert.html#ac4a9cb55357dd1aee75adf49d8181c44',1,'dsp::convert']]],
+  ['hz2midi_45',['hz2midi',['../namespacedsp_1_1convert.html#a4b8471f6dcaf273511b71a96868df49a',1,'dsp::convert']]],
+  ['hz2st_46',['hz2st',['../namespacedsp_1_1convert.html#afe8c6f4bf884c693174872e42be3299e',1,'dsp::convert']]]
 ];

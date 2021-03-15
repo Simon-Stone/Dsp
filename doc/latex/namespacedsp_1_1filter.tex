@@ -1,0 +1,74 @@
+\hypertarget{namespacedsp_1_1filter}{}\doxysection{dsp\+::filter Namespace Reference}
+\label{namespacedsp_1_1filter}\index{dsp::filter@{dsp::filter}}
+
+
+Functions to apply and design digital filters.  
+
+
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_1_1filter_a859b055ad5e9bb08b0cf5f6534f2d838}{filter}} (std\+::vector$<$ T $>$ b, std\+::vector$<$ T $>$ a, const std\+::vector$<$ T $>$ \&x)
+\begin{DoxyCompactList}\small\item\em Filters the input data x using a rational transfer function defined by the numerator and denominator coefficients b and a. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_1_1filter_a30f29b332fc860fe07b12e7b515101c5}{lpc}} (const std\+::vector$<$ T $>$ \&x, unsigned N)
+\begin{DoxyCompactList}\small\item\em Returns linear prediction filter coefficients. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Functions to apply and design digital filters. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacedsp_1_1filter_a859b055ad5e9bb08b0cf5f6534f2d838}\label{namespacedsp_1_1filter_a859b055ad5e9bb08b0cf5f6534f2d838}} 
+\index{dsp::filter@{dsp::filter}!filter@{filter}}
+\index{filter@{filter}!dsp::filter@{dsp::filter}}
+\doxysubsubsection{\texorpdfstring{filter()}{filter()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+std\+::vector$<$ T $>$ dsp\+::filter\+::filter (\begin{DoxyParamCaption}\item[{std\+::vector$<$ T $>$}]{b,  }\item[{std\+::vector$<$ T $>$}]{a,  }\item[{const std\+::vector$<$ T $>$ \&}]{x }\end{DoxyParamCaption})}
+
+
+
+Filters the input data x using a rational transfer function defined by the numerator and denominator coefficients b and a. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Data type of the samples \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em b} & Numerator coefficients \\
+\hline
+{\em a} & Denominator coefficients \\
+\hline
+{\em x} & Input signal \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Filtered signal 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacedsp_1_1filter_a30f29b332fc860fe07b12e7b515101c5}\label{namespacedsp_1_1filter_a30f29b332fc860fe07b12e7b515101c5}} 
+\index{dsp::filter@{dsp::filter}!lpc@{lpc}}
+\index{lpc@{lpc}!dsp::filter@{dsp::filter}}
+\doxysubsubsection{\texorpdfstring{lpc()}{lpc()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+std\+::vector$<$ T $>$ dsp\+::filter\+::lpc (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{x,  }\item[{unsigned}]{N }\end{DoxyParamCaption})}
+
+
+
+Returns linear prediction filter coefficients. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Data type of the samples \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Input vector \\
+\hline
+{\em N} & Order of the linear predictor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Linear predictor coefficients 
+\end{DoxyReturn}

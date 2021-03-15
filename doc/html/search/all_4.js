@@ -1,5 +1,11 @@
 var searchData=
 [
-  ['extend_15',['extend',['../namespacedsp_1_1window_1_1utilities.html#a6606a054ce5c194c8f3a087bbcda4bdb',1,'dsp::window::utilities']]],
-  ['extract_16',['extract',['../namespacedsp.html#abe32d93264393a07d8b3844eed53e9c3',1,'dsp']]]
+  ['convert_22',['convert',['../namespacedsp_1_1convert.html',1,'dsp']]],
+  ['dsp_23',['dsp',['../namespacedsp.html',1,'']]],
+  ['fft_24',['fft',['../namespacedsp_1_1fft.html',1,'dsp']]],
+  ['filter_25',['filter',['../namespacedsp_1_1filter.html',1,'dsp']]],
+  ['signals_26',['signals',['../namespacedsp_1_1signals.html',1,'dsp']]],
+  ['special_27',['special',['../namespacedsp_1_1special.html',1,'dsp']]],
+  ['utilities_28',['utilities',['../namespacedsp_1_1window_1_1utilities.html',1,'dsp::window']]],
+  ['window_29',['window',['../namespacedsp_1_1window.html',1,'dsp']]]
 ];

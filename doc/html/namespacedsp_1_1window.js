@@ -33,6 +33,8 @@ var namespacedsp_1_1window =
     [ "bohman", "namespacedsp_1_1window.html#a72327b8f54fe769b2345389ddab7f575", null ],
     [ "boxcar", "namespacedsp_1_1window.html#aec4906fe8edc6620afbd2dd12fa5fa0d", null ],
     [ "chebwin", "namespacedsp_1_1window.html#aef9b174c25e588697edf84c1d1c7f941", null ],
+    [ "exponential", "namespacedsp_1_1window.html#a3870aacaccec3672cbf61f57c84d6d1d", null ],
+    [ "exponential", "namespacedsp_1_1window.html#abd7604e62f6f9ac0fff0282f840e1294", null ],
     [ "flattop", "namespacedsp_1_1window.html#adc37567364a8a61d146b3920d4113e07", null ],
     [ "gaussian", "namespacedsp_1_1window.html#a392d254078b3f6cac2415c394bff9f01", null ],
     [ "general_cosine", "namespacedsp_1_1window.html#a0ac5f92eef456176382f67ccb208c1e2", null ],
@@ -46,5 +48,6 @@ var namespacedsp_1_1window =
     [ "kaiser", "namespacedsp_1_1window.html#a84fcea5f41eba58cf50df8569e2ac290", null ],
     [ "nuttall", "namespacedsp_1_1window.html#a28c5c4d7e81acce1c360013c1a3f2fc9", null ],
     [ "parzen", "namespacedsp_1_1window.html#a479dc86ffddf5e19d595c0c0e751edda", null ],
-    [ "triang", "namespacedsp_1_1window.html#a931f388022b655420037a5e1652621d8", null ]
+    [ "triang", "namespacedsp_1_1window.html#a931f388022b655420037a5e1652621d8", null ],
+    [ "tukey", "namespacedsp_1_1window.html#af25fb16fa8f1225342e35e88ef596e19", null ]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['linspace_75',['linspace',['../namespacedsp.html#a529bdda638f4dab2d413faac208a65b9',1,'dsp']]]
+  ['kaiser_125',['kaiser',['../namespacedsp_1_1window.html#a84fcea5f41eba58cf50df8569e2ac290',1,'dsp::window']]]
 ];

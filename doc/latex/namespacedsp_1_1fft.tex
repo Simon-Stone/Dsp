@@ -23,53 +23,9 @@ enum class \mbox{\hyperlink{namespacedsp_1_1fft_a4fef2564f82f5eb8ea2d5c9909fb2ba
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\footnotesize template$<$class T $>$ }\\auto \mbox{\hyperlink{namespacedsp_1_1fft_aea2d4c0d55575cfc7edcb9c0aa7bddd5}{get\+\_\+fft\+\_\+length}} (const std\+::vector$<$ T $>$ \&x, unsigned n)
-\begin{DoxyCompactList}\small\item\em Helper function to get the FFT length \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{namespacedsp_1_1fft_a7475e9f40e2300b780f9fa42a6d2312a}\label{namespacedsp_1_1fft_a7475e9f40e2300b780f9fa42a6d2312a}} 
-{\footnotesize template$<$class T $>$ }\\auto {\bfseries resize\+\_\+fft\+\_\+input} (std\+::vector$<$ T $>$ x, unsigned n)
-\item 
-\mbox{\Hypertarget{namespacedsp_1_1fft_af18e1cf2c976fb0ec492ed8c90277286}\label{namespacedsp_1_1fft_af18e1cf2c976fb0ec492ed8c90277286}} 
-{\footnotesize template$<$class T $>$ }\\std\+::vector$<$ std\+::complex$<$ T $>$ $>$ {\bfseries fft\+\_\+} (std\+::vector$<$ std\+::complex$<$ T $>$$>$ \&x, unsigned n, \mbox{\hyperlink{namespacedsp_1_1fft_aadeffdb34ec53320437b1c6dd1354915}{Normalization\+Mode}} mode, bool overwrite\+\_\+x)
-\item 
-\mbox{\Hypertarget{namespacedsp_1_1fft_acd060316766f8b57c38ffd11f4cec84d}\label{namespacedsp_1_1fft_acd060316766f8b57c38ffd11f4cec84d}} 
-{\footnotesize template$<$class T $>$ }\\std\+::vector$<$ std\+::complex$<$ T $>$ $>$ {\bfseries ifft\+\_\+} (std\+::vector$<$ std\+::complex$<$ T $>$$>$ \&x, unsigned n, \mbox{\hyperlink{namespacedsp_1_1fft_aadeffdb34ec53320437b1c6dd1354915}{Normalization\+Mode}} mode, bool overwrite\+\_\+x)
-\item 
-\mbox{\Hypertarget{namespacedsp_1_1fft_a75b80a18f454e8e89d55f950fcf87c11}\label{namespacedsp_1_1fft_a75b80a18f454e8e89d55f950fcf87c11}} 
-{\footnotesize template$<$class T $>$ }\\std\+::vector$<$ std\+::complex$<$ T $>$ $>$ {\bfseries rfft\+\_\+} (std\+::vector$<$ T $>$ \&x, unsigned n, \mbox{\hyperlink{namespacedsp_1_1fft_aadeffdb34ec53320437b1c6dd1354915}{Normalization\+Mode}} mode, bool overwrite\+\_\+x)
-\item 
-\mbox{\Hypertarget{namespacedsp_1_1fft_a37770943bce68354c9030868892728e0}\label{namespacedsp_1_1fft_a37770943bce68354c9030868892728e0}} 
-{\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ {\bfseries irfft\+\_\+} (std\+::vector$<$ std\+::complex$<$ T $>$$>$ \&x, unsigned n, \mbox{\hyperlink{namespacedsp_1_1fft_aadeffdb34ec53320437b1c6dd1354915}{Normalization\+Mode}} mode, bool overwrite\+\_\+x)
-\item 
-\mbox{\Hypertarget{namespacedsp_1_1fft_a3265951e0b354c4592575fb4b9293fd7}\label{namespacedsp_1_1fft_a3265951e0b354c4592575fb4b9293fd7}} 
-auto {\bfseries fftw} (std\+::vector$<$ std\+::complex$<$ float $>$$>$ \&x, unsigned n, int sign, unsigned flags, \mbox{\hyperlink{namespacedsp_1_1fft_aadeffdb34ec53320437b1c6dd1354915}{Normalization\+Mode}} mode, bool overwrite\+\_\+x)
-\item 
-\mbox{\Hypertarget{namespacedsp_1_1fft_a1a9db3cb36af3f82dacfb8b247bc4090}\label{namespacedsp_1_1fft_a1a9db3cb36af3f82dacfb8b247bc4090}} 
-auto {\bfseries fftw} (std\+::vector$<$ std\+::complex$<$ double $>$$>$ \&x, unsigned n, int sign, unsigned flags, \mbox{\hyperlink{namespacedsp_1_1fft_aadeffdb34ec53320437b1c6dd1354915}{Normalization\+Mode}} mode, bool overwrite\+\_\+x)
-\item 
-\mbox{\Hypertarget{namespacedsp_1_1fft_a463eea61f9e1365bf02bdd49c55363fa}\label{namespacedsp_1_1fft_a463eea61f9e1365bf02bdd49c55363fa}} 
-auto {\bfseries fftw} (std\+::vector$<$ std\+::complex$<$ long double $>$$>$ \&x, unsigned n, int sign, unsigned flags, \mbox{\hyperlink{namespacedsp_1_1fft_aadeffdb34ec53320437b1c6dd1354915}{Normalization\+Mode}} mode, bool overwrite\+\_\+x)
-\item 
-\mbox{\Hypertarget{namespacedsp_1_1fft_a568de3eb296bb9417b9a42bd936b0f29}\label{namespacedsp_1_1fft_a568de3eb296bb9417b9a42bd936b0f29}} 
-auto {\bfseries rfftw} (std\+::vector$<$ double $>$ \&x, unsigned n, unsigned flags, \mbox{\hyperlink{namespacedsp_1_1fft_aadeffdb34ec53320437b1c6dd1354915}{Normalization\+Mode}} mode, bool overwrite\+\_\+x)
-\item 
-\mbox{\Hypertarget{namespacedsp_1_1fft_a7f290fb3f6231217e09b126ec309c8f6}\label{namespacedsp_1_1fft_a7f290fb3f6231217e09b126ec309c8f6}} 
-auto {\bfseries rfftw} (std\+::vector$<$ float $>$ \&x, unsigned n, unsigned flags, \mbox{\hyperlink{namespacedsp_1_1fft_aadeffdb34ec53320437b1c6dd1354915}{Normalization\+Mode}} mode, bool overwrite\+\_\+x)
-\item 
-\mbox{\Hypertarget{namespacedsp_1_1fft_a3832de9f393c1a9670e0dac8ae018260}\label{namespacedsp_1_1fft_a3832de9f393c1a9670e0dac8ae018260}} 
-auto {\bfseries rfftw} (std\+::vector$<$ long double $>$ \&x, unsigned n, unsigned flags, \mbox{\hyperlink{namespacedsp_1_1fft_aadeffdb34ec53320437b1c6dd1354915}{Normalization\+Mode}} mode, bool overwrite\+\_\+x)
-\item 
-\mbox{\Hypertarget{namespacedsp_1_1fft_a293f2a47a94f156fab2740fd97c20c30}\label{namespacedsp_1_1fft_a293f2a47a94f156fab2740fd97c20c30}} 
-auto {\bfseries irfftw} (std\+::vector$<$ std\+::complex$<$ float $>$$>$ \&X, unsigned n, unsigned flags, \mbox{\hyperlink{namespacedsp_1_1fft_aadeffdb34ec53320437b1c6dd1354915}{Normalization\+Mode}} mode, bool overwrite\+\_\+X)
-\item 
-\mbox{\Hypertarget{namespacedsp_1_1fft_af67f646d775935b21973983720009959}\label{namespacedsp_1_1fft_af67f646d775935b21973983720009959}} 
-auto {\bfseries irfftw} (std\+::vector$<$ std\+::complex$<$ double $>$$>$ \&X, unsigned n, unsigned flags, \mbox{\hyperlink{namespacedsp_1_1fft_aadeffdb34ec53320437b1c6dd1354915}{Normalization\+Mode}} mode, bool overwrite\+\_\+X)
-\item 
-\mbox{\Hypertarget{namespacedsp_1_1fft_a090de8433ef77b66025b04902c630b13}\label{namespacedsp_1_1fft_a090de8433ef77b66025b04902c630b13}} 
-auto {\bfseries irfftw} (std\+::vector$<$ std\+::complex$<$ long double $>$$>$ \&X, unsigned n, unsigned flags, \mbox{\hyperlink{namespacedsp_1_1fft_aadeffdb34ec53320437b1c6dd1354915}{Normalization\+Mode}} mode, bool overwrite\+\_\+X)
-\item 
-{\footnotesize template$<$class T $>$ }\\std\+::vector$<$ std\+::complex$<$ T $>$ $>$ \mbox{\hyperlink{namespacedsp_1_1fft_a2dedb16752ef0e80a9de45e1eeea1c47}{fft}} (std\+::vector$<$ std\+::complex$<$ T $>$$>$ \&x, unsigned n=0, \mbox{\hyperlink{namespacedsp_1_1fft_aadeffdb34ec53320437b1c6dd1354915}{Normalization\+Mode}} mode=Normalization\+Mode\+::backward, bool overwrite\+\_\+x=false, \mbox{\hyperlink{namespacedsp_1_1fft_a4fef2564f82f5eb8ea2d5c9909fb2ba4}{backend}} \mbox{\hyperlink{namespacedsp_1_1fft_a4fef2564f82f5eb8ea2d5c9909fb2ba4}{backend}}=backend\+::automatic)
+{\footnotesize template$<$class T $>$ }\\std\+::vector$<$ std\+::complex$<$ T $>$ $>$ \mbox{\hyperlink{namespacedsp_1_1fft_acd4596e9d5c9bd56e8b10baf64c78b3c}{cfft}} (std\+::vector$<$ std\+::complex$<$ T $>$$>$ \&x, unsigned n=0, \mbox{\hyperlink{namespacedsp_1_1fft_aadeffdb34ec53320437b1c6dd1354915}{Normalization\+Mode}} mode=Normalization\+Mode\+::backward, bool overwrite\+\_\+x=false, \mbox{\hyperlink{namespacedsp_1_1fft_a4fef2564f82f5eb8ea2d5c9909fb2ba4}{backend}} \mbox{\hyperlink{namespacedsp_1_1fft_a4fef2564f82f5eb8ea2d5c9909fb2ba4}{backend}}=backend\+::automatic)
 \begin{DoxyCompactList}\small\item\em Compute the 1-\/D discrete Fourier Transform. \end{DoxyCompactList}\item 
-{\footnotesize template$<$class T $>$ }\\std\+::vector$<$ std\+::complex$<$ T $>$ $>$ \mbox{\hyperlink{namespacedsp_1_1fft_a947e044af63f255a7be70f0433beea02}{ifft}} (std\+::vector$<$ std\+::complex$<$ T $>$$>$ \&X, unsigned n=0, \mbox{\hyperlink{namespacedsp_1_1fft_aadeffdb34ec53320437b1c6dd1354915}{Normalization\+Mode}} mode=Normalization\+Mode\+::backward, bool overwrite\+\_\+X=false, \mbox{\hyperlink{namespacedsp_1_1fft_a4fef2564f82f5eb8ea2d5c9909fb2ba4}{backend}} \mbox{\hyperlink{namespacedsp_1_1fft_a4fef2564f82f5eb8ea2d5c9909fb2ba4}{backend}}=backend\+::automatic)
+{\footnotesize template$<$class T $>$ }\\std\+::vector$<$ std\+::complex$<$ T $>$ $>$ \mbox{\hyperlink{namespacedsp_1_1fft_a40b408972cb96b687bd207fe14b341df}{icfft}} (std\+::vector$<$ std\+::complex$<$ T $>$$>$ \&X, unsigned n=0, \mbox{\hyperlink{namespacedsp_1_1fft_aadeffdb34ec53320437b1c6dd1354915}{Normalization\+Mode}} mode=Normalization\+Mode\+::backward, bool overwrite\+\_\+X=false, \mbox{\hyperlink{namespacedsp_1_1fft_a4fef2564f82f5eb8ea2d5c9909fb2ba4}{backend}} \mbox{\hyperlink{namespacedsp_1_1fft_a4fef2564f82f5eb8ea2d5c9909fb2ba4}{backend}}=backend\+::automatic)
 \begin{DoxyCompactList}\small\item\em Compute the 1-\/D inverse discrete Fourier Transform. \end{DoxyCompactList}\item 
 {\footnotesize template$<$class T $>$ }\\std\+::vector$<$ std\+::complex$<$ T $>$ $>$ \mbox{\hyperlink{namespacedsp_1_1fft_a054d4669893e32e3b3162ca4e661ffca}{rfft}} (std\+::vector$<$ T $>$ \&x, unsigned n=0, \mbox{\hyperlink{namespacedsp_1_1fft_aadeffdb34ec53320437b1c6dd1354915}{Normalization\+Mode}} mode=Normalization\+Mode\+::backward, bool overwrite\+\_\+x=false, \mbox{\hyperlink{namespacedsp_1_1fft_a4fef2564f82f5eb8ea2d5c9909fb2ba4}{backend}} \mbox{\hyperlink{namespacedsp_1_1fft_a4fef2564f82f5eb8ea2d5c9909fb2ba4}{backend}}=backend\+::automatic)
 \begin{DoxyCompactList}\small\item\em Compute the 1-\/D discrete Fourier Transform for real input. \end{DoxyCompactList}\item 
@@ -78,20 +34,24 @@ auto {\bfseries irfftw} (std\+::vector$<$ std\+::complex$<$ long double $>$$>$ \
 \begin{DoxyCompactList}\small\item\em Alias for rfft. \end{DoxyCompactList}\item 
 {\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_1_1fft_ac9f6db704ad42fa5b125b8cde90f2603}{irfft}} (std\+::vector$<$ std\+::complex$<$ T $>$$>$ \&X, unsigned n=0, \mbox{\hyperlink{namespacedsp_1_1fft_aadeffdb34ec53320437b1c6dd1354915}{Normalization\+Mode}} mode=Normalization\+Mode\+::backward, bool overwrite\+\_\+X=false, \mbox{\hyperlink{namespacedsp_1_1fft_a4fef2564f82f5eb8ea2d5c9909fb2ba4}{backend}} \mbox{\hyperlink{namespacedsp_1_1fft_a4fef2564f82f5eb8ea2d5c9909fb2ba4}{backend}}=backend\+::automatic)
 \begin{DoxyCompactList}\small\item\em Computes the inverse of rfft. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacedsp_1_1fft_af56643f8c6484395b2a70f0a4312476a}\label{namespacedsp_1_1fft_af56643f8c6484395b2a70f0a4312476a}} 
 {\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_1_1fft_af56643f8c6484395b2a70f0a4312476a}{ifft}} (std\+::vector$<$ std\+::complex$<$ T $>$$>$ \&X, unsigned n=0, \mbox{\hyperlink{namespacedsp_1_1fft_aadeffdb34ec53320437b1c6dd1354915}{Normalization\+Mode}} mode=Normalization\+Mode\+::backward, bool overwrite\+\_\+X=false, \mbox{\hyperlink{namespacedsp_1_1fft_a4fef2564f82f5eb8ea2d5c9909fb2ba4}{backend}} \mbox{\hyperlink{namespacedsp_1_1fft_a4fef2564f82f5eb8ea2d5c9909fb2ba4}{backend}}=backend\+::automatic)
-\begin{DoxyCompactList}\small\item\em Alias for \mbox{\hyperlink{namespacedsp_1_1fft_ac9f6db704ad42fa5b125b8cde90f2603}{irfft()}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Alias for \mbox{\hyperlink{namespacedsp_1_1fft_ac9f6db704ad42fa5b125b8cde90f2603}{irfft()}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacedsp_1_1fft_a167c9e606b663c22f0f39e2296d1377b}\label{namespacedsp_1_1fft_a167c9e606b663c22f0f39e2296d1377b}} 
+{\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_1_1fft_a167c9e606b663c22f0f39e2296d1377b}{fftconvolution}} (const std\+::vector$<$ T $>$ \&volume, const std\+::vector$<$ T $>$ \&kernel, convolution\+\_\+mode mode=convolution\+\_\+mode\+::valid)
+\begin{DoxyCompactList}\small\item\em Fast convolution using the FFT. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 Fast Fourier Transformations. 
 
 \doxysubsection{Function Documentation}
-\mbox{\Hypertarget{namespacedsp_1_1fft_a2dedb16752ef0e80a9de45e1eeea1c47}\label{namespacedsp_1_1fft_a2dedb16752ef0e80a9de45e1eeea1c47}} 
-\index{dsp::fft@{dsp::fft}!fft@{fft}}
-\index{fft@{fft}!dsp::fft@{dsp::fft}}
-\doxysubsubsection{\texorpdfstring{fft()}{fft()}}
+\mbox{\Hypertarget{namespacedsp_1_1fft_acd4596e9d5c9bd56e8b10baf64c78b3c}\label{namespacedsp_1_1fft_acd4596e9d5c9bd56e8b10baf64c78b3c}} 
+\index{dsp::fft@{dsp::fft}!cfft@{cfft}}
+\index{cfft@{cfft}!dsp::fft@{dsp::fft}}
+\doxysubsubsection{\texorpdfstring{cfft()}{cfft()}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
-std\+::vector$<$ std\+::complex$<$ T $>$ $>$ dsp\+::fft\+::fft (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::complex$<$ T $>$$>$ \&}]{x,  }\item[{unsigned}]{n = {\ttfamily 0},  }\item[{\mbox{\hyperlink{namespacedsp_1_1fft_aadeffdb34ec53320437b1c6dd1354915}{Normalization\+Mode}}}]{mode = {\ttfamily NormalizationMode\+:\+:backward},  }\item[{bool}]{overwrite\+\_\+x = {\ttfamily false},  }\item[{\mbox{\hyperlink{namespacedsp_1_1fft_a4fef2564f82f5eb8ea2d5c9909fb2ba4}{backend}}}]{backend = {\ttfamily backend\+:\+:automatic} }\end{DoxyParamCaption})}
+std\+::vector$<$ std\+::complex$<$ T $>$ $>$ dsp\+::fft\+::cfft (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::complex$<$ T $>$$>$ \&}]{x,  }\item[{unsigned}]{n = {\ttfamily 0},  }\item[{\mbox{\hyperlink{namespacedsp_1_1fft_aadeffdb34ec53320437b1c6dd1354915}{Normalization\+Mode}}}]{mode = {\ttfamily NormalizationMode\+:\+:backward},  }\item[{bool}]{overwrite\+\_\+x = {\ttfamily false},  }\item[{\mbox{\hyperlink{namespacedsp_1_1fft_a4fef2564f82f5eb8ea2d5c9909fb2ba4}{backend}}}]{backend = {\ttfamily backend\+:\+:automatic} }\end{DoxyParamCaption})}
 
 
 
@@ -118,23 +78,12 @@ This function computes the 1-\/D n-\/point discrete Fourier Transform (DFT) with
 \begin{DoxyReturn}{Returns}
 The transformed truncated or zero-\/padded input. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{namespacedsp_1_1fft_aea2d4c0d55575cfc7edcb9c0aa7bddd5}\label{namespacedsp_1_1fft_aea2d4c0d55575cfc7edcb9c0aa7bddd5}} 
-\index{dsp::fft@{dsp::fft}!get\_fft\_length@{get\_fft\_length}}
-\index{get\_fft\_length@{get\_fft\_length}!dsp::fft@{dsp::fft}}
-\doxysubsubsection{\texorpdfstring{get\_fft\_length()}{get\_fft\_length()}}
+\mbox{\Hypertarget{namespacedsp_1_1fft_a40b408972cb96b687bd207fe14b341df}\label{namespacedsp_1_1fft_a40b408972cb96b687bd207fe14b341df}} 
+\index{dsp::fft@{dsp::fft}!icfft@{icfft}}
+\index{icfft@{icfft}!dsp::fft@{dsp::fft}}
+\doxysubsubsection{\texorpdfstring{icfft()}{icfft()}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
-auto dsp\+::fft\+::get\+\_\+fft\+\_\+length (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{x,  }\item[{unsigned}]{n }\end{DoxyParamCaption})}
-
-
-
-Helper function to get the FFT length 
-
-\mbox{\Hypertarget{namespacedsp_1_1fft_a947e044af63f255a7be70f0433beea02}\label{namespacedsp_1_1fft_a947e044af63f255a7be70f0433beea02}} 
-\index{dsp::fft@{dsp::fft}!ifft@{ifft}}
-\index{ifft@{ifft}!dsp::fft@{dsp::fft}}
-\doxysubsubsection{\texorpdfstring{ifft()}{ifft()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
-std\+::vector$<$ std\+::complex$<$ T $>$ $>$ dsp\+::fft\+::ifft (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::complex$<$ T $>$$>$ \&}]{X,  }\item[{unsigned}]{n = {\ttfamily 0},  }\item[{\mbox{\hyperlink{namespacedsp_1_1fft_aadeffdb34ec53320437b1c6dd1354915}{Normalization\+Mode}}}]{mode = {\ttfamily NormalizationMode\+:\+:backward},  }\item[{bool}]{overwrite\+\_\+X = {\ttfamily false},  }\item[{\mbox{\hyperlink{namespacedsp_1_1fft_a4fef2564f82f5eb8ea2d5c9909fb2ba4}{backend}}}]{backend = {\ttfamily backend\+:\+:automatic} }\end{DoxyParamCaption})}
+std\+::vector$<$ std\+::complex$<$ T $>$ $>$ dsp\+::fft\+::icfft (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::complex$<$ T $>$$>$ \&}]{X,  }\item[{unsigned}]{n = {\ttfamily 0},  }\item[{\mbox{\hyperlink{namespacedsp_1_1fft_aadeffdb34ec53320437b1c6dd1354915}{Normalization\+Mode}}}]{mode = {\ttfamily NormalizationMode\+:\+:backward},  }\item[{bool}]{overwrite\+\_\+X = {\ttfamily false},  }\item[{\mbox{\hyperlink{namespacedsp_1_1fft_a4fef2564f82f5eb8ea2d5c9909fb2ba4}{backend}}}]{backend = {\ttfamily backend\+:\+:automatic} }\end{DoxyParamCaption})}
 
 
 
@@ -159,20 +108,9 @@ This function computes the inverse of the 1-\/D n-\/point discrete Fourier trans
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-The transformed truncated or zero-\/padded input.
+The transformed truncated or zero-\/padded input. 
 \end{DoxyReturn}
-Compute the 1-\/D inverse discrete Fourier Transform. \mbox{\Hypertarget{namespacedsp_1_1fft_af56643f8c6484395b2a70f0a4312476a}\label{namespacedsp_1_1fft_af56643f8c6484395b2a70f0a4312476a}} 
-\index{dsp::fft@{dsp::fft}!ifft@{ifft}}
-\index{ifft@{ifft}!dsp::fft@{dsp::fft}}
-\doxysubsubsection{\texorpdfstring{ifft()}{ifft()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
-std\+::vector$<$T$>$ dsp\+::fft\+::ifft (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::complex$<$ T $>$$>$ \&}]{X,  }\item[{unsigned}]{n = {\ttfamily 0},  }\item[{\mbox{\hyperlink{namespacedsp_1_1fft_aadeffdb34ec53320437b1c6dd1354915}{Normalization\+Mode}}}]{mode = {\ttfamily NormalizationMode\+:\+:backward},  }\item[{bool}]{overwrite\+\_\+X = {\ttfamily false},  }\item[{\mbox{\hyperlink{namespacedsp_1_1fft_a4fef2564f82f5eb8ea2d5c9909fb2ba4}{backend}}}]{backend = {\ttfamily backend\+:\+:automatic} }\end{DoxyParamCaption})}
-
-
-
-Alias for \mbox{\hyperlink{namespacedsp_1_1fft_ac9f6db704ad42fa5b125b8cde90f2603}{irfft()}} 
-
-Compute the 1-\/D inverse discrete Fourier Transform. \mbox{\Hypertarget{namespacedsp_1_1fft_ac9f6db704ad42fa5b125b8cde90f2603}\label{namespacedsp_1_1fft_ac9f6db704ad42fa5b125b8cde90f2603}} 
+\mbox{\Hypertarget{namespacedsp_1_1fft_ac9f6db704ad42fa5b125b8cde90f2603}\label{namespacedsp_1_1fft_ac9f6db704ad42fa5b125b8cde90f2603}} 
 \index{dsp::fft@{dsp::fft}!irfft@{irfft}}
 \index{irfft@{irfft}!dsp::fft@{dsp::fft}}
 \doxysubsubsection{\texorpdfstring{irfft()}{irfft()}}

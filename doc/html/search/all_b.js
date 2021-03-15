@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['nextpow2_32',['nextpow2',['../namespacedsp.html#a11078b40d98913e2a044205d64c1a1a7',1,'dsp']]],
-  ['normalizationmode_33',['NormalizationMode',['../namespacedsp_1_1fft.html#aadeffdb34ec53320437b1c6dd1354915',1,'dsp::fft']]],
-  ['nuttall_34',['nuttall',['../namespacedsp_1_1window.html#a28c5c4d7e81acce1c360013c1a3f2fc9',1,'dsp::window']]]
+  ['linspace_52',['linspace',['../namespacedsp.html#a529bdda638f4dab2d413faac208a65b9',1,'dsp']]],
+  ['lpc_53',['lpc',['../namespacedsp_1_1filter.html#a30f29b332fc860fe07b12e7b515101c5',1,'dsp::filter']]]
 ];

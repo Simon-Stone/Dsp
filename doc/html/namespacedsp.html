@@ -86,6 +86,8 @@ $(document).ready(function(){initNavTree('namespacedsp.html',''); initResizable(
   <div class="summary">
 <a href="#namespaces">Namespaces</a> &#124;
 <a href="#nested-classes">Classes</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
@@ -93,16 +95,25 @@ $(document).ready(function(){initNavTree('namespacedsp.html',''); initResizable(
 </div><!--header-->
 <div class="contents">
 
-<p>Convenience functions for digital signal processing.  
+<p>Constants and convenience functions for general signal processing tasks and 1D vector operations.  
 <a href="namespacedsp.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
 Namespaces</h2></td></tr>
+<tr class="memitem:namespacedsp_1_1convert"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedsp_1_1convert.html">convert</a></td></tr>
+<tr class="memdesc:namespacedsp_1_1convert"><td class="mdescLeft">&#160;</td><td class="mdescRight">Conversions between various scales. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespacedsp_1_1fft"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedsp_1_1fft.html">fft</a></td></tr>
 <tr class="memdesc:namespacedsp_1_1fft"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fast Fourier Transformations. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespacedsp_1_1filter"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedsp_1_1filter.html">filter</a></td></tr>
+<tr class="memdesc:namespacedsp_1_1filter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Functions to apply and design digital filters. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespacedsp_1_1signals"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedsp_1_1signals.html">signals</a></td></tr>
+<tr class="memdesc:namespacedsp_1_1signals"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience functions to generate various sampled test signals. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespacedsp_1_1special"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedsp_1_1special.html">special</a></td></tr>
-<tr class="memdesc:namespacedsp_1_1special"><td class="mdescLeft">&#160;</td><td class="mdescRight">Special functions. <br /></td></tr>
+<tr class="memdesc:namespacedsp_1_1special"><td class="mdescLeft">&#160;</td><td class="mdescRight">Special functions (generally for library-internal use) <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespacedsp_1_1window"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedsp_1_1window.html">window</a></td></tr>
 <tr class="memdesc:namespacedsp_1_1window"><td class="mdescLeft">&#160;</td><td class="mdescRight">Window functions. <br /></td></tr>
@@ -114,31 +125,30 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class represents a signal.  <a href="classdsp_1_1_signal.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a880d958ba946cdac2fd8fd38ebfed7e0"><td class="memItemLeft" align="right" valign="top"><a id="a880d958ba946cdac2fd8fd38ebfed7e0"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>correlation_mode</b> = convolution_mode</td></tr>
+<tr class="separator:a880d958ba946cdac2fd8fd38ebfed7e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c4ada11cd4c1c345d7a2be1bed40bae"><td class="memItemLeft" align="right" valign="top"><a id="a0c4ada11cd4c1c345d7a2be1bed40bae"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>correlation_method</b> = convolution_method</td></tr>
+<tr class="separator:a0c4ada11cd4c1c345d7a2be1bed40bae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a4e4ebc11d0bd80a1aa09a7796dcf91b6"><td class="memItemLeft" align="right" valign="top"><a id="a4e4ebc11d0bd80a1aa09a7796dcf91b6"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>convolution_mode</b> { <b>full</b>
+, <b>valid</b>
+, <b>same</b>
+ }</td></tr>
+<tr class="separator:a4e4ebc11d0bd80a1aa09a7796dcf91b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab00a63d2b2f208a8ea97987898c67b2b"><td class="memItemLeft" align="right" valign="top"><a id="ab00a63d2b2f208a8ea97987898c67b2b"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>convolution_method</b> { <b>automatic</b>
+, <b>direct</b>
+, <b>fft</b>
+ }</td></tr>
+<tr class="separator:ab00a63d2b2f208a8ea97987898c67b2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a11078b40d98913e2a044205d64c1a1a7"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedsp.html#a11078b40d98913e2a044205d64c1a1a7">nextpow2</a> (unsigned n)</td></tr>
-<tr class="memdesc:a11078b40d98913e2a044205d64c1a1a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the next-largest power of two k so that n &lt;= 2^k.  <a href="namespacedsp.html#a11078b40d98913e2a044205d64c1a1a7">More...</a><br /></td></tr>
-<tr class="separator:a11078b40d98913e2a044205d64c1a1a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe32d93264393a07d8b3844eed53e9c3"><td class="memTemplParams" colspan="2">template&lt;class T , class Pred &gt; </td></tr>
-<tr class="memitem:abe32d93264393a07d8b3844eed53e9c3"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#abe32d93264393a07d8b3844eed53e9c3">extract</a> (Pred condition, const std::vector&lt; T &gt; &amp;vec)</td></tr>
-<tr class="memdesc:abe32d93264393a07d8b3844eed53e9c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the elements of a vector that satisfy some condition.  <a href="namespacedsp.html#abe32d93264393a07d8b3844eed53e9c3">More...</a><br /></td></tr>
-<tr class="separator:abe32d93264393a07d8b3844eed53e9c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab0cdd2fa60d4fd27ec9a72cde38811ef"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:ab0cdd2fa60d4fd27ec9a72cde38811ef"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#ab0cdd2fa60d4fd27ec9a72cde38811ef">arange</a> (T start, T stop, T step=1)</td></tr>
-<tr class="memdesc:ab0cdd2fa60d4fd27ec9a72cde38811ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return evenly spaced values within a given interval.  <a href="namespacedsp.html#ab0cdd2fa60d4fd27ec9a72cde38811ef">More...</a><br /></td></tr>
-<tr class="separator:ab0cdd2fa60d4fd27ec9a72cde38811ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a529bdda638f4dab2d413faac208a65b9"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a529bdda638f4dab2d413faac208a65b9"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#a529bdda638f4dab2d413faac208a65b9">linspace</a> (T start, T stop, size_t num=50, bool endpoint=true)</td></tr>
-<tr class="memdesc:a529bdda638f4dab2d413faac208a65b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return evenly spaced numbers over a specified interval.  <a href="namespacedsp.html#a529bdda638f4dab2d413faac208a65b9">More...</a><br /></td></tr>
-<tr class="separator:a529bdda638f4dab2d413faac208a65b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b174ad207e2751c6f1a8fb5522977e0"><td class="memTemplParams" colspan="2">template&lt;class T , class... Args&gt; </td></tr>
-<tr class="memitem:a7b174ad207e2751c6f1a8fb5522977e0"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#a7b174ad207e2751c6f1a8fb5522977e0">get_window</a> (std::tuple&lt; Args... &gt; window, unsigned Nx, bool fftbins=true)</td></tr>
-<tr class="memdesc:a7b174ad207e2751c6f1a8fb5522977e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a window of a given length and type.  <a href="namespacedsp.html#a7b174ad207e2751c6f1a8fb5522977e0">More...</a><br /></td></tr>
-<tr class="separator:a7b174ad207e2751c6f1a8fb5522977e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b79341eaf211a6ead0565d055d63efb"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
-<tr class="memitem:a0b79341eaf211a6ead0565d055d63efb"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#a0b79341eaf211a6ead0565d055d63efb">sin</a> (unsigned frequency_Hz, double length_s, unsigned samplingRate_Hz, double amplitude=1.0, double phase=0.0)</td></tr>
-<tr class="memdesc:a0b79341eaf211a6ead0565d055d63efb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a sampled sinusoid signal.  <a href="namespacedsp.html#a0b79341eaf211a6ead0565d055d63efb">More...</a><br /></td></tr>
-<tr class="separator:a0b79341eaf211a6ead0565d055d63efb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac49d54afa2f2914214064372aa538495"><td class="memTemplParams" colspan="2"><a id="ac49d54afa2f2914214064372aa538495"></a>
 template&lt;class T &gt; </td></tr>
 <tr class="memitem:ac49d54afa2f2914214064372aa538495"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; &amp;lhs, const <a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; &amp;rhs)</td></tr>
@@ -259,14 +269,23 @@ template&lt;class T &gt; </td></tr>
 template&lt;class T &gt; </td></tr>
 <tr class="memitem:accb532b9d20ec1e768fd88e49b716065"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>imag</b> (<a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; signal)</td></tr>
 <tr class="separator:accb532b9d20ec1e768fd88e49b716065"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aac605104a4efd67dc40c5e8dd852c3a1"><td class="memTemplParams" colspan="2"><a id="aac605104a4efd67dc40c5e8dd852c3a1"></a>
+<tr class="memitem:a097b96ea355e9565183ac242a383c404"><td class="memTemplParams" colspan="2"><a id="a097b96ea355e9565183ac242a383c404"></a>
 template&lt;class T &gt; </td></tr>
-<tr class="memitem:aac605104a4efd67dc40c5e8dd852c3a1"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>conj</b> (std::vector&lt; std::complex&lt; T &gt;&gt; z)</td></tr>
-<tr class="separator:aac605104a4efd67dc40c5e8dd852c3a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6b22fc29caf62e60ab53305efdb8dfd1"><td class="memTemplParams" colspan="2"><a id="a6b22fc29caf62e60ab53305efdb8dfd1"></a>
+<tr class="memitem:a097b96ea355e9565183ac242a383c404"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; std::complex&lt; T &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>conj</b> (const std::vector&lt; std::complex&lt; T &gt;&gt; &amp;z)</td></tr>
+<tr class="separator:a097b96ea355e9565183ac242a383c404"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e811dd499d804420f91a1412397f735"><td class="memTemplParams" colspan="2"><a id="a2e811dd499d804420f91a1412397f735"></a>
 template&lt;class T &gt; </td></tr>
-<tr class="memitem:a6b22fc29caf62e60ab53305efdb8dfd1"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>conj</b> (<a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; signal)</td></tr>
-<tr class="separator:a6b22fc29caf62e60ab53305efdb8dfd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e811dd499d804420f91a1412397f735"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>conj</b> (<a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; signal)</td></tr>
+<tr class="separator:a2e811dd499d804420f91a1412397f735"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b1475ccc3f98da4cdd514bf1462e97f"><td class="memItemLeft" align="right" valign="top"><a id="a9b1475ccc3f98da4cdd514bf1462e97f"></a>
+std::vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>conj</b> (const std::vector&lt; float &gt; &amp;z)</td></tr>
+<tr class="separator:a9b1475ccc3f98da4cdd514bf1462e97f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ee4906e1a369943aa50c3132847d6e0"><td class="memItemLeft" align="right" valign="top"><a id="a4ee4906e1a369943aa50c3132847d6e0"></a>
+std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>conj</b> (const std::vector&lt; double &gt; &amp;z)</td></tr>
+<tr class="separator:a4ee4906e1a369943aa50c3132847d6e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a277582c9edeec5dc87ab45c62889f26e"><td class="memItemLeft" align="right" valign="top"><a id="a277582c9edeec5dc87ab45c62889f26e"></a>
+std::vector&lt; long double &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>conj</b> (const std::vector&lt; long double &gt; &amp;z)</td></tr>
+<tr class="separator:a277582c9edeec5dc87ab45c62889f26e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad90915d14fda7d97f3ca5d97d3d22944"><td class="memTemplParams" colspan="2"><a id="ad90915d14fda7d97f3ca5d97d3d22944"></a>
 template&lt;class T &gt; </td></tr>
 <tr class="memitem:ad90915d14fda7d97f3ca5d97d3d22944"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>arg</b> (<a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; signal)</td></tr>
@@ -275,6 +294,67 @@ template&lt;class T &gt; </td></tr>
 template&lt;class T &gt; </td></tr>
 <tr class="memitem:afb7a8b7a2cce4364e0a2a779572bc6f8"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>norm</b> (<a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; signal)</td></tr>
 <tr class="separator:afb7a8b7a2cce4364e0a2a779572bc6f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3a0d14afef157ba0060fb89c92f96e0"><td class="memTemplParams" colspan="2"><a id="af3a0d14afef157ba0060fb89c92f96e0"></a>
+template&lt;class T &gt; </td></tr>
+<tr class="memitem:af3a0d14afef157ba0060fb89c92f96e0"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>direct_convolution</b> (const std::vector&lt; T &gt; &amp;in1, const std::vector&lt; T &gt; &amp;in2, convolution_mode mode)</td></tr>
+<tr class="separator:af3a0d14afef157ba0060fb89c92f96e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a271d095b81b8b0a68871b9d11c980208"><td class="memTemplParams" colspan="2"><a id="a271d095b81b8b0a68871b9d11c980208"></a>
+template&lt;class T &gt; </td></tr>
+<tr class="memitem:a271d095b81b8b0a68871b9d11c980208"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#a271d095b81b8b0a68871b9d11c980208">_reverse_and_conj</a> (const std::vector&lt; T &gt; &amp;vec)</td></tr>
+<tr class="memdesc:a271d095b81b8b0a68871b9d11c980208"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reverse and conjugate a vector. <br /></td></tr>
+<tr class="separator:a271d095b81b8b0a68871b9d11c980208"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0cdd2fa60d4fd27ec9a72cde38811ef"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:ab0cdd2fa60d4fd27ec9a72cde38811ef"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#ab0cdd2fa60d4fd27ec9a72cde38811ef">arange</a> (T start, T stop, T step=1)</td></tr>
+<tr class="memdesc:ab0cdd2fa60d4fd27ec9a72cde38811ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return evenly spaced values within a given interval.  <a href="namespacedsp.html#ab0cdd2fa60d4fd27ec9a72cde38811ef">More...</a><br /></td></tr>
+<tr class="separator:ab0cdd2fa60d4fd27ec9a72cde38811ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0e593cd9ad8adf958be7d42c5643d27"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:af0e593cd9ad8adf958be7d42c5643d27"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#af0e593cd9ad8adf958be7d42c5643d27">calculateEnergy</a> (typename std::vector&lt; T &gt;::iterator start, typename std::vector&lt; T &gt;::iterator end)</td></tr>
+<tr class="memdesc:af0e593cd9ad8adf958be7d42c5643d27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the energy of the passed range.  <a href="namespacedsp.html#af0e593cd9ad8adf958be7d42c5643d27">More...</a><br /></td></tr>
+<tr class="separator:af0e593cd9ad8adf958be7d42c5643d27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a378f40c2851259db31cfa27f2cbe601f"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a378f40c2851259db31cfa27f2cbe601f"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#a378f40c2851259db31cfa27f2cbe601f">calculateMeanPower</a> (typename std::vector&lt; T &gt;::iterator start, typename std::vector&lt; T &gt;::iterator end)</td></tr>
+<tr class="memdesc:a378f40c2851259db31cfa27f2cbe601f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the mean power of the passed range.  <a href="namespacedsp.html#a378f40c2851259db31cfa27f2cbe601f">More...</a><br /></td></tr>
+<tr class="separator:a378f40c2851259db31cfa27f2cbe601f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85aadad7161656d45fec883f1aba7c56"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a85aadad7161656d45fec883f1aba7c56"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#a85aadad7161656d45fec883f1aba7c56">centered</a> (const std::vector&lt; T &gt; &amp;vec, size_t newSize)</td></tr>
+<tr class="memdesc:a85aadad7161656d45fec883f1aba7c56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the center portion of a vector.  <a href="namespacedsp.html#a85aadad7161656d45fec883f1aba7c56">More...</a><br /></td></tr>
+<tr class="separator:a85aadad7161656d45fec883f1aba7c56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32ec532302b7a96119efb4702f1f3000"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a32ec532302b7a96119efb4702f1f3000"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#a32ec532302b7a96119efb4702f1f3000">concatenate</a> (std::vector&lt; std::vector&lt; T &gt; * &gt; vectors)</td></tr>
+<tr class="memdesc:a32ec532302b7a96119efb4702f1f3000"><td class="mdescLeft">&#160;</td><td class="mdescRight">Join a sequence of vectors.  <a href="namespacedsp.html#a32ec532302b7a96119efb4702f1f3000">More...</a><br /></td></tr>
+<tr class="separator:a32ec532302b7a96119efb4702f1f3000"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a014ebcddb5a8e374054024212fa30eac"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a014ebcddb5a8e374054024212fa30eac"><td class="memTemplItemLeft" align="right" valign="top">std::pair&lt; convolution_method, std::map&lt; convolution_method, double &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#a014ebcddb5a8e374054024212fa30eac">choose_conv_method</a> (const std::vector&lt; T &gt; &amp;in1, const std::vector&lt; T &gt; &amp;in2, convolution_mode mode=convolution_mode::full, bool measure=false)</td></tr>
+<tr class="memdesc:a014ebcddb5a8e374054024212fa30eac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find the fastest convolution/correlation method. This primarily exists to be called during the method = 'auto' option in convolve and correlate. It can also be used to determine the value of method for many different convolutions of the same length. In addition, it supports timing the convolution to adapt the value of method to a particular set of inputs and/or hardware.  <a href="namespacedsp.html#a014ebcddb5a8e374054024212fa30eac">More...</a><br /></td></tr>
+<tr class="separator:a014ebcddb5a8e374054024212fa30eac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83c98d9b699a7b705797c56afb00df53"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a83c98d9b699a7b705797c56afb00df53"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#a83c98d9b699a7b705797c56afb00df53">convolve</a> (const std::vector&lt; T &gt; &amp;in1, const std::vector&lt; T &gt; &amp;in2, convolution_mode mode=convolution_mode::full, convolution_method method=convolution_method::automatic)</td></tr>
+<tr class="memdesc:a83c98d9b699a7b705797c56afb00df53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convolve two N-dimensional arrays.  <a href="namespacedsp.html#a83c98d9b699a7b705797c56afb00df53">More...</a><br /></td></tr>
+<tr class="separator:a83c98d9b699a7b705797c56afb00df53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a997c174f04e83c492ef8637b88c714bf"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a997c174f04e83c492ef8637b88c714bf"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#a997c174f04e83c492ef8637b88c714bf">correlate</a> (const std::vector&lt; T &gt; &amp;in1, const std::vector&lt; T &gt; &amp;in2, correlation_mode mode=correlation_mode::full, correlation_method method=correlation_method::automatic)</td></tr>
+<tr class="memdesc:a997c174f04e83c492ef8637b88c714bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cross-correlate two vectors.  <a href="namespacedsp.html#a997c174f04e83c492ef8637b88c714bf">More...</a><br /></td></tr>
+<tr class="separator:a997c174f04e83c492ef8637b88c714bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad015f85c579767ffebdded0b8d149d89"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:ad015f85c579767ffebdded0b8d149d89"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#ad015f85c579767ffebdded0b8d149d89">autocorrelate</a> (const std::vector&lt; T &gt; &amp;in, correlation_mode mode=correlation_mode::full, correlation_method method=correlation_method::automatic)</td></tr>
+<tr class="memdesc:ad015f85c579767ffebdded0b8d149d89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Auto-correlate a vector with itself.  <a href="namespacedsp.html#ad015f85c579767ffebdded0b8d149d89">More...</a><br /></td></tr>
+<tr class="separator:ad015f85c579767ffebdded0b8d149d89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe32d93264393a07d8b3844eed53e9c3"><td class="memTemplParams" colspan="2">template&lt;class T , class Pred &gt; </td></tr>
+<tr class="memitem:abe32d93264393a07d8b3844eed53e9c3"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#abe32d93264393a07d8b3844eed53e9c3">extract</a> (Pred condition, const std::vector&lt; T &gt; &amp;vec)</td></tr>
+<tr class="memdesc:abe32d93264393a07d8b3844eed53e9c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the elements of a vector that satisfy some condition.  <a href="namespacedsp.html#abe32d93264393a07d8b3844eed53e9c3">More...</a><br /></td></tr>
+<tr class="separator:abe32d93264393a07d8b3844eed53e9c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a529bdda638f4dab2d413faac208a65b9"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a529bdda638f4dab2d413faac208a65b9"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#a529bdda638f4dab2d413faac208a65b9">linspace</a> (T start, T stop, size_t num=50, bool endpoint=true)</td></tr>
+<tr class="memdesc:a529bdda638f4dab2d413faac208a65b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return evenly spaced numbers over a specified interval.  <a href="namespacedsp.html#a529bdda638f4dab2d413faac208a65b9">More...</a><br /></td></tr>
+<tr class="separator:a529bdda638f4dab2d413faac208a65b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aedd26b23f1e5d64efffe0a893c7c91c5"><td class="memTemplParams" colspan="2"><a id="aedd26b23f1e5d64efffe0a893c7c91c5"></a>
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:aedd26b23f1e5d64efffe0a893c7c91c5"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#aedd26b23f1e5d64efffe0a893c7c91c5">mod</a> (T x1, T x2)</td></tr>
+<tr class="memdesc:aedd26b23f1e5d64efffe0a893c7c91c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return modulus (which is not the same as the remainder for signed values) <br /></td></tr>
+<tr class="separator:aedd26b23f1e5d64efffe0a893c7c91c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11078b40d98913e2a044205d64c1a1a7"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedsp.html#a11078b40d98913e2a044205d64c1a1a7">nextpow2</a> (unsigned n)</td></tr>
+<tr class="memdesc:a11078b40d98913e2a044205d64c1a1a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the next-largest power of two k so that n &lt;= 2^k.  <a href="namespacedsp.html#a11078b40d98913e2a044205d64c1a1a7">More...</a><br /></td></tr>
+<tr class="separator:a11078b40d98913e2a044205d64c1a1a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -283,7 +363,7 @@ const double&#160;</td><td class="memItemRight" valign="bottom"><b>pi</b> = 3.14
 <tr class="separator:aab1a36a5c74fdc52ccdafef6511c2eb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Convenience functions for digital signal processing. </p>
+<div class="textblock"><p>Constants and convenience functions for general signal processing tasks and 1D vector operations. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
 <a id="ab0cdd2fa60d4fd27ec9a72cde38811ef"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab0cdd2fa60d4fd27ec9a72cde38811ef">&#9670;&nbsp;</a></span>arange()</h2>
@@ -291,7 +371,7 @@ const double&#160;</td><td class="memItemRight" valign="bottom"><b>pi</b> = 3.14
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T &gt; </div>
+template&lt;class T &gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">std::vector&lt;T&gt; dsp::arange </td>
@@ -335,6 +415,412 @@ template&lt;typename T &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Vector of evenly spaced values </dd></dl>
+
+</div>
+</div>
+<a id="ad015f85c579767ffebdded0b8d149d89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad015f85c579767ffebdded0b8d149d89">&#9670;&nbsp;</a></span>autocorrelate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;T&gt; dsp::autocorrelate </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">correlation_mode&#160;</td>
+          <td class="paramname"><em>mode</em> = <code>correlation_mode::full</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">correlation_method&#160;</td>
+          <td class="paramname"><em>method</em> = <code>correlation_method::automatic</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Auto-correlate a vector with itself. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Type of the vector elements </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">in</td><td>Input vector </td></tr>
+    <tr><td class="paramname">mode</td><td>An enum indicating the size of the output: full: The output is the full discrete linear auto-correlation of the inputs. (Default) valid: The output consists only of those elements that do not rely on the zero-padding. In ‘valid’ mode, either in1 or in2 must be at least as large as the other in every dimension. same: The output is the same size as in1, centered with respect to the ‘full’ output. </td></tr>
+    <tr><td class="paramname">method</td><td>An enum indicating which method to use to calculate the correlation. direct: The correlation is determined directly from sums, the definition of correlation. fft: The Fast Fourier Transform is used to perform the correlation more quickly. automatic: Automatically chooses direct or fft method based on an estimate of which is faster (default). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A vector containing a subset of the discrete linear auto-correlation of in. </dd></dl>
+
+</div>
+</div>
+<a id="af0e593cd9ad8adf958be7d42c5643d27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0e593cd9ad8adf958be7d42c5643d27">&#9670;&nbsp;</a></span>calculateEnergy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">T dsp::calculateEnergy </td>
+          <td>(</td>
+          <td class="paramtype">typename std::vector&lt; T &gt;::iterator&#160;</td>
+          <td class="paramname"><em>start</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">typename std::vector&lt; T &gt;::iterator&#160;</td>
+          <td class="paramname"><em>end</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the energy of the passed range. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Type of the elements in range. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">start</td><td>Iterator pointing to the start of the range (e.g. my_signal.begin()) </td></tr>
+    <tr><td class="paramname">end</td><td>Iterator pointing to the end of the range (e.g. my_signal.end()) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The energy of the range (sum of the squared samples in range) </dd></dl>
+
+</div>
+</div>
+<a id="a378f40c2851259db31cfa27f2cbe601f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a378f40c2851259db31cfa27f2cbe601f">&#9670;&nbsp;</a></span>calculateMeanPower()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">T dsp::calculateMeanPower </td>
+          <td>(</td>
+          <td class="paramtype">typename std::vector&lt; T &gt;::iterator&#160;</td>
+          <td class="paramname"><em>start</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">typename std::vector&lt; T &gt;::iterator&#160;</td>
+          <td class="paramname"><em>end</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the mean power of the passed range. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Type of the elements in range. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">start</td><td>Iterator pointing to the start of the range (e.g. my_signal.begin()) </td></tr>
+    <tr><td class="paramname">end</td><td>Iterator pointing to the end of the range (e.g. my_signal.end()) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The mean power of the range (energy divided by length) </dd></dl>
+
+</div>
+</div>
+<a id="a85aadad7161656d45fec883f1aba7c56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85aadad7161656d45fec883f1aba7c56">&#9670;&nbsp;</a></span>centered()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; T &gt; dsp::centered </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>vec</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>newSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the center portion of a vector. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Type of the elements in vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vec</td><td>Input vector </td></tr>
+    <tr><td class="paramname">newSize</td><td>Length of the extracted, centered portion </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Centered portion of the vector </dd></dl>
+
+</div>
+</div>
+<a id="a014ebcddb5a8e374054024212fa30eac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a014ebcddb5a8e374054024212fa30eac">&#9670;&nbsp;</a></span>choose_conv_method()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::pair&lt;convolution_method, std::map&lt;convolution_method, double&gt; &gt; dsp::choose_conv_method </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>in1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>in2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">convolution_mode&#160;</td>
+          <td class="paramname"><em>mode</em> = <code>convolution_mode::full</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>measure</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Find the fastest convolution/correlation method. This primarily exists to be called during the method = 'auto' option in convolve and correlate. It can also be used to determine the value of method for many different convolutions of the same length. In addition, it supports timing the convolution to adapt the value of method to a particular set of inputs and/or hardware. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Type of the vector elements </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">in1</td><td>The first argument passed into the convolution function. </td></tr>
+    <tr><td class="paramname">in2</td><td>The second argument passed into the convolution function. </td></tr>
+    <tr><td class="paramname">mode</td><td>An enum indicating the size of the output: full: The output is the full discrete linear cross-correlation of the inputs. (Default) valid: The output consists only of those elements that do not rely on the zero-padding. In ‘valid’ mode, either in1 or in2 must be at least as large as the other in every dimension. same: The output is the same size as in1, centered with respect to the ‘full’ output. </td></tr>
+    <tr><td class="paramname">measure</td><td>If true, run and time the convolution of in1 and in2 with both methods and return the fastest. If false (default), predict the fastest method using precomputed values. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A pair containing an enum indicating which convolution method is fastest, either ‘direct’ or ‘fft’, and a map containing the times (in seconds) needed for each method. This map is only non-empty if measure=true. </dd></dl>
+
+</div>
+</div>
+<a id="a32ec532302b7a96119efb4702f1f3000"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32ec532302b7a96119efb4702f1f3000">&#9670;&nbsp;</a></span>concatenate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;T&gt; dsp::concatenate </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; std::vector&lt; T &gt; * &gt;&#160;</td>
+          <td class="paramname"><em>vectors</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Join a sequence of vectors. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Type of the vector elements </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vectors</td><td>Vector containing references to the vectors. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The concatenated vector. <br  />
+ </dd></dl>
+
+</div>
+</div>
+<a id="a83c98d9b699a7b705797c56afb00df53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83c98d9b699a7b705797c56afb00df53">&#9670;&nbsp;</a></span>convolve()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; T &gt; dsp::convolve </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>in1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>in2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">convolution_mode&#160;</td>
+          <td class="paramname"><em>mode</em> = <code>convolution_mode::full</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">convolution_method&#160;</td>
+          <td class="paramname"><em>method</em> = <code>convolution_method::automatic</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Convolve two N-dimensional arrays. </p>
+<p>Convolve in1and in2, with the output size determined by the mode argument. </p><dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Type of the vector elements </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">in1</td><td>First input </td></tr>
+    <tr><td class="paramname">in2</td><td>Second input full: The output is the full discrete convolution of the inputs. (Default) valid: The output consists only of those elements that do not rely on the zero-padding. In ‘valid’ mode, either in1 or in2 must be at least as large as the other in every dimension. same: The output is the same size as in1, centered with respect to the ‘full’ output. </td></tr>
+    <tr><td class="paramname">method</td><td>An enum indicating which method to use to calculate the convolution. direct: The correlation is determined directly from sums, the definition of correlation. fft: The Fast Fourier Transform is used to perform the correlation more quickly. automatic: Automatically chooses direct or fft method based on an estimate of which is faster (default). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A vector containing a subset of the discrete convolution of in1 with in2. </dd></dl>
+
+</div>
+</div>
+<a id="a997c174f04e83c492ef8637b88c714bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a997c174f04e83c492ef8637b88c714bf">&#9670;&nbsp;</a></span>correlate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; T &gt; dsp::correlate </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>in1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>in2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">correlation_mode&#160;</td>
+          <td class="paramname"><em>mode</em> = <code>correlation_mode::full</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">correlation_method&#160;</td>
+          <td class="paramname"><em>method</em> = <code>correlation_method::automatic</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cross-correlate two vectors. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Type of the vector elements </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">in1</td><td>First input </td></tr>
+    <tr><td class="paramname">in2</td><td>Second input </td></tr>
+    <tr><td class="paramname">mode</td><td>An enum indicating the size of the output: full: The output is the full discrete linear cross-correlation of the inputs. (Default) valid: The output consists only of those elements that do not rely on the zero-padding. In ‘valid’ mode, either in1 or in2 must be at least as large as the other in every dimension. same: The output is the same size as in1, centered with respect to the ‘full’ output. </td></tr>
+    <tr><td class="paramname">method</td><td>An enum indicating which method to use to calculate the correlation. direct: The correlation is determined directly from sums, the definition of correlation. fft: The Fast Fourier Transform is used to perform the correlation more quickly. automatic: Automatically chooses direct or fft method based on an estimate of which is faster (default). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A vector containing a subset of the discrete linear cross-correlation of in1 with in2. </dd></dl>
 
 </div>
 </div>
@@ -382,60 +868,6 @@ template&lt;class T , class Pred &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Vector of values from vec where condition is true. </dd></dl>
-
-</div>
-</div>
-<a id="a7b174ad207e2751c6f1a8fb5522977e0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7b174ad207e2751c6f1a8fb5522977e0">&#9670;&nbsp;</a></span>get_window()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T , class... Args&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt; T &gt; dsp::get_window </td>
-          <td>(</td>
-          <td class="paramtype">std::tuple&lt; Args... &gt;&#160;</td>
-          <td class="paramname"><em>window</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned&#160;</td>
-          <td class="paramname"><em>Nx</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>fftbins</em> = <code>true</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Return a window of a given length and type. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td>Data type of the samples. </td></tr>
-    <tr><td class="paramname">...Args</td><td>Types of the elements in window. First is always <a class="el" href="namespacedsp_1_1window.html#a1cc0dcec4aa9e12640771bdf41f695b8" title="Types of windows (not all implemented yet)">dsp::window::type</a>, others are optional (see below). </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">window</td><td>First element must be the window type. If the window requires more parameters, they must be provided here as further elements. </td></tr>
-    <tr><td class="paramname">Nx</td><td>The number of samples in the window. </td></tr>
-    <tr><td class="paramname">fftbins</td><td>If true (default), create a “periodic” window, ready to use with ifftshift and be multiplied by the result of an FFT (see also fftfreq). If false, create a “symmetric” window, for use in filter design. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns a window of length Nx and type window. </dd></dl>
 
 </div>
 </div>
@@ -505,6 +937,9 @@ template&lt;typename T &gt; </div>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">unsigned dsp::nextpow2 </td>
@@ -514,6 +949,11 @@ template&lt;typename T &gt; </div>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Return the next-largest power of two k so that n &lt;= 2^k. </p>
@@ -525,73 +965,6 @@ template&lt;typename T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The next-largest power of two so that n &lt;= 2^k <br  />
  </dd></dl>
-
-</div>
-</div>
-<a id="a0b79341eaf211a6ead0565d055d63efb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0b79341eaf211a6ead0565d055d63efb">&#9670;&nbsp;</a></span>sin()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">template <a class="el" href="classdsp_1_1_signal.html">dsp::Signal</a>&lt; long &gt; dsp::sin </td>
-          <td>(</td>
-          <td class="paramtype">unsigned&#160;</td>
-          <td class="paramname"><em>frequency_Hz</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>length_s</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned&#160;</td>
-          <td class="paramname"><em>samplingRate_Hz</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>amplitude</em> = <code>1.0</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>phase</em> = <code>0.0</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Return a sampled sinusoid signal. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td>Type of the samples. Should be float, double, or long double. Other types will cause undefined behavior. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">frequency_Hz</td><td>The frequency of the sinusoid in Hertz </td></tr>
-    <tr><td class="paramname">length_s</td><td>The length of the signal in seconds </td></tr>
-    <tr><td class="paramname">samplingRate_Hz</td><td>The sampling rate in Hertz </td></tr>
-    <tr><td class="paramname">amplitude</td><td>Amplitude of the sinusoid </td></tr>
-    <tr><td class="paramname">phase</td><td>Starting phase angle of the sinusoid in rad </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A signal containing the specified sinusoid </dd></dl>
 
 </div>
 </div>

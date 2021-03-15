@@ -111,65 +111,14 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aea2d4c0d55575cfc7edcb9c0aa7bddd5"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
-<tr class="memitem:aea2d4c0d55575cfc7edcb9c0aa7bddd5"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp_1_1fft.html#aea2d4c0d55575cfc7edcb9c0aa7bddd5">get_fft_length</a> (const std::vector&lt; T &gt; &amp;x, unsigned n)</td></tr>
-<tr class="memdesc:aea2d4c0d55575cfc7edcb9c0aa7bddd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function to get the FFT length  <a href="namespacedsp_1_1fft.html#aea2d4c0d55575cfc7edcb9c0aa7bddd5">More...</a><br /></td></tr>
-<tr class="separator:aea2d4c0d55575cfc7edcb9c0aa7bddd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7475e9f40e2300b780f9fa42a6d2312a"><td class="memTemplParams" colspan="2"><a id="a7475e9f40e2300b780f9fa42a6d2312a"></a>
-template&lt;class T &gt; </td></tr>
-<tr class="memitem:a7475e9f40e2300b780f9fa42a6d2312a"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>resize_fft_input</b> (std::vector&lt; T &gt; x, unsigned n)</td></tr>
-<tr class="separator:a7475e9f40e2300b780f9fa42a6d2312a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af18e1cf2c976fb0ec492ed8c90277286"><td class="memTemplParams" colspan="2"><a id="af18e1cf2c976fb0ec492ed8c90277286"></a>
-template&lt;class T &gt; </td></tr>
-<tr class="memitem:af18e1cf2c976fb0ec492ed8c90277286"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; std::complex&lt; T &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>fft_</b> (std::vector&lt; std::complex&lt; T &gt;&gt; &amp;x, unsigned n, <a class="el" href="namespacedsp_1_1fft.html#aadeffdb34ec53320437b1c6dd1354915">NormalizationMode</a> mode, bool overwrite_x)</td></tr>
-<tr class="separator:af18e1cf2c976fb0ec492ed8c90277286"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd060316766f8b57c38ffd11f4cec84d"><td class="memTemplParams" colspan="2"><a id="acd060316766f8b57c38ffd11f4cec84d"></a>
-template&lt;class T &gt; </td></tr>
-<tr class="memitem:acd060316766f8b57c38ffd11f4cec84d"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; std::complex&lt; T &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>ifft_</b> (std::vector&lt; std::complex&lt; T &gt;&gt; &amp;x, unsigned n, <a class="el" href="namespacedsp_1_1fft.html#aadeffdb34ec53320437b1c6dd1354915">NormalizationMode</a> mode, bool overwrite_x)</td></tr>
-<tr class="separator:acd060316766f8b57c38ffd11f4cec84d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a75b80a18f454e8e89d55f950fcf87c11"><td class="memTemplParams" colspan="2"><a id="a75b80a18f454e8e89d55f950fcf87c11"></a>
-template&lt;class T &gt; </td></tr>
-<tr class="memitem:a75b80a18f454e8e89d55f950fcf87c11"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; std::complex&lt; T &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>rfft_</b> (std::vector&lt; T &gt; &amp;x, unsigned n, <a class="el" href="namespacedsp_1_1fft.html#aadeffdb34ec53320437b1c6dd1354915">NormalizationMode</a> mode, bool overwrite_x)</td></tr>
-<tr class="separator:a75b80a18f454e8e89d55f950fcf87c11"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a37770943bce68354c9030868892728e0"><td class="memTemplParams" colspan="2"><a id="a37770943bce68354c9030868892728e0"></a>
-template&lt;class T &gt; </td></tr>
-<tr class="memitem:a37770943bce68354c9030868892728e0"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>irfft_</b> (std::vector&lt; std::complex&lt; T &gt;&gt; &amp;x, unsigned n, <a class="el" href="namespacedsp_1_1fft.html#aadeffdb34ec53320437b1c6dd1354915">NormalizationMode</a> mode, bool overwrite_x)</td></tr>
-<tr class="separator:a37770943bce68354c9030868892728e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3265951e0b354c4592575fb4b9293fd7"><td class="memItemLeft" align="right" valign="top"><a id="a3265951e0b354c4592575fb4b9293fd7"></a>
-auto&#160;</td><td class="memItemRight" valign="bottom"><b>fftw</b> (std::vector&lt; std::complex&lt; float &gt;&gt; &amp;x, unsigned n, int sign, unsigned flags, <a class="el" href="namespacedsp_1_1fft.html#aadeffdb34ec53320437b1c6dd1354915">NormalizationMode</a> mode, bool overwrite_x)</td></tr>
-<tr class="separator:a3265951e0b354c4592575fb4b9293fd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a9db3cb36af3f82dacfb8b247bc4090"><td class="memItemLeft" align="right" valign="top"><a id="a1a9db3cb36af3f82dacfb8b247bc4090"></a>
-auto&#160;</td><td class="memItemRight" valign="bottom"><b>fftw</b> (std::vector&lt; std::complex&lt; double &gt;&gt; &amp;x, unsigned n, int sign, unsigned flags, <a class="el" href="namespacedsp_1_1fft.html#aadeffdb34ec53320437b1c6dd1354915">NormalizationMode</a> mode, bool overwrite_x)</td></tr>
-<tr class="separator:a1a9db3cb36af3f82dacfb8b247bc4090"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a463eea61f9e1365bf02bdd49c55363fa"><td class="memItemLeft" align="right" valign="top"><a id="a463eea61f9e1365bf02bdd49c55363fa"></a>
-auto&#160;</td><td class="memItemRight" valign="bottom"><b>fftw</b> (std::vector&lt; std::complex&lt; long double &gt;&gt; &amp;x, unsigned n, int sign, unsigned flags, <a class="el" href="namespacedsp_1_1fft.html#aadeffdb34ec53320437b1c6dd1354915">NormalizationMode</a> mode, bool overwrite_x)</td></tr>
-<tr class="separator:a463eea61f9e1365bf02bdd49c55363fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a568de3eb296bb9417b9a42bd936b0f29"><td class="memItemLeft" align="right" valign="top"><a id="a568de3eb296bb9417b9a42bd936b0f29"></a>
-auto&#160;</td><td class="memItemRight" valign="bottom"><b>rfftw</b> (std::vector&lt; double &gt; &amp;x, unsigned n, unsigned flags, <a class="el" href="namespacedsp_1_1fft.html#aadeffdb34ec53320437b1c6dd1354915">NormalizationMode</a> mode, bool overwrite_x)</td></tr>
-<tr class="separator:a568de3eb296bb9417b9a42bd936b0f29"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f290fb3f6231217e09b126ec309c8f6"><td class="memItemLeft" align="right" valign="top"><a id="a7f290fb3f6231217e09b126ec309c8f6"></a>
-auto&#160;</td><td class="memItemRight" valign="bottom"><b>rfftw</b> (std::vector&lt; float &gt; &amp;x, unsigned n, unsigned flags, <a class="el" href="namespacedsp_1_1fft.html#aadeffdb34ec53320437b1c6dd1354915">NormalizationMode</a> mode, bool overwrite_x)</td></tr>
-<tr class="separator:a7f290fb3f6231217e09b126ec309c8f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3832de9f393c1a9670e0dac8ae018260"><td class="memItemLeft" align="right" valign="top"><a id="a3832de9f393c1a9670e0dac8ae018260"></a>
-auto&#160;</td><td class="memItemRight" valign="bottom"><b>rfftw</b> (std::vector&lt; long double &gt; &amp;x, unsigned n, unsigned flags, <a class="el" href="namespacedsp_1_1fft.html#aadeffdb34ec53320437b1c6dd1354915">NormalizationMode</a> mode, bool overwrite_x)</td></tr>
-<tr class="separator:a3832de9f393c1a9670e0dac8ae018260"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a293f2a47a94f156fab2740fd97c20c30"><td class="memItemLeft" align="right" valign="top"><a id="a293f2a47a94f156fab2740fd97c20c30"></a>
-auto&#160;</td><td class="memItemRight" valign="bottom"><b>irfftw</b> (std::vector&lt; std::complex&lt; float &gt;&gt; &amp;X, unsigned n, unsigned flags, <a class="el" href="namespacedsp_1_1fft.html#aadeffdb34ec53320437b1c6dd1354915">NormalizationMode</a> mode, bool overwrite_X)</td></tr>
-<tr class="separator:a293f2a47a94f156fab2740fd97c20c30"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af67f646d775935b21973983720009959"><td class="memItemLeft" align="right" valign="top"><a id="af67f646d775935b21973983720009959"></a>
-auto&#160;</td><td class="memItemRight" valign="bottom"><b>irfftw</b> (std::vector&lt; std::complex&lt; double &gt;&gt; &amp;X, unsigned n, unsigned flags, <a class="el" href="namespacedsp_1_1fft.html#aadeffdb34ec53320437b1c6dd1354915">NormalizationMode</a> mode, bool overwrite_X)</td></tr>
-<tr class="separator:af67f646d775935b21973983720009959"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a090de8433ef77b66025b04902c630b13"><td class="memItemLeft" align="right" valign="top"><a id="a090de8433ef77b66025b04902c630b13"></a>
-auto&#160;</td><td class="memItemRight" valign="bottom"><b>irfftw</b> (std::vector&lt; std::complex&lt; long double &gt;&gt; &amp;X, unsigned n, unsigned flags, <a class="el" href="namespacedsp_1_1fft.html#aadeffdb34ec53320437b1c6dd1354915">NormalizationMode</a> mode, bool overwrite_X)</td></tr>
-<tr class="separator:a090de8433ef77b66025b04902c630b13"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2dedb16752ef0e80a9de45e1eeea1c47"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
-<tr class="memitem:a2dedb16752ef0e80a9de45e1eeea1c47"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; std::complex&lt; T &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp_1_1fft.html#a2dedb16752ef0e80a9de45e1eeea1c47">fft</a> (std::vector&lt; std::complex&lt; T &gt;&gt; &amp;x, unsigned n=0, <a class="el" href="namespacedsp_1_1fft.html#aadeffdb34ec53320437b1c6dd1354915">NormalizationMode</a> mode=NormalizationMode::backward, bool overwrite_x=false, <a class="el" href="namespacedsp_1_1fft.html#a4fef2564f82f5eb8ea2d5c9909fb2ba4">backend</a> <a class="el" href="namespacedsp_1_1fft.html#a4fef2564f82f5eb8ea2d5c9909fb2ba4">backend</a>=backend::automatic)</td></tr>
-<tr class="memdesc:a2dedb16752ef0e80a9de45e1eeea1c47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the 1-D discrete Fourier Transform.  <a href="namespacedsp_1_1fft.html#a2dedb16752ef0e80a9de45e1eeea1c47">More...</a><br /></td></tr>
-<tr class="separator:a2dedb16752ef0e80a9de45e1eeea1c47"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a947e044af63f255a7be70f0433beea02"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
-<tr class="memitem:a947e044af63f255a7be70f0433beea02"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; std::complex&lt; T &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp_1_1fft.html#a947e044af63f255a7be70f0433beea02">ifft</a> (std::vector&lt; std::complex&lt; T &gt;&gt; &amp;X, unsigned n=0, <a class="el" href="namespacedsp_1_1fft.html#aadeffdb34ec53320437b1c6dd1354915">NormalizationMode</a> mode=NormalizationMode::backward, bool overwrite_X=false, <a class="el" href="namespacedsp_1_1fft.html#a4fef2564f82f5eb8ea2d5c9909fb2ba4">backend</a> <a class="el" href="namespacedsp_1_1fft.html#a4fef2564f82f5eb8ea2d5c9909fb2ba4">backend</a>=backend::automatic)</td></tr>
-<tr class="memdesc:a947e044af63f255a7be70f0433beea02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the 1-D inverse discrete Fourier Transform.  <a href="namespacedsp_1_1fft.html#a947e044af63f255a7be70f0433beea02">More...</a><br /></td></tr>
-<tr class="separator:a947e044af63f255a7be70f0433beea02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd4596e9d5c9bd56e8b10baf64c78b3c"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:acd4596e9d5c9bd56e8b10baf64c78b3c"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; std::complex&lt; T &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp_1_1fft.html#acd4596e9d5c9bd56e8b10baf64c78b3c">cfft</a> (std::vector&lt; std::complex&lt; T &gt;&gt; &amp;x, unsigned n=0, <a class="el" href="namespacedsp_1_1fft.html#aadeffdb34ec53320437b1c6dd1354915">NormalizationMode</a> mode=NormalizationMode::backward, bool overwrite_x=false, <a class="el" href="namespacedsp_1_1fft.html#a4fef2564f82f5eb8ea2d5c9909fb2ba4">backend</a> <a class="el" href="namespacedsp_1_1fft.html#a4fef2564f82f5eb8ea2d5c9909fb2ba4">backend</a>=backend::automatic)</td></tr>
+<tr class="memdesc:acd4596e9d5c9bd56e8b10baf64c78b3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the 1-D discrete Fourier Transform.  <a href="namespacedsp_1_1fft.html#acd4596e9d5c9bd56e8b10baf64c78b3c">More...</a><br /></td></tr>
+<tr class="separator:acd4596e9d5c9bd56e8b10baf64c78b3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40b408972cb96b687bd207fe14b341df"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a40b408972cb96b687bd207fe14b341df"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; std::complex&lt; T &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp_1_1fft.html#a40b408972cb96b687bd207fe14b341df">icfft</a> (std::vector&lt; std::complex&lt; T &gt;&gt; &amp;X, unsigned n=0, <a class="el" href="namespacedsp_1_1fft.html#aadeffdb34ec53320437b1c6dd1354915">NormalizationMode</a> mode=NormalizationMode::backward, bool overwrite_X=false, <a class="el" href="namespacedsp_1_1fft.html#a4fef2564f82f5eb8ea2d5c9909fb2ba4">backend</a> <a class="el" href="namespacedsp_1_1fft.html#a4fef2564f82f5eb8ea2d5c9909fb2ba4">backend</a>=backend::automatic)</td></tr>
+<tr class="memdesc:a40b408972cb96b687bd207fe14b341df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the 1-D inverse discrete Fourier Transform.  <a href="namespacedsp_1_1fft.html#a40b408972cb96b687bd207fe14b341df">More...</a><br /></td></tr>
+<tr class="separator:a40b408972cb96b687bd207fe14b341df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a054d4669893e32e3b3162ca4e661ffca"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
 <tr class="memitem:a054d4669893e32e3b3162ca4e661ffca"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; std::complex&lt; T &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp_1_1fft.html#a054d4669893e32e3b3162ca4e661ffca">rfft</a> (std::vector&lt; T &gt; &amp;x, unsigned n=0, <a class="el" href="namespacedsp_1_1fft.html#aadeffdb34ec53320437b1c6dd1354915">NormalizationMode</a> mode=NormalizationMode::backward, bool overwrite_x=false, <a class="el" href="namespacedsp_1_1fft.html#a4fef2564f82f5eb8ea2d5c9909fb2ba4">backend</a> <a class="el" href="namespacedsp_1_1fft.html#a4fef2564f82f5eb8ea2d5c9909fb2ba4">backend</a>=backend::automatic)</td></tr>
 <tr class="memdesc:a054d4669893e32e3b3162ca4e661ffca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the 1-D discrete Fourier Transform for real input.  <a href="namespacedsp_1_1fft.html#a054d4669893e32e3b3162ca4e661ffca">More...</a><br /></td></tr>
@@ -183,16 +132,22 @@ template&lt;class T &gt; </td></tr>
 <tr class="memitem:ac9f6db704ad42fa5b125b8cde90f2603"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp_1_1fft.html#ac9f6db704ad42fa5b125b8cde90f2603">irfft</a> (std::vector&lt; std::complex&lt; T &gt;&gt; &amp;X, unsigned n=0, <a class="el" href="namespacedsp_1_1fft.html#aadeffdb34ec53320437b1c6dd1354915">NormalizationMode</a> mode=NormalizationMode::backward, bool overwrite_X=false, <a class="el" href="namespacedsp_1_1fft.html#a4fef2564f82f5eb8ea2d5c9909fb2ba4">backend</a> <a class="el" href="namespacedsp_1_1fft.html#a4fef2564f82f5eb8ea2d5c9909fb2ba4">backend</a>=backend::automatic)</td></tr>
 <tr class="memdesc:ac9f6db704ad42fa5b125b8cde90f2603"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the inverse of rfft.  <a href="namespacedsp_1_1fft.html#ac9f6db704ad42fa5b125b8cde90f2603">More...</a><br /></td></tr>
 <tr class="separator:ac9f6db704ad42fa5b125b8cde90f2603"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af56643f8c6484395b2a70f0a4312476a"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:af56643f8c6484395b2a70f0a4312476a"><td class="memTemplParams" colspan="2"><a id="af56643f8c6484395b2a70f0a4312476a"></a>
+template&lt;class T &gt; </td></tr>
 <tr class="memitem:af56643f8c6484395b2a70f0a4312476a"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp_1_1fft.html#af56643f8c6484395b2a70f0a4312476a">ifft</a> (std::vector&lt; std::complex&lt; T &gt;&gt; &amp;X, unsigned n=0, <a class="el" href="namespacedsp_1_1fft.html#aadeffdb34ec53320437b1c6dd1354915">NormalizationMode</a> mode=NormalizationMode::backward, bool overwrite_X=false, <a class="el" href="namespacedsp_1_1fft.html#a4fef2564f82f5eb8ea2d5c9909fb2ba4">backend</a> <a class="el" href="namespacedsp_1_1fft.html#a4fef2564f82f5eb8ea2d5c9909fb2ba4">backend</a>=backend::automatic)</td></tr>
-<tr class="memdesc:af56643f8c6484395b2a70f0a4312476a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias for <a class="el" href="namespacedsp_1_1fft.html#ac9f6db704ad42fa5b125b8cde90f2603" title="Computes the inverse of rfft.">irfft()</a>  <a href="namespacedsp_1_1fft.html#af56643f8c6484395b2a70f0a4312476a">More...</a><br /></td></tr>
+<tr class="memdesc:af56643f8c6484395b2a70f0a4312476a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias for <a class="el" href="namespacedsp_1_1fft.html#ac9f6db704ad42fa5b125b8cde90f2603" title="Computes the inverse of rfft.">irfft()</a> <br /></td></tr>
 <tr class="separator:af56643f8c6484395b2a70f0a4312476a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a167c9e606b663c22f0f39e2296d1377b"><td class="memTemplParams" colspan="2"><a id="a167c9e606b663c22f0f39e2296d1377b"></a>
+template&lt;class T &gt; </td></tr>
+<tr class="memitem:a167c9e606b663c22f0f39e2296d1377b"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp_1_1fft.html#a167c9e606b663c22f0f39e2296d1377b">fftconvolution</a> (const std::vector&lt; T &gt; &amp;volume, const std::vector&lt; T &gt; &amp;kernel, convolution_mode mode=convolution_mode::valid)</td></tr>
+<tr class="memdesc:a167c9e606b663c22f0f39e2296d1377b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fast convolution using the FFT. <br /></td></tr>
+<tr class="separator:a167c9e606b663c22f0f39e2296d1377b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Fast Fourier Transformations. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a2dedb16752ef0e80a9de45e1eeea1c47"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2dedb16752ef0e80a9de45e1eeea1c47">&#9670;&nbsp;</a></span>fft()</h2>
+<a id="acd4596e9d5c9bd56e8b10baf64c78b3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd4596e9d5c9bd56e8b10baf64c78b3c">&#9670;&nbsp;</a></span>cfft()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -200,7 +155,7 @@ template&lt;class T &gt; </td></tr>
 template&lt;class T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt; std::complex&lt; T &gt; &gt; dsp::fft::fft </td>
+          <td class="memname">std::vector&lt; std::complex&lt; T &gt; &gt; dsp::fft::cfft </td>
           <td>(</td>
           <td class="paramtype">std::vector&lt; std::complex&lt; T &gt;&gt; &amp;&#160;</td>
           <td class="paramname"><em>x</em>, </td>
@@ -258,8 +213,8 @@ template&lt;class T &gt; </div>
 
 </div>
 </div>
-<a id="aea2d4c0d55575cfc7edcb9c0aa7bddd5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aea2d4c0d55575cfc7edcb9c0aa7bddd5">&#9670;&nbsp;</a></span>get_fft_length()</h2>
+<a id="a40b408972cb96b687bd207fe14b341df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40b408972cb96b687bd207fe14b341df">&#9670;&nbsp;</a></span>icfft()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -267,39 +222,7 @@ template&lt;class T &gt; </div>
 template&lt;class T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">auto dsp::fft::get_fft_length </td>
-          <td>(</td>
-          <td class="paramtype">const std::vector&lt; T &gt; &amp;&#160;</td>
-          <td class="paramname"><em>x</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned&#160;</td>
-          <td class="paramname"><em>n</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Helper function to get the FFT length </p>
-
-</div>
-</div>
-<a id="a947e044af63f255a7be70f0433beea02"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a947e044af63f255a7be70f0433beea02">&#9670;&nbsp;</a></span>ifft() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt; std::complex&lt; T &gt; &gt; dsp::fft::ifft </td>
+          <td class="memname">std::vector&lt; std::complex&lt; T &gt; &gt; dsp::fft::icfft </td>
           <td>(</td>
           <td class="paramtype">std::vector&lt; std::complex&lt; T &gt;&gt; &amp;&#160;</td>
           <td class="paramname"><em>X</em>, </td>
@@ -353,59 +276,7 @@ template&lt;class T &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The transformed truncated or zero-padded input.</dd></dl>
-<p>Compute the 1-D inverse discrete Fourier Transform. </p>
-
-</div>
-</div>
-<a id="af56643f8c6484395b2a70f0a4312476a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af56643f8c6484395b2a70f0a4312476a">&#9670;&nbsp;</a></span>ifft() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt;T&gt; dsp::fft::ifft </td>
-          <td>(</td>
-          <td class="paramtype">std::vector&lt; std::complex&lt; T &gt;&gt; &amp;&#160;</td>
-          <td class="paramname"><em>X</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned&#160;</td>
-          <td class="paramname"><em>n</em> = <code>0</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="namespacedsp_1_1fft.html#aadeffdb34ec53320437b1c6dd1354915">NormalizationMode</a>&#160;</td>
-          <td class="paramname"><em>mode</em> = <code>NormalizationMode::backward</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>overwrite_X</em> = <code>false</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="namespacedsp_1_1fft.html#a4fef2564f82f5eb8ea2d5c9909fb2ba4">backend</a>&#160;</td>
-          <td class="paramname"><em>backend</em> = <code>backend::automatic</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Alias for <a class="el" href="namespacedsp_1_1fft.html#ac9f6db704ad42fa5b125b8cde90f2603" title="Computes the inverse of rfft.">irfft()</a> </p>
-<p>Compute the 1-D inverse discrete Fourier Transform. </p>
+<dl class="section return"><dt>Returns</dt><dd>The transformed truncated or zero-padded input. </dd></dl>
 
 </div>
 </div>

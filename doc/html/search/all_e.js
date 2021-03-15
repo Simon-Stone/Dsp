@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['signal_37',['Signal',['../classdsp_1_1_signal.html',1,'dsp']]],
-  ['sin_38',['sin',['../namespacedsp.html#a0b79341eaf211a6ead0565d055d63efb',1,'dsp']]]
+  ['parzen_63',['parzen',['../namespacedsp_1_1window.html#a479dc86ffddf5e19d595c0c0e751edda',1,'dsp::window']]]
 ];

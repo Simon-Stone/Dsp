@@ -81,6 +81,10 @@ enum class \mbox{\hyperlink{namespacedsp_1_1window_a1cc0dcec4aa9e12640771bdf41f6
 \begin{DoxyCompactList}\small\item\em Return a window with a generalized Gaussian shape. \end{DoxyCompactList}\item 
 {\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_1_1window_aef9b174c25e588697edf84c1d1c7f941}{chebwin}} (unsigned N, double at, bool sym=true)
 \begin{DoxyCompactList}\small\item\em Return a Dolph-\/\+Chebyshev window. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_1_1window_a3870aacaccec3672cbf61f57c84d6d1d}{exponential}} (double center, unsigned N, double tau=1.\+0, bool sym=true)
+\begin{DoxyCompactList}\small\item\em Return an exponential (or Poisson) window. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_1_1window_af25fb16fa8f1225342e35e88ef596e19}{tukey}} (unsigned N, double alpha=0.\+5, bool sym=true)
+\begin{DoxyCompactList}\small\item\em Return a Tukey window, also known as a tapered cosine window. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{namespacedsp_1_1window_a47acb925f568201e7e815d2a721ac594}\label{namespacedsp_1_1window_a47acb925f568201e7e815d2a721ac594}} 
 template std\+::vector$<$ float $>$ {\bfseries general\+\_\+cosine} (unsigned N, const std\+::vector$<$ float $>$ \&a, bool sym)
 \item 
@@ -89,7 +93,10 @@ template std\+::vector$<$ double $>$ {\bfseries general\+\_\+cosine} (unsigned N
 \item 
 \mbox{\Hypertarget{namespacedsp_1_1window_a2e040b86b93865c3837a1002635bccbe}\label{namespacedsp_1_1window_a2e040b86b93865c3837a1002635bccbe}} 
 template std\+::vector$<$ long double $>$ {\bfseries general\+\_\+cosine} (unsigned N, const std\+::vector$<$ long double $>$ \&a, bool sym)
-\end{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{namespacedsp_1_1window_abd7604e62f6f9ac0fff0282f840e1294}\label{namespacedsp_1_1window_abd7604e62f6f9ac0fff0282f840e1294}} 
+{\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_1_1window_abd7604e62f6f9ac0fff0282f840e1294}{exponential}} (unsigned N, double tau=1.\+0, bool sym=true)
+\begin{DoxyCompactList}\small\item\em Alias for \mbox{\hyperlink{namespacedsp_1_1window_a3870aacaccec3672cbf61f57c84d6d1d}{exponential()}} that provides the default value for center (which depends on N) \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -116,11 +123,11 @@ Return a modified Bartlett-\/\+Hann window.
 \begin{DoxyParams}{Parameters}
 {\em N} & Number of points in the output window. If zero or less, an empty array is returned. \\
 \hline
-{\em sym} & When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis. \\
+{\em sym} & When true (default), generates a symmetric window, for use in filter design. When false, generates a periodic window, for use in spectral analysis. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is True). 
+The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is true). 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_1_1window_a7b059f993849f7e9048b274071e76335}\label{namespacedsp_1_1window_a7b059f993849f7e9048b274071e76335}} 
 \index{dsp::window@{dsp::window}!bartlett@{bartlett}}
@@ -142,11 +149,11 @@ The Bartlett window is very similar to a triangular window, except that the end 
 \begin{DoxyParams}{Parameters}
 {\em N} & Number of points in the output window. If zero or less, an empty array is returned. \\
 \hline
-{\em sym} & When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis. \\
+{\em sym} & When true (default), generates a symmetric window, for use in filter design. When false, generates a periodic window, for use in spectral analysis. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-The triangular window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is True). 
+The triangular window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is true). 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_1_1window_a10cdac66f0417d5286f11cd27b699e71}\label{namespacedsp_1_1window_a10cdac66f0417d5286f11cd27b699e71}} 
 \index{dsp::window@{dsp::window}!blackman@{blackman}}
@@ -194,11 +201,11 @@ Return a minimum 4-\/term Blackman-\/\+Harris window.
 \begin{DoxyParams}{Parameters}
 {\em N} & Number of points in the output window. If zero or less, an empty array is returned. \\
 \hline
-{\em sym} & When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis. \\
+{\em sym} & When true (default), generates a symmetric window, for use in filter design. When false, generates a periodic window, for use in spectral analysis. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is True). 
+The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is true). 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_1_1window_a72327b8f54fe769b2345389ddab7f575}\label{namespacedsp_1_1window_a72327b8f54fe769b2345389ddab7f575}} 
 \index{dsp::window@{dsp::window}!bohman@{bohman}}
@@ -220,11 +227,11 @@ Return a Bohman window.
 \begin{DoxyParams}{Parameters}
 {\em N} & Number of points in the output window. If zero or less, an empty array is returned. \\
 \hline
-{\em sym} & When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis. \\
+{\em sym} & When true (default), generates a symmetric window, for use in filter design. When false, generates a periodic window, for use in spectral analysis. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is True). 
+The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is true). 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_1_1window_aec4906fe8edc6620afbd2dd12fa5fa0d}\label{namespacedsp_1_1window_aec4906fe8edc6620afbd2dd12fa5fa0d}} 
 \index{dsp::window@{dsp::window}!boxcar@{boxcar}}
@@ -274,11 +281,41 @@ Return a Dolph-\/\+Chebyshev window.
 \hline
 {\em at} & Attenuation (in dB). \\
 \hline
-{\em sym} & When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis. \\
+{\em sym} & When true (default), generates a symmetric window, for use in filter design. When false, generates a periodic window, for use in spectral analysis. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 The window, with the maximum value always normalized to 1 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacedsp_1_1window_a3870aacaccec3672cbf61f57c84d6d1d}\label{namespacedsp_1_1window_a3870aacaccec3672cbf61f57c84d6d1d}} 
+\index{dsp::window@{dsp::window}!exponential@{exponential}}
+\index{exponential@{exponential}!dsp::window@{dsp::window}}
+\doxysubsubsection{\texorpdfstring{exponential()}{exponential()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+std\+::vector$<$ T $>$ dsp\+::window\+::exponential (\begin{DoxyParamCaption}\item[{double}]{center,  }\item[{unsigned}]{N,  }\item[{double}]{tau = {\ttfamily 1.0},  }\item[{bool}]{sym = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Return an exponential (or Poisson) window. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type of returned values \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em center} & Parameter defining the center location of the window function. The default value if not given is center = (M-\/1) / 2. This parameter must take its default value for symmetric windows. \\
+\hline
+{\em N} & Number of points in the output window. If zero or less, an empty array is returned. \\
+\hline
+{\em tau} & Parameter defining the decay. For center = 0 use tau = -\/(M-\/1) / ln(x) if x is the fraction of the window remaining at the end. \\
+\hline
+{\em sym} & When true (default), generates a symmetric window, for use in filter design. When false, generates a periodic window, for use in spectral analysis. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The window, with the maximum value normalized to 1 (though the value 1 does not appear if M is even and sym is true). 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_1_1window_adc37567364a8a61d146b3920d4113e07}\label{namespacedsp_1_1window_adc37567364a8a61d146b3920d4113e07}} 
 \index{dsp::window@{dsp::window}!flattop@{flattop}}
@@ -300,11 +337,11 @@ Return a flat top window.
 \begin{DoxyParams}{Parameters}
 {\em N} & Number of points in the output window. If zero or less, an empty array is returned. \\
 \hline
-{\em sym} & When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis. \\
+{\em sym} & When true (default), generates a symmetric window, for use in filter design. When false, generates a periodic window, for use in spectral analysis. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is True). 
+The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is true). 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_1_1window_a392d254078b3f6cac2415c394bff9f01}\label{namespacedsp_1_1window_a392d254078b3f6cac2415c394bff9f01}} 
 \index{dsp::window@{dsp::window}!gaussian@{gaussian}}
@@ -328,11 +365,11 @@ Return a Gaussian window.
 \hline
 {\em std} & The standard deviation, sigma. \\
 \hline
-{\em sym} & When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis. \\
+{\em sym} & When true (default), generates a symmetric window, for use in filter design. When false, generates a periodic window, for use in spectral analysis. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is True). 
+The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is true). 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_1_1window_ad79b183426c99214ead4f2f88670f28b}\label{namespacedsp_1_1window_ad79b183426c99214ead4f2f88670f28b}} 
 \index{dsp::window@{dsp::window}!general\_cosine@{general\_cosine}}
@@ -386,11 +423,11 @@ Return a window with a generalized Gaussian shape.
 \hline
 {\em sig} & The standard deviation, sigma \\
 \hline
-{\em sym} & When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis. \\
+{\em sym} & When true (default), generates a symmetric window, for use in filter design. When false, generates a periodic window, for use in spectral analysis. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-The window, with the maximum value normalized to 1 (though the value 1 does not appear if M is even and sym is True). 
+The window, with the maximum value normalized to 1 (though the value 1 does not appear if M is even and sym is true). 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_1_1window_ab669d3d273b9edc883f4729b2e801157}\label{namespacedsp_1_1window_ab669d3d273b9edc883f4729b2e801157}} 
 \index{dsp::window@{dsp::window}!hamming@{hamming}}
@@ -412,11 +449,11 @@ The Hamming window is a taper formed by using a raised cosine with non -\/ zero 
 \begin{DoxyParams}{Parameters}
 {\em N} & Number of points in the output window. If zero or less, an empty array is returned. \\
 \hline
-{\em sym} & When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis. \\
+{\em sym} & When true (default), generates a symmetric window, for use in filter design. When false, generates a periodic window, for use in spectral analysis. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-The window, with the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is True). 
+The window, with the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is true). 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_1_1window_a9bb07facf27b284757ddae054c8a3621}\label{namespacedsp_1_1window_a9bb07facf27b284757ddae054c8a3621}} 
 \index{dsp::window@{dsp::window}!hann@{hann}}
@@ -438,11 +475,11 @@ The Hann window is a taper formed by using a raised cosine or sine -\/ squared w
 \begin{DoxyParams}{Parameters}
 {\em N} & Number of points in the output window. If zero or less, an empty array is returned. \\
 \hline
-{\em sym} & When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis. \\
+{\em sym} & When true (default), generates a symmetric window, for use in filter design. When false, generates a periodic window, for use in spectral analysis. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-The window, with the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is True). 
+The window, with the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is true). 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_1_1window_a84fcea5f41eba58cf50df8569e2ac290}\label{namespacedsp_1_1window_a84fcea5f41eba58cf50df8569e2ac290}} 
 \index{dsp::window@{dsp::window}!kaiser@{kaiser}}
@@ -466,11 +503,11 @@ The Kaiser window is a taper formed by using a Bessel function.
 \hline
 {\em beta} & Shape parameter, determines trade-\/off between main-\/lobe width and side lobe level. As beta gets large, the window narrows. \\
 \hline
-{\em sym} & When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis. \\
+{\em sym} & When true (default), generates a symmetric window, for use in filter design. When false, generates a periodic window, for use in spectral analysis. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is True). 
+The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is true). 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_1_1window_a28c5c4d7e81acce1c360013c1a3f2fc9}\label{namespacedsp_1_1window_a28c5c4d7e81acce1c360013c1a3f2fc9}} 
 \index{dsp::window@{dsp::window}!nuttall@{nuttall}}
@@ -492,11 +529,11 @@ Return a minimum 4-\/term Blackman-\/\+Harris window according to Nuttall.
 \begin{DoxyParams}{Parameters}
 {\em N} & Number of points in the output window. If zero or less, an empty array is returned. \\
 \hline
-{\em sym} & When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis. \\
+{\em sym} & When true (default), generates a symmetric window, for use in filter design. When false, generates a periodic window, for use in spectral analysis. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is True). 
+The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is true). 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_1_1window_a479dc86ffddf5e19d595c0c0e751edda}\label{namespacedsp_1_1window_a479dc86ffddf5e19d595c0c0e751edda}} 
 \index{dsp::window@{dsp::window}!parzen@{parzen}}
@@ -518,11 +555,11 @@ Return a Parzen window.
 \begin{DoxyParams}{Parameters}
 {\em N} & Number of points in the output window. If zero or less, an empty array is returned. \\
 \hline
-{\em sym} & When True (default), generates a symmetric window, for use in filter design. When False, generates a periodic window, for use in spectral analysis. \\
+{\em sym} & When true (default), generates a symmetric window, for use in filter design. When false, generates a periodic window, for use in spectral analysis. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is True). 
+The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is true). 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_1_1window_a931f388022b655420037a5e1652621d8}\label{namespacedsp_1_1window_a931f388022b655420037a5e1652621d8}} 
 \index{dsp::window@{dsp::window}!triang@{triang}}
@@ -549,4 +586,32 @@ Return a triangular window.
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 The window, with the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is true). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacedsp_1_1window_af25fb16fa8f1225342e35e88ef596e19}\label{namespacedsp_1_1window_af25fb16fa8f1225342e35e88ef596e19}} 
+\index{dsp::window@{dsp::window}!tukey@{tukey}}
+\index{tukey@{tukey}!dsp::window@{dsp::window}}
+\doxysubsubsection{\texorpdfstring{tukey()}{tukey()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+std\+::vector$<$ T $>$ dsp\+::window\+::tukey (\begin{DoxyParamCaption}\item[{unsigned}]{N,  }\item[{double}]{alpha = {\ttfamily 0.5},  }\item[{bool}]{sym = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Return a Tukey window, also known as a tapered cosine window. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type of returned values \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em N} & Number of points in the output window. If zero or less, an empty vector is returned. \\
+\hline
+{\em alpha} & Shape parameter of the Tukey window, representing the fraction of the window inside the cosine tapered region. If zero, the Tukey window is equivalent to a rectangular window. If one, the Tukey window is equivalent to a Hann window. \\
+\hline
+{\em sym} & When true (default), generates a symmetric window, for use in filter design. When false, generates a periodic window, for use in spectral analysis. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The window, with the maximum value normalized to 1 (though the value 1 does not appear if M is even and sym is true). 
 \end{DoxyReturn}

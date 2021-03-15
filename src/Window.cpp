@@ -4,7 +4,7 @@
 #include <iostream>
 #include <numeric>
 
-#include "cfft.h"
+#include "fft.h"
 #include "Signal.h"
 #include "special.h"
 #include "utilities.h"

@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['fft_17',['fft',['../namespacedsp_1_1fft.html#a2dedb16752ef0e80a9de45e1eeea1c47',1,'dsp::fft::fft(std::vector&lt; std::complex&lt; T &gt;&gt; &amp;x, unsigned n=0, NormalizationMode mode=NormalizationMode::backward, bool overwrite_x=false, backend backend=backend::automatic)'],['../namespacedsp_1_1fft.html#ac9250d054380713cb0fdfccd14185732',1,'dsp::fft::fft(std::vector&lt; T &gt; &amp;x, unsigned n=0, NormalizationMode mode=NormalizationMode::backward, bool overwrite_x=false, backend backend=backend::automatic)']]],
-  ['flattop_18',['flattop',['../namespacedsp_1_1window.html#adc37567364a8a61d146b3920d4113e07',1,'dsp::window']]]
+  ['exponential_30',['exponential',['../namespacedsp_1_1window.html#a3870aacaccec3672cbf61f57c84d6d1d',1,'dsp::window::exponential(double center, unsigned N, double tau=1.0, bool sym=true)'],['../namespacedsp_1_1window.html#abd7604e62f6f9ac0fff0282f840e1294',1,'dsp::window::exponential(unsigned N, double tau=1.0, bool sym=true)']]],
+  ['extend_31',['extend',['../namespacedsp_1_1window_1_1utilities.html#a6606a054ce5c194c8f3a087bbcda4bdb',1,'dsp::window::utilities']]],
+  ['extract_32',['extract',['../namespacedsp.html#abe32d93264393a07d8b3844eed53e9c3',1,'dsp']]]
 ];

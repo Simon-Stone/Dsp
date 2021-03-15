@@ -88,33 +88,166 @@ $(document).ready(function(){initNavTree('utilities_8h_source.html',''); initRes
 </div><!--header-->
 <div class="contents">
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;utility&gt;</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacedsp.html">dsp</a></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;{</div>
-<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="namespacedsp_1_1window.html">    7</a></span>&#160;    <span class="keyword">namespace </span>window</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    {</div>
-<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="namespacedsp_1_1window_1_1utilities.html">   10</a></span>&#160;        <span class="keyword">namespace </span>utilities</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        {</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;            std::pair&lt;unsigned, bool&gt; <a class="code" href="namespacedsp_1_1window_1_1utilities.html#a6606a054ce5c194c8f3a087bbcda4bdb">extend</a>(<span class="keywordtype">unsigned</span> N, <span class="keywordtype">bool</span> sym);</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;            <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="namespacedsp_1_1window_1_1utilities.html#af2d4623e290580897aec3b579b665015">   17</a></span>&#160;            std::vector&lt;T&gt; <a class="code" href="namespacedsp_1_1window_1_1utilities.html#af2d4623e290580897aec3b579b665015">truncate</a>(std::vector&lt;T&gt;&amp; w, <span class="keywordtype">bool</span> needed)</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;            {</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;                <span class="keywordflow">if</span> (needed)</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;                {</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                    w.pop_back();</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;                    <span class="keywordflow">return</span> w;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                }</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                <span class="keywordflow">return</span> w;                   </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            }           </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        }</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    }   </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;}</div>
-<div class="ttc" id="anamespacedsp_1_1window_1_1utilities_html_a6606a054ce5c194c8f3a087bbcda4bdb"><div class="ttname"><a href="namespacedsp_1_1window_1_1utilities.html#a6606a054ce5c194c8f3a087bbcda4bdb">dsp::window::utilities::extend</a></div><div class="ttdeci">std::pair&lt; unsigned, bool &gt; extend(unsigned N, bool sym)</div><div class="ttdoc">Extend window length by 1 sample if needed for DFT-even symmetry</div><div class="ttdef"><b>Definition:</b> utilities.cpp:3</div></div>
-<div class="ttc" id="anamespacedsp_1_1window_1_1utilities_html_af2d4623e290580897aec3b579b665015"><div class="ttname"><a href="namespacedsp_1_1window_1_1utilities.html#af2d4623e290580897aec3b579b665015">dsp::window::utilities::truncate</a></div><div class="ttdeci">std::vector&lt; T &gt; truncate(std::vector&lt; T &gt; &amp;w, bool needed)</div><div class="ttdoc">Truncate window by 1 sample if needed for DFT - even symmetry.</div><div class="ttdef"><b>Definition:</b> utilities.h:17</div></div>
-<div class="ttc" id="anamespacedsp_html"><div class="ttname"><a href="namespacedsp.html">dsp</a></div><div class="ttdoc">Convenience functions for digital signal processing.</div><div class="ttdef"><b>Definition:</b> dsp.h:6</div></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;utility&gt;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacedsp.html">dsp</a></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="comment">// Constants</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">double</span> pi = 3.14159265358979311600;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="namespacedsp.html#ab0cdd2fa60d4fd27ec9a72cde38811ef">   23</a></span>&#160;    std::vector&lt;T&gt; <a class="code" href="namespacedsp.html#ab0cdd2fa60d4fd27ec9a72cde38811ef">arange</a>(T start, T stop, T step = 1)</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    {</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        std::vector&lt;T&gt; values;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="keywordflow">for</span> (T value = start; value &lt; stop; value += step)</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        {</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            values.push_back(value);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        }</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keywordflow">return</span> values;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    }</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    T <a class="code" href="namespacedsp.html#af0e593cd9ad8adf958be7d42c5643d27">calculateEnergy</a>(<span class="keyword">typename</span> std::vector&lt;T&gt;::iterator start,</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keyword">typename</span> std::vector&lt;T&gt;::iterator end);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    T <a class="code" href="namespacedsp.html#a378f40c2851259db31cfa27f2cbe601f">calculateMeanPower</a>(<span class="keyword">typename</span> std::vector&lt;T&gt;::iterator start,</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keyword">typename</span> std::vector&lt;T&gt;::iterator end);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    std::vector&lt;T&gt; <a class="code" href="namespacedsp.html#a85aadad7161656d45fec883f1aba7c56">centered</a>(<span class="keyword">const</span> std::vector&lt;T&gt;&amp; vec, <span class="keywordtype">size_t</span> newSize);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="namespacedsp.html#a32ec532302b7a96119efb4702f1f3000">   64</a></span>&#160;    std::vector&lt;T&gt; <a class="code" href="namespacedsp.html#a32ec532302b7a96119efb4702f1f3000">concatenate</a>(std::vector&lt;std::vector&lt;T&gt;*&gt; vectors)</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    {</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        std::vector&lt;T&gt; concatenated_vector;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; v : vectors)</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        {</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            concatenated_vector.insert(concatenated_vector.end(), v-&gt;begin(), v-&gt;end());</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        }</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordflow">return</span> concatenated_vector;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    }</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="comment">/* Convolutions and correlations */</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keyword">enum class</span> convolution_mode { full, valid, same };</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keyword">enum class</span> convolution_method { automatic, direct, <a class="code" href="namespacedsp_1_1fft.html#ac9250d054380713cb0fdfccd14185732">fft</a> };</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    std::pair&lt;convolution_method, std::map&lt;convolution_method, double&gt;&gt;</div>
+<div class="line"><a name="l00099"></a><span class="lineno"><a class="line" href="namespacedsp.html#a014ebcddb5a8e374054024212fa30eac">   99</a></span>&#160;        <a class="code" href="namespacedsp.html#a014ebcddb5a8e374054024212fa30eac">choose_conv_method</a>(<span class="keyword">const</span> std::vector&lt;T&gt;&amp; in1, <span class="keyword">const</span> std::vector&lt;T&gt;&amp; in2,</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            convolution_mode mode = convolution_mode::full, <span class="keywordtype">bool</span> measure = <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    std::vector&lt;T&gt; <a class="code" href="namespacedsp.html#a83c98d9b699a7b705797c56afb00df53">convolve</a>(<span class="keyword">const</span> std::vector&lt;T&gt;&amp; in1, <span class="keyword">const</span> std::vector&lt;T&gt;&amp; in2,</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        convolution_mode mode = convolution_mode::full, convolution_method method = convolution_method::automatic);</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keyword">using</span> correlation_mode = convolution_mode;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="keyword">using</span> correlation_method = convolution_method;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160; </div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    std::vector&lt;T&gt; <a class="code" href="namespacedsp.html#a997c174f04e83c492ef8637b88c714bf">correlate</a>(<span class="keyword">const</span> std::vector&lt;T&gt;&amp; in1, <span class="keyword">const</span> std::vector&lt;T&gt;&amp; in2,</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        correlation_mode mode = correlation_mode::full, correlation_method method = correlation_method::automatic);</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160; </div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a name="l00153"></a><span class="lineno"><a class="line" href="namespacedsp.html#ad015f85c579767ffebdded0b8d149d89">  153</a></span>&#160;    std::vector&lt;T&gt; <a class="code" href="namespacedsp.html#ad015f85c579767ffebdded0b8d149d89">autocorrelate</a>(<span class="keyword">const</span> std::vector&lt;T&gt;&amp; in, correlation_mode mode = correlation_mode::full,</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        correlation_method method = correlation_method::automatic)</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    {</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="namespacedsp.html#a997c174f04e83c492ef8637b88c714bf">correlate</a>(in, in, mode, method);</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    }</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160; </div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">class</span> T, <span class="keyword">class</span> Pred&gt;</div>
+<div class="line"><a name="l00166"></a><span class="lineno"><a class="line" href="namespacedsp.html#abe32d93264393a07d8b3844eed53e9c3">  166</a></span>&#160;    std::vector&lt;T&gt; <a class="code" href="namespacedsp.html#abe32d93264393a07d8b3844eed53e9c3">extract</a>(Pred condition, <span class="keyword">const</span> std::vector&lt;T&gt;&amp; vec)</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    {</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        std::vector&lt;T&gt; results;</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160; </div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        <span class="keyword">auto</span> it = std::find_if(vec.begin(), vec.end(), condition);</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        <span class="keywordflow">while</span> (it != vec.end())</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;        {</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;            results.push_back(*it);</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;            it = std::find_if(std::next(it), vec.end(), condition);</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;        }</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;        <span class="keywordflow">return</span> results;</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    }</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160; </div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00191"></a><span class="lineno"><a class="line" href="namespacedsp.html#a529bdda638f4dab2d413faac208a65b9">  191</a></span>&#160;    std::vector&lt;T&gt; <a class="code" href="namespacedsp.html#a529bdda638f4dab2d413faac208a65b9">linspace</a>(T start, T stop, <span class="keywordtype">size_t</span> num = 50, <span class="keywordtype">bool</span> endpoint = <span class="keyword">true</span>)</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    {</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        T h = (stop - start) / <span class="keyword">static_cast&lt;</span>T<span class="keyword">&gt;</span>(num - 1);</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;        std::vector&lt;T&gt; xs(num);</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160; </div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;        <span class="keyword">typename</span> std::vector&lt;T&gt;::iterator x;</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;        T val;</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;        <span class="keywordflow">for</span> (x = xs.begin(), val = start; x != xs.end(); ++x, val += h)</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;        {</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;            *x = val;</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;        }</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;        <span class="keywordflow">if</span> (!endpoint)</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;        {</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;            xs.pop_back();</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;        }</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;        <span class="keywordflow">return</span> xs;</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    }</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160; </div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00211"></a><span class="lineno"><a class="line" href="namespacedsp.html#aedd26b23f1e5d64efffe0a893c7c91c5">  211</a></span>&#160;    T <a class="code" href="namespacedsp.html#aedd26b23f1e5d64efffe0a893c7c91c5">mod</a>(T x1, T x2)</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;    {</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;        <span class="keywordflow">if</span> (x2 &lt; 1) { x2 = 1; }</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160; </div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;        <span class="keywordflow">if</span> (x1 &gt;= 0)</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;        {</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(x1) % <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(x2);</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;        }</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160; </div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;        <span class="keywordflow">return</span> x2 - <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(-x1) % <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(x1);</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    }</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160; </div>
+<div class="line"><a name="l00226"></a><span class="lineno"><a class="line" href="namespacedsp.html#a11078b40d98913e2a044205d64c1a1a7">  226</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">unsigned</span> <a class="code" href="namespacedsp.html#a11078b40d98913e2a044205d64c1a1a7">nextpow2</a>(<span class="keywordtype">unsigned</span> n)</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    {</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><span class="keywordtype">unsigned</span><span class="keyword">&gt;</span>(ceil(log2(n)));</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    }</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    </div>
+<div class="line"><a name="l00231"></a><span class="lineno"><a class="line" href="namespacedsp_1_1window.html">  231</a></span>&#160;    <span class="keyword">namespace </span>window</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    {</div>
+<div class="line"><a name="l00234"></a><span class="lineno"><a class="line" href="namespacedsp_1_1window_1_1utilities.html">  234</a></span>&#160;        <span class="keyword">namespace </span>utilities</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;        {</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;            std::pair&lt;unsigned, bool&gt; <a class="code" href="namespacedsp_1_1window_1_1utilities.html#a6606a054ce5c194c8f3a087bbcda4bdb">extend</a>(<span class="keywordtype">unsigned</span> N, <span class="keywordtype">bool</span> sym);</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160; </div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;            <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a name="l00241"></a><span class="lineno"><a class="line" href="namespacedsp_1_1window_1_1utilities.html#af2d4623e290580897aec3b579b665015">  241</a></span>&#160;            std::vector&lt;T&gt; <a class="code" href="namespacedsp_1_1window_1_1utilities.html#af2d4623e290580897aec3b579b665015">truncate</a>(std::vector&lt;T&gt;&amp; w, <span class="keywordtype">bool</span> needed)</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;            {</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;                <span class="keywordflow">if</span> (needed)</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;                {</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;                    w.pop_back();</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;                    <span class="keywordflow">return</span> w;</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;                }</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;                <span class="keywordflow">return</span> w;</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;            }</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;        }</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    }</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;}</div>
+<div class="ttc" id="anamespacedsp_1_1fft_html_ac9250d054380713cb0fdfccd14185732"><div class="ttname"><a href="namespacedsp_1_1fft.html#ac9250d054380713cb0fdfccd14185732">dsp::fft::fft</a></div><div class="ttdeci">std::vector&lt; std::complex&lt; T &gt; &gt; fft(std::vector&lt; T &gt; &amp;x, unsigned n=0, NormalizationMode mode=NormalizationMode::backward, bool overwrite_x=false, backend backend=backend::automatic)</div><div class="ttdoc">Alias for rfft.</div><div class="ttdef"><b>Definition:</b> fft.h:61</div></div>
+<div class="ttc" id="anamespacedsp_1_1window_1_1utilities_html_a6606a054ce5c194c8f3a087bbcda4bdb"><div class="ttname"><a href="namespacedsp_1_1window_1_1utilities.html#a6606a054ce5c194c8f3a087bbcda4bdb">dsp::window::utilities::extend</a></div><div class="ttdeci">std::pair&lt; unsigned, bool &gt; extend(unsigned N, bool sym)</div><div class="ttdoc">Extend window length by 1 sample if needed for DFT-even symmetry</div><div class="ttdef"><b>Definition:</b> utilities.cpp:114</div></div>
+<div class="ttc" id="anamespacedsp_1_1window_1_1utilities_html_af2d4623e290580897aec3b579b665015"><div class="ttname"><a href="namespacedsp_1_1window_1_1utilities.html#af2d4623e290580897aec3b579b665015">dsp::window::utilities::truncate</a></div><div class="ttdeci">std::vector&lt; T &gt; truncate(std::vector&lt; T &gt; &amp;w, bool needed)</div><div class="ttdoc">Truncate window by 1 sample if needed for DFT - even symmetry.</div><div class="ttdef"><b>Definition:</b> utilities.h:241</div></div>
+<div class="ttc" id="anamespacedsp_html"><div class="ttname"><a href="namespacedsp.html">dsp</a></div><div class="ttdoc">Constants and convenience functions for general signal processing tasks and 1D vector operations.</div><div class="ttdef"><b>Definition:</b> convert.h:6</div></div>
+<div class="ttc" id="anamespacedsp_html_a014ebcddb5a8e374054024212fa30eac"><div class="ttname"><a href="namespacedsp.html#a014ebcddb5a8e374054024212fa30eac">dsp::choose_conv_method</a></div><div class="ttdeci">std::pair&lt; convolution_method, std::map&lt; convolution_method, double &gt; &gt; choose_conv_method(const std::vector&lt; T &gt; &amp;in1, const std::vector&lt; T &gt; &amp;in2, convolution_mode mode=convolution_mode::full, bool measure=false)</div><div class="ttdoc">Find the fastest convolution/correlation method. This primarily exists to be called during the method...</div></div>
+<div class="ttc" id="anamespacedsp_html_a11078b40d98913e2a044205d64c1a1a7"><div class="ttname"><a href="namespacedsp.html#a11078b40d98913e2a044205d64c1a1a7">dsp::nextpow2</a></div><div class="ttdeci">unsigned nextpow2(unsigned n)</div><div class="ttdoc">Return the next-largest power of two k so that n &lt;= 2^k.</div><div class="ttdef"><b>Definition:</b> utilities.h:226</div></div>
+<div class="ttc" id="anamespacedsp_html_a32ec532302b7a96119efb4702f1f3000"><div class="ttname"><a href="namespacedsp.html#a32ec532302b7a96119efb4702f1f3000">dsp::concatenate</a></div><div class="ttdeci">std::vector&lt; T &gt; concatenate(std::vector&lt; std::vector&lt; T &gt; * &gt; vectors)</div><div class="ttdoc">Join a sequence of vectors.</div><div class="ttdef"><b>Definition:</b> utilities.h:64</div></div>
+<div class="ttc" id="anamespacedsp_html_a378f40c2851259db31cfa27f2cbe601f"><div class="ttname"><a href="namespacedsp.html#a378f40c2851259db31cfa27f2cbe601f">dsp::calculateMeanPower</a></div><div class="ttdeci">T calculateMeanPower(typename std::vector&lt; T &gt;::iterator start, typename std::vector&lt; T &gt;::iterator end)</div><div class="ttdoc">Returns the mean power of the passed range.</div><div class="ttdef"><b>Definition:</b> utilities.cpp:39</div></div>
+<div class="ttc" id="anamespacedsp_html_a529bdda638f4dab2d413faac208a65b9"><div class="ttname"><a href="namespacedsp.html#a529bdda638f4dab2d413faac208a65b9">dsp::linspace</a></div><div class="ttdeci">std::vector&lt; T &gt; linspace(T start, T stop, size_t num=50, bool endpoint=true)</div><div class="ttdoc">Return evenly spaced numbers over a specified interval.</div><div class="ttdef"><b>Definition:</b> utilities.h:191</div></div>
+<div class="ttc" id="anamespacedsp_html_a83c98d9b699a7b705797c56afb00df53"><div class="ttname"><a href="namespacedsp.html#a83c98d9b699a7b705797c56afb00df53">dsp::convolve</a></div><div class="ttdeci">std::vector&lt; T &gt; convolve(const std::vector&lt; T &gt; &amp;in1, const std::vector&lt; T &gt; &amp;in2, convolution_mode mode=convolution_mode::full, convolution_method method=convolution_method::automatic)</div><div class="ttdoc">Convolve two N-dimensional arrays.</div><div class="ttdef"><b>Definition:</b> utilities.cpp:73</div></div>
+<div class="ttc" id="anamespacedsp_html_a85aadad7161656d45fec883f1aba7c56"><div class="ttname"><a href="namespacedsp.html#a85aadad7161656d45fec883f1aba7c56">dsp::centered</a></div><div class="ttdeci">std::vector&lt; T &gt; centered(const std::vector&lt; T &gt; &amp;vec, size_t newSize)</div><div class="ttdoc">Returns the center portion of a vector.</div><div class="ttdef"><b>Definition:</b> utilities.cpp:48</div></div>
+<div class="ttc" id="anamespacedsp_html_a997c174f04e83c492ef8637b88c714bf"><div class="ttname"><a href="namespacedsp.html#a997c174f04e83c492ef8637b88c714bf">dsp::correlate</a></div><div class="ttdeci">std::vector&lt; T &gt; correlate(const std::vector&lt; T &gt; &amp;in1, const std::vector&lt; T &gt; &amp;in2, correlation_mode mode=correlation_mode::full, correlation_method method=correlation_method::automatic)</div><div class="ttdoc">Cross-correlate two vectors.</div><div class="ttdef"><b>Definition:</b> utilities.cpp:98</div></div>
+<div class="ttc" id="anamespacedsp_html_ab0cdd2fa60d4fd27ec9a72cde38811ef"><div class="ttname"><a href="namespacedsp.html#ab0cdd2fa60d4fd27ec9a72cde38811ef">dsp::arange</a></div><div class="ttdeci">std::vector&lt; T &gt; arange(T start, T stop, T step=1)</div><div class="ttdoc">Return evenly spaced values within a given interval.</div><div class="ttdef"><b>Definition:</b> utilities.h:23</div></div>
+<div class="ttc" id="anamespacedsp_html_abe32d93264393a07d8b3844eed53e9c3"><div class="ttname"><a href="namespacedsp.html#abe32d93264393a07d8b3844eed53e9c3">dsp::extract</a></div><div class="ttdeci">std::vector&lt; T &gt; extract(Pred condition, const std::vector&lt; T &gt; &amp;vec)</div><div class="ttdoc">Return the elements of a vector that satisfy some condition.</div><div class="ttdef"><b>Definition:</b> utilities.h:166</div></div>
+<div class="ttc" id="anamespacedsp_html_ad015f85c579767ffebdded0b8d149d89"><div class="ttname"><a href="namespacedsp.html#ad015f85c579767ffebdded0b8d149d89">dsp::autocorrelate</a></div><div class="ttdeci">std::vector&lt; T &gt; autocorrelate(const std::vector&lt; T &gt; &amp;in, correlation_mode mode=correlation_mode::full, correlation_method method=correlation_method::automatic)</div><div class="ttdoc">Auto-correlate a vector with itself.</div><div class="ttdef"><b>Definition:</b> utilities.h:153</div></div>
+<div class="ttc" id="anamespacedsp_html_aedd26b23f1e5d64efffe0a893c7c91c5"><div class="ttname"><a href="namespacedsp.html#aedd26b23f1e5d64efffe0a893c7c91c5">dsp::mod</a></div><div class="ttdeci">T mod(T x1, T x2)</div><div class="ttdoc">Return modulus (which is not the same as the remainder for signed values)</div><div class="ttdef"><b>Definition:</b> utilities.h:211</div></div>
+<div class="ttc" id="anamespacedsp_html_af0e593cd9ad8adf958be7d42c5643d27"><div class="ttname"><a href="namespacedsp.html#af0e593cd9ad8adf958be7d42c5643d27">dsp::calculateEnergy</a></div><div class="ttdeci">T calculateEnergy(typename std::vector&lt; T &gt;::iterator start, typename std::vector&lt; T &gt;::iterator end)</div><div class="ttdoc">Returns the energy of the passed range.</div><div class="ttdef"><b>Definition:</b> utilities.cpp:32</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

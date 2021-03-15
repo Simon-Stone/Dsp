@@ -1,0 +1,84 @@
+\hypertarget{namespacedsp_1_1signals}{}\doxysection{dsp\+::signals Namespace Reference}
+\label{namespacedsp_1_1signals}\index{dsp::signals@{dsp::signals}}
+
+
+Convenience functions to generate various sampled test signals.  
+
+
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class T $>$ }\\\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \mbox{\hyperlink{namespacedsp_1_1signals_a932acf8ed8375e1a15abba69badf0ee0}{sin}} (unsigned frequency\+\_\+\+Hz, double length\+\_\+s, unsigned sampling\+Rate\+\_\+\+Hz, double amplitude=1.\+0, double phase=0.\+0)
+\begin{DoxyCompactList}\small\item\em Return a sampled sine signal. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \mbox{\hyperlink{namespacedsp_1_1signals_ad1db657bf187b930ec8c53f20e20b759}{cos}} (unsigned frequency\+\_\+\+Hz, double length\+\_\+s, unsigned sampling\+Rate\+\_\+\+Hz, double amplitude=1.\+0, double phase=0.\+0)
+\begin{DoxyCompactList}\small\item\em Return a sampled cosine signal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Convenience functions to generate various sampled test signals. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacedsp_1_1signals_ad1db657bf187b930ec8c53f20e20b759}\label{namespacedsp_1_1signals_ad1db657bf187b930ec8c53f20e20b759}} 
+\index{dsp::signals@{dsp::signals}!cos@{cos}}
+\index{cos@{cos}!dsp::signals@{dsp::signals}}
+\doxysubsubsection{\texorpdfstring{cos()}{cos()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+template \mbox{\hyperlink{classdsp_1_1_signal}{dsp\+::\+Signal}}$<$ long $>$ dsp\+::signals\+::cos (\begin{DoxyParamCaption}\item[{unsigned}]{frequency\+\_\+\+Hz,  }\item[{double}]{length\+\_\+s,  }\item[{unsigned}]{sampling\+Rate\+\_\+\+Hz,  }\item[{double}]{amplitude = {\ttfamily 1.0},  }\item[{double}]{phase = {\ttfamily 0.0} }\end{DoxyParamCaption})}
+
+
+
+Return a sampled cosine signal. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type of the samples. Should be float, double, or long double. Other types will cause undefined behavior. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em frequency\+\_\+\+Hz} & The frequency of the cosine in Hertz \\
+\hline
+{\em length\+\_\+s} & The length of the signal in seconds \\
+\hline
+{\em sampling\+Rate\+\_\+\+Hz} & The sampling rate in Hertz \\
+\hline
+{\em amplitude} & Amplitude of the cosine \\
+\hline
+{\em phase} & Starting phase angle of the cosine in rad \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A signal containing the specified cosine 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacedsp_1_1signals_a932acf8ed8375e1a15abba69badf0ee0}\label{namespacedsp_1_1signals_a932acf8ed8375e1a15abba69badf0ee0}} 
+\index{dsp::signals@{dsp::signals}!sin@{sin}}
+\index{sin@{sin}!dsp::signals@{dsp::signals}}
+\doxysubsubsection{\texorpdfstring{sin()}{sin()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+template \mbox{\hyperlink{classdsp_1_1_signal}{dsp\+::\+Signal}}$<$ long $>$ dsp\+::signals\+::sin (\begin{DoxyParamCaption}\item[{unsigned}]{frequency\+\_\+\+Hz,  }\item[{double}]{length\+\_\+s,  }\item[{unsigned}]{sampling\+Rate\+\_\+\+Hz,  }\item[{double}]{amplitude = {\ttfamily 1.0},  }\item[{double}]{phase = {\ttfamily 0.0} }\end{DoxyParamCaption})}
+
+
+
+Return a sampled sine signal. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type of the samples. Should be float, double, or long double. Other types will cause undefined behavior. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em frequency\+\_\+\+Hz} & The frequency of the sine in Hertz \\
+\hline
+{\em length\+\_\+s} & The length of the signal in seconds \\
+\hline
+{\em sampling\+Rate\+\_\+\+Hz} & The sampling rate in Hertz \\
+\hline
+{\em amplitude} & Amplitude of the sine \\
+\hline
+{\em phase} & Starting phase angle of the sine in rad \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A signal containing the specified sine 
+\end{DoxyReturn}
