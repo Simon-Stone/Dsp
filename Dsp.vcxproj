@@ -22,8 +22,6 @@
     <ClInclude Include="src\dsp.h" />
     <ClInclude Include="src\fft.h" />
     <ClInclude Include="src\filter.h" />
-    <ClInclude Include="src\Legacy\LegacyDsp.h" />
-    <ClInclude Include="src\Legacy\LegacySignal.h" />
     <ClInclude Include="src\Signal.h" />
     <ClInclude Include="src\signals.h" />
     <ClInclude Include="src\special.h" />
@@ -35,8 +33,6 @@
     <ClCompile Include="src\dsp.cpp" />
     <ClCompile Include="src\fft.cpp" />
     <ClCompile Include="src\filter.cpp" />
-    <ClCompile Include="src\Legacy\LegacyDsp.cpp" />
-    <ClCompile Include="src\Legacy\LegacySignal.cpp" />
     <ClCompile Include="src\Signal.cpp" />
     <ClCompile Include="src\signals.cpp" />
     <ClCompile Include="src\special.cpp" />
