@@ -26,6 +26,12 @@ namespace dsp
 		std::reverse_copy(vec.begin(), vec.end(), reversed_copy.begin());
 		return dsp::conj(reversed_copy);
 	}
+
+	unsigned maxNumFrames(unsigned signalLength, unsigned frameLength, unsigned overlap)
+	{
+		const auto frameStride = frameLength - overlap;
+		return static_cast<unsigned>(floor(static_cast<double>(signalLength) / frameStride + 1));
+	}
 }
 
 template <class T>
@@ -111,6 +117,24 @@ std::vector<T> dsp::correlate(const std::vector<T>& in1, const std::vector<T>& i
 	}
 }
 
+template <class T>
+std::vector<std::vector<T>> dsp::signalToFrames(const std::vector<T>& signal, unsigned frameLength, unsigned overlap)
+{
+	std::vector<std::vector<T>> framedSignal;
+	const auto numSamples = signal.size();
+
+	const int frameStride = frameLength - overlap;
+	for (size_t startSample = 0; startSample < numSamples; startSample += frameStride)
+	{
+		const size_t finalSample = std::min(startSample + frameLength, signal.size());
+		std::vector<T> frame{ signal.begin() + startSample, signal.begin() + finalSample };
+		frame.resize(frameLength, 0);  // Make sure the frame is padded to the frame length with zeros
+		framedSignal.push_back(frame);
+	}
+
+	return framedSignal;
+}
+
 std::pair<unsigned, bool> dsp::window::utilities::extend(unsigned N, bool sym)
 {
 	if (!sym)
@@ -153,3 +177,7 @@ template double dsp::calculateMeanPower(typename std::vector<double>::iterator s
 	typename std::vector<double>::iterator end);
 template long double dsp::calculateMeanPower(typename std::vector<long double>::iterator start,
 	typename std::vector<long double>::iterator end);
+
+template std::vector<std::vector<float>> dsp::signalToFrames(const std::vector<float>& signal, unsigned frameLength, unsigned overlap);
+template std::vector<std::vector<double>> dsp::signalToFrames(const std::vector<double>& signal, unsigned frameLength, unsigned overlap);
+template std::vector<std::vector<long double>> dsp::signalToFrames(const std::vector<long double>& signal, unsigned frameLength, unsigned overlap);

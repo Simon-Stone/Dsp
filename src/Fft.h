@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "utilities.h"
-
+#include "window.h"
 
 namespace dsp
 {
@@ -24,11 +24,10 @@ namespace dsp
 		/// @param x Complex input
 		/// @param n Length of the transformed output. If n is smaller than the length of the input, the input is cropped. If it is larger, the input is padded with zeros. If n is 0 (default), the length of the input is used.
 		/// @param mode The normalization mode: "backward" means normalization by n on the inverse transformation only, "forward" means on the forward transformation only, and "ortho" means divide by sqrt(n) in both directions.
-		/// @param overwrite_x If true, the contents of x can be destroyed; the default is false.
 		/// @param backend Can be automatic, simple, or fftw. 'simple' is a low-level straight-forward implementation of the complex FFT and 'fftw' uses the FFTW library. 'simple' is best for a small number fo samples due to the overhead of the FFTW planning stage. For longer inputs, FFTW becomes significantly faster. 'automatic' therefore chooses the 'simple' implementation for input lengths of less than 100 000 samples and 'fftw' for longer inputs.
 		/// @return The transformed truncated or zero-padded input.
 		template<class T>
-		std::vector<std::complex<T>> cfft(std::vector<std::complex<T>>& x, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward, bool overwrite_x = false, backend backend = backend::automatic);
+		std::vector<std::complex<T>> cfft(const std::vector<std::complex<T>>& x, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward, backend backend = backend::automatic);
 
 		/// @brief Compute the 1-D inverse discrete Fourier Transform.
 		///
@@ -37,11 +36,10 @@ namespace dsp
 		/// @param X Complex input
 		/// @param n Length of the transformed output. If n is smaller than the length of the input, the input is cropped. If it is larger, the input is padded with zeros. If n is 0 (default), the length of the input is used.
 		/// @param mode The normalization mode: "backward" means normalization by n on the inverse transformation only, "forward" means on the forward transformation only, and "ortho" means divide by sqrt(n) in both directions.
-		/// @param overwrite_X If true, the contents of X can be destroyed; the default is false.
 		/// @param backend Can be automatic, simple, or fftw. 'simple' is a low-level straight-forward implementation of the complex FFT and 'fftw' uses the FFTW library. 'simple' is best for a small number fo samples due to the overhead of the FFTW planning stage. For longer inputs, FFTW becomes significantly faster. 'automatic' therefore chooses the 'simple' implementation for input lengths of less than 100 000 samples and 'fftw' for longer inputs.
 		/// @return The transformed truncated or zero-padded input.
 		template<class T>
-		std::vector<std::complex<T>> icfft(std::vector<std::complex<T>>& X, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward, bool overwrite_X = false, backend backend = backend::automatic);
+		std::vector<std::complex<T>> icfft(const std::vector<std::complex<T>>& X, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward, backend backend = backend::automatic);
 
 		/// @brief Compute the 1-D discrete Fourier Transform for real input.
 		/// 
@@ -49,18 +47,17 @@ namespace dsp
 		/// @tparam T Data type of the real values. Should be float, double or long double, other types will cause undefined behavior.
 		/// @param x Real input
 		/// @param n Length of the transformed output. If n is smaller than the length of the input, the input is cropped. If it is larger, the input is padded with zeros. If n is 0 (default), the length of the input is used.
-		/// @param mode The normalization mode: "backward" means normalization by n on the inverse transformation only, "forward" means on the forward transformation only, and "ortho" means divide by sqrt(n) in both directions.
-		/// @param overwrite_x If true, the contents of x can be destroyed; the default is false.
+		/// @param mode The normalization mode: "backward" means normalization by n on the inverse transformation only, "forward" means on the forward transformation only, and "ortho" means divide by sqrt(n) in both directions.		
 		/// @param backend Can be automatic, simple, or fftw. 'simple' is a low-level straight-forward implementation of the complex FFT and 'fftw' uses the FFTW library. 'simple' is best for a small number fo samples due to the overhead of the FFTW planning stage. For longer inputs, FFTW becomes significantly faster. 'automatic' therefore chooses the 'simple' implementation for input lengths of less than 100 000 samples and 'fftw' for longer inputs.
 		/// @return The forward-transformed truncated or zero-padded input.
 		template<class T>
-		std::vector<std::complex<T>> rfft(std::vector<T>& x, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward, bool overwrite_x = false, backend backend = backend::automatic);
+		std::vector<std::complex<T>> rfft(const std::vector<T>& x, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward, backend backend = backend::automatic);
 
 		/// @brief Alias for rfft.
 		template<class T>
-		std::vector<std::complex<T>> fft(std::vector<T>& x, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward, bool overwrite_x = false, backend backend = backend::automatic)
+		std::vector<std::complex<T>> fft(const std::vector<T>& x, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward, backend backend = backend::automatic)
 		{
-			return rfft(x, n, mode, overwrite_x, backend);
+			return rfft(x, n, mode, backend);
 		}
 		
 		/// @brief Computes the inverse of rfft.
@@ -70,18 +67,21 @@ namespace dsp
 		/// @param X Complex input
 		/// @param n Length of the transformed output. If n is smaller than the length of the input, the input is cropped. If it is larger, the input is padded with zeros. If n is 0 (default), the length of the input is used.
 		/// @param mode The normalization mode: "backward" means normalization by n on the inverse transformation only, "forward" means on the forward transformation only, and "ortho" means divide by sqrt(n) in both directions.
-		/// @param overwrite_X If true, the contents of x can be destroyed; the default is false.
 		/// @param backend Can be automatic, simple, or fftw. 'simple' is a low-level straight-forward implementation of the complex FFT and 'fftw' uses the FFTW library. 'simple' is best for a small number fo samples due to the overhead of the FFTW planning stage. For longer inputs, FFTW becomes significantly faster. 'automatic' therefore chooses the 'simple' implementation for input lengths of less than 100 000 samples and 'fftw' for longer inputs.
 		/// @return The backward-transformed truncated or zero-padded input.
 		template<class T>
-		std::vector<T> irfft(std::vector<std::complex<T>>& X, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward, bool overwrite_X = false, backend backend = backend::automatic);
+		std::vector<T> irfft(const std::vector<std::complex<T>>& X, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward, backend backend = backend::automatic);
 
 		/// @brief Alias for irfft()
 		template<class T>
-		std::vector<T> ifft(std::vector<std::complex<T>>& X, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward, bool overwrite_X = false, backend backend = backend::automatic)
+		std::vector<T> ifft(const std::vector<std::complex<T>>& X, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward, backend backend = backend::automatic)
 		{
-			return irfft(X, n, mode, overwrite_X, backend);
+			return irfft(X, n, mode, backend);
 		}
+
+
+		template<class T>
+		std::vector<T> logSquaredMagnitudeSpectrum(const std::vector<T>& signal, int N_fft, double relativeCutoff);
 		
 		// TODO:
 		//fft2();
@@ -121,5 +121,18 @@ namespace dsp
 		/// @brief Fast convolution using the FFT
 		template<class T>
 		std::vector<T> fftconvolution(const std::vector<T>& volume, const std::vector<T>& kernel, convolution_mode mode = convolution_mode::valid);
+
+		/// @brief Returns a spectrogram of the passed signal
+		/// @tparam T Data type of the signal's samples
+		/// @param signal Signal to analyze
+		/// @param frameLength Length of each frame
+		/// @param overlap_pct Relative overlap between two frames (e.g., 0.75 for 75% overlap)
+		/// @param samplingRate Sampling rate in Hz. Can be -1 to use normalized frequencies.
+		/// @param relativeCutoff How much of the spectrum to calculate. Default 0.5 to discard mirrored part of the spectrum (assuming real input).
+		/// @param windowType Type of the window to use to window each frame.
+		/// @return A vector containing the log-squared-magnitude spectrum of each windowed frame of the signal.
+		template<class T>
+		std::vector<std::vector<T>> spectrogram(const std::vector<T>& signal, unsigned frameLength, double overlap_pct = 0.5, 
+			int samplingRate = -1, double relativeCutoff = 0.5,  window::type windowType = window::type::hamming);
 	}
 }

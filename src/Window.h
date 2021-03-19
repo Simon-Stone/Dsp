@@ -12,6 +12,11 @@ namespace dsp::window
 		general_gaussian, dpss, chebwin, exponential, tukey, taylor
 	};
 
+	template<class T>
+	std::vector<T> get_window(type type, unsigned N, bool sym = true, const std::vector<T>& parameters = {});
+
+
+
 	/// @brief Return a boxcar or rectangular window
 	///
 	/// Also known as a rectangular window or Dirichlet window, this is equivalent to no window at all.
@@ -177,7 +182,7 @@ namespace dsp::window
 	/// @param sym When true (default), generates a symmetric window, for use in filter design. When false, generates a periodic window, for use in spectral analysis.
 	/// @return The window, with the maximum value always normalized to 1
 	template<class T>
-	std::vector<T> chebwin(unsigned N, double at, bool sym = true);
+	std::vector<T> chebwin(unsigned N, T at, bool sym = true);
 
 	/// @brief Return an exponential (or Poisson) window.
 	/// @tparam T Type of returned values
@@ -187,11 +192,11 @@ namespace dsp::window
 	/// @param sym When true (default), generates a symmetric window, for use in filter design. When false, generates a periodic window, for use in spectral analysis.
 	/// @return The window, with the maximum value normalized to 1 (though the value 1 does not appear if M is even and sym is true).
 	template<class T>
-	std::vector<T> exponential(double center, unsigned N, double tau = 1.0, bool sym = true);
+	std::vector<T> exponential(T center, unsigned N, T tau = 1.0, bool sym = true);
 
 	/// @brief Alias for exponential() that provides the default value for center (which depends on N)
 	template<class T>
-	std::vector<T> exponential(unsigned N, double tau = 1.0, bool sym = true)
+	std::vector<T> exponential(unsigned N, T tau = 1.0, bool sym = true)
 	{
 		return exponential<T>((N - 1) / 2, N, tau, sym);
 	}
@@ -203,7 +208,7 @@ namespace dsp::window
 	/// @param sym When true (default), generates a symmetric window, for use in filter design. When false, generates a periodic window, for use in spectral analysis.
 	/// @return The window, with the maximum value normalized to 1 (though the value 1 does not appear if M is even and sym is true).
 	template <class T>
-	std::vector<T> tukey(unsigned N, double alpha = 0.5, bool sym = true);
+	std::vector<T> tukey(unsigned N, T alpha = 0.5, bool sym = true);
 
 
 	// TODO: taylor window https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.windows.taylor.html#scipy.signal.windows.taylor

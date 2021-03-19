@@ -1,4 +1,5 @@
 #pragma once
+#include <complex>
 #include <map>
 #include <utility>
 #include <vector>
@@ -206,6 +207,19 @@ namespace dsp
 		return xs;
 	}
 
+	/// @brief Returns the squared magnitude of a complex number in decibel
+	/// @tparam T Data type of the complex number
+	/// @param z Complex number
+	/// @return 10 * log(Re(z)^2 + Im(z)^2)
+	template <typename T>
+	T logSquaredMagnitude(std::complex<T> z)
+	{
+		auto norm_z = std::norm(z);
+		const T kEpsilon = std::numeric_limits<T>::epsilon();
+		if (norm_z < kEpsilon) { norm_z = kEpsilon; }
+		return static_cast<T>(10.0 * std::log(norm_z));
+	}
+
 	/// @brief Return modulus (which is not the same as the remainder for signed values)
 	template <typename T>
 	T mod(T x1, T x2)
@@ -227,6 +241,24 @@ namespace dsp
 	{
 		return static_cast<unsigned>(ceil(log2(n)));
 	}
+
+	/// @brief Returns the maximum number of frames to get from a signal
+	/// @param signalLength Length of the signal
+	/// @param frameLength Length of each frame
+	/// @param overlap Number of overlapping samples between two consecutive frames (cannot be negative!)
+	/// @return Maximum number of frames to split the signal into assuming zero-padding at the end.
+	unsigned maxNumFrames(unsigned signalLength, unsigned frameLength, unsigned overlap);
+
+
+	/// @brief Splits a signal into frames
+	/// @tparam T Data type of the signal's samples
+	/// @param signal Signal to split into frames (using zero-padding at the end)
+	/// @param frameLength Length of each frame
+	/// @param overlap Number of overlapping samples between two consecutive frames (cannot be negative!)
+	/// @return Vector containing the frames.
+	template<class T>
+	std::vector<std::vector<T>> signalToFrames(const std::vector<T>& signal, unsigned frameLength, unsigned overlap);
+
 	
 	namespace window
 	{

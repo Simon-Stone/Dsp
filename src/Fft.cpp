@@ -1,12 +1,15 @@
 #include "fft.h"
 
 #include <algorithm>
+#include <execution>
 
 #ifndef ZERO_DEPENDENCIES
 #include <fftw3.h>
 #endif
 
+#include "filter.h"
 #include "Signal.h"
+
 
 namespace dsp::fft
 {
@@ -32,7 +35,7 @@ namespace dsp::fft
 
 	/* Straight-forward FFT implementations (high-performance for short signals) */
 	template<class T>
-	std::vector<std::complex<T>> fft_(std::vector<std::complex<T>>& x, unsigned n, NormalizationMode mode, bool overwrite_x)
+	std::vector<std::complex<T>> fft_(const std::vector<std::complex<T>>& x, unsigned n, NormalizationMode mode)
 	{
 		if (x.empty()) return {};
 
@@ -110,7 +113,7 @@ namespace dsp::fft
 	}
 
 	template<class T>
-	std::vector<std::complex<T>> ifft_(std::vector<std::complex<T>>& x, unsigned n, NormalizationMode mode, bool overwrite_x)
+	std::vector<std::complex<T>> ifft_(const std::vector<std::complex<T>>& x, unsigned n, NormalizationMode mode)
 	{
 		if (x.empty()) return {};
 
@@ -129,13 +132,13 @@ namespace dsp::fft
 		{
 			mode = NormalizationMode::backward;
 		}
-		X = fft_(X, N, mode, overwrite_x);
+		X = fft_(X, N, mode);
 
 		return dsp::conj(X);
 	}
 
 	template<class T>
-	std::vector<std::complex<T>> rfft_(std::vector<T>& x, unsigned n, NormalizationMode mode, bool overwrite_x)
+	std::vector<std::complex<T>> rfft_(const std::vector<T>& x, unsigned n, NormalizationMode mode)
 	{
 		if (x.empty()) return {};
 
@@ -153,7 +156,7 @@ namespace dsp::fft
 			X[i].imag(in[2 * i + 1]);
 		}
 
-		X = fft_(X, N / 2, NormalizationMode::backward, overwrite_x);
+		X = fft_(X, N / 2, NormalizationMode::backward);
 		X.resize(N, { 0.0, 0.0 });
 
 		auto* out = reinterpret_cast<T*>(&X[0]);
@@ -231,7 +234,7 @@ namespace dsp::fft
 	}
 
 	template<class T>
-	std::vector<T> irfft_(std::vector<std::complex<T>>& x, unsigned n, NormalizationMode mode, bool overwrite_x)
+	std::vector<T> irfft_(const std::vector<std::complex<T>>& x, unsigned n, NormalizationMode mode)
 	{
 		if (x.empty()) return {};
 
@@ -258,7 +261,7 @@ namespace dsp::fft
 			mode = NormalizationMode::backward;
 		}
 		auto xre = dsp::real(x_in);
-		auto X = rfft_(xre, N, mode, overwrite_x);
+		auto X = rfft_(xre, N, mode);
 
 		for (unsigned i = 0; i < N; ++i)
 		{
@@ -270,26 +273,16 @@ namespace dsp::fft
 
 #ifndef ZERO_DEPENDENCIES
 	/* Wrapper functions for FFTW library functions of various precisions (high-performance for long signals) */
-	auto fftw(std::vector<std::complex<float>>& x, unsigned n, int sign, unsigned flags, NormalizationMode mode, bool overwrite_x)
+	auto fftw(const std::vector<std::complex<float>>& x, unsigned n, int sign, unsigned flags, NormalizationMode mode)
 	{
 		if (x.empty()) return std::vector<std::complex<float>>();
 
 		unsigned N = get_fft_length(x, n);
 
 		std::vector<std::complex<float>> X(N);
-		std::vector<std::complex<float>> x_copy;
-		fftwf_complex* in;
-		if (overwrite_x)
-		{
-			x.resize(N, 0.0);
-			in = reinterpret_cast<fftwf_complex*>(&x[0]);
-		}
-		else
-		{
-			x_copy = x;
-			x_copy.resize(N, 0.0);
-			in = reinterpret_cast<fftwf_complex*>(&x_copy[0]);
-		}
+		std::vector<std::complex<float>> x_copy = x;
+		x_copy.resize(N, 0.0);
+		fftwf_complex* in = reinterpret_cast<fftwf_complex*>(&x_copy[0]);
 
 		auto* out = reinterpret_cast<fftwf_complex*>(&X[0]);
 		const auto p = fftwf_plan_dft_1d(N, in, out, sign, flags);
@@ -322,26 +315,16 @@ namespace dsp::fft
 		fftwf_destroy_plan(p);
 		return X;
 	}
-	auto fftw(std::vector<std::complex<double>>& x, unsigned n, int sign, unsigned flags, NormalizationMode mode, bool overwrite_x)
+	auto fftw(const std::vector<std::complex<double>>& x, unsigned n, int sign, unsigned flags, NormalizationMode mode)
 	{
 		if (x.empty()) return std::vector<std::complex<double>>();
 
 		unsigned N = get_fft_length(x, n);
 
 		std::vector<std::complex<double>> X(N);
-		std::vector<std::complex<double>> x_copy;
-		fftw_complex* in;
-		if (overwrite_x)
-		{
-			x.resize(N, 0.0);
-			in = reinterpret_cast<fftw_complex*>(&x[0]);
-		}
-		else
-		{
-			x_copy = x;
-			x_copy.resize(N, 0.0);
-			in = reinterpret_cast<fftw_complex*>(&x_copy[0]);
-		}
+		std::vector<std::complex<double>> x_copy = x;
+		x_copy.resize(N, 0.0);
+		fftw_complex* in = reinterpret_cast<fftw_complex*>(&x_copy[0]);
 
 		auto* out = reinterpret_cast<fftw_complex*>(&X[0]);
 		const auto p = fftw_plan_dft_1d(N, in, out, sign, flags);
@@ -374,26 +357,17 @@ namespace dsp::fft
 		fftw_destroy_plan(p);
 		return X;
 	}
-	auto fftw(std::vector<std::complex<long double>>& x, unsigned n, int sign, unsigned flags, NormalizationMode mode, bool overwrite_x)
+	auto fftw(const std::vector<std::complex<long double>>& x, unsigned n, int sign, unsigned flags, NormalizationMode mode)
 	{
 		if (x.empty()) return std::vector<std::complex<long double>>();
 
 		unsigned N = get_fft_length(x, n);
 
 		std::vector<std::complex<long double>> X(N);
-		std::vector<std::complex<long double>> x_copy;
-		fftwl_complex* in;
-		if (overwrite_x)
-		{
-			x.resize(N, 0.0);
-			in = reinterpret_cast<fftwl_complex*>(&x[0]);
-		}
-		else
-		{
-			x_copy = x;
-			x_copy.resize(N, 0.0);
-			in = reinterpret_cast<fftwl_complex*>(&x_copy[0]);
-		}
+		std::vector<std::complex<long double>> x_copy = x;
+		x_copy.resize(N, 0.0);
+		fftwl_complex* in = reinterpret_cast<fftwl_complex*>(&x_copy[0]);
+
 
 		auto* out = reinterpret_cast<fftwl_complex*>(&X[0]);
 		const auto p = fftwl_plan_dft_1d(N, in, out, sign, flags);
@@ -426,26 +400,17 @@ namespace dsp::fft
 		fftwl_destroy_plan(p);
 		return X;
 	}
-	auto rfftw(std::vector<double>& x, unsigned n, unsigned flags, NormalizationMode mode, bool overwrite_x)
+	auto rfftw(const std::vector<double>& x, unsigned n, unsigned flags, NormalizationMode mode)
 	{
 		if (x.empty()) return std::vector<std::complex<double>>();
 
 		unsigned N = get_fft_length(x, n);
 
 		std::vector<std::complex<double>> X(static_cast<size_t>(N / 2 + 1));
-		std::vector<double> x_copy;
-		double* in;
-		if (overwrite_x)
-		{
-			x.resize(N, 0.0);
-			in = &x[0];
-		}
-		else
-		{
-			x_copy = x;
-			x_copy.resize(N, 0.0);
-			in = &x_copy[0];
-		}
+		std::vector<double> x_copy = x;
+		x_copy.resize(N, 0.0);
+		double* in = &x_copy[0];
+
 
 		auto* out = reinterpret_cast<fftw_complex*>(&X[0]);
 		auto* p = fftw_plan_dft_r2c_1d(N, in, out, flags);
@@ -471,26 +436,17 @@ namespace dsp::fft
 		fftw_destroy_plan(p);
 		return X;
 	}
-	auto rfftw(std::vector<float>& x, unsigned n, unsigned flags, NormalizationMode mode, bool overwrite_x)
+	auto rfftw(const std::vector<float>& x, unsigned n, unsigned flags, NormalizationMode mode)
 	{
 		if (x.empty()) return std::vector<std::complex<float>>();
 
 		unsigned N = get_fft_length(x, n);
 
 		std::vector<std::complex<float>> X(N);
-		std::vector<float> x_copy;
-		float* in;
-		if (overwrite_x)
-		{
-			x.resize(N, 0.0);
-			in = &x[0];
-		}
-		else
-		{
-			x_copy = x;
-			x_copy.resize(N, 0.0);
-			in = &x_copy[0];
-		}
+		std::vector<float> x_copy = x;
+		x_copy.resize(N, 0.0);
+		float* in = &x_copy[0];
+
 
 		auto* out = reinterpret_cast<fftwf_complex*>(&X[0]);
 		const auto p = fftwf_plan_dft_r2c_1d(N, in, out, flags);
@@ -518,26 +474,16 @@ namespace dsp::fft
 		fftwf_destroy_plan(p);
 		return X;
 	}
-	auto rfftw(std::vector<long double>& x, unsigned n, unsigned flags, NormalizationMode mode, bool overwrite_x)
+	auto rfftw(const std::vector<long double>& x, unsigned n, unsigned flags, NormalizationMode mode)
 	{
 		if (x.empty()) return std::vector<std::complex<long double>>();
 
 		unsigned N = get_fft_length(x, n);
 
 		std::vector<std::complex<long double>> X(N);
-		std::vector<long double> x_copy;
-		long double* in;
-		if (overwrite_x)
-		{
-			x.resize(N, 0.0);
-			in = &x[0];
-		}
-		else
-		{
-			x_copy = x;
-			x_copy.resize(N, 0.0);
-			in = &x_copy[0];
-		}
+		std::vector<long double> x_copy = x;
+		x_copy.resize(N, 0.0);
+		long double* in = &x_copy[0];
 
 		auto* out = reinterpret_cast<fftwl_complex*>(&X[0]);
 		const auto p = fftwl_plan_dft_r2c_1d(N, in, out, flags);
@@ -565,26 +511,16 @@ namespace dsp::fft
 		fftwl_destroy_plan(p);
 		return X;
 	}
-	auto irfftw(std::vector<std::complex<float>>& X, unsigned n, unsigned flags, NormalizationMode mode, bool overwrite_X)
+	auto irfftw(const std::vector<std::complex<float>>& X, unsigned n, unsigned flags, NormalizationMode mode)
 	{
 		if (X.empty()) return std::vector<float>();
 
 		unsigned N = get_fft_length(X, n);
 
 		std::vector<float> x(N);
-		std::vector<std::complex<float>> X_copy;
-		fftwf_complex* in;
-		if (overwrite_X)
-		{
-			X.resize(N, 0.0);
-			in = reinterpret_cast<fftwf_complex*>(&X[0]);
-		}
-		else
-		{
-			X_copy = X;
-			X_copy.resize(N, 0.0);
-			in = reinterpret_cast<fftwf_complex*>(&X_copy[0]);
-		}
+		std::vector<std::complex<float>> X_copy = X;
+		X_copy.resize(N, 0.0);
+		fftwf_complex* in = reinterpret_cast<fftwf_complex*>(&X_copy[0]);
 
 		auto* out = &x[0];
 		const auto p = fftwf_plan_dft_c2r_1d(N, in, out, flags);
@@ -609,26 +545,17 @@ namespace dsp::fft
 		fftwf_destroy_plan(p);
 		return x;
 	}
-	auto irfftw(std::vector<std::complex<double>>& X, unsigned n, unsigned flags, NormalizationMode mode, bool overwrite_X)
+	auto irfftw(const std::vector<std::complex<double>>& X, unsigned n, unsigned flags, NormalizationMode mode)
 	{
 		if (X.empty()) return std::vector<double>();
 
 		unsigned N = get_fft_length(X, n);
 
 		std::vector<double> x(N);
-		std::vector<std::complex<double>> X_copy;
-		fftw_complex* in;
-		if (overwrite_X)
-		{
-			X.resize(N, 0.0);
-			in = reinterpret_cast<fftw_complex*>(&X[0]);
-		}
-		else
-		{
-			X_copy = X;
-			X_copy.resize(N, 0.0);
-			in = reinterpret_cast<fftw_complex*>(&X_copy[0]);
-		}
+		std::vector<std::complex<double>> X_copy = X;
+		X_copy.resize(N, 0.0);
+		fftw_complex* in = reinterpret_cast<fftw_complex*>(&X_copy[0]);
+
 
 		auto* out = &x[0];
 		const auto p = fftw_plan_dft_c2r_1d(N, in, out, flags);
@@ -653,26 +580,17 @@ namespace dsp::fft
 		fftw_destroy_plan(p);
 		return x;
 	}
-	auto irfftw(std::vector<std::complex<long double>>& X, unsigned n, unsigned flags, NormalizationMode mode, bool overwrite_X)
+	auto irfftw(const std::vector<std::complex<long double>>& X, unsigned n, unsigned flags, NormalizationMode mode)
 	{
 		if (X.empty()) return std::vector<long double>();
 
 		unsigned N = get_fft_length(X, n);
 
 		std::vector<long double> x(N);
-		std::vector<std::complex<long double>> X_copy;
-		fftwl_complex* in;
-		if (overwrite_X)
-		{
-			X.resize(N, 0.0);
-			in = reinterpret_cast<fftwl_complex*>(&X[0]);
-		}
-		else
-		{
-			X_copy = X;
-			X_copy.resize(N, 0.0);
-			in = reinterpret_cast<fftwl_complex*>(&X_copy[0]);
-		}
+		std::vector<std::complex<long double>> X_copy = X;
+		X_copy.resize(N, 0.0);
+		fftwl_complex* in = reinterpret_cast<fftwl_complex*>(&X_copy[0]);
+
 
 		auto* out = &x[0];
 		const auto p = fftwl_plan_dft_c2r_1d(N, in, out, flags);
@@ -704,7 +622,7 @@ namespace dsp::fft
 
 
 template<class T>
-std::vector<std::complex<T>> dsp::fft::cfft(std::vector<std::complex<T>>& x, unsigned n, dsp::fft::NormalizationMode mode, bool overwrite_x, backend backend)
+std::vector<std::complex<T>> dsp::fft::cfft(const std::vector<std::complex<T>>& x, unsigned n, dsp::fft::NormalizationMode mode, backend backend)
 {
 	switch (backend)
 	{
@@ -713,15 +631,15 @@ std::vector<std::complex<T>> dsp::fft::cfft(std::vector<std::complex<T>>& x, uns
 #ifndef ZERO_DEPENDENCIES
 		if (n > 100000)
 		{
-			return fftw(x, n, FFTW_FORWARD, FFTW_ESTIMATE, mode, overwrite_x);
+			return fftw(x, n, FFTW_FORWARD, FFTW_ESTIMATE, mode);
 		}
 #endif
-		return fft_(x, n, mode, overwrite_x);
+		return fft_(x, n, mode);
 	case backend::simple:
-		return fft_(x, n, mode, overwrite_x);
+		return fft_(x, n, mode);
 	case backend::fftw:
 #ifndef ZERO_DEPENDENCIES
-		return fftw(x, n, FFTW_FORWARD, FFTW_ESTIMATE, mode, overwrite_x);
+		return fftw(x, n, FFTW_FORWARD, FFTW_ESTIMATE, mode);
 #else
 		throw std::runtime_error("Library built without FFTW support!");
 #endif
@@ -731,7 +649,7 @@ std::vector<std::complex<T>> dsp::fft::cfft(std::vector<std::complex<T>>& x, uns
 }
 
 template <class T>
-std::vector<std::complex<T>> dsp::fft::icfft(std::vector<std::complex<T>>& X, unsigned n, NormalizationMode mode, bool overwrite_X, backend backend)
+std::vector<std::complex<T>> dsp::fft::icfft(const std::vector<std::complex<T>>& X, unsigned n, NormalizationMode mode, backend backend)
 {
 	switch (backend)
 	{
@@ -739,15 +657,15 @@ std::vector<std::complex<T>> dsp::fft::icfft(std::vector<std::complex<T>>& X, un
 #ifndef ZERO_DEPENDENCIES
 		if (n > 100000)
 		{
-			return fftw(X, n, FFTW_BACKWARD, FFTW_ESTIMATE, mode, overwrite_X);
+			return fftw(X, n, FFTW_BACKWARD, FFTW_ESTIMATE, mode);
 		}
 #endif
-		return ifft_(X, n, mode, overwrite_X);
+		return ifft_(X, n, mode);
 	case backend::simple:
-		return ifft_(X, n, mode, overwrite_X);
+		return ifft_(X, n, mode);
 	case backend::fftw:
 #ifndef ZERO_DEPENDENCIES
-		return fftw(X, n, FFTW_BACKWARD, FFTW_ESTIMATE, mode, overwrite_X);
+		return fftw(X, n, FFTW_BACKWARD, FFTW_ESTIMATE, mode);
 #else
 		throw std::runtime_error("Library built without FFTW support!");
 #endif
@@ -757,7 +675,7 @@ std::vector<std::complex<T>> dsp::fft::icfft(std::vector<std::complex<T>>& X, un
 }
 
 template <class T>
-std::vector<std::complex<T>> dsp::fft::rfft(std::vector<T>& x, unsigned n, NormalizationMode mode, bool overwrite_x, backend backend)
+std::vector<std::complex<T>> dsp::fft::rfft(const std::vector<T>& x, unsigned n, NormalizationMode mode, backend backend)
 {
 	switch (backend)
 	{
@@ -765,15 +683,15 @@ std::vector<std::complex<T>> dsp::fft::rfft(std::vector<T>& x, unsigned n, Norma
 #ifndef ZERO_DEPENDENCIES
 		if (n > 100000)
 		{
-			return rfftw(x, n, FFTW_ESTIMATE, mode, overwrite_x);
+			return rfftw(x, n, FFTW_ESTIMATE, mode);
 		}
 #endif
-		return rfft_(x, n, mode, overwrite_x);
+		return rfft_(x, n, mode);
 	case backend::simple:
-		return rfft_(x, n, mode, overwrite_x);
+		return rfft_(x, n, mode);
 	case backend::fftw:
 #ifndef ZERO_DEPENDENCIES
-		return rfftw(x, n, FFTW_ESTIMATE, mode, overwrite_x);
+		return rfftw(x, n, FFTW_ESTIMATE, mode);
 #else
 		throw std::runtime_error("Library built without FFTW support!");
 #endif
@@ -783,7 +701,7 @@ std::vector<std::complex<T>> dsp::fft::rfft(std::vector<T>& x, unsigned n, Norma
 }
 
 template <class T>
-std::vector<T> dsp::fft::irfft(std::vector<std::complex<T>>& X, unsigned n, NormalizationMode mode, bool overwrite_X, backend backend)
+std::vector<T> dsp::fft::irfft(const std::vector<std::complex<T>>& X, unsigned n, NormalizationMode mode, backend backend)
 {
 	switch (backend)
 	{
@@ -791,21 +709,37 @@ std::vector<T> dsp::fft::irfft(std::vector<std::complex<T>>& X, unsigned n, Norm
 #ifndef ZERO_DEPENDENCIES
 		if (n > 100000)
 		{
-			return irfftw(X, n, FFTW_ESTIMATE, mode, overwrite_X);
+			return irfftw(X, n, FFTW_ESTIMATE, mode);
 		}
 #endif
-		return irfft_(X, n, mode, overwrite_X);
+		return irfft_(X, n, mode);
 	case backend::simple:
-		return irfft_(X, n, mode, overwrite_X);
+		return irfft_(X, n, mode);
 	case backend::fftw:
 #ifndef ZERO_DEPENDENCIES
-		return irfftw(X, n, FFTW_ESTIMATE, mode, overwrite_X);
+		return irfftw(X, n, FFTW_ESTIMATE, mode);
 #else
 		throw std::runtime_error("Library built without FFTW support!");
 #endif
 	default:
 		throw std::runtime_error("Unknown backend selected!");
 	}
+}
+
+template <class T>
+std::vector<T> dsp::fft::logSquaredMagnitudeSpectrum(const std::vector<T>& signal, int N_fft,
+	double relativeCutoff)
+{
+	auto spectrum = rfft(signal, 2 << nextpow2(N_fft));
+
+	const int finalFrequencyBinIdx = static_cast<const int>(relativeCutoff * spectrum.size());
+
+	auto logSquaredSpectrum = std::vector<T>(finalFrequencyBinIdx);
+
+
+	std::transform(std::execution::par_unseq, spectrum.begin(), spectrum.begin() + finalFrequencyBinIdx, logSquaredSpectrum.begin(), &logSquaredMagnitude<T>);
+
+	return logSquaredSpectrum;
 }
 
 template <class T>
@@ -823,7 +757,7 @@ std::vector<T> dsp::fft::fftconvolution(const std::vector<T>& volume, const std:
 	std::vector<T> result = ifft(X, static_cast<unsigned>(size));
 
 	auto fullSize = volume.size() + kernel.size() - 1;
-	
+
 	switch (mode)
 	{
 	case convolution_mode::full:
@@ -838,23 +772,74 @@ std::vector<T> dsp::fft::fftconvolution(const std::vector<T>& volume, const std:
 	}
 }
 
+template <class T>
+std::vector<std::vector<T>> dsp::fft::spectrogram(const std::vector<T>& signal, unsigned frameLength,
+	double overlap_pct, int samplingRate, double relativeCutoff, window::type windowType)
+{
+	std::vector<std::vector<T>> spectrogram;
+
+	// Algorithm to obtain the spectrogram is:
+	// 0. Pre-emphasize the signal
+	// 1. Create a number of overlapping frames from the signal
+	// 2. Window each frame
+	// 3. Calculate the log-squared-spectrum of each frame
+	// -> Final result is a matrix of real values, each column representing one frame's log-squared magnitude spectrum
+
+	// Pre-emphasis
+	std::vector<T> b{ 1.0, static_cast<T>(0.95) };
+	std::vector<T> a{ 1.0 };
+	auto preemph_signal = filter::filter(b, a, signal);
+
+	// Split into frames
+	auto frames = signalToFrames(signal, frameLength, static_cast<unsigned>(overlap_pct * frameLength));
+	spectrogram.resize(frames.size());
+
+	// Window each frame
+	auto window = window::get_window<T>(windowType, frameLength);
+	std::transform(std::execution::par_unseq,
+		frames.begin(), frames.end(),
+		frames.begin(),
+		[window](auto& frame)
+		{
+			std::transform(frame.begin(), frame.end(), window.begin(), frame.begin(), std::multiplies<>());
+			return frame;
+		});
+
+	// Calculate squared magnitude spectrum in dB
+	const auto nFft = 2 << nextpow2(frameLength);
+	std::transform(std::execution::par_unseq,
+		frames.begin(), frames.end(),
+		spectrogram.begin(),
+		[=](auto frame) {return logSquaredMagnitudeSpectrum<T>(frame, nFft, relativeCutoff); });
+
+	return spectrogram;
+
+}
+
 // Explicit template instantiation
-template std::vector<std::complex<float>> dsp::fft::cfft(std::vector<std::complex<float>>& x, unsigned n, dsp::fft::NormalizationMode mode, bool overwrite_x, backend backend);
-template std::vector<std::complex<double>> dsp::fft::cfft(std::vector<std::complex<double>>& x, unsigned n, dsp::fft::NormalizationMode mode, bool overwrite_x, backend backend);
-template std::vector<std::complex<long double>> dsp::fft::cfft(std::vector<std::complex<long double>>& x, unsigned n, dsp::fft::NormalizationMode mode, bool overwrite_x, backend backend);
+template std::vector<std::complex<float>> dsp::fft::cfft(const std::vector<std::complex<float>>& x, unsigned n, dsp::fft::NormalizationMode mode, backend backend);
+template std::vector<std::complex<double>> dsp::fft::cfft(const std::vector<std::complex<double>>& x, unsigned n, dsp::fft::NormalizationMode mode, backend backend);
+template std::vector<std::complex<long double>> dsp::fft::cfft(const std::vector<std::complex<long double>>& x, unsigned n, dsp::fft::NormalizationMode mode, backend backend);
 
-template std::vector<std::complex<float>> dsp::fft::icfft(std::vector<std::complex<float>>& X, unsigned n, dsp::fft::NormalizationMode mode, bool overwrite_x, backend backend);
-template std::vector<std::complex<double>> dsp::fft::icfft(std::vector<std::complex<double>>& X, unsigned n, dsp::fft::NormalizationMode mode, bool overwrite_x, backend backend);
-template std::vector<std::complex<long double>> dsp::fft::icfft(std::vector<std::complex<long double>>& X, unsigned n, dsp::fft::NormalizationMode mode, bool overwrite_x, backend backend);
+template std::vector<std::complex<float>> dsp::fft::icfft(const std::vector<std::complex<float>>& X, unsigned n, dsp::fft::NormalizationMode mode, backend backend);
+template std::vector<std::complex<double>> dsp::fft::icfft(const std::vector<std::complex<double>>& X, unsigned n, dsp::fft::NormalizationMode mode, backend backend);
+template std::vector<std::complex<long double>> dsp::fft::icfft(const std::vector<std::complex<long double>>& X, unsigned n, dsp::fft::NormalizationMode mode, backend backend);
 
-template std::vector<std::complex<float>> dsp::fft::rfft(std::vector<float>& x, unsigned n, dsp::fft::NormalizationMode mode, bool overwrite_x, backend backend);
-template std::vector<std::complex<double>> dsp::fft::rfft(std::vector<double>& x, unsigned n, dsp::fft::NormalizationMode mode, bool overwrite_x, backend backend);
-template std::vector<std::complex<long double>> dsp::fft::rfft(std::vector<long double>& x, unsigned n, dsp::fft::NormalizationMode mode, bool overwrite_x, backend backend);
+template std::vector<std::complex<float>> dsp::fft::rfft(const std::vector<float>& x, unsigned n, dsp::fft::NormalizationMode mode, backend backend);
+template std::vector<std::complex<double>> dsp::fft::rfft(const std::vector<double>& x, unsigned n, dsp::fft::NormalizationMode mode, backend backend);
+template std::vector<std::complex<long double>> dsp::fft::rfft(const std::vector<long double>& x, unsigned n, dsp::fft::NormalizationMode mode, backend backend);
 
-template std::vector<float> dsp::fft::irfft(std::vector<std::complex<float>>& X, unsigned n, dsp::fft::NormalizationMode mode, bool overwrite_X, backend backend);
-template std::vector<double> dsp::fft::irfft(std::vector<std::complex<double>>& X, unsigned n, dsp::fft::NormalizationMode mode, bool overwrite_X, backend backend);
-template std::vector<long double> dsp::fft::irfft(std::vector<std::complex<long double>>& X, unsigned n, dsp::fft::NormalizationMode mode, bool overwrite_X, backend backend);
+template std::vector<float> dsp::fft::irfft(const std::vector<std::complex<float>>& X, unsigned n, dsp::fft::NormalizationMode mode, backend backend);
+template std::vector<double> dsp::fft::irfft(const std::vector<std::complex<double>>& X, unsigned n, dsp::fft::NormalizationMode mode, backend backend);
+template std::vector<long double> dsp::fft::irfft(const std::vector<std::complex<long double>>& X, unsigned n, dsp::fft::NormalizationMode mode, backend backend);
 
 template std::vector<float> dsp::fft::fftconvolution(const std::vector<float>& volume, const std::vector<float>& kernel, convolution_mode mode);
 template std::vector<double> dsp::fft::fftconvolution(const std::vector<double>& volume, const std::vector<double>& kernel, convolution_mode mode);
 template std::vector<long double> dsp::fft::fftconvolution(const std::vector<long double>& volume, const std::vector<long double>& kernel, convolution_mode mode);
+
+template std::vector<std::vector<float>> dsp::fft::spectrogram(const std::vector<float>& signal, unsigned frameLength,
+	double overlap_pct, int samplingRate, double relativeCutoff, window::type windowType);
+template std::vector<std::vector<double>> dsp::fft::spectrogram(const std::vector<double>& signal, unsigned frameLength,
+	double overlap_pct, int samplingRate, double relativeCutoff, window::type windowType);
+template std::vector<std::vector<long double>> dsp::fft::spectrogram(const std::vector<long double>& signal, unsigned frameLength,
+	double overlap_pct, int samplingRate, double relativeCutoff, window::type windowType);

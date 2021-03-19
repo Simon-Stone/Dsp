@@ -12,6 +12,75 @@
 namespace dsp::window
 {
 	template<class T>
+	std::vector<T> get_window(type type, unsigned N, bool sym, const std::vector<T>& parameters)
+	{
+		switch (type)
+		{
+		case type::boxcar:
+			return boxcar<T>(N, sym);
+		case type::triang:
+			return triang<T>(N, sym);
+		case type::blackman:
+			return blackman<T>(N, sym);
+		case type::hamming:
+			return hamming<T>(N, sym);
+		case type::hann:
+			return hann<T>(N, sym);
+		case type::bartlett:
+			return bartlett<T>(N, sym);
+		case type::flattop:
+			return flattop<T>(N, sym);
+		case type::parzen:
+			return parzen<T>(N, sym);
+		case type::bohman:
+			return bohman<T>(N, sym);
+		case type::blackmanharris:
+			return blackmanharris<T>(N, sym);
+		case type::nuttal:
+			return nuttall<T>(N, sym);
+		case type::barthann:
+			return barthann<T>(N, sym);
+		case type::kaiser:
+			return kaiser<T>(N, parameters[0], sym);
+		case type::gaussian:
+			return gaussian<T>(N, parameters[0], sym);
+		case type::general_gaussian:
+			return general_gaussian<T>(N, parameters[0], parameters[1], sym);
+		case type::dpss:
+			throw std::runtime_error("DPSS window not yet implemented!");
+		case type::chebwin:
+			return chebwin<T>(N, parameters[0], sym);
+		case type::exponential:
+		{
+			T tau = 1.0;
+			T center = static_cast<T>((N - 1) / 2);
+			if (!parameters.empty())
+			{
+				tau = parameters[0];
+			}
+			if (parameters.size() > 1)
+			{
+				center = parameters[1];
+			}
+			return exponential<T>(center, N, tau, sym);
+		}
+		case type::tukey:
+		{
+			T alpha = 0.5;
+			if (!parameters.empty())
+			{
+				alpha = parameters[0];
+			}
+			return tukey<T>(N, alpha, sym);
+		}
+		case type::taylor:
+			throw std::runtime_error("Taylor window not yet implemented!");
+		default:
+			throw std::runtime_error("Unknown window type!");
+		}
+	}
+
+	template<class T>
 	std::vector<T> boxcar(unsigned N, bool sym)
 	{
 		if (N <= 0) return std::vector<T>();
@@ -297,7 +366,7 @@ namespace dsp::window
 	}
 
 	template <class T>
-	std::vector<T> chebwin(unsigned N, double at, bool sym)
+	std::vector<T> chebwin(unsigned N, T at, bool sym)
 	{
 		if (std::abs(at) < 45)
 		{
@@ -325,19 +394,19 @@ namespace dsp::window
 			{
 				if (x > 1)
 				{
-					return std::cosh(order * std::acosh(x));
+					return static_cast<T>(std::cosh(order * std::acosh(x)));
 				}
 				if (x < -1)
 				{
-					return (2 * (M % 2) - 1) * std::cosh(order * std::acosh(-x));
+					return static_cast<T>((2 * (M % 2) - 1) * std::cosh(order * std::acosh(-x)));
 				}
-				if (std::abs(x <= 1))
+				if (std::abs(x) <= 1)
 				{
-					return std::cos(order * std::acos(x));
+					return static_cast<T>(std::cos(order * std::acos(x)));
 				}
 				else
 				{
-					return 0.0;
+					return static_cast<T>(0.0);
 				}
 			}
 		);
@@ -360,12 +429,12 @@ namespace dsp::window
 
 			for (auto& c : p)
 			{
-				q.emplace_back(c, 0.0);
+				q.emplace_back(c, static_cast<T>(0.0));
 			}
 
 			for (unsigned k = 0; k < M; ++k)
 			{
-				q[k] *= std::exp(std::complex<T>(0.0, 1.0 * pi / M * k));
+				q[k] *= std::exp(std::complex<T>(0.0, static_cast<T>(pi) / M * k));
 				auto Q = fft::cfft(q);
 				std::transform(Q.begin(), Q.end(), w.begin(), [](auto Q) {return Q.real(); });
 				n = M / 2 + 1;
@@ -379,7 +448,7 @@ namespace dsp::window
 	}
 
 	template <class T>
-	std::vector<T> exponential(double center, unsigned N, double tau, bool sym)
+	std::vector<T> exponential(T center, unsigned N, T tau, bool sym)
 	{
 		if (N <= 0) return {};
 
@@ -390,7 +459,7 @@ namespace dsp::window
 
 		auto [M, needs_trunc] = utilities::extend(N, sym);
 
-		auto n = arange<T>(0, M);
+		auto n = arange<T>(0, static_cast<T>(M));
 		std::vector<T> w;
 		w.reserve(M);
 		std::transform(n.begin(), n.end(), std::back_inserter(w),
@@ -403,7 +472,7 @@ namespace dsp::window
 	}
 
 	template <class T>
-	std::vector<T> tukey(unsigned N, double alpha, bool sym)
+	std::vector<T> tukey(unsigned N, T alpha, bool sym)
 	{
 		if (N <= 0 || alpha < 0) return {};
 
@@ -441,6 +510,11 @@ namespace dsp::window
 	}
 
 	// Explicit template instantiations
+
+	template std::vector<float> get_window(type type, unsigned N, bool sym, const std::vector<float>& parameters);
+	template std::vector<double> get_window(type type, unsigned N, bool sym, const std::vector<double>& parameters);
+	template std::vector<long double> get_window(type type, unsigned N, bool sym, const std::vector<long double>& parameters);
+	
 	template std::vector<float> boxcar(unsigned N, bool sym);
 	template std::vector<double> boxcar(unsigned N, bool sym);
 	template std::vector<long double> boxcar(unsigned N, bool sym);
@@ -494,15 +568,15 @@ namespace dsp::window
 	template std::vector<float> general_gaussian(unsigned N, double p, double std, bool sym);
 	template std::vector<double> general_gaussian(unsigned N, double p, double std, bool sym);
 	template std::vector<long double> general_gaussian(unsigned N, double p, double std, bool sym);
-	//template std::vector<float> chebwin(unsigned N, double at, bool sym);
+	template std::vector<float> chebwin(unsigned N, float at, bool sym);
 	template std::vector<double> chebwin(unsigned N, double at, bool sym);
-	//template std::vector<long double> chebwin(unsigned N, double at, bool sym);
-	//template std::vector<float> exponential(double center, unsigned N, double tau, bool sym);
+	template std::vector<long double> chebwin(unsigned N, long double at, bool sym);
+	template std::vector<float> exponential(float center, unsigned N, float tau, bool sym);
 	template std::vector<double> exponential(double center, unsigned N, double tau, bool sym);
-	//template std::vector<long double> exponential(double center, unsigned N, double tau, bool sym);
+	template std::vector<long double> exponential(long double center, unsigned N, long double tau, bool sym);
 
-	template std::vector<float> tukey(unsigned N, double alpha, bool sym);
+	template std::vector<float> tukey(unsigned N, float alpha, bool sym);
 	template std::vector<double> tukey(unsigned N, double alpha, bool sym);
-	template std::vector<long double> tukey(unsigned N, double alpha, bool sym);
+	template std::vector<long double> tukey(unsigned N, long double alpha, bool sym);
 }
 
