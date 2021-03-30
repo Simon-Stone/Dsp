@@ -15,8 +15,6 @@ namespace dsp::window
 	template<class T>
 	std::vector<T> get_window(type type, unsigned N, bool sym = true, const std::vector<T>& parameters = {});
 
-
-
 	/// @brief Return a boxcar or rectangular window
 	///
 	/// Also known as a rectangular window or Dirichlet window, this is equivalent to no window at all.

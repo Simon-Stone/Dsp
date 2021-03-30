@@ -73,7 +73,6 @@ namespace dsp
 		return concatenated_vector;
 	}
 
-
 	/* Convolutions and correlations */
 
 	enum class convolution_mode { full, valid, same };
