@@ -1,5 +1,7 @@
 #pragma once
 
+#include <map>
+#include <string>
 #include <vector>
 
 /// @brief Window functions
@@ -11,6 +13,71 @@ namespace dsp::window
 		parzen, bohman, blackmanharris, nuttal, barthann, kaiser, gaussian,
 		general_gaussian, dpss, chebwin, exponential, tukey, taylor
 	};
+
+	/// @brief Returns a string representing a window type
+	/// @param t The window type
+	/// @return A string representing the window type
+	inline std::string type2string(type t)
+	{
+		static std::map<type, std::string> t2s
+		{
+			{type::boxcar, "Boxcar"},
+			{type::triang, "Triangle"},
+			{type::blackman, "Blackman"},
+			{type::hamming, "Hamming"},
+			{type::hann, "Hann"},
+			{type::bartlett, "Bartlett"},
+			{type::flattop, "Flat Top"},
+			{type::parzen, "Parzen"},
+			{type::bohman, "Bohman"},
+			{type::blackmanharris, "Blackman-Harris"},
+			{type::nuttal, "Nuttal"},
+			{type::barthann, "Bartlett-Hann"},
+			{type::kaiser, "Kaiser"},
+			{type::gaussian, "Gaussian"},
+			{type::general_gaussian, "General Gaussian"},
+			{type::dpss, "DPSS"},
+			{type::chebwin, "Dolph-Chebyshev"},
+			{type::exponential, "Exponential"},
+			{type::tukey, "Tukey"},
+			{type::taylor, "Taylor"},
+		};
+
+		return t2s.at(t);
+	}
+
+	/// @brief Returns the window type corresponding to a string representation
+	/// @param s String containing the window name
+	/// @return Corresponding window type
+	inline type string2type(std::string s)
+	{
+		static std::map<std::string, type> s2t
+		{
+			{"Boxcar", type::boxcar},
+			{"Triangle", type::triang},
+			{"Blackman", type::blackman},
+			{"Hamming", type::hamming},
+			{"Hann", type::hann},
+			{"Bartlett", type::bartlett},
+			{"Flat Top", type::flattop},
+			{"Parzen", type::parzen},
+			{"Bohman", type::bohman},
+			{"Blackman-Harris", type::blackmanharris},
+			{"Nuttal", type::nuttal},
+			{"Bartlett-Hann", type::barthann},
+			{"Kaiser", type::kaiser},
+			{"Gaussian", type::gaussian},
+			{"General Gaussian", type::general_gaussian},
+			{"DPSS", type::dpss},
+			{"Dolph-Chebyshev", type::chebwin},
+			{"Exponential", type::exponential},
+			{"Tukey", type::tukey},
+			{"Taylor", type::taylor},
+		};
+
+		return s2t.at(s);
+	}
+	
 
 	template<class T>
 	std::vector<T> get_window(type type, unsigned N, bool sym = true, const std::vector<T>& parameters = {});
