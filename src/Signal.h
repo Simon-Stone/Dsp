@@ -159,7 +159,7 @@ namespace dsp
 		const_reference& operator[](size_type pos) const;
 		// More operators are defined as non-member functions below		
 
-	private:
+	protected:
 		unsigned samplingRate_Hz_{ 0 };
 		std::vector<T> samples_;  //!< A vector holding the actual samples		
 	};
