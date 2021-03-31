@@ -156,7 +156,7 @@ namespace dsp
 		Signal& operator=(const Signal& other);
 		Signal& operator=(Signal&& other) noexcept;
 		virtual reference& operator[](size_type pos);
-		virtual const_reference& operator[](size_type pos) const;
+		virtual value_type operator[](size_type pos) const;
 		// More operators are defined as non-member functions below		
 
 	protected:

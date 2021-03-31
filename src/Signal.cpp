@@ -406,7 +406,7 @@ typename dsp::Signal<T>::reference& dsp::Signal<T>::operator[](size_type pos)
 }
 
 template <class T>
-typename dsp::Signal<T>::const_reference& dsp::Signal<T>::operator[](size_type pos) const
+typename dsp::Signal<T>::value_type dsp::Signal<T>::operator[](size_type pos) const
 {
 	return samples_[pos];
 }
