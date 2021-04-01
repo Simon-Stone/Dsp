@@ -315,7 +315,7 @@ const T& dsp::Signal<T>::at(size_type pos) const
 }
 
 template <class T>
-typename dsp::Signal<T>::value_type dsp::Signal<T>::getValue(size_type pos)
+typename dsp::Signal<T>::value_type dsp::Signal<T>::getValue(size_type pos) const
 {
 	return samples_[pos];
 }

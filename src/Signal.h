@@ -130,7 +130,7 @@ namespace dsp
 
 		// This method is provided to allow manipulations of the sample value before
 		// returning it (e.g. calibrating it) in derived classes
-		virtual value_type getValue(size_type pos);		
+		virtual value_type getValue(size_type pos) const;		
 
 		reference front();
 		const T& front() const;
