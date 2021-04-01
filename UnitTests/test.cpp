@@ -17,6 +17,15 @@ struct DspTest : ::testing::Test
 
 };
 
+TEST_F(DspTest, SignalOperations)
+{
+	auto x = dsp::signals::sin<double>(100, 0.02, 8000) * 3.0;
+	auto y = 2.0 * dsp::signals::sin<double>(100, 0.02, 8000);
+
+	std::cout << x << std::endl;
+	std::cout << y << std::endl;
+}
+
 TEST_F(DspTest, ConvolutionTest)
 {
 	auto x = dsp::signals::sin<double>(100, 0.02, 8000).getSamples();

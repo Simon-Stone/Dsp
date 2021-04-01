@@ -310,7 +310,7 @@ namespace dsp
 
 	// Symmetric arithmetic operators
 	template<class T>
-	Signal<T> operator+(Signal<T>& lhs, const Signal<T>& rhs)
+	Signal<T> operator+(Signal<T> lhs, const Signal<T>& rhs)
 	{
 		lhs += rhs;
 
@@ -318,7 +318,7 @@ namespace dsp
 	}
 
 	template<class T>
-	Signal<T> operator+(Signal<T>& lhs, const std::vector<T>& rhs)
+	Signal<T> operator+(Signal<T> lhs, const std::vector<T>& rhs)
 	{
 		lhs += rhs;
 
@@ -326,15 +326,31 @@ namespace dsp
 	}
 
 	template<class T>
-	Signal<T> operator+(Signal<T>& lhs, typename Signal<T>::const_reference value)
+	Signal<T> operator+(const std::vector<T>& lhs, Signal<T> rhs)
+	{
+		rhs += lhs;
+
+		return rhs;
+	}
+
+	template<class T>
+	Signal<T> operator+(Signal<T> lhs, typename Signal<T>::value_type value)
 	{
 		lhs += value;
 
 		return lhs;
 	}
+	
+	template<class T>
+	Signal<T> operator+(typename Signal<T>::value_type value, Signal<T> rhs)
+	{
+		rhs += value;
+
+		return rhs;
+	}
 
 	template<class T>
-	Signal<T> operator-(Signal<T>& lhs, const Signal<T>& rhs)
+	Signal<T> operator-(Signal<T> lhs, const Signal<T>& rhs)
 	{
 		lhs -= rhs;
 
@@ -342,7 +358,7 @@ namespace dsp
 	}
 
 	template<class T>
-	Signal<T> operator-(Signal<T>& lhs, const std::vector<T>& rhs)
+	Signal<T> operator-(Signal<T> lhs, const std::vector<T>& rhs)
 	{
 		lhs -= rhs;
 
@@ -350,7 +366,15 @@ namespace dsp
 	}
 
 	template<class T>
-	Signal<T> operator-(Signal<T>& lhs, typename Signal<T>::const_reference value)
+	Signal<T> operator-(const std::vector<T>& lhs, Signal<T> rhs)
+	{
+		std::transform(rhs.begin(), rhs.end(), lhs.begin(), rhs.begin(), std::minus<T>());
+
+		return rhs;
+	}
+
+	template<class T>
+	Signal<T> operator-(Signal<T> lhs, typename Signal<T>::value_type value)
 	{
 		lhs -= value;
 
@@ -358,7 +382,19 @@ namespace dsp
 	}
 
 	template<class T>
-	Signal<T> operator*(Signal<T>& lhs, const Signal<T>& rhs)
+	Signal<T> operator-(typename Signal<T>::value_type value, Signal<T> rhs)
+	{
+		std::transform(rhs.begin(), rhs.end(), rhs.begin(), 
+			[value](auto x)
+			{
+				return value - x;
+			});
+
+		return rhs;
+	}
+
+	template<class T>
+	Signal<T> operator*(Signal<T> lhs, const Signal<T>& rhs)
 	{
 		lhs *= rhs;
 
@@ -366,7 +402,7 @@ namespace dsp
 	}
 
 	template<class T>
-	Signal<T> operator*(Signal<T>& lhs, const std::vector<T>& rhs)
+	Signal<T> operator*(Signal<T> lhs, const std::vector<T>& rhs)
 	{
 		lhs *= rhs;
 
@@ -374,7 +410,15 @@ namespace dsp
 	}
 
 	template<class T>
-	Signal<T> operator*(Signal<T>& lhs, typename Signal<T>::const_reference value)
+	Signal<T> operator*(const std::vector<T>& lhs, Signal<T> rhs)
+	{
+		rhs *= lhs;
+
+		return rhs;
+	}
+
+	template<class T>
+	Signal<T> operator*(Signal<T> lhs, typename Signal<T>::value_type value)
 	{
 		lhs *= value;
 
@@ -382,7 +426,15 @@ namespace dsp
 	}
 
 	template<class T>
-	Signal<T> operator/(Signal<T>& lhs, const Signal<T>& rhs)
+	Signal<T> operator*(typename Signal<T>::value_type value, Signal<T> rhs)
+	{
+		rhs *= value;
+
+		return rhs;
+	}
+
+	template<class T>
+	Signal<T> operator/(Signal<T> lhs, const Signal<T>& rhs)
 	{
 		lhs /= rhs;
 
@@ -390,7 +442,7 @@ namespace dsp
 	}
 
 	template<class T>
-	Signal<T> operator/(Signal<T>& lhs, const std::vector<T>& rhs)
+	Signal<T> operator/(Signal<T> lhs, const std::vector<T>& rhs)
 	{
 		lhs /= rhs;
 
@@ -398,16 +450,36 @@ namespace dsp
 	}
 
 	template<class T>
-	Signal<T> operator/(Signal<T>& lhs, typename Signal<T>::const_reference value)
+	Signal<T> operator/(const std::vector<T>& lhs, Signal<T> rhs)
+	{
+		std::transform(rhs.begin(), rhs.end(), lhs.begin(), rhs.begin(), std::divides<T>());
+
+		return rhs;
+	}
+
+	template<class T>
+	Signal<T> operator/(Signal<T> lhs, typename Signal<T>::value_type value)
 	{
 		lhs /= value;
 
 		return lhs;
 	}
 
+	template<class T>
+	Signal<T> operator/(typename Signal<T>::value_type value, Signal<T> rhs)
+	{
+		std::transform(rhs.begin(), rhs.end(), rhs.begin(),
+			[value](auto x)
+			{
+				return value / x;
+			});
+
+		return rhs;
+	}
+	
 	
 	template<class T>
-	auto pow(Signal<T> signal, int exponent)
+	auto pow(const Signal<T>& signal, int exponent)
 	{
 		Signal<T> powSignal(signal.getSamplingRate_Hz());
 		powSignal.reserve(signal.size());
@@ -419,7 +491,7 @@ namespace dsp
 	}
 	
 	template<class T>
-	auto pow(std::vector<T> vec, int exponent)
+	auto pow(const std::vector<T>& vec, int exponent)
 	{
 		std::vector<T> powVec;
 		powVec.reserve(vec.size());
@@ -432,7 +504,7 @@ namespace dsp
 
 	
 	template<class T>
-	auto abs(Signal<T> signal)
+	auto abs(const Signal<T>& signal)
 	{
 		// The returned signal should have the return type of the std::abs() function applied to the signal's sample
 		using U = decltype(std::abs(std::declval<T>()));
@@ -483,7 +555,7 @@ namespace dsp
 	}
 
 	template<class T>
-	auto imag(Signal<T> signal)
+	auto imag(const Signal<T>& signal)
 	{
 		// The returned signal should have the return type of the std::imag() function applied to the signal's sample
 		using U = decltype(std::imag(std::declval<T>()));
@@ -507,7 +579,7 @@ namespace dsp
 	}
 	
 	template<class T>
-	Signal<T> conj(Signal<T> signal)
+	Signal<T> conj(const Signal<T>& signal)
 	{
 		// The returned signal should have the return type of the std::conj() function applied to the signal's sample
 		using U = decltype(std::conj(std::declval<T>()));
@@ -525,7 +597,7 @@ namespace dsp
 	inline std::vector<long double> conj(const std::vector<long double>& z) { return z; }
 	
 	template<class T>
-	auto arg(Signal<T> signal)
+	auto arg(const Signal<T>& signal)
 	{
 		// The returned signal should have the return type of the std::arg() function applied to the signal's sample
 		using U = decltype(std::arg(std::declval<T>()));
@@ -538,7 +610,7 @@ namespace dsp
 	}
 
 	template<class T>
-	auto norm(Signal<T> signal)
+	auto norm(const Signal<T>& signal)
 	{
 		// The returned signal should have the return type of the std::norm() function applied to the signal's sample
 		using U = decltype(std::norm(std::declval<T>()));
