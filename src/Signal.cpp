@@ -22,7 +22,7 @@ dsp::Signal<T>::Signal(const std::vector<T>& samples) : samples_(samples)
 
 template <class T>
 dsp::Signal<T>::Signal(unsigned samplingRate_Hz, const std::vector<T>& samples) : samplingRate_Hz_(samplingRate_Hz), samples_(samples)
-{	
+{
 }
 
 template <class T>
@@ -56,12 +56,36 @@ void dsp::Signal<T>::setSamplingRate_Hz(unsigned newSamplingRate_Hz)
 }
 
 template <class T>
+template <class U>
+void dsp::Signal<T>::plus(U& x, const U& y)
+{
+	x += y;
+}
+
+template <class T>
+template <class U>
+void dsp::Signal<T>::plus(std::vector<U>& x, const U& y)
+{
+	std::transform(x.begin(), x.end(), x.begin(), [&y](auto& x) {return x + y; });
+}
+
+template <class T>
+template <class U>
+void dsp::Signal<T>::plus(std::vector<U>& x, const std::vector<U>& y)
+{
+	std::transform(y.begin(), y.end(), x.begin(), x.begin(), std::plus<U>());
+}
+
+template <class T>
 dsp::Signal<T>& dsp::Signal<T>::operator+=(const Signal<T>& rhs)
 {
 	if (this->samplingRate_Hz_ != rhs.getSamplingRate_Hz()) { throw std::logic_error("Signals have different sampling rates!"); }
 	if (this->size() != rhs.size()) { throw std::logic_error("Signals have different lengths!"); }
 
-	std::transform(rhs.begin(), rhs.end(), this->begin(), this->begin(), std::plus<T>());
+	for (size_type i = 0; i < this->size(); ++i)
+	{
+		plus(this->at(i), rhs[i]);
+	}
 
 	return *this;
 }
@@ -71,7 +95,10 @@ dsp::Signal<T>& dsp::Signal<T>::operator+=(const std::vector<T>& vec)
 {
 	if (this->size() != vec.size()) { throw std::logic_error("Signal and vector have different lengths!"); }
 
-	std::transform(vec.begin(), vec.end(), this->begin(), this->begin(), std::plus<T>());
+	for (size_type i = 0; i < this->size(); ++i)
+	{
+		plus(this->at(i), vec[i]);
+	}
 
 	return *this;
 }
@@ -79,9 +106,34 @@ dsp::Signal<T>& dsp::Signal<T>::operator+=(const std::vector<T>& vec)
 template <class T>
 dsp::Signal<T>& dsp::Signal<T>::operator+=(const_reference value)
 {
-	std::transform(this->begin(), this->end(), this->begin(), [&value](auto& y) {return y + value; });
+	for (auto& x : *this)
+	{
+		plus(x, value);
+	}	
 	return *this;
 }
+
+template <class T>
+template <class U>
+void dsp::Signal<T>::minus(U& x, const U& y)
+{
+	x -= y;
+}
+
+template <class T>
+template <class U>
+void dsp::Signal<T>::minus(std::vector<U>& x, const U& y)
+{
+	std::transform(x.begin(), x.end(), x.begin(), [&y](auto& x) {return x - y; });
+}
+
+template <class T>
+template <class U>
+void dsp::Signal<T>::minus(std::vector<U>& x, const std::vector<U>& y)
+{
+	std::transform(y.begin(), y.end(), x.begin(), x.begin(), std::minus<>());
+}
+
 
 template <class T>
 dsp::Signal<T>& dsp::Signal<T>::operator-=(const Signal<T>& rhs)
@@ -89,7 +141,10 @@ dsp::Signal<T>& dsp::Signal<T>::operator-=(const Signal<T>& rhs)
 	if (this->samplingRate_Hz_ != rhs.getSamplingRate_Hz()) { throw std::logic_error("Signals have different sampling rates!"); }
 	if (this->size() != rhs.size()) { throw std::logic_error("Signals have different lengths!"); }
 
-	std::transform(rhs.begin(), rhs.end(), this->begin(), this->begin(), std::minus<T>());
+	for(size_type i = 0; i < this->size(); ++i)
+	{
+		minus(this->at(i), rhs[i]);
+	}
 
 	return *this;
 }
@@ -99,7 +154,10 @@ dsp::Signal<T>& dsp::Signal<T>::operator-=(const std::vector<T>& vec)
 {
 	if (this->size() != vec.size()) { throw std::logic_error("Signal and vector have different lengths!"); }
 
-	std::transform(vec.begin(), vec.end(), this->begin(), this->begin(), std::minus<T>());
+	for (size_type i = 0; i < this->size(); ++i)
+	{
+		minus(this->at(i), vec[i]);
+	}
 
 	return *this;
 }
@@ -107,8 +165,32 @@ dsp::Signal<T>& dsp::Signal<T>::operator-=(const std::vector<T>& vec)
 template <class T>
 dsp::Signal<T>& dsp::Signal<T>::operator-=(const_reference value)
 {
-	std::transform(this->begin(), this->end(), this->begin(), [&value](auto& y) {return y - value; });
+	for (auto& x : *this)
+	{
+		minus(x, value);
+	}
 	return *this;
+}
+
+template <class T>
+template <class U>
+void dsp::Signal<T>::multiplies(U& x, const U& y)
+{
+	x *= y;
+}
+
+template <class T>
+template <class U>
+void dsp::Signal<T>::multiplies(std::vector<U>& x, const U& y)
+{
+	std::transform(x.begin(), x.end(), x.begin(), [&y](auto& x) {return x * y; });
+}
+
+template <class T>
+template <class U>
+void dsp::Signal<T>::multiplies(std::vector<U>& x, const std::vector<U>& y)
+{
+	std::transform(y.begin(), y.end(), x.begin(), x.begin(), std::multiplies<>());
 }
 
 template <class T>
@@ -117,7 +199,10 @@ dsp::Signal<T>& dsp::Signal<T>::operator*=(const Signal<T>& rhs)
 	if (this->samplingRate_Hz_ != rhs.getSamplingRate_Hz()) { throw std::logic_error("Signals have different sampling rates!"); }
 	if (this->size() != rhs.size()) { throw std::logic_error("Signals have different lengths!"); }
 
-	std::transform(rhs.begin(), rhs.end(), this->begin(), this->begin(), std::multiplies<T>());
+	for (size_type i = 0; i < this->size(); ++i)
+	{
+		multiplies(this->at(i), rhs[i]);
+	}
 
 	return *this;
 }
@@ -125,7 +210,10 @@ dsp::Signal<T>& dsp::Signal<T>::operator*=(const Signal<T>& rhs)
 template <class T>
 dsp::Signal<T>& dsp::Signal<T>::operator*=(const_reference value)
 {
-	std::transform(this->begin(), this->end(), this->begin(), [&value](auto& y) {return y * value; });
+	for (auto& x : *this)
+	{
+		multiplies(x, value);
+	}
 	return *this;
 }
 
@@ -134,10 +222,35 @@ dsp::Signal<T>& dsp::Signal<T>::operator*=(const std::vector<T>& vec)
 {
 	if (this->size() != vec.size()) { throw std::logic_error("Signal and vector have different lengths!"); }
 
-	std::transform(vec.begin(), vec.end(), this->begin(), this->begin(), std::multiplies<T>());
+	for (size_type i = 0; i < this->size(); ++i)
+	{
+		multiplies(this->at(i), vec[i]);
+	}
 
 	return *this;
 }
+
+template <class T>
+template <class U>
+void dsp::Signal<T>::divides(U& x, const U& y)
+{
+	x /= y;
+}
+
+template <class T>
+template <class U>
+void dsp::Signal<T>::divides(std::vector<U>& x, const U& y)
+{
+	std::transform(x.begin(), x.end(), x.begin(), [&y](auto& x) {return x / y; });
+}
+
+template <class T>
+template <class U>
+void dsp::Signal<T>::divides(std::vector<U>& x, const std::vector<U>& y)
+{
+	std::transform(y.begin(), y.end(), x.begin(), x.begin(), std::divides<>());
+}
+
 
 template <class T>
 dsp::Signal<T>& dsp::Signal<T>::operator/=(const Signal<T>& rhs)
@@ -145,7 +258,10 @@ dsp::Signal<T>& dsp::Signal<T>::operator/=(const Signal<T>& rhs)
 	if (this->samplingRate_Hz_ != rhs.getSamplingRate_Hz()) { throw std::logic_error("Signals have different sampling rates!"); }
 	if (this->size() != rhs.size()) { throw std::logic_error("Signals have different lengths!"); }
 
-	std::transform(rhs.begin(), rhs.end(), this->begin(), this->begin(), std::divides<T>());
+	for (size_type i = 0; i < this->size(); ++i)
+	{
+		divides(this->at(i), rhs[i]);
+	}
 
 	return *this;
 }
@@ -155,7 +271,10 @@ dsp::Signal<T>& dsp::Signal<T>::operator/=(const std::vector<T>& vec)
 {
 	if (this->size() != vec.size()) { throw std::logic_error("Signal and vector have different lengths!"); }
 
-	std::transform(vec.begin(), vec.end(), this->begin(), this->begin(), std::divides<T>());
+	for (size_type i = 0; i < this->size(); ++i)
+	{
+		divides(this->at(i), vec[i]);
+	}
 
 	return *this;
 }
@@ -163,7 +282,10 @@ dsp::Signal<T>& dsp::Signal<T>::operator/=(const std::vector<T>& vec)
 template <class T>
 dsp::Signal<T>& dsp::Signal<T>::operator/=(const_reference value)
 {
-	std::transform(this->begin(), this->end(), this->begin(), [&value](auto& y) {return y / value; });
+	for (auto& x : *this)
+	{
+		divides(x, value);
+	}
 	return *this;
 }
 
@@ -190,6 +312,12 @@ template <class T>
 const T& dsp::Signal<T>::at(size_type pos) const
 {
 	return samples_.at(pos);
+}
+
+template <class T>
+typename dsp::Signal<T>::value_type dsp::Signal<T>::getValue(size_type pos)
+{
+	return samples_[pos];
 }
 
 template <class T>
@@ -412,31 +540,62 @@ typename dsp::Signal<T>::const_reference dsp::Signal<T>::operator[](size_type po
 }
 
 template <class T>
+auto dsp::Signal<T>::real(const T& c)
+{
+	return std::real<T>(c);
+}
+
+template <class T>
+template <class U>
+auto dsp::Signal<T>::imag(const std::vector<U>& c)
+{
+	using V = decltype(imag(std::declval<U>()));
+	std::vector<V> imagPart;
+
+	std::transform(c.begin(), c.end(), std::back_inserter(imagPart.begin()), std::imag<V>);
+	return imagPart;
+}
+
+template <class T>
+auto dsp::Signal<T>::imag(const T& c)
+{
+	return std::imag<T>(c);
+}
+
+template <class T>
+template <class U>
+auto dsp::Signal<T>::real(const std::vector<U>& c)
+{
+	using V = decltype(real(std::declval<U>()));
+	std::vector<V> realPart;
+
+	std::transform(c.begin(), c.end(), std::back_inserter(realPart.begin()), std::real<V>);
+	return realPart;
+}
+
+
+template <class T>
 auto dsp::Signal<T>::real() const
 {
-	// The returned signal should have the return type of the std::real() function applied to the called signal's sample
-	using U = decltype(std::real(std::declval<T>()));
+	using U = decltype(real(std::declval<T>()));
 	Signal<U> realPart(this->getSamplingRate_Hz());
 	realPart.reserve(this->size());
 
 	realPart.setSamplingRate_Hz(this->getSamplingRate_Hz());
-	std::transform(samples_.begin(), samples_.end(), std::back_inserter(realPart), [](auto c) {return std::real(c); });
-
+	std::transform(samples_.begin(), samples_.end(), std::back_inserter(realPart), [this](auto c) {return Signal<T>::real(c); });
 	return realPart;
 }
 
 template <class T>
 auto dsp::Signal<T>::imag() const
 {
-	// The returned signal should have the return type of the std::imag() function applied to the called signal's sample
-	using U = decltype(std::imag(std::declval<T>()));
-	dsp::Signal<U> imaginaryPart(this->getSamplingRate_Hz());
-	imaginaryPart.reserve(this->size());
+	using U = decltype(real(std::declval<T>()));
+	Signal<U> imagPart(this->getSamplingRate_Hz());
+	imagPart.reserve(this->size());
 
-	imaginaryPart.setSamplingRate_Hz(this->getSamplingRate_Hz());
-	std::transform(samples_.begin(), samples_.end(), std::back_inserter(imaginaryPart), [](auto c) {return std::imag(c); });
-
-	return imaginaryPart;
+	imagPart.setSamplingRate_Hz(this->getSamplingRate_Hz());
+	std::transform(samples_.begin(), samples_.end(), std::back_inserter(imagPart), [this](auto c) {return Signal<T>::imag(c); });
+	return imagPart;
 }
 
 
@@ -478,4 +637,9 @@ template class dsp::Signal<double>;
 template class dsp::Signal<std::complex<double>>;
 template class dsp::Signal<long double>;
 template class dsp::Signal<std::complex<long double>>;
+
+// Matrix-like signals
+template class dsp::Signal<std::vector<float>>;
+template class dsp::Signal<std::vector<double>>;
+template class dsp::Signal<std::vector<long double>>;
 

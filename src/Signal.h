@@ -4,11 +4,12 @@
 #include <functional>
 #include <ostream>
 #include <stdexcept>
+#include <type_traits>
 #include <vector>
 
 namespace dsp
 {
-	/// @brief This class represents a signal.
+	/// @brief This class represents a scalar signal.
 	///
 	/// It is implemented as a facade design pattern wrapped around an STL vector.
 
@@ -37,16 +38,17 @@ namespace dsp
 		void setSamples(const std::vector<T>& samples);
 		void setSamplingRate_Hz(unsigned newSamplingRate_Hz);
 
-		// Stream output
+		// Stream output		
 		friend std::ostream& operator<<(std::ostream& os, const Signal& obj)
 		{
 			for (const auto& x : obj.getSamples())
 			{
-				os << x << ",";
+				print(os, x) <<  ",";
 			}
 			return os << std::endl;
 		}
 
+		
 		/*
 		 * Facade types
 		*/
@@ -81,7 +83,37 @@ namespace dsp
 		Signal<T>& operator/=(const Signal<T>& rhs);
 		Signal<T>& operator/=(const std::vector<T>& vec);
 		Signal<T>& operator/=(const_reference value);
-		
+	private:
+		// Overloaded helper functions to allow both scalar types and vector types
+		template <class U>
+		void plus(U& x, const U& y);
+		template <class U>
+		void plus(std::vector<U>& x, const U& y);
+		template <class U>
+		void plus(std::vector<U>& x, const std::vector<U>& y);
+
+		template <class U>
+		void minus(U& x, const U& y);
+		template <class U>
+		void minus(std::vector<U>& x, const U& y);
+		template <class U>
+		void minus(std::vector<U>& x, const std::vector<U>& y);
+
+		template <class U>
+		void multiplies(U& x, const U& y);
+		template <class U>
+		void multiplies(std::vector<U>& x, const U& y);
+		template <class U>
+		void multiplies(std::vector<U>& x, const std::vector<U>& y);
+
+		template <class U>
+		void divides(U& x, const U& y);
+		template <class U>
+		void divides(std::vector<U>& x, const U& y);
+		template <class U>
+		void divides(std::vector<U>& x, const std::vector<U>& y);
+
+	public:
 		// More operators are defined out of class for symmetry
 
 	   /*
@@ -95,6 +127,10 @@ namespace dsp
 		// Element access
 		reference at(size_type pos);
 		const T& at(size_type pos) const;
+
+		// This method is provided to allow manipulations of the sample value before
+		// returning it (e.g. calibrating it) in derived classes
+		virtual value_type getValue(size_type pos);		
 
 		reference front();
 		const T& front() const;
@@ -161,9 +197,34 @@ namespace dsp
 
 	protected:
 		unsigned samplingRate_Hz_{ 0 };
-		std::vector<T> samples_;  //!< A vector holding the actual samples		
+		std::vector<T> samples_;  //!< A vector holding the actual samples
+
+	private:
+		template <class U>
+		static std::ostream& print(std::ostream& os, const U& obj)
+		{
+			return os << obj;
+		}
+		template <class U>
+		static std::ostream& print(std::ostream& os, const std::vector<U>& v)
+		{
+			os << "{";
+			const char* sep = "";
+			for (const auto& e : v) {
+				os << sep;
+				print(os, e);
+				sep = ", ";
+			}
+			return os << "}";
+		}
+		template <class U>
+		static auto real(const std::vector<U>& c);
+		static auto real(const T& c);
+		template <class U>
+		static auto imag(const std::vector<U>& c);
+		static auto imag(const T& c);
 	};
-	
+
 	template< class T>
 	bool operator==(const Signal<T>& lhs, const Signal<T>& rhs)
 	{
