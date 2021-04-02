@@ -1,8 +1,6 @@
 #include "utilities.h"
 
 #include <chrono>
-#include <algorithm>
-#include <numeric>
 #include <stdexcept>
 
 #include "fft.h"

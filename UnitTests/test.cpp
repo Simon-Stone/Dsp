@@ -3,6 +3,8 @@
 #include <numeric>
 #include <iostream>
 #include <chrono>
+#include <random>
+
 
 #include "../src/fft.h"
 #include "../src/Signal.h"
@@ -10,6 +12,7 @@
 #include "../src/dsp.h"
 #include "../src/filter.h"
 #include "../src/signals.h"
+#include "../src/stats.h"
 #include "../src/convert.h"
 
 struct DspTest : ::testing::Test
@@ -19,11 +22,43 @@ struct DspTest : ::testing::Test
 
 TEST_F(DspTest, SignalOperations)
 {
-	auto x = dsp::signals::sin<double>(100, 0.02, 8000) * 3.0;
-	auto y = 2.0 * dsp::signals::sin<double>(100, 0.02, 8000);
+	auto c = dsp::signals::cos<double>(100, 0.02, 8000);
+	auto s = dsp::signals::sin<double>(100, 0.02, 8000);
 
-	std::cout << x << std::endl;
-	std::cout << y << std::endl;
+	// 1 = cos^2(x) + sin^2(x) 
+	auto sum = dsp::pow(c, 2) + dsp::pow(s, 2);  
+	auto ones = dsp::Signal<double>(sum.getSamplingRate_Hz(), dsp::signals::ones<double>(sum.size()));
+	EXPECT_TRUE((sum - ones) < 0.00001);
+
+	// cos(2x) = cos^2(x) - sin^2(x)
+	auto diff = dsp::pow(c, 2) - dsp::pow(s, 2);
+	auto c2 = dsp::signals::cos<double>(200, 0.02, 8000);
+
+	EXPECT_TRUE((diff - c2) < 0.00001);
+}
+
+TEST_F(DspTest, Mean)
+{
+	auto c = dsp::signals::cos<double>(100, 0.02, 8000);
+	
+	EXPECT_NEAR(dsp::mean<double>(c.begin(), c.end()), 0.0, 1e-16);
+}
+
+TEST_F(DspTest, VarAndStd)
+{
+	std::default_random_engine generator;
+	std::normal_distribution<double> distribution(5.0, 2.0);
+	const int nsamples = 100000;
+	std::vector<double> x;
+	for (int i = 0; i < nsamples; ++i)
+	{
+		x.push_back(distribution(generator));
+	}
+
+	auto mean = dsp::mean(x);
+	EXPECT_NEAR(mean, 5.0, 0.1);
+	auto var = dsp::var(x);
+	EXPECT_NEAR(var, 4.0, 0.1);
 }
 
 TEST_F(DspTest, ConvolutionTest)
@@ -237,7 +272,7 @@ TEST_F(DspTest, UnitConversions)
 
 TEST_F(DspTest, Window)
 {
-	auto win = dsp::window::get_window<double>(dsp::window::type::hann, 51);
+	auto win = dsp::window::get_window<double>(dsp::window::type::gaussian, 128, true, {32.0});
 
 	for (const auto& w : win)
 	{

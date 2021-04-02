@@ -1,8 +1,12 @@
 #pragma once
+#include <algorithm>
 #include <complex>
 #include <map>
+#include <numeric>
 #include <utility>
 #include <vector>
+
+#include "Signal.h"
 
 /// @brief Constants and convenience functions for general signal processing tasks and 1D vector operations
 namespace dsp
@@ -247,7 +251,6 @@ namespace dsp
 	/// @param overlap Number of overlapping samples between two consecutive frames (cannot be negative!)
 	/// @return Maximum number of frames to split the signal into assuming zero-padding at the end.
 	unsigned maxNumFrames(unsigned signalLength, unsigned frameLength, unsigned overlap);
-
 
 	/// @brief Splits a signal into frames
 	/// @tparam T Data type of the signal's samples

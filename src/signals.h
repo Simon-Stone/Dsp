@@ -26,4 +26,19 @@ namespace dsp::signals
 	/// @return A signal containing the specified cosine
 	template <class T>
 	Signal<T> cos(unsigned frequency_Hz, double length_s, unsigned samplingRate_Hz, double amplitude = 1.0, double phase = 0.0);
+
+
+	/// @brief Return a vector filled with ones
+	/// @tparam T Type of the samples. Should be float, double, or long double. Other types will cause undefined behavior.
+	/// @param n Length of the signal.
+	/// @return Signal of length n consisting entirely of ones.
+	template <class T>
+	std::vector<T> ones(size_t n);
+
+	/// @brief Return a vector filled with ones that has the same length as the passed vector
+	/// @tparam T Type of the samples. Should be float, double, or long double. Other types will cause undefined behavior.
+	/// @param y Reference vector whose length is used for the returned vector.
+	/// @return Vector of the same length as y consisting entirely of ones.
+	template <class T>
+	std::vector<T> ones(const std::vector<T>& y);
 }
