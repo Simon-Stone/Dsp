@@ -2,7 +2,7 @@
 \label{classdsp_1_1_signal}\index{dsp::Signal$<$ T $>$@{dsp::Signal$<$ T $>$}}
 
 
-This class represents a signal.  
+This class represents a scalar signal.  
 
 
 
@@ -135,6 +135,9 @@ reference {\bfseries at} (size\+\_\+type pos)
 \mbox{\Hypertarget{classdsp_1_1_signal_ac1799c5e25b4d0451bd0ff1b9b0a1263}\label{classdsp_1_1_signal_ac1799c5e25b4d0451bd0ff1b9b0a1263}} 
 const T \& {\bfseries at} (size\+\_\+type pos) const
 \item 
+\mbox{\Hypertarget{classdsp_1_1_signal_af766c6a8e02ae9231c489c45246c5672}\label{classdsp_1_1_signal_af766c6a8e02ae9231c489c45246c5672}} 
+virtual value\+\_\+type {\bfseries get\+Value} (size\+\_\+type pos) const
+\item 
 \mbox{\Hypertarget{classdsp_1_1_signal_afe2ab6c9c5c6f33e4eac1d0c04028c58}\label{classdsp_1_1_signal_afe2ab6c9c5c6f33e4eac1d0c04028c58}} 
 reference {\bfseries front} ()
 \item 
@@ -243,11 +246,11 @@ void {\bfseries swap} (\mbox{\hyperlink{classdsp_1_1_signal}{Signal}} \&other) n
 \mbox{\Hypertarget{classdsp_1_1_signal_a880337756d5678b9977188f680b34939}\label{classdsp_1_1_signal_a880337756d5678b9977188f680b34939}} 
 \mbox{\hyperlink{classdsp_1_1_signal}{Signal}} \& {\bfseries operator=} (\mbox{\hyperlink{classdsp_1_1_signal}{Signal}} \&\&other) noexcept
 \item 
-\mbox{\Hypertarget{classdsp_1_1_signal_a412a5bd0060d03dd228ea9cb19c8cc63}\label{classdsp_1_1_signal_a412a5bd0060d03dd228ea9cb19c8cc63}} 
-reference \& {\bfseries operator\mbox{[}$\,$\mbox{]}} (size\+\_\+type pos)
+\mbox{\Hypertarget{classdsp_1_1_signal_a74205d6c933c098ce443d2f46830b559}\label{classdsp_1_1_signal_a74205d6c933c098ce443d2f46830b559}} 
+virtual reference {\bfseries operator\mbox{[}$\,$\mbox{]}} (size\+\_\+type pos)
 \item 
-\mbox{\Hypertarget{classdsp_1_1_signal_afc1083816c754998b530b3705f6cf2f1}\label{classdsp_1_1_signal_afc1083816c754998b530b3705f6cf2f1}} 
-const\+\_\+reference \& {\bfseries operator\mbox{[}$\,$\mbox{]}} (size\+\_\+type pos) const
+\mbox{\Hypertarget{classdsp_1_1_signal_ab2fc2e8558b97ce72dd4c2dc43a624c3}\label{classdsp_1_1_signal_ab2fc2e8558b97ce72dd4c2dc43a624c3}} 
+virtual const\+\_\+reference {\bfseries operator\mbox{[}$\,$\mbox{]}} (size\+\_\+type pos) const
 \item 
 \mbox{\Hypertarget{classdsp_1_1_signal_a3ad742acba88641b91988b514ddc88b9}\label{classdsp_1_1_signal_a3ad742acba88641b91988b514ddc88b9}} 
 {\footnotesize template$<$class Input\+It $>$ }\\\mbox{\hyperlink{classdsp_1_1_signal}{dsp\+::\+Signal}}$<$ T $>$\+::iterator {\bfseries insert} (const\+\_\+iterator pos, Input\+It first, Input\+It last)
@@ -255,6 +258,15 @@ const\+\_\+reference \& {\bfseries operator\mbox{[}$\,$\mbox{]}} (size\+\_\+type
 \mbox{\Hypertarget{classdsp_1_1_signal_a7a394bb6eac115c6bb961386277f161b}\label{classdsp_1_1_signal_a7a394bb6eac115c6bb961386277f161b}} 
 {\footnotesize template$<$class ... Args$>$ }\\\mbox{\hyperlink{classdsp_1_1_signal}{dsp\+::\+Signal}}$<$ T $>$\+::iterator {\bfseries emplace} (const\+\_\+iterator pos, Args \&\&... args)
 \end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a7379e642c2b424d068d6288c7623c5a3}\label{classdsp_1_1_signal_a7379e642c2b424d068d6288c7623c5a3}} 
+unsigned {\bfseries sampling\+Rate\+\_\+\+Hz\+\_\+} \{ 0 \}
+\item 
+\mbox{\Hypertarget{classdsp_1_1_signal_a17e9746c320be9f435349c6d3ecd2e58}\label{classdsp_1_1_signal_a17e9746c320be9f435349c6d3ecd2e58}} 
+std\+::vector$<$ T $>$ \mbox{\hyperlink{classdsp_1_1_signal_a17e9746c320be9f435349c6d3ecd2e58}{samples\+\_\+}}
+\begin{DoxyCompactList}\small\item\em A vector holding the actual samples. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
@@ -267,7 +279,7 @@ std\+::ostream \& {\bfseries operator$<$$<$} (std\+::ostream \&os, const \mbox{\
 \subsubsection*{template$<$class T$>$\newline
 class dsp\+::\+Signal$<$ T $>$}
 
-This class represents a signal. 
+This class represents a scalar signal. 
 
 It is implemented as a facade design pattern wrapped around an STL vector. Fun fact\+: It is not derived from std\+::vector because that class does not have a virtual destructor, potentially producing memory leaks. 
 \begin{DoxyTemplParams}{Template Parameters}

@@ -44,6 +44,9 @@ enum class \mbox{\hyperlink{namespacedsp_1_1window_a1cc0dcec4aa9e12640771bdf41f6
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
+\mbox{\Hypertarget{namespacedsp_1_1window_ae2b71102e5469df36d24f1a05bd402b4}\label{namespacedsp_1_1window_ae2b71102e5469df36d24f1a05bd402b4}} 
+{\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ {\bfseries get\+\_\+window} (\mbox{\hyperlink{namespacedsp_1_1window_a1cc0dcec4aa9e12640771bdf41f695b8}{type}} \mbox{\hyperlink{namespacedsp_1_1window_a1cc0dcec4aa9e12640771bdf41f695b8}{type}}, unsigned N, bool sym, const std\+::vector$<$ T $>$ \&parameters)
+\item 
 {\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_1_1window_aec4906fe8edc6620afbd2dd12fa5fa0d}{boxcar}} (unsigned N, bool sym=true)
 \begin{DoxyCompactList}\small\item\em Return a boxcar or rectangular window. \end{DoxyCompactList}\item 
 {\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_1_1window_a931f388022b655420037a5e1652621d8}{triang}} (unsigned N, bool sym=true)
@@ -75,16 +78,25 @@ enum class \mbox{\hyperlink{namespacedsp_1_1window_a1cc0dcec4aa9e12640771bdf41f6
 \begin{DoxyCompactList}\small\item\em Return a modified Bartlett-\/\+Hann window. \end{DoxyCompactList}\item 
 {\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_1_1window_a84fcea5f41eba58cf50df8569e2ac290}{kaiser}} (unsigned N, double beta, bool sym=true)
 \begin{DoxyCompactList}\small\item\em Return a Kaiser window. \end{DoxyCompactList}\item 
-{\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_1_1window_a392d254078b3f6cac2415c394bff9f01}{gaussian}} (unsigned N, double std, bool sym=true)
+{\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_1_1window_a392d254078b3f6cac2415c394bff9f01}{gaussian}} (unsigned N, double \mbox{\hyperlink{namespacedsp_a940b83e360332680bb648dcfc0fc1542}{std}}, bool sym=true)
 \begin{DoxyCompactList}\small\item\em Return a Gaussian window. \end{DoxyCompactList}\item 
 {\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_1_1window_ad196fdbdcdeeac4ad1f6d35bb5b6cf44}{general\+\_\+gaussian}} (unsigned N, double p, double sig, bool sym=true)
 \begin{DoxyCompactList}\small\item\em Return a window with a generalized Gaussian shape. \end{DoxyCompactList}\item 
-{\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_1_1window_aef9b174c25e588697edf84c1d1c7f941}{chebwin}} (unsigned N, double at, bool sym=true)
+{\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_1_1window_a510689dd4613dd76c1d3808ddc2a057c}{chebwin}} (unsigned N, T at, bool sym=true)
 \begin{DoxyCompactList}\small\item\em Return a Dolph-\/\+Chebyshev window. \end{DoxyCompactList}\item 
-{\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_1_1window_a3870aacaccec3672cbf61f57c84d6d1d}{exponential}} (double center, unsigned N, double tau=1.\+0, bool sym=true)
+{\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_1_1window_a2aa108b39f9af85531a2870fd0229df6}{exponential}} (T center, unsigned N, T tau=1.\+0, bool sym=true)
 \begin{DoxyCompactList}\small\item\em Return an exponential (or Poisson) window. \end{DoxyCompactList}\item 
-{\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_1_1window_af25fb16fa8f1225342e35e88ef596e19}{tukey}} (unsigned N, double alpha=0.\+5, bool sym=true)
+{\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_1_1window_afb244cc8f82873d0e8a8d25394266ecc}{tukey}} (unsigned N, T alpha=0.\+5, bool sym=true)
 \begin{DoxyCompactList}\small\item\em Return a Tukey window, also known as a tapered cosine window. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacedsp_1_1window_aff6545256f8895b8057bb6e208090e14}\label{namespacedsp_1_1window_aff6545256f8895b8057bb6e208090e14}} 
+template std\+::vector$<$ float $>$ {\bfseries get\+\_\+window} (\mbox{\hyperlink{namespacedsp_1_1window_a1cc0dcec4aa9e12640771bdf41f695b8}{type}} \mbox{\hyperlink{namespacedsp_1_1window_a1cc0dcec4aa9e12640771bdf41f695b8}{type}}, unsigned N, bool sym, const std\+::vector$<$ float $>$ \&parameters)
+\item 
+\mbox{\Hypertarget{namespacedsp_1_1window_a8c2f70354a06f7fe65fd705cb67e50e4}\label{namespacedsp_1_1window_a8c2f70354a06f7fe65fd705cb67e50e4}} 
+template std\+::vector$<$ double $>$ {\bfseries get\+\_\+window} (\mbox{\hyperlink{namespacedsp_1_1window_a1cc0dcec4aa9e12640771bdf41f695b8}{type}} \mbox{\hyperlink{namespacedsp_1_1window_a1cc0dcec4aa9e12640771bdf41f695b8}{type}}, unsigned N, bool sym, const std\+::vector$<$ double $>$ \&parameters)
+\item 
+\mbox{\Hypertarget{namespacedsp_1_1window_a3530d76c69aab27edc0fb335c817831c}\label{namespacedsp_1_1window_a3530d76c69aab27edc0fb335c817831c}} 
+template std\+::vector$<$ long double $>$ {\bfseries get\+\_\+window} (\mbox{\hyperlink{namespacedsp_1_1window_a1cc0dcec4aa9e12640771bdf41f695b8}{type}} \mbox{\hyperlink{namespacedsp_1_1window_a1cc0dcec4aa9e12640771bdf41f695b8}{type}}, unsigned N, bool sym, const std\+::vector$<$ long double $>$ \&parameters)
+\item 
 \mbox{\Hypertarget{namespacedsp_1_1window_a47acb925f568201e7e815d2a721ac594}\label{namespacedsp_1_1window_a47acb925f568201e7e815d2a721ac594}} 
 template std\+::vector$<$ float $>$ {\bfseries general\+\_\+cosine} (unsigned N, const std\+::vector$<$ float $>$ \&a, bool sym)
 \item 
@@ -94,9 +106,40 @@ template std\+::vector$<$ double $>$ {\bfseries general\+\_\+cosine} (unsigned N
 \mbox{\Hypertarget{namespacedsp_1_1window_a2e040b86b93865c3837a1002635bccbe}\label{namespacedsp_1_1window_a2e040b86b93865c3837a1002635bccbe}} 
 template std\+::vector$<$ long double $>$ {\bfseries general\+\_\+cosine} (unsigned N, const std\+::vector$<$ long double $>$ \&a, bool sym)
 \item 
-\mbox{\Hypertarget{namespacedsp_1_1window_abd7604e62f6f9ac0fff0282f840e1294}\label{namespacedsp_1_1window_abd7604e62f6f9ac0fff0282f840e1294}} 
-{\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_1_1window_abd7604e62f6f9ac0fff0282f840e1294}{exponential}} (unsigned N, double tau=1.\+0, bool sym=true)
-\begin{DoxyCompactList}\small\item\em Alias for \mbox{\hyperlink{namespacedsp_1_1window_a3870aacaccec3672cbf61f57c84d6d1d}{exponential()}} that provides the default value for center (which depends on N) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\mbox{\Hypertarget{namespacedsp_1_1window_a4374aa3cfac025d1b7f6579137280f1d}\label{namespacedsp_1_1window_a4374aa3cfac025d1b7f6579137280f1d}} 
+template std\+::vector$<$ float $>$ {\bfseries chebwin} (unsigned N, float at, bool sym)
+\item 
+\mbox{\Hypertarget{namespacedsp_1_1window_ae4cd6bc679dea0a42c1df63a93062b50}\label{namespacedsp_1_1window_ae4cd6bc679dea0a42c1df63a93062b50}} 
+template std\+::vector$<$ double $>$ {\bfseries chebwin} (unsigned N, double at, bool sym)
+\item 
+\mbox{\Hypertarget{namespacedsp_1_1window_a72e4d619056ed5b41420aca5f7edc770}\label{namespacedsp_1_1window_a72e4d619056ed5b41420aca5f7edc770}} 
+template std\+::vector$<$ long double $>$ {\bfseries chebwin} (unsigned N, long double at, bool sym)
+\item 
+\mbox{\Hypertarget{namespacedsp_1_1window_aae4d3c5e5d4061c0aac640c08ada3def}\label{namespacedsp_1_1window_aae4d3c5e5d4061c0aac640c08ada3def}} 
+template std\+::vector$<$ float $>$ {\bfseries exponential} (float center, unsigned N, float tau, bool sym)
+\item 
+\mbox{\Hypertarget{namespacedsp_1_1window_a5447313915ccb016d1fa36a52cc49bd0}\label{namespacedsp_1_1window_a5447313915ccb016d1fa36a52cc49bd0}} 
+template std\+::vector$<$ double $>$ {\bfseries exponential} (double center, unsigned N, double tau, bool sym)
+\item 
+\mbox{\Hypertarget{namespacedsp_1_1window_adeaf78f97a81abef1f11deee4e3e3b60}\label{namespacedsp_1_1window_adeaf78f97a81abef1f11deee4e3e3b60}} 
+template std\+::vector$<$ long double $>$ {\bfseries exponential} (long double center, unsigned N, long double tau, bool sym)
+\item 
+\mbox{\Hypertarget{namespacedsp_1_1window_a243e22ebfc37ee1537d7bb3f580d58e3}\label{namespacedsp_1_1window_a243e22ebfc37ee1537d7bb3f580d58e3}} 
+template std\+::vector$<$ float $>$ {\bfseries tukey} (unsigned N, float alpha, bool sym)
+\item 
+\mbox{\Hypertarget{namespacedsp_1_1window_a5293c7955a8331d71fbc703b9752a7e9}\label{namespacedsp_1_1window_a5293c7955a8331d71fbc703b9752a7e9}} 
+template std\+::vector$<$ double $>$ {\bfseries tukey} (unsigned N, double alpha, bool sym)
+\item 
+\mbox{\Hypertarget{namespacedsp_1_1window_a56151dd900e40f4c28bb585074d5e7f2}\label{namespacedsp_1_1window_a56151dd900e40f4c28bb585074d5e7f2}} 
+template std\+::vector$<$ long double $>$ {\bfseries tukey} (unsigned N, long double alpha, bool sym)
+\item 
+std\+::string \mbox{\hyperlink{namespacedsp_1_1window_a8570ba336a7b9c53c308f80610e5fcbd}{type2string}} (\mbox{\hyperlink{namespacedsp_1_1window_a1cc0dcec4aa9e12640771bdf41f695b8}{type}} t)
+\begin{DoxyCompactList}\small\item\em Returns a string representing a window type. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedsp_1_1window_a1cc0dcec4aa9e12640771bdf41f695b8}{type}} \mbox{\hyperlink{namespacedsp_1_1window_a34a63560363037f3754daa895c9821bc}{string2type}} (std\+::string s)
+\begin{DoxyCompactList}\small\item\em Returns the window type corresponding to a string representation. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacedsp_1_1window_ab29f6b0c8bbe02e35dfc9abcbd64dd69}\label{namespacedsp_1_1window_ab29f6b0c8bbe02e35dfc9abcbd64dd69}} 
+{\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_1_1window_ab29f6b0c8bbe02e35dfc9abcbd64dd69}{exponential}} (unsigned N, T tau=1.\+0, bool sym=true)
+\begin{DoxyCompactList}\small\item\em Alias for \mbox{\hyperlink{namespacedsp_1_1window_a2aa108b39f9af85531a2870fd0229df6}{exponential()}} that provides the default value for center (which depends on N) \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -259,12 +302,12 @@ Also known as a rectangular window or Dirichlet window, this is equivalent to no
 \begin{DoxyReturn}{Returns}
 The window, with the maximum value normalized to 1. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{namespacedsp_1_1window_aef9b174c25e588697edf84c1d1c7f941}\label{namespacedsp_1_1window_aef9b174c25e588697edf84c1d1c7f941}} 
+\mbox{\Hypertarget{namespacedsp_1_1window_a510689dd4613dd76c1d3808ddc2a057c}\label{namespacedsp_1_1window_a510689dd4613dd76c1d3808ddc2a057c}} 
 \index{dsp::window@{dsp::window}!chebwin@{chebwin}}
 \index{chebwin@{chebwin}!dsp::window@{dsp::window}}
 \doxysubsubsection{\texorpdfstring{chebwin()}{chebwin()}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
-std\+::vector$<$ T $>$ dsp\+::window\+::chebwin (\begin{DoxyParamCaption}\item[{unsigned}]{N,  }\item[{double}]{at,  }\item[{bool}]{sym = {\ttfamily true} }\end{DoxyParamCaption})}
+std\+::vector$<$ T $>$ dsp\+::window\+::chebwin (\begin{DoxyParamCaption}\item[{unsigned}]{N,  }\item[{T}]{at,  }\item[{bool}]{sym = {\ttfamily true} }\end{DoxyParamCaption})}
 
 
 
@@ -287,12 +330,12 @@ Return a Dolph-\/\+Chebyshev window.
 \begin{DoxyReturn}{Returns}
 The window, with the maximum value always normalized to 1 
 \end{DoxyReturn}
-\mbox{\Hypertarget{namespacedsp_1_1window_a3870aacaccec3672cbf61f57c84d6d1d}\label{namespacedsp_1_1window_a3870aacaccec3672cbf61f57c84d6d1d}} 
+\mbox{\Hypertarget{namespacedsp_1_1window_a2aa108b39f9af85531a2870fd0229df6}\label{namespacedsp_1_1window_a2aa108b39f9af85531a2870fd0229df6}} 
 \index{dsp::window@{dsp::window}!exponential@{exponential}}
 \index{exponential@{exponential}!dsp::window@{dsp::window}}
 \doxysubsubsection{\texorpdfstring{exponential()}{exponential()}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
-std\+::vector$<$ T $>$ dsp\+::window\+::exponential (\begin{DoxyParamCaption}\item[{double}]{center,  }\item[{unsigned}]{N,  }\item[{double}]{tau = {\ttfamily 1.0},  }\item[{bool}]{sym = {\ttfamily true} }\end{DoxyParamCaption})}
+std\+::vector$<$ T $>$ dsp\+::window\+::exponential (\begin{DoxyParamCaption}\item[{T}]{center,  }\item[{unsigned}]{N,  }\item[{T}]{tau = {\ttfamily 1.0},  }\item[{bool}]{sym = {\ttfamily true} }\end{DoxyParamCaption})}
 
 
 
@@ -561,6 +604,24 @@ Return a Parzen window.
 \begin{DoxyReturn}{Returns}
 The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is true). 
 \end{DoxyReturn}
+\mbox{\Hypertarget{namespacedsp_1_1window_a34a63560363037f3754daa895c9821bc}\label{namespacedsp_1_1window_a34a63560363037f3754daa895c9821bc}} 
+\index{dsp::window@{dsp::window}!string2type@{string2type}}
+\index{string2type@{string2type}!dsp::window@{dsp::window}}
+\doxysubsubsection{\texorpdfstring{string2type()}{string2type()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedsp_1_1window_a1cc0dcec4aa9e12640771bdf41f695b8}{type}} dsp\+::window\+::string2type (\begin{DoxyParamCaption}\item[{std\+::string}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the window type corresponding to a string representation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & String containing the window name \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Corresponding window type 
+\end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_1_1window_a931f388022b655420037a5e1652621d8}\label{namespacedsp_1_1window_a931f388022b655420037a5e1652621d8}} 
 \index{dsp::window@{dsp::window}!triang@{triang}}
 \index{triang@{triang}!dsp::window@{dsp::window}}
@@ -587,12 +648,12 @@ Return a triangular window.
 \begin{DoxyReturn}{Returns}
 The window, with the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is true). 
 \end{DoxyReturn}
-\mbox{\Hypertarget{namespacedsp_1_1window_af25fb16fa8f1225342e35e88ef596e19}\label{namespacedsp_1_1window_af25fb16fa8f1225342e35e88ef596e19}} 
+\mbox{\Hypertarget{namespacedsp_1_1window_afb244cc8f82873d0e8a8d25394266ecc}\label{namespacedsp_1_1window_afb244cc8f82873d0e8a8d25394266ecc}} 
 \index{dsp::window@{dsp::window}!tukey@{tukey}}
 \index{tukey@{tukey}!dsp::window@{dsp::window}}
 \doxysubsubsection{\texorpdfstring{tukey()}{tukey()}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
-std\+::vector$<$ T $>$ dsp\+::window\+::tukey (\begin{DoxyParamCaption}\item[{unsigned}]{N,  }\item[{double}]{alpha = {\ttfamily 0.5},  }\item[{bool}]{sym = {\ttfamily true} }\end{DoxyParamCaption})}
+std\+::vector$<$ T $>$ dsp\+::window\+::tukey (\begin{DoxyParamCaption}\item[{unsigned}]{N,  }\item[{T}]{alpha = {\ttfamily 0.5},  }\item[{bool}]{sym = {\ttfamily true} }\end{DoxyParamCaption})}
 
 
 
@@ -614,4 +675,22 @@ Return a Tukey window, also known as a tapered cosine window.
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 The window, with the maximum value normalized to 1 (though the value 1 does not appear if M is even and sym is true). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacedsp_1_1window_a8570ba336a7b9c53c308f80610e5fcbd}\label{namespacedsp_1_1window_a8570ba336a7b9c53c308f80610e5fcbd}} 
+\index{dsp::window@{dsp::window}!type2string@{type2string}}
+\index{type2string@{type2string}!dsp::window@{dsp::window}}
+\doxysubsubsection{\texorpdfstring{type2string()}{type2string()}}
+{\footnotesize\ttfamily std\+::string dsp\+::window\+::type2string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedsp_1_1window_a1cc0dcec4aa9e12640771bdf41f695b8}{type}}}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns a string representing a window type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & The window type \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A string representing the window type 
 \end{DoxyReturn}

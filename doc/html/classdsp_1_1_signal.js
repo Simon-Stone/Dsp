@@ -44,6 +44,7 @@ var classdsp_1_1_signal =
     [ "getSamples", "classdsp_1_1_signal.html#a114bfee2813c115c0685e9067f4a0cc5", null ],
     [ "getSamples", "classdsp_1_1_signal.html#ad73e5d0efc33884529055539130db799", null ],
     [ "getSamplingRate_Hz", "classdsp_1_1_signal.html#ad8d823b6a6991222336becec777e9b09", null ],
+    [ "getValue", "classdsp_1_1_signal.html#af766c6a8e02ae9231c489c45246c5672", null ],
     [ "imag", "classdsp_1_1_signal.html#a8feb196987344db970173674d9b5fb27", null ],
     [ "insert", "classdsp_1_1_signal.html#ab1ab30237ec1b34bece6e6cdf330a987", null ],
     [ "insert", "classdsp_1_1_signal.html#a3ad742acba88641b91988b514ddc88b9", null ],
@@ -66,8 +67,8 @@ var classdsp_1_1_signal =
     [ "operator/=", "classdsp_1_1_signal.html#a61ccbd29fa50d05edded19b2f9bdb86f", null ],
     [ "operator=", "classdsp_1_1_signal.html#a16c58a5871b0aa3e0291a6d76280a56d", null ],
     [ "operator=", "classdsp_1_1_signal.html#a880337756d5678b9977188f680b34939", null ],
-    [ "operator[]", "classdsp_1_1_signal.html#a412a5bd0060d03dd228ea9cb19c8cc63", null ],
-    [ "operator[]", "classdsp_1_1_signal.html#afc1083816c754998b530b3705f6cf2f1", null ],
+    [ "operator[]", "classdsp_1_1_signal.html#a74205d6c933c098ce443d2f46830b559", null ],
+    [ "operator[]", "classdsp_1_1_signal.html#ab2fc2e8558b97ce72dd4c2dc43a624c3", null ],
     [ "pop_back", "classdsp_1_1_signal.html#a325122e43ace2458a024b50b422c9e29", null ],
     [ "push_back", "classdsp_1_1_signal.html#ad762e9f54410371092b0e303359e79f1", null ],
     [ "push_back", "classdsp_1_1_signal.html#a4877a0caf3b6f4fac995034433304e31", null ],
@@ -82,5 +83,7 @@ var classdsp_1_1_signal =
     [ "shrink_to_fit", "classdsp_1_1_signal.html#a96dd0c81a37c2773c43856099a42c4b7", null ],
     [ "size", "classdsp_1_1_signal.html#a5958a2fd85e848830f37ac0e0ae7fed8", null ],
     [ "swap", "classdsp_1_1_signal.html#a01251c45f35748003e4bfbd363e539b9", null ],
-    [ "operator<<", "classdsp_1_1_signal.html#af0b0d36b0aeab988a05ba360c6ddb89c", null ]
+    [ "operator<<", "classdsp_1_1_signal.html#af0b0d36b0aeab988a05ba360c6ddb89c", null ],
+    [ "samples_", "classdsp_1_1_signal.html#a17e9746c320be9f435349c6d3ecd2e58", null ],
+    [ "samplingRate_Hz_", "classdsp_1_1_signal.html#a7379e642c2b424d068d6288c7623c5a3", null ]
 ];

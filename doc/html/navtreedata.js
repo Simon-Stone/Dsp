@@ -35,7 +35,11 @@ var NAVTREE =
     ] ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
-      [ "Class Index", "classes.html", null ]
+      [ "Class Index", "classes.html", null ],
+      [ "Class Members", "functions.html", [
+        [ "All", "functions.html", null ],
+        [ "Variables", "functions_vars.html", null ]
+      ] ]
     ] ],
     [ "Files", "files.html", [
       [ "File List", "files.html", "files_dup" ]
@@ -46,7 +50,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_legacy_dsp_8h_source.html",
-"namespacedsp_1_1window.html#a1cc0dcec4aa9e12640771bdf41f695b8a304e2a3b544f6b9f267a151e1bcee487"
+"namespacedsp_1_1convert.html#ab44ee4c21ada8c728615e68891b05aa3"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

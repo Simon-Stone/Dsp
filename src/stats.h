@@ -6,7 +6,6 @@
 
 #include "Signal.h"
 
-/// @brief Functions for statistical calculations on std::vector and dsp::Signal
 namespace dsp
 {
 	/// @brief Returns the mean value of the passed range

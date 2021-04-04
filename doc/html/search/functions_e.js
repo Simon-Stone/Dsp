@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['rfft_136',['rfft',['../namespacedsp_1_1fft.html#a054d4669893e32e3b3162ca4e661ffca',1,'dsp::fft']]]
+  ['parzen_157',['parzen',['../namespacedsp_1_1window.html#a479dc86ffddf5e19d595c0c0e751edda',1,'dsp::window']]]
 ];

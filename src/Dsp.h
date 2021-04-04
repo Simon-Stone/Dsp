@@ -5,5 +5,6 @@
 #include "Signal.h"
 #include "signals.h"
 #include "special.h"
+#include "stats.h"
 #include "utilities.h"
 #include "window.h"

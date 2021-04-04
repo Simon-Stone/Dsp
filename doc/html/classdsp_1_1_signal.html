@@ -86,6 +86,7 @@ $(document).ready(function(){initNavTree('classdsp_1_1_signal.html',''); initRes
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="#friends">Friends</a> &#124;
 <a href="classdsp_1_1_signal-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('classdsp_1_1_signal.html',''); initRes
 </div><!--header-->
 <div class="contents">
 
-<p>This class represents a signal.  
+<p>This class represents a scalar signal.  
  <a href="classdsp_1_1_signal.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_signal_8h_source.html">Signal.h</a>&gt;</code></p>
@@ -224,6 +225,9 @@ reference&#160;</td><td class="memItemRight" valign="bottom"><b>at</b> (size_typ
 <tr class="memitem:ac1799c5e25b4d0451bd0ff1b9b0a1263"><td class="memItemLeft" align="right" valign="top"><a id="ac1799c5e25b4d0451bd0ff1b9b0a1263"></a>
 const T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>at</b> (size_type pos) const</td></tr>
 <tr class="separator:ac1799c5e25b4d0451bd0ff1b9b0a1263"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af766c6a8e02ae9231c489c45246c5672"><td class="memItemLeft" align="right" valign="top"><a id="af766c6a8e02ae9231c489c45246c5672"></a>
+virtual value_type&#160;</td><td class="memItemRight" valign="bottom"><b>getValue</b> (size_type pos) const</td></tr>
+<tr class="separator:af766c6a8e02ae9231c489c45246c5672"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe2ab6c9c5c6f33e4eac1d0c04028c58"><td class="memItemLeft" align="right" valign="top"><a id="afe2ab6c9c5c6f33e4eac1d0c04028c58"></a>
 reference&#160;</td><td class="memItemRight" valign="bottom"><b>front</b> ()</td></tr>
 <tr class="separator:afe2ab6c9c5c6f33e4eac1d0c04028c58"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -335,12 +339,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>swap</b> (<a class="e
 <tr class="memitem:a880337756d5678b9977188f680b34939"><td class="memItemLeft" align="right" valign="top"><a id="a880337756d5678b9977188f680b34939"></a>
 <a class="el" href="classdsp_1_1_signal.html">Signal</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="classdsp_1_1_signal.html">Signal</a> &amp;&amp;other) noexcept</td></tr>
 <tr class="separator:a880337756d5678b9977188f680b34939"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a412a5bd0060d03dd228ea9cb19c8cc63"><td class="memItemLeft" align="right" valign="top"><a id="a412a5bd0060d03dd228ea9cb19c8cc63"></a>
-reference &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (size_type pos)</td></tr>
-<tr class="separator:a412a5bd0060d03dd228ea9cb19c8cc63"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc1083816c754998b530b3705f6cf2f1"><td class="memItemLeft" align="right" valign="top"><a id="afc1083816c754998b530b3705f6cf2f1"></a>
-const_reference &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (size_type pos) const</td></tr>
-<tr class="separator:afc1083816c754998b530b3705f6cf2f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74205d6c933c098ce443d2f46830b559"><td class="memItemLeft" align="right" valign="top"><a id="a74205d6c933c098ce443d2f46830b559"></a>
+virtual reference&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (size_type pos)</td></tr>
+<tr class="separator:a74205d6c933c098ce443d2f46830b559"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2fc2e8558b97ce72dd4c2dc43a624c3"><td class="memItemLeft" align="right" valign="top"><a id="ab2fc2e8558b97ce72dd4c2dc43a624c3"></a>
+virtual const_reference&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (size_type pos) const</td></tr>
+<tr class="separator:ab2fc2e8558b97ce72dd4c2dc43a624c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3ad742acba88641b91988b514ddc88b9"><td class="memTemplParams" colspan="2"><a id="a3ad742acba88641b91988b514ddc88b9"></a>
 template&lt;class InputIt &gt; </td></tr>
 <tr class="memitem:a3ad742acba88641b91988b514ddc88b9"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classdsp_1_1_signal.html">dsp::Signal</a>&lt; T &gt;::iterator&#160;</td><td class="memTemplItemRight" valign="bottom"><b>insert</b> (const_iterator pos, InputIt first, InputIt last)</td></tr>
@@ -349,6 +353,16 @@ template&lt;class InputIt &gt; </td></tr>
 template&lt;class ... Args&gt; </td></tr>
 <tr class="memitem:a7a394bb6eac115c6bb961386277f161b"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classdsp_1_1_signal.html">dsp::Signal</a>&lt; T &gt;::iterator&#160;</td><td class="memTemplItemRight" valign="bottom"><b>emplace</b> (const_iterator pos, Args &amp;&amp;... args)</td></tr>
 <tr class="separator:a7a394bb6eac115c6bb961386277f161b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a7379e642c2b424d068d6288c7623c5a3"><td class="memItemLeft" align="right" valign="top"><a id="a7379e642c2b424d068d6288c7623c5a3"></a>
+unsigned&#160;</td><td class="memItemRight" valign="bottom"><b>samplingRate_Hz_</b> { 0 }</td></tr>
+<tr class="separator:a7379e642c2b424d068d6288c7623c5a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17e9746c320be9f435349c6d3ecd2e58"><td class="memItemLeft" align="right" valign="top"><a id="a17e9746c320be9f435349c6d3ecd2e58"></a>
+std::vector&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdsp_1_1_signal.html#a17e9746c320be9f435349c6d3ecd2e58">samples_</a></td></tr>
+<tr class="memdesc:a17e9746c320be9f435349c6d3ecd2e58"><td class="mdescLeft">&#160;</td><td class="mdescRight">A vector holding the actual samples. <br /></td></tr>
+<tr class="separator:a17e9746c320be9f435349c6d3ecd2e58"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>
@@ -360,7 +374,7 @@ std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operato
 <div class="textblock"><h3>template&lt;class T&gt;<br />
 class dsp::Signal&lt; T &gt;</h3>
 
-<p>This class represents a signal. </p>
+<p>This class represents a scalar signal. </p>
 <p>It is implemented as a facade design pattern wrapped around an STL vector. Fun fact: It is not derived from std::vector because that class does not have a virtual destructor, potentially producing memory leaks. </p><dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">T</td><td>Data type of the samples in the signal. Can be any numeric type, but mind that the arithmetic is at the same precision (which might lead to unexpected results with integer types). </td></tr>

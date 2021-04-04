@@ -122,7 +122,7 @@ Namespaces</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdsp_1_1_signal.html">Signal</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class represents a signal.  <a href="classdsp_1_1_signal.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class represents a scalar signal.  <a href="classdsp_1_1_signal.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
@@ -136,6 +136,11 @@ using&#160;</td><td class="memItemRight" valign="bottom"><b>correlation_method</
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
+<tr class="memitem:a6244fa34d285f00f68e00ed89d71cf85"><td class="memItemLeft" align="right" valign="top"><a id="a6244fa34d285f00f68e00ed89d71cf85"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedsp.html#a6244fa34d285f00f68e00ed89d71cf85">weight</a> { <b>sample</b>
+, <b>population</b>
+ }</td></tr>
+<tr class="memdesc:a6244fa34d285f00f68e00ed89d71cf85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the variance or standard deviation based on a sample or based on the population. <br /></td></tr>
+<tr class="separator:a6244fa34d285f00f68e00ed89d71cf85"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4e4ebc11d0bd80a1aa09a7796dcf91b6"><td class="memItemLeft" align="right" valign="top"><a id="a4e4ebc11d0bd80a1aa09a7796dcf91b6"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>convolution_mode</b> { <b>full</b>
 , <b>valid</b>
 , <b>same</b>
@@ -193,66 +198,98 @@ template&lt;class T &gt; </td></tr>
 template&lt;class T &gt; </td></tr>
 <tr class="memitem:aad25e1445c49802281d6be56496e4182"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>swap</b> (<a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; &amp;lhs, <a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; &amp;rhs) noexcept</td></tr>
 <tr class="separator:aad25e1445c49802281d6be56496e4182"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab0fab5e02eda0b4efaae6bbf38bcb892"><td class="memTemplParams" colspan="2"><a id="ab0fab5e02eda0b4efaae6bbf38bcb892"></a>
+<tr class="memitem:ab3b6d3e9b6b05094bf16270d260dd9d1"><td class="memTemplParams" colspan="2"><a id="ab3b6d3e9b6b05094bf16270d260dd9d1"></a>
 template&lt;class T &gt; </td></tr>
-<tr class="memitem:ab0fab5e02eda0b4efaae6bbf38bcb892"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator+</b> (<a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; &amp;lhs, const <a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; &amp;rhs)</td></tr>
-<tr class="separator:ab0fab5e02eda0b4efaae6bbf38bcb892"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d24443b944bca7795fbdcea54de0ba3"><td class="memTemplParams" colspan="2"><a id="a4d24443b944bca7795fbdcea54de0ba3"></a>
+<tr class="memitem:ab3b6d3e9b6b05094bf16270d260dd9d1"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator+</b> (<a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; lhs, const <a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; &amp;rhs)</td></tr>
+<tr class="separator:ab3b6d3e9b6b05094bf16270d260dd9d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac878b3fbb8abb97339c0e8b3e3e94e62"><td class="memTemplParams" colspan="2"><a id="ac878b3fbb8abb97339c0e8b3e3e94e62"></a>
 template&lt;class T &gt; </td></tr>
-<tr class="memitem:a4d24443b944bca7795fbdcea54de0ba3"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator+</b> (<a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; &amp;lhs, const std::vector&lt; T &gt; &amp;rhs)</td></tr>
-<tr class="separator:a4d24443b944bca7795fbdcea54de0ba3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af8e39c8a1d52dada481b0653048af687"><td class="memTemplParams" colspan="2"><a id="af8e39c8a1d52dada481b0653048af687"></a>
+<tr class="memitem:ac878b3fbb8abb97339c0e8b3e3e94e62"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator+</b> (<a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; lhs, const std::vector&lt; T &gt; &amp;rhs)</td></tr>
+<tr class="separator:ac878b3fbb8abb97339c0e8b3e3e94e62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6855ee2b64f29aab21eed66aa504288a"><td class="memTemplParams" colspan="2"><a id="a6855ee2b64f29aab21eed66aa504288a"></a>
 template&lt;class T &gt; </td></tr>
-<tr class="memitem:af8e39c8a1d52dada481b0653048af687"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator+</b> (<a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; &amp;lhs, typename <a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;::const_reference value)</td></tr>
-<tr class="separator:af8e39c8a1d52dada481b0653048af687"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aefc16d715d8a6bfc511b1dd5e7607c9b"><td class="memTemplParams" colspan="2"><a id="aefc16d715d8a6bfc511b1dd5e7607c9b"></a>
+<tr class="memitem:a6855ee2b64f29aab21eed66aa504288a"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator+</b> (const std::vector&lt; T &gt; &amp;lhs, <a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; rhs)</td></tr>
+<tr class="separator:a6855ee2b64f29aab21eed66aa504288a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1500591ff8edf6a108a3b8bd05493b0"><td class="memTemplParams" colspan="2"><a id="aa1500591ff8edf6a108a3b8bd05493b0"></a>
 template&lt;class T &gt; </td></tr>
-<tr class="memitem:aefc16d715d8a6bfc511b1dd5e7607c9b"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator-</b> (<a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; &amp;lhs, const <a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; &amp;rhs)</td></tr>
-<tr class="separator:aefc16d715d8a6bfc511b1dd5e7607c9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7f61b6b17771e8a70951b4228148e4b"><td class="memTemplParams" colspan="2"><a id="ae7f61b6b17771e8a70951b4228148e4b"></a>
+<tr class="memitem:aa1500591ff8edf6a108a3b8bd05493b0"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator+</b> (<a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; lhs, typename <a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;::value_type value)</td></tr>
+<tr class="separator:aa1500591ff8edf6a108a3b8bd05493b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a22956b4dae3da6772c32a06bcbf1ad"><td class="memTemplParams" colspan="2"><a id="a8a22956b4dae3da6772c32a06bcbf1ad"></a>
 template&lt;class T &gt; </td></tr>
-<tr class="memitem:ae7f61b6b17771e8a70951b4228148e4b"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator-</b> (<a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; &amp;lhs, const std::vector&lt; T &gt; &amp;rhs)</td></tr>
-<tr class="separator:ae7f61b6b17771e8a70951b4228148e4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a776833ae64c7b5ba05dd96657ef2470e"><td class="memTemplParams" colspan="2"><a id="a776833ae64c7b5ba05dd96657ef2470e"></a>
+<tr class="memitem:a8a22956b4dae3da6772c32a06bcbf1ad"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator+</b> (typename <a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;::value_type value, <a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; rhs)</td></tr>
+<tr class="separator:a8a22956b4dae3da6772c32a06bcbf1ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80591bc19eabac3beaca50833e8b2cc0"><td class="memTemplParams" colspan="2"><a id="a80591bc19eabac3beaca50833e8b2cc0"></a>
 template&lt;class T &gt; </td></tr>
-<tr class="memitem:a776833ae64c7b5ba05dd96657ef2470e"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator-</b> (<a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; &amp;lhs, typename <a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;::const_reference value)</td></tr>
-<tr class="separator:a776833ae64c7b5ba05dd96657ef2470e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee1f893dca1094ffd8cfd3989a6d334d"><td class="memTemplParams" colspan="2"><a id="aee1f893dca1094ffd8cfd3989a6d334d"></a>
+<tr class="memitem:a80591bc19eabac3beaca50833e8b2cc0"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator-</b> (<a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; lhs, const <a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; &amp;rhs)</td></tr>
+<tr class="separator:a80591bc19eabac3beaca50833e8b2cc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d1ff33b0ca5537322a33f9dae489dc5"><td class="memTemplParams" colspan="2"><a id="a4d1ff33b0ca5537322a33f9dae489dc5"></a>
 template&lt;class T &gt; </td></tr>
-<tr class="memitem:aee1f893dca1094ffd8cfd3989a6d334d"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator*</b> (<a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; &amp;lhs, const <a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; &amp;rhs)</td></tr>
-<tr class="separator:aee1f893dca1094ffd8cfd3989a6d334d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a30938925ca9280db69e0bf6cbeee4566"><td class="memTemplParams" colspan="2"><a id="a30938925ca9280db69e0bf6cbeee4566"></a>
+<tr class="memitem:a4d1ff33b0ca5537322a33f9dae489dc5"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator-</b> (<a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; lhs, const std::vector&lt; T &gt; &amp;rhs)</td></tr>
+<tr class="separator:a4d1ff33b0ca5537322a33f9dae489dc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af656fa69672ef9c9556c518ceb8719ab"><td class="memTemplParams" colspan="2"><a id="af656fa69672ef9c9556c518ceb8719ab"></a>
 template&lt;class T &gt; </td></tr>
-<tr class="memitem:a30938925ca9280db69e0bf6cbeee4566"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator*</b> (<a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; &amp;lhs, const std::vector&lt; T &gt; &amp;rhs)</td></tr>
-<tr class="separator:a30938925ca9280db69e0bf6cbeee4566"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af5215955b942c28e7c70e310871910a6"><td class="memTemplParams" colspan="2"><a id="af5215955b942c28e7c70e310871910a6"></a>
+<tr class="memitem:af656fa69672ef9c9556c518ceb8719ab"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator-</b> (const std::vector&lt; T &gt; &amp;lhs, <a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; rhs)</td></tr>
+<tr class="separator:af656fa69672ef9c9556c518ceb8719ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a623f5d4b245afb37cfa4f32daf9bed70"><td class="memTemplParams" colspan="2"><a id="a623f5d4b245afb37cfa4f32daf9bed70"></a>
 template&lt;class T &gt; </td></tr>
-<tr class="memitem:af5215955b942c28e7c70e310871910a6"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator*</b> (<a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; &amp;lhs, typename <a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;::const_reference value)</td></tr>
-<tr class="separator:af5215955b942c28e7c70e310871910a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb4cce2b22c19c7c26db03e31edc89e5"><td class="memTemplParams" colspan="2"><a id="acb4cce2b22c19c7c26db03e31edc89e5"></a>
+<tr class="memitem:a623f5d4b245afb37cfa4f32daf9bed70"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator-</b> (<a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; lhs, typename <a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;::value_type value)</td></tr>
+<tr class="separator:a623f5d4b245afb37cfa4f32daf9bed70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc3720bf8afd531da03b2593bb05d4a8"><td class="memTemplParams" colspan="2"><a id="adc3720bf8afd531da03b2593bb05d4a8"></a>
 template&lt;class T &gt; </td></tr>
-<tr class="memitem:acb4cce2b22c19c7c26db03e31edc89e5"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator/</b> (<a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; &amp;lhs, const <a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; &amp;rhs)</td></tr>
-<tr class="separator:acb4cce2b22c19c7c26db03e31edc89e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a517d979b7519de57703a5c2f2feb72eb"><td class="memTemplParams" colspan="2"><a id="a517d979b7519de57703a5c2f2feb72eb"></a>
+<tr class="memitem:adc3720bf8afd531da03b2593bb05d4a8"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator-</b> (typename <a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;::value_type value, <a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; rhs)</td></tr>
+<tr class="separator:adc3720bf8afd531da03b2593bb05d4a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd22131c7c97061e727f49f7d35c726f"><td class="memTemplParams" colspan="2"><a id="acd22131c7c97061e727f49f7d35c726f"></a>
 template&lt;class T &gt; </td></tr>
-<tr class="memitem:a517d979b7519de57703a5c2f2feb72eb"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator/</b> (<a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; &amp;lhs, const std::vector&lt; T &gt; &amp;rhs)</td></tr>
-<tr class="separator:a517d979b7519de57703a5c2f2feb72eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a432e9148b4cd42d3004509e5710a6dea"><td class="memTemplParams" colspan="2"><a id="a432e9148b4cd42d3004509e5710a6dea"></a>
+<tr class="memitem:acd22131c7c97061e727f49f7d35c726f"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator*</b> (<a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; lhs, const <a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; &amp;rhs)</td></tr>
+<tr class="separator:acd22131c7c97061e727f49f7d35c726f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afac9e76e5801131df6e6b70f9c5bf2fa"><td class="memTemplParams" colspan="2"><a id="afac9e76e5801131df6e6b70f9c5bf2fa"></a>
 template&lt;class T &gt; </td></tr>
-<tr class="memitem:a432e9148b4cd42d3004509e5710a6dea"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator/</b> (<a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; &amp;lhs, typename <a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;::const_reference value)</td></tr>
-<tr class="separator:a432e9148b4cd42d3004509e5710a6dea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c782c2e5c688f668841d86e55893768"><td class="memTemplParams" colspan="2"><a id="a7c782c2e5c688f668841d86e55893768"></a>
+<tr class="memitem:afac9e76e5801131df6e6b70f9c5bf2fa"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator*</b> (<a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; lhs, const std::vector&lt; T &gt; &amp;rhs)</td></tr>
+<tr class="separator:afac9e76e5801131df6e6b70f9c5bf2fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf0ef0b5b5db011ca67a1f3be3e4d6ec"><td class="memTemplParams" colspan="2"><a id="acf0ef0b5b5db011ca67a1f3be3e4d6ec"></a>
 template&lt;class T &gt; </td></tr>
-<tr class="memitem:a7c782c2e5c688f668841d86e55893768"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>pow</b> (<a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; signal, int exponent)</td></tr>
-<tr class="separator:a7c782c2e5c688f668841d86e55893768"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7237c5be52aad6a7105dfdaa51628742"><td class="memTemplParams" colspan="2"><a id="a7237c5be52aad6a7105dfdaa51628742"></a>
+<tr class="memitem:acf0ef0b5b5db011ca67a1f3be3e4d6ec"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator*</b> (const std::vector&lt; T &gt; &amp;lhs, <a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; rhs)</td></tr>
+<tr class="separator:acf0ef0b5b5db011ca67a1f3be3e4d6ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78320c42f79487639d0a837d3337dc37"><td class="memTemplParams" colspan="2"><a id="a78320c42f79487639d0a837d3337dc37"></a>
 template&lt;class T &gt; </td></tr>
-<tr class="memitem:a7237c5be52aad6a7105dfdaa51628742"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>pow</b> (std::vector&lt; T &gt; vec, int exponent)</td></tr>
-<tr class="separator:a7237c5be52aad6a7105dfdaa51628742"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9daf2a67d3ae8f323dccffff80b66b4e"><td class="memTemplParams" colspan="2"><a id="a9daf2a67d3ae8f323dccffff80b66b4e"></a>
+<tr class="memitem:a78320c42f79487639d0a837d3337dc37"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator*</b> (<a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; lhs, typename <a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;::value_type value)</td></tr>
+<tr class="separator:a78320c42f79487639d0a837d3337dc37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0431db7731b0f2988907091afbc7026e"><td class="memTemplParams" colspan="2"><a id="a0431db7731b0f2988907091afbc7026e"></a>
 template&lt;class T &gt; </td></tr>
-<tr class="memitem:a9daf2a67d3ae8f323dccffff80b66b4e"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>abs</b> (<a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; signal)</td></tr>
-<tr class="separator:a9daf2a67d3ae8f323dccffff80b66b4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0431db7731b0f2988907091afbc7026e"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator*</b> (typename <a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;::value_type value, <a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; rhs)</td></tr>
+<tr class="separator:a0431db7731b0f2988907091afbc7026e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abdcddf04f2e151ca747bfc2cbc5439c7"><td class="memTemplParams" colspan="2"><a id="abdcddf04f2e151ca747bfc2cbc5439c7"></a>
+template&lt;class T &gt; </td></tr>
+<tr class="memitem:abdcddf04f2e151ca747bfc2cbc5439c7"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator/</b> (<a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; lhs, const <a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; &amp;rhs)</td></tr>
+<tr class="separator:abdcddf04f2e151ca747bfc2cbc5439c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05df1acde30554ea1caea26e7eea6d7e"><td class="memTemplParams" colspan="2"><a id="a05df1acde30554ea1caea26e7eea6d7e"></a>
+template&lt;class T &gt; </td></tr>
+<tr class="memitem:a05df1acde30554ea1caea26e7eea6d7e"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator/</b> (<a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; lhs, const std::vector&lt; T &gt; &amp;rhs)</td></tr>
+<tr class="separator:a05df1acde30554ea1caea26e7eea6d7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4be1036e5ed1a0a86eba803a07c407f"><td class="memTemplParams" colspan="2"><a id="ac4be1036e5ed1a0a86eba803a07c407f"></a>
+template&lt;class T &gt; </td></tr>
+<tr class="memitem:ac4be1036e5ed1a0a86eba803a07c407f"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator/</b> (const std::vector&lt; T &gt; &amp;lhs, <a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; rhs)</td></tr>
+<tr class="separator:ac4be1036e5ed1a0a86eba803a07c407f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1d9ed5c6fa4fb95766d2f7454ac2137"><td class="memTemplParams" colspan="2"><a id="af1d9ed5c6fa4fb95766d2f7454ac2137"></a>
+template&lt;class T &gt; </td></tr>
+<tr class="memitem:af1d9ed5c6fa4fb95766d2f7454ac2137"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator/</b> (<a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; lhs, typename <a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;::value_type value)</td></tr>
+<tr class="separator:af1d9ed5c6fa4fb95766d2f7454ac2137"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac35d64271d9226ef34087a960023478"><td class="memTemplParams" colspan="2"><a id="aac35d64271d9226ef34087a960023478"></a>
+template&lt;class T &gt; </td></tr>
+<tr class="memitem:aac35d64271d9226ef34087a960023478"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator/</b> (typename <a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;::value_type value, <a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; rhs)</td></tr>
+<tr class="separator:aac35d64271d9226ef34087a960023478"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24fbbfa29dc63883b2c5595c604ff55e"><td class="memTemplParams" colspan="2"><a id="a24fbbfa29dc63883b2c5595c604ff55e"></a>
+template&lt;class T &gt; </td></tr>
+<tr class="memitem:a24fbbfa29dc63883b2c5595c604ff55e"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>pow</b> (const <a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; &amp;signal, int exponent)</td></tr>
+<tr class="separator:a24fbbfa29dc63883b2c5595c604ff55e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f75239ad37a8ed8ebf44b8f07b08681"><td class="memTemplParams" colspan="2"><a id="a7f75239ad37a8ed8ebf44b8f07b08681"></a>
+template&lt;class T &gt; </td></tr>
+<tr class="memitem:a7f75239ad37a8ed8ebf44b8f07b08681"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>pow</b> (const std::vector&lt; T &gt; &amp;vec, int exponent)</td></tr>
+<tr class="separator:a7f75239ad37a8ed8ebf44b8f07b08681"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a832328eb31cefdeee1d61b19abe22d1c"><td class="memTemplParams" colspan="2"><a id="a832328eb31cefdeee1d61b19abe22d1c"></a>
+template&lt;class T &gt; </td></tr>
+<tr class="memitem:a832328eb31cefdeee1d61b19abe22d1c"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>abs</b> (const <a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; &amp;signal)</td></tr>
+<tr class="separator:a832328eb31cefdeee1d61b19abe22d1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7487e1bf42c1971f6f30acaf3d7cf35b"><td class="memTemplParams" colspan="2"><a id="a7487e1bf42c1971f6f30acaf3d7cf35b"></a>
 template&lt;class T &gt; </td></tr>
 <tr class="memitem:a7487e1bf42c1971f6f30acaf3d7cf35b"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>abs</b> (const std::vector&lt; T &gt; &amp;vec)</td></tr>
@@ -265,18 +302,18 @@ template&lt;class T &gt; </td></tr>
 template&lt;class T &gt; </td></tr>
 <tr class="memitem:a37fa67f8fd37c7fe350e523b102e3046"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>real</b> (const <a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; &amp;signal)</td></tr>
 <tr class="separator:a37fa67f8fd37c7fe350e523b102e3046"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:accb532b9d20ec1e768fd88e49b716065"><td class="memTemplParams" colspan="2"><a id="accb532b9d20ec1e768fd88e49b716065"></a>
+<tr class="memitem:a6ce68f32c6b5ae8ceb3be3b0b34b6d40"><td class="memTemplParams" colspan="2"><a id="a6ce68f32c6b5ae8ceb3be3b0b34b6d40"></a>
 template&lt;class T &gt; </td></tr>
-<tr class="memitem:accb532b9d20ec1e768fd88e49b716065"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>imag</b> (<a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; signal)</td></tr>
-<tr class="separator:accb532b9d20ec1e768fd88e49b716065"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ce68f32c6b5ae8ceb3be3b0b34b6d40"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>imag</b> (const <a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; &amp;signal)</td></tr>
+<tr class="separator:a6ce68f32c6b5ae8ceb3be3b0b34b6d40"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a097b96ea355e9565183ac242a383c404"><td class="memTemplParams" colspan="2"><a id="a097b96ea355e9565183ac242a383c404"></a>
 template&lt;class T &gt; </td></tr>
 <tr class="memitem:a097b96ea355e9565183ac242a383c404"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; std::complex&lt; T &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>conj</b> (const std::vector&lt; std::complex&lt; T &gt;&gt; &amp;z)</td></tr>
 <tr class="separator:a097b96ea355e9565183ac242a383c404"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2e811dd499d804420f91a1412397f735"><td class="memTemplParams" colspan="2"><a id="a2e811dd499d804420f91a1412397f735"></a>
+<tr class="memitem:aa74f1985cf3ed7d1df8942eeb9e5cc41"><td class="memTemplParams" colspan="2"><a id="aa74f1985cf3ed7d1df8942eeb9e5cc41"></a>
 template&lt;class T &gt; </td></tr>
-<tr class="memitem:a2e811dd499d804420f91a1412397f735"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>conj</b> (<a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; signal)</td></tr>
-<tr class="separator:a2e811dd499d804420f91a1412397f735"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa74f1985cf3ed7d1df8942eeb9e5cc41"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>conj</b> (const <a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; &amp;signal)</td></tr>
+<tr class="separator:aa74f1985cf3ed7d1df8942eeb9e5cc41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9b1475ccc3f98da4cdd514bf1462e97f"><td class="memItemLeft" align="right" valign="top"><a id="a9b1475ccc3f98da4cdd514bf1462e97f"></a>
 std::vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>conj</b> (const std::vector&lt; float &gt; &amp;z)</td></tr>
 <tr class="separator:a9b1475ccc3f98da4cdd514bf1462e97f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -286,23 +323,98 @@ std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><
 <tr class="memitem:a277582c9edeec5dc87ab45c62889f26e"><td class="memItemLeft" align="right" valign="top"><a id="a277582c9edeec5dc87ab45c62889f26e"></a>
 std::vector&lt; long double &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>conj</b> (const std::vector&lt; long double &gt; &amp;z)</td></tr>
 <tr class="separator:a277582c9edeec5dc87ab45c62889f26e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad90915d14fda7d97f3ca5d97d3d22944"><td class="memTemplParams" colspan="2"><a id="ad90915d14fda7d97f3ca5d97d3d22944"></a>
+<tr class="memitem:a0333b69ae62978bdb1092181539455c4"><td class="memTemplParams" colspan="2"><a id="a0333b69ae62978bdb1092181539455c4"></a>
 template&lt;class T &gt; </td></tr>
-<tr class="memitem:ad90915d14fda7d97f3ca5d97d3d22944"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>arg</b> (<a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; signal)</td></tr>
-<tr class="separator:ad90915d14fda7d97f3ca5d97d3d22944"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afb7a8b7a2cce4364e0a2a779572bc6f8"><td class="memTemplParams" colspan="2"><a id="afb7a8b7a2cce4364e0a2a779572bc6f8"></a>
+<tr class="memitem:a0333b69ae62978bdb1092181539455c4"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>arg</b> (const <a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; &amp;signal)</td></tr>
+<tr class="separator:a0333b69ae62978bdb1092181539455c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60fba1754a378757cb70a3c5dd4e43d1"><td class="memTemplParams" colspan="2"><a id="a60fba1754a378757cb70a3c5dd4e43d1"></a>
 template&lt;class T &gt; </td></tr>
-<tr class="memitem:afb7a8b7a2cce4364e0a2a779572bc6f8"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>norm</b> (<a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; signal)</td></tr>
-<tr class="separator:afb7a8b7a2cce4364e0a2a779572bc6f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60fba1754a378757cb70a3c5dd4e43d1"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>norm</b> (const <a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; &amp;signal)</td></tr>
+<tr class="separator:a60fba1754a378757cb70a3c5dd4e43d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17cf474a7157c4ceba297d0effdd5f11"><td class="memTemplParams" colspan="2">template&lt;class T , class InputIt &gt; </td></tr>
+<tr class="memitem:a17cf474a7157c4ceba297d0effdd5f11"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#a17cf474a7157c4ceba297d0effdd5f11">mean</a> (InputIt begin, InputIt end)</td></tr>
+<tr class="memdesc:a17cf474a7157c4ceba297d0effdd5f11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the mean value of the passed range.  <a href="namespacedsp.html#a17cf474a7157c4ceba297d0effdd5f11">More...</a><br /></td></tr>
+<tr class="separator:a17cf474a7157c4ceba297d0effdd5f11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a274d36d1290397b24a95aff4332ba20b"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a274d36d1290397b24a95aff4332ba20b"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#a274d36d1290397b24a95aff4332ba20b">mean</a> (const std::vector&lt; T &gt; &amp;x)</td></tr>
+<tr class="memdesc:a274d36d1290397b24a95aff4332ba20b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the mean value of a vector.  <a href="namespacedsp.html#a274d36d1290397b24a95aff4332ba20b">More...</a><br /></td></tr>
+<tr class="separator:a274d36d1290397b24a95aff4332ba20b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68742798fcae7c7962ce81324e0de655"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a68742798fcae7c7962ce81324e0de655"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#a68742798fcae7c7962ce81324e0de655">mean</a> (const <a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; &amp;x)</td></tr>
+<tr class="memdesc:a68742798fcae7c7962ce81324e0de655"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the mean value of a signal.  <a href="namespacedsp.html#a68742798fcae7c7962ce81324e0de655">More...</a><br /></td></tr>
+<tr class="separator:a68742798fcae7c7962ce81324e0de655"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa40f2496333d161c5aa8471390af5f05"><td class="memTemplParams" colspan="2">template&lt;class T , class InputIt &gt; </td></tr>
+<tr class="memitem:aa40f2496333d161c5aa8471390af5f05"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#aa40f2496333d161c5aa8471390af5f05">median</a> (InputIt begin, InputIt end)</td></tr>
+<tr class="memdesc:aa40f2496333d161c5aa8471390af5f05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the median of a range.  <a href="namespacedsp.html#aa40f2496333d161c5aa8471390af5f05">More...</a><br /></td></tr>
+<tr class="separator:aa40f2496333d161c5aa8471390af5f05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ae138eb44c647a8dcb8ed65552d55da"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a5ae138eb44c647a8dcb8ed65552d55da"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#a5ae138eb44c647a8dcb8ed65552d55da">median</a> (const T &amp;x)</td></tr>
+<tr class="memdesc:a5ae138eb44c647a8dcb8ed65552d55da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the median of a vector or <a class="el" href="classdsp_1_1_signal.html" title="This class represents a scalar signal.">Signal</a>.  <a href="namespacedsp.html#a5ae138eb44c647a8dcb8ed65552d55da">More...</a><br /></td></tr>
+<tr class="separator:a5ae138eb44c647a8dcb8ed65552d55da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d4932cf0fd90a0ecde3b2deffeb740c"><td class="memTemplParams" colspan="2">template&lt;class T , class InputIt &gt; </td></tr>
+<tr class="memitem:a1d4932cf0fd90a0ecde3b2deffeb740c"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#a1d4932cf0fd90a0ecde3b2deffeb740c">mode</a> (InputIt begin, InputIt end)</td></tr>
+<tr class="memdesc:a1d4932cf0fd90a0ecde3b2deffeb740c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the mode (most frequent element) of a range.  <a href="namespacedsp.html#a1d4932cf0fd90a0ecde3b2deffeb740c">More...</a><br /></td></tr>
+<tr class="separator:a1d4932cf0fd90a0ecde3b2deffeb740c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d6e31cb326aac6c7a06fe7a6a73cc74"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a0d6e31cb326aac6c7a06fe7a6a73cc74"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#a0d6e31cb326aac6c7a06fe7a6a73cc74">mode</a> (const T &amp;x)</td></tr>
+<tr class="memdesc:a0d6e31cb326aac6c7a06fe7a6a73cc74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the mode of a vector or <a class="el" href="classdsp_1_1_signal.html" title="This class represents a scalar signal.">Signal</a>.  <a href="namespacedsp.html#a0d6e31cb326aac6c7a06fe7a6a73cc74">More...</a><br /></td></tr>
+<tr class="separator:a0d6e31cb326aac6c7a06fe7a6a73cc74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3880dd4b34167c070e64bd10e7c6db56"><td class="memTemplParams" colspan="2">template&lt;class T , class InputIt &gt; </td></tr>
+<tr class="memitem:a3880dd4b34167c070e64bd10e7c6db56"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#a3880dd4b34167c070e64bd10e7c6db56">unique</a> (InputIt begin, InputIt end)</td></tr>
+<tr class="memdesc:a3880dd4b34167c070e64bd10e7c6db56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the unique values in a range.  <a href="namespacedsp.html#a3880dd4b34167c070e64bd10e7c6db56">More...</a><br /></td></tr>
+<tr class="separator:a3880dd4b34167c070e64bd10e7c6db56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad02c9fecd2e032a866f77e390b031189"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:ad02c9fecd2e032a866f77e390b031189"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; typename T::value_type &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#ad02c9fecd2e032a866f77e390b031189">unique</a> (const T &amp;x)</td></tr>
+<tr class="memdesc:ad02c9fecd2e032a866f77e390b031189"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the unique values from a container.  <a href="namespacedsp.html#ad02c9fecd2e032a866f77e390b031189">More...</a><br /></td></tr>
+<tr class="separator:ad02c9fecd2e032a866f77e390b031189"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ab80b27a24ba15a79545b4c84acb3c4"><td class="memTemplParams" colspan="2">template&lt;class T , class InputIt &gt; </td></tr>
+<tr class="memitem:a4ab80b27a24ba15a79545b4c84acb3c4"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#a4ab80b27a24ba15a79545b4c84acb3c4">var</a> (InputIt begin, InputIt end, <a class="el" href="namespacedsp.html#a6244fa34d285f00f68e00ed89d71cf85">weight</a> w=weight::sample)</td></tr>
+<tr class="memdesc:a4ab80b27a24ba15a79545b4c84acb3c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the variance of a range.  <a href="namespacedsp.html#a4ab80b27a24ba15a79545b4c84acb3c4">More...</a><br /></td></tr>
+<tr class="separator:a4ab80b27a24ba15a79545b4c84acb3c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac88085d18fc528874ed10f0444f03445"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:ac88085d18fc528874ed10f0444f03445"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#ac88085d18fc528874ed10f0444f03445">var</a> (const std::vector&lt; T &gt; &amp;x, <a class="el" href="namespacedsp.html#a6244fa34d285f00f68e00ed89d71cf85">weight</a> w=weight::sample)</td></tr>
+<tr class="memdesc:ac88085d18fc528874ed10f0444f03445"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the variance of a vector.  <a href="namespacedsp.html#ac88085d18fc528874ed10f0444f03445">More...</a><br /></td></tr>
+<tr class="separator:ac88085d18fc528874ed10f0444f03445"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e9c53733c0ca45ea276e67d875cdd7b"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a8e9c53733c0ca45ea276e67d875cdd7b"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#a8e9c53733c0ca45ea276e67d875cdd7b">var</a> (const <a class="el" href="classdsp_1_1_signal.html">dsp::Signal</a>&lt; T &gt; &amp;x, <a class="el" href="namespacedsp.html#a6244fa34d285f00f68e00ed89d71cf85">weight</a> w=weight::sample)</td></tr>
+<tr class="memdesc:a8e9c53733c0ca45ea276e67d875cdd7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the variance of a <a class="el" href="classdsp_1_1_signal.html" title="This class represents a scalar signal.">Signal</a>.  <a href="namespacedsp.html#a8e9c53733c0ca45ea276e67d875cdd7b">More...</a><br /></td></tr>
+<tr class="separator:a8e9c53733c0ca45ea276e67d875cdd7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a940b83e360332680bb648dcfc0fc1542"><td class="memTemplParams" colspan="2">template&lt;class T , class IterIt &gt; </td></tr>
+<tr class="memitem:a940b83e360332680bb648dcfc0fc1542"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#a940b83e360332680bb648dcfc0fc1542">std</a> (IterIt begin, IterIt end, <a class="el" href="namespacedsp.html#a6244fa34d285f00f68e00ed89d71cf85">weight</a> w=weight::sample)</td></tr>
+<tr class="memdesc:a940b83e360332680bb648dcfc0fc1542"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the standard deviation of a range.  <a href="namespacedsp.html#a940b83e360332680bb648dcfc0fc1542">More...</a><br /></td></tr>
+<tr class="separator:a940b83e360332680bb648dcfc0fc1542"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab75178e59c7e72e242b73a979cf30415"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:ab75178e59c7e72e242b73a979cf30415"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#ab75178e59c7e72e242b73a979cf30415">std</a> (const std::vector&lt; T &gt; &amp;x, <a class="el" href="namespacedsp.html#a6244fa34d285f00f68e00ed89d71cf85">weight</a> w=weight::sample)</td></tr>
+<tr class="memdesc:ab75178e59c7e72e242b73a979cf30415"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the standard deviation of a vector.  <a href="namespacedsp.html#ab75178e59c7e72e242b73a979cf30415">More...</a><br /></td></tr>
+<tr class="separator:ab75178e59c7e72e242b73a979cf30415"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99d973002d4c3cefea2d0435b0d025d9"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a99d973002d4c3cefea2d0435b0d025d9"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#a99d973002d4c3cefea2d0435b0d025d9">std</a> (const <a class="el" href="classdsp_1_1_signal.html">dsp::Signal</a>&lt; T &gt; &amp;x, <a class="el" href="namespacedsp.html#a6244fa34d285f00f68e00ed89d71cf85">weight</a> w=weight::sample)</td></tr>
+<tr class="memdesc:a99d973002d4c3cefea2d0435b0d025d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the standard deviation of a <a class="el" href="classdsp_1_1_signal.html" title="This class represents a scalar signal.">Signal</a>.  <a href="namespacedsp.html#a99d973002d4c3cefea2d0435b0d025d9">More...</a><br /></td></tr>
+<tr class="separator:a99d973002d4c3cefea2d0435b0d025d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a4070cbacba7a636ade022363726209"><td class="memTemplParams" colspan="2">template&lt;class T , class InputIt &gt; </td></tr>
+<tr class="memitem:a3a4070cbacba7a636ade022363726209"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#a3a4070cbacba7a636ade022363726209">zscore</a> (InputIt begin, InputIt end)</td></tr>
+<tr class="memdesc:a3a4070cbacba7a636ade022363726209"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the standardized z-scores of the data in a range.  <a href="namespacedsp.html#a3a4070cbacba7a636ade022363726209">More...</a><br /></td></tr>
+<tr class="separator:a3a4070cbacba7a636ade022363726209"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f7b31f90f3c56a1c82033b622452cef"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a7f7b31f90f3c56a1c82033b622452cef"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#a7f7b31f90f3c56a1c82033b622452cef">zscore</a> (const std::vector&lt; T &gt; &amp;x)</td></tr>
+<tr class="memdesc:a7f7b31f90f3c56a1c82033b622452cef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the standardized z-scores of the data in a vector.  <a href="namespacedsp.html#a7f7b31f90f3c56a1c82033b622452cef">More...</a><br /></td></tr>
+<tr class="separator:a7f7b31f90f3c56a1c82033b622452cef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a474693dcea8d0ea646c76f2fb781b918"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a474693dcea8d0ea646c76f2fb781b918"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classdsp_1_1_signal.html">dsp::Signal</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#a474693dcea8d0ea646c76f2fb781b918">zscore</a> (const <a class="el" href="classdsp_1_1_signal.html">dsp::Signal</a>&lt; T &gt; &amp;x)</td></tr>
+<tr class="memdesc:a474693dcea8d0ea646c76f2fb781b918"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the standardized z-scores of the data in a <a class="el" href="classdsp_1_1_signal.html" title="This class represents a scalar signal.">Signal</a>.  <a href="namespacedsp.html#a474693dcea8d0ea646c76f2fb781b918">More...</a><br /></td></tr>
+<tr class="separator:a474693dcea8d0ea646c76f2fb781b918"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3a0d14afef157ba0060fb89c92f96e0"><td class="memTemplParams" colspan="2"><a id="af3a0d14afef157ba0060fb89c92f96e0"></a>
 template&lt;class T &gt; </td></tr>
-<tr class="memitem:af3a0d14afef157ba0060fb89c92f96e0"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>direct_convolution</b> (const std::vector&lt; T &gt; &amp;in1, const std::vector&lt; T &gt; &amp;in2, convolution_mode mode)</td></tr>
+<tr class="memitem:af3a0d14afef157ba0060fb89c92f96e0"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>direct_convolution</b> (const std::vector&lt; T &gt; &amp;in1, const std::vector&lt; T &gt; &amp;in2, convolution_mode <a class="el" href="namespacedsp.html#a1d4932cf0fd90a0ecde3b2deffeb740c">mode</a>)</td></tr>
 <tr class="separator:af3a0d14afef157ba0060fb89c92f96e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a271d095b81b8b0a68871b9d11c980208"><td class="memTemplParams" colspan="2"><a id="a271d095b81b8b0a68871b9d11c980208"></a>
 template&lt;class T &gt; </td></tr>
 <tr class="memitem:a271d095b81b8b0a68871b9d11c980208"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#a271d095b81b8b0a68871b9d11c980208">_reverse_and_conj</a> (const std::vector&lt; T &gt; &amp;vec)</td></tr>
 <tr class="memdesc:a271d095b81b8b0a68871b9d11c980208"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reverse and conjugate a vector. <br /></td></tr>
 <tr class="separator:a271d095b81b8b0a68871b9d11c980208"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab147e335f0c523c05a0b637eafad630"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedsp.html#aab147e335f0c523c05a0b637eafad630">maxNumFrames</a> (unsigned signalLength, unsigned frameLength, unsigned overlap)</td></tr>
+<tr class="memdesc:aab147e335f0c523c05a0b637eafad630"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the maximum number of frames to get from a signal.  <a href="namespacedsp.html#aab147e335f0c523c05a0b637eafad630">More...</a><br /></td></tr>
+<tr class="separator:aab147e335f0c523c05a0b637eafad630"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab0cdd2fa60d4fd27ec9a72cde38811ef"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
 <tr class="memitem:ab0cdd2fa60d4fd27ec9a72cde38811ef"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#ab0cdd2fa60d4fd27ec9a72cde38811ef">arange</a> (T start, T stop, T step=1)</td></tr>
 <tr class="memdesc:ab0cdd2fa60d4fd27ec9a72cde38811ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return evenly spaced values within a given interval.  <a href="namespacedsp.html#ab0cdd2fa60d4fd27ec9a72cde38811ef">More...</a><br /></td></tr>
@@ -324,19 +436,19 @@ template&lt;class T &gt; </td></tr>
 <tr class="memdesc:a32ec532302b7a96119efb4702f1f3000"><td class="mdescLeft">&#160;</td><td class="mdescRight">Join a sequence of vectors.  <a href="namespacedsp.html#a32ec532302b7a96119efb4702f1f3000">More...</a><br /></td></tr>
 <tr class="separator:a32ec532302b7a96119efb4702f1f3000"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a014ebcddb5a8e374054024212fa30eac"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
-<tr class="memitem:a014ebcddb5a8e374054024212fa30eac"><td class="memTemplItemLeft" align="right" valign="top">std::pair&lt; convolution_method, std::map&lt; convolution_method, double &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#a014ebcddb5a8e374054024212fa30eac">choose_conv_method</a> (const std::vector&lt; T &gt; &amp;in1, const std::vector&lt; T &gt; &amp;in2, convolution_mode mode=convolution_mode::full, bool measure=false)</td></tr>
+<tr class="memitem:a014ebcddb5a8e374054024212fa30eac"><td class="memTemplItemLeft" align="right" valign="top">std::pair&lt; convolution_method, std::map&lt; convolution_method, double &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#a014ebcddb5a8e374054024212fa30eac">choose_conv_method</a> (const std::vector&lt; T &gt; &amp;in1, const std::vector&lt; T &gt; &amp;in2, convolution_mode <a class="el" href="namespacedsp.html#a1d4932cf0fd90a0ecde3b2deffeb740c">mode</a>=convolution_mode::full, bool measure=false)</td></tr>
 <tr class="memdesc:a014ebcddb5a8e374054024212fa30eac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find the fastest convolution/correlation method. This primarily exists to be called during the method = 'auto' option in convolve and correlate. It can also be used to determine the value of method for many different convolutions of the same length. In addition, it supports timing the convolution to adapt the value of method to a particular set of inputs and/or hardware.  <a href="namespacedsp.html#a014ebcddb5a8e374054024212fa30eac">More...</a><br /></td></tr>
 <tr class="separator:a014ebcddb5a8e374054024212fa30eac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a83c98d9b699a7b705797c56afb00df53"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
-<tr class="memitem:a83c98d9b699a7b705797c56afb00df53"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#a83c98d9b699a7b705797c56afb00df53">convolve</a> (const std::vector&lt; T &gt; &amp;in1, const std::vector&lt; T &gt; &amp;in2, convolution_mode mode=convolution_mode::full, convolution_method method=convolution_method::automatic)</td></tr>
+<tr class="memitem:a83c98d9b699a7b705797c56afb00df53"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#a83c98d9b699a7b705797c56afb00df53">convolve</a> (const std::vector&lt; T &gt; &amp;in1, const std::vector&lt; T &gt; &amp;in2, convolution_mode <a class="el" href="namespacedsp.html#a1d4932cf0fd90a0ecde3b2deffeb740c">mode</a>=convolution_mode::full, convolution_method method=convolution_method::automatic)</td></tr>
 <tr class="memdesc:a83c98d9b699a7b705797c56afb00df53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convolve two N-dimensional arrays.  <a href="namespacedsp.html#a83c98d9b699a7b705797c56afb00df53">More...</a><br /></td></tr>
 <tr class="separator:a83c98d9b699a7b705797c56afb00df53"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a997c174f04e83c492ef8637b88c714bf"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
-<tr class="memitem:a997c174f04e83c492ef8637b88c714bf"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#a997c174f04e83c492ef8637b88c714bf">correlate</a> (const std::vector&lt; T &gt; &amp;in1, const std::vector&lt; T &gt; &amp;in2, correlation_mode mode=correlation_mode::full, correlation_method method=correlation_method::automatic)</td></tr>
+<tr class="memitem:a997c174f04e83c492ef8637b88c714bf"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#a997c174f04e83c492ef8637b88c714bf">correlate</a> (const std::vector&lt; T &gt; &amp;in1, const std::vector&lt; T &gt; &amp;in2, correlation_mode <a class="el" href="namespacedsp.html#a1d4932cf0fd90a0ecde3b2deffeb740c">mode</a>=correlation_mode::full, correlation_method method=correlation_method::automatic)</td></tr>
 <tr class="memdesc:a997c174f04e83c492ef8637b88c714bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cross-correlate two vectors.  <a href="namespacedsp.html#a997c174f04e83c492ef8637b88c714bf">More...</a><br /></td></tr>
 <tr class="separator:a997c174f04e83c492ef8637b88c714bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad015f85c579767ffebdded0b8d149d89"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
-<tr class="memitem:ad015f85c579767ffebdded0b8d149d89"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#ad015f85c579767ffebdded0b8d149d89">autocorrelate</a> (const std::vector&lt; T &gt; &amp;in, correlation_mode mode=correlation_mode::full, correlation_method method=correlation_method::automatic)</td></tr>
+<tr class="memitem:ad015f85c579767ffebdded0b8d149d89"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#ad015f85c579767ffebdded0b8d149d89">autocorrelate</a> (const std::vector&lt; T &gt; &amp;in, correlation_mode <a class="el" href="namespacedsp.html#a1d4932cf0fd90a0ecde3b2deffeb740c">mode</a>=correlation_mode::full, correlation_method method=correlation_method::automatic)</td></tr>
 <tr class="memdesc:ad015f85c579767ffebdded0b8d149d89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Auto-correlate a vector with itself.  <a href="namespacedsp.html#ad015f85c579767ffebdded0b8d149d89">More...</a><br /></td></tr>
 <tr class="separator:ad015f85c579767ffebdded0b8d149d89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe32d93264393a07d8b3844eed53e9c3"><td class="memTemplParams" colspan="2">template&lt;class T , class Pred &gt; </td></tr>
@@ -347,6 +459,10 @@ template&lt;class T &gt; </td></tr>
 <tr class="memitem:a529bdda638f4dab2d413faac208a65b9"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#a529bdda638f4dab2d413faac208a65b9">linspace</a> (T start, T stop, size_t num=50, bool endpoint=true)</td></tr>
 <tr class="memdesc:a529bdda638f4dab2d413faac208a65b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return evenly spaced numbers over a specified interval.  <a href="namespacedsp.html#a529bdda638f4dab2d413faac208a65b9">More...</a><br /></td></tr>
 <tr class="separator:a529bdda638f4dab2d413faac208a65b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17c570ab1aef8931c4694f8751caec21"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a17c570ab1aef8931c4694f8751caec21"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#a17c570ab1aef8931c4694f8751caec21">logSquaredMagnitude</a> (std::complex&lt; T &gt; z)</td></tr>
+<tr class="memdesc:a17c570ab1aef8931c4694f8751caec21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the squared magnitude of a complex number in decibel.  <a href="namespacedsp.html#a17c570ab1aef8931c4694f8751caec21">More...</a><br /></td></tr>
+<tr class="separator:a17c570ab1aef8931c4694f8751caec21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aedd26b23f1e5d64efffe0a893c7c91c5"><td class="memTemplParams" colspan="2"><a id="aedd26b23f1e5d64efffe0a893c7c91c5"></a>
 template&lt;typename T &gt; </td></tr>
 <tr class="memitem:aedd26b23f1e5d64efffe0a893c7c91c5"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#aedd26b23f1e5d64efffe0a893c7c91c5">mod</a> (T x1, T x2)</td></tr>
@@ -355,6 +471,10 @@ template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a11078b40d98913e2a044205d64c1a1a7"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedsp.html#a11078b40d98913e2a044205d64c1a1a7">nextpow2</a> (unsigned n)</td></tr>
 <tr class="memdesc:a11078b40d98913e2a044205d64c1a1a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the next-largest power of two k so that n &lt;= 2^k.  <a href="namespacedsp.html#a11078b40d98913e2a044205d64c1a1a7">More...</a><br /></td></tr>
 <tr class="separator:a11078b40d98913e2a044205d64c1a1a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39d5a51be82d6a2986925ad973b64ca8"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a39d5a51be82d6a2986925ad973b64ca8"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; std::vector&lt; T &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp.html#a39d5a51be82d6a2986925ad973b64ca8">signalToFrames</a> (const std::vector&lt; T &gt; &amp;signal, unsigned frameLength, unsigned overlap)</td></tr>
+<tr class="memdesc:a39d5a51be82d6a2986925ad973b64ca8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Splits a signal into frames.  <a href="namespacedsp.html#a39d5a51be82d6a2986925ad973b64ca8">More...</a><br /></td></tr>
+<tr class="separator:a39d5a51be82d6a2986925ad973b64ca8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -932,6 +1052,367 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
+<a id="a17c570ab1aef8931c4694f8751caec21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17c570ab1aef8931c4694f8751caec21">&#9670;&nbsp;</a></span>logSquaredMagnitude()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">T dsp::logSquaredMagnitude </td>
+          <td>(</td>
+          <td class="paramtype">std::complex&lt; T &gt;&#160;</td>
+          <td class="paramname"><em>z</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the squared magnitude of a complex number in decibel. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Data type of the complex number </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">z</td><td>Complex number </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>10 * log(Re(z)^2 + Im(z)^2) </dd></dl>
+
+</div>
+</div>
+<a id="aab147e335f0c523c05a0b637eafad630"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab147e335f0c523c05a0b637eafad630">&#9670;&nbsp;</a></span>maxNumFrames()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned dsp::maxNumFrames </td>
+          <td>(</td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>signalLength</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>frameLength</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>overlap</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the maximum number of frames to get from a signal. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">signalLength</td><td>Length of the signal </td></tr>
+    <tr><td class="paramname">frameLength</td><td>Length of each frame </td></tr>
+    <tr><td class="paramname">overlap</td><td>Number of overlapping samples between two consecutive frames (cannot be negative!) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Maximum number of frames to split the signal into assuming zero-padding at the end. </dd></dl>
+
+</div>
+</div>
+<a id="a68742798fcae7c7962ce81324e0de655"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68742798fcae7c7962ce81324e0de655">&#9670;&nbsp;</a></span>mean() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">T dsp::mean </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the mean value of a signal. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Type of the samples. Should be float, double, or long double. Other types may cause undefined behavior. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td><a class="el" href="classdsp_1_1_signal.html" title="This class represents a scalar signal.">Signal</a> to calculate the mean of. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Mean value of the signal. </dd></dl>
+
+</div>
+</div>
+<a id="a274d36d1290397b24a95aff4332ba20b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a274d36d1290397b24a95aff4332ba20b">&#9670;&nbsp;</a></span>mean() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">T dsp::mean </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the mean value of a vector. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Type of the samples. Should be float, double, or long double. Other types will cause undefined behavior. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Vector to calculate the mean of. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Mean value of the vector. </dd></dl>
+
+</div>
+</div>
+<a id="a17cf474a7157c4ceba297d0effdd5f11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17cf474a7157c4ceba297d0effdd5f11">&#9670;&nbsp;</a></span>mean() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T , class InputIt &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">T dsp::mean </td>
+          <td>(</td>
+          <td class="paramtype">InputIt&#160;</td>
+          <td class="paramname"><em>begin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">InputIt&#160;</td>
+          <td class="paramname"><em>end</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the mean value of the passed range. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Type of the samples. Should be float, double, or long double. Other types will cause undefined behavior. </td></tr>
+    <tr><td class="paramname">InputIt</td><td>Iterator type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">begin</td><td>Start of the range. </td></tr>
+    <tr><td class="paramname">end</td><td>End of the range. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Mean value of the range. </dd></dl>
+
+</div>
+</div>
+<a id="a5ae138eb44c647a8dcb8ed65552d55da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ae138eb44c647a8dcb8ed65552d55da">&#9670;&nbsp;</a></span>median() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">auto dsp::median </td>
+          <td>(</td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the median of a vector or <a class="el" href="classdsp_1_1_signal.html" title="This class represents a scalar signal.">Signal</a>. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Type of container. Should be std::vector or <a class="el" href="classdsp_1_1_signal.html" title="This class represents a scalar signal.">dsp::Signal</a>. Other containers may cause undefined behavior. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Container to calculate the median of </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The median of the container </dd></dl>
+
+</div>
+</div>
+<a id="aa40f2496333d161c5aa8471390af5f05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa40f2496333d161c5aa8471390af5f05">&#9670;&nbsp;</a></span>median() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T , class InputIt &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">T dsp::median </td>
+          <td>(</td>
+          <td class="paramtype">InputIt&#160;</td>
+          <td class="paramname"><em>begin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">InputIt&#160;</td>
+          <td class="paramname"><em>end</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the median of a range. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Type of the samples. Should be float, double, or long double. Other types may cause undefined behavior. </td></tr>
+    <tr><td class="paramname">InputIt</td><td>Iterator type </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">begin</td><td>Start of the range </td></tr>
+    <tr><td class="paramname">end</td><td>End of the range </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The median value of the range </dd></dl>
+
+</div>
+</div>
+<a id="a0d6e31cb326aac6c7a06fe7a6a73cc74"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d6e31cb326aac6c7a06fe7a6a73cc74">&#9670;&nbsp;</a></span>mode() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">auto dsp::mode </td>
+          <td>(</td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the mode of a vector or <a class="el" href="classdsp_1_1_signal.html" title="This class represents a scalar signal.">Signal</a>. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Type of container. Should be std::vector or <a class="el" href="classdsp_1_1_signal.html" title="This class represents a scalar signal.">dsp::Signal</a>. Other containers may cause undefined behavior. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Container to calculate the mode of </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The mode of the container </dd></dl>
+
+</div>
+</div>
+<a id="a1d4932cf0fd90a0ecde3b2deffeb740c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d4932cf0fd90a0ecde3b2deffeb740c">&#9670;&nbsp;</a></span>mode() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T , class InputIt &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">T dsp::mode </td>
+          <td>(</td>
+          <td class="paramtype">InputIt&#160;</td>
+          <td class="paramname"><em>begin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">InputIt&#160;</td>
+          <td class="paramname"><em>end</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the mode (most frequent element) of a range. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Type of the samples. Should be float, double, or long double. Other types may cause undefined behavior. </td></tr>
+    <tr><td class="paramname">InputIt</td><td>Iterator type </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">begin</td><td>Start of the range </td></tr>
+    <tr><td class="paramname">end</td><td>End of the range </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The mode of the range </dd></dl>
+
+</div>
+</div>
 <a id="a11078b40d98913e2a044205d64c1a1a7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a11078b40d98913e2a044205d64c1a1a7">&#9670;&nbsp;</a></span>nextpow2()</h2>
 
@@ -965,6 +1446,553 @@ template&lt;typename T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The next-largest power of two so that n &lt;= 2^k <br  />
  </dd></dl>
+
+</div>
+</div>
+<a id="a39d5a51be82d6a2986925ad973b64ca8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39d5a51be82d6a2986925ad973b64ca8">&#9670;&nbsp;</a></span>signalToFrames()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::vector&lt; T &gt; &gt; dsp::signalToFrames </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>signal</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>frameLength</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>overlap</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Splits a signal into frames. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Data type of the signal's samples </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">signal</td><td><a class="el" href="classdsp_1_1_signal.html" title="This class represents a scalar signal.">Signal</a> to split into frames (using zero-padding at the end) </td></tr>
+    <tr><td class="paramname">frameLength</td><td>Length of each frame </td></tr>
+    <tr><td class="paramname">overlap</td><td>Number of overlapping samples between two consecutive frames (cannot be negative!) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Vector containing the frames. </dd></dl>
+
+</div>
+</div>
+<a id="a99d973002d4c3cefea2d0435b0d025d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99d973002d4c3cefea2d0435b0d025d9">&#9670;&nbsp;</a></span>std() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">T dsp::std </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classdsp_1_1_signal.html">dsp::Signal</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespacedsp.html#a6244fa34d285f00f68e00ed89d71cf85">weight</a>&#160;</td>
+          <td class="paramname"><em>w</em> = <code>weight::sample</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calculates the standard deviation of a <a class="el" href="classdsp_1_1_signal.html" title="This class represents a scalar signal.">Signal</a>. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Type of the samples. Should be float, double, or long double. Other types will cause undefined behavior. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td><a class="el" href="classdsp_1_1_signal.html" title="This class represents a scalar signal.">Signal</a> to calculate the standard deviation of. </td></tr>
+    <tr><td class="paramname">w</td><td>Denominator to use in the calculation: If w == weight::sample, the denominator is N-1; if it w == population, the denominator is N. Default: sample. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Standard deviation of the signal. </dd></dl>
+
+</div>
+</div>
+<a id="ab75178e59c7e72e242b73a979cf30415"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab75178e59c7e72e242b73a979cf30415">&#9670;&nbsp;</a></span>std() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">T dsp::std </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespacedsp.html#a6244fa34d285f00f68e00ed89d71cf85">weight</a>&#160;</td>
+          <td class="paramname"><em>w</em> = <code>weight::sample</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calculates the standard deviation of a vector. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Type of the values. Should be float, double, or long double. Other types will cause undefined behavior. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Vector to calculate the standard deviation of. </td></tr>
+    <tr><td class="paramname">w</td><td>Denominator to use in the calculation: If w == weight::sample, the denominator is N-1; if it w == population, the denominator is N. Default: sample. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Standard deviation of the samples in the vector. <br  />
+ </dd></dl>
+
+</div>
+</div>
+<a id="a940b83e360332680bb648dcfc0fc1542"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a940b83e360332680bb648dcfc0fc1542">&#9670;&nbsp;</a></span>std() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T , class IterIt &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">T dsp::std </td>
+          <td>(</td>
+          <td class="paramtype">IterIt&#160;</td>
+          <td class="paramname"><em>begin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">IterIt&#160;</td>
+          <td class="paramname"><em>end</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespacedsp.html#a6244fa34d285f00f68e00ed89d71cf85">weight</a>&#160;</td>
+          <td class="paramname"><em>w</em> = <code>weight::sample</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calculates the standard deviation of a range. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Type of the samples. Should be float, double, or long double. Other types will cause undefined behavior. </td></tr>
+    <tr><td class="paramname">InputIt</td><td>Iterator type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">begin</td><td>Start of the range. </td></tr>
+    <tr><td class="paramname">end</td><td>End of the range. </td></tr>
+    <tr><td class="paramname">w</td><td>Denominator to use in the calculation: If w == weight::sample, the denominator is N-1; if it w == population, the denominator is N. Default: sample. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Standard deviation of the samples in the range. </dd></dl>
+
+</div>
+</div>
+<a id="ad02c9fecd2e032a866f77e390b031189"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad02c9fecd2e032a866f77e390b031189">&#9670;&nbsp;</a></span>unique() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;typename T::value_type&gt; dsp::unique </td>
+          <td>(</td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the unique values from a container. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Type of container. Should be std::vector or <a class="el" href="classdsp_1_1_signal.html" title="This class represents a scalar signal.">dsp::Signal</a>. Other containers may cause undefined behavior. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Container holding the non-unique elements. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A vector containing the unique elements in the original order </dd></dl>
+
+</div>
+</div>
+<a id="a3880dd4b34167c070e64bd10e7c6db56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3880dd4b34167c070e64bd10e7c6db56">&#9670;&nbsp;</a></span>unique() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T , class InputIt &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;T&gt; dsp::unique </td>
+          <td>(</td>
+          <td class="paramtype">InputIt&#160;</td>
+          <td class="paramname"><em>begin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">InputIt&#160;</td>
+          <td class="paramname"><em>end</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the unique values in a range. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Data type of the values </td></tr>
+    <tr><td class="paramname">InputIt</td><td>Iterator type </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">begin</td><td>Start of the range </td></tr>
+    <tr><td class="paramname">end</td><td>End of the range </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A vector containing the unique elements in the original order </dd></dl>
+
+</div>
+</div>
+<a id="a8e9c53733c0ca45ea276e67d875cdd7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e9c53733c0ca45ea276e67d875cdd7b">&#9670;&nbsp;</a></span>var() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">T dsp::var </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classdsp_1_1_signal.html">dsp::Signal</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespacedsp.html#a6244fa34d285f00f68e00ed89d71cf85">weight</a>&#160;</td>
+          <td class="paramname"><em>w</em> = <code>weight::sample</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calculates the variance of a <a class="el" href="classdsp_1_1_signal.html" title="This class represents a scalar signal.">Signal</a>. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Type of the samples. Should be float, double, or long double. Other types will cause undefined behavior. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td><a class="el" href="classdsp_1_1_signal.html" title="This class represents a scalar signal.">Signal</a> to calculate the variance of. </td></tr>
+    <tr><td class="paramname">w</td><td>Denominator to use in the calculation: If w == weight::sample, the denominator is N-1; if it w == population, the denominator is N. Default: sample. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Variance of the signal. </dd></dl>
+
+</div>
+</div>
+<a id="ac88085d18fc528874ed10f0444f03445"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac88085d18fc528874ed10f0444f03445">&#9670;&nbsp;</a></span>var() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">T dsp::var </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespacedsp.html#a6244fa34d285f00f68e00ed89d71cf85">weight</a>&#160;</td>
+          <td class="paramname"><em>w</em> = <code>weight::sample</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calculates the variance of a vector. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Type of the values. Should be float, double, or long double. Other types will cause undefined behavior. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Vector to calculate the variance of. </td></tr>
+    <tr><td class="paramname">w</td><td>Denominator to use in the calculation: If w == weight::sample, the denominator is N-1; if it w == population, the denominator is N. Default: sample. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Variance of the samples in the vector. </dd></dl>
+
+</div>
+</div>
+<a id="a4ab80b27a24ba15a79545b4c84acb3c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ab80b27a24ba15a79545b4c84acb3c4">&#9670;&nbsp;</a></span>var() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T , class InputIt &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">T dsp::var </td>
+          <td>(</td>
+          <td class="paramtype">InputIt&#160;</td>
+          <td class="paramname"><em>begin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">InputIt&#160;</td>
+          <td class="paramname"><em>end</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespacedsp.html#a6244fa34d285f00f68e00ed89d71cf85">weight</a>&#160;</td>
+          <td class="paramname"><em>w</em> = <code>weight::sample</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calculates the variance of a range. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Type of the samples. Should be float, double, or long double. Other types will cause undefined behavior. </td></tr>
+    <tr><td class="paramname">InputIt</td><td>Iterator type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">begin</td><td>Start of the range. </td></tr>
+    <tr><td class="paramname">end</td><td>End of the range. </td></tr>
+    <tr><td class="paramname">w</td><td>Denominator to use in the calculation: If w == weight::sample, the denominator is N-1; if it w == population, the denominator is N. Default: sample. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Variance of the samples in the range. </dd></dl>
+
+</div>
+</div>
+<a id="a474693dcea8d0ea646c76f2fb781b918"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a474693dcea8d0ea646c76f2fb781b918">&#9670;&nbsp;</a></span>zscore() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classdsp_1_1_signal.html">dsp::Signal</a>&lt;T&gt; dsp::zscore </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classdsp_1_1_signal.html">dsp::Signal</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the standardized z-scores of the data in a <a class="el" href="classdsp_1_1_signal.html" title="This class represents a scalar signal.">Signal</a>. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Data type of the samples. Should be float, double, or long double. Other types may cause undefined behavior. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td><a class="el" href="classdsp_1_1_signal.html" title="This class represents a scalar signal.">Signal</a> that holds the un-standardized data. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classdsp_1_1_signal.html" title="This class represents a scalar signal.">Signal</a> holding the z-scores of the data in x (i.e., the standardized data). <br  />
+ </dd></dl>
+
+</div>
+</div>
+<a id="a7f7b31f90f3c56a1c82033b622452cef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f7b31f90f3c56a1c82033b622452cef">&#9670;&nbsp;</a></span>zscore() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;T&gt; dsp::zscore </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the standardized z-scores of the data in a vector. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Data type of the samples. Should be float, double, or long double. Other types may cause undefined behavior. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Vector that holds the un-standardized data. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Vector holding the z-scores of the data in x (i.e., the standardized data). <br  />
+ </dd></dl>
+
+</div>
+</div>
+<a id="a3a4070cbacba7a636ade022363726209"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a4070cbacba7a636ade022363726209">&#9670;&nbsp;</a></span>zscore() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T , class InputIt &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;T&gt; dsp::zscore </td>
+          <td>(</td>
+          <td class="paramtype">InputIt&#160;</td>
+          <td class="paramname"><em>begin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">InputIt&#160;</td>
+          <td class="paramname"><em>end</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the standardized z-scores of the data in a range. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">InputIt</td><td>Iterator type </td></tr>
+    <tr><td class="paramname">T</td><td>Data type of the samples. Should be float, double, or long double. Other types may cause undefined behavior. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">begin</td><td>Start of the range </td></tr>
+    <tr><td class="paramname">end</td><td>End of the range </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A vector holding the z-scores of the data in the range (i.e., the standardized data). </dd></dl>
 
 </div>
 </div>

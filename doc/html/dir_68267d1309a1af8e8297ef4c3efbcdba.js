@@ -8,6 +8,7 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     [ "Signal.h", "_signal_8h_source.html", null ],
     [ "signals.h", "signals_8h_source.html", null ],
     [ "special.h", "special_8h_source.html", null ],
+    [ "stats.h", "stats_8h_source.html", null ],
     [ "utilities.h", "utilities_8h_source.html", null ],
     [ "window.h", "window_8h_source.html", null ]
 ];

@@ -103,6 +103,14 @@ Functions</h2></td></tr>
 <tr class="memitem:ad1db657bf187b930ec8c53f20e20b759"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classdsp_1_1_signal.html">Signal</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp_1_1signals.html#ad1db657bf187b930ec8c53f20e20b759">cos</a> (unsigned frequency_Hz, double length_s, unsigned samplingRate_Hz, double amplitude=1.0, double phase=0.0)</td></tr>
 <tr class="memdesc:ad1db657bf187b930ec8c53f20e20b759"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a sampled cosine signal.  <a href="namespacedsp_1_1signals.html#ad1db657bf187b930ec8c53f20e20b759">More...</a><br /></td></tr>
 <tr class="separator:ad1db657bf187b930ec8c53f20e20b759"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a508782b7dda383cd01cd9db7dbfd1df3"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a508782b7dda383cd01cd9db7dbfd1df3"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp_1_1signals.html#a508782b7dda383cd01cd9db7dbfd1df3">ones</a> (size_t n)</td></tr>
+<tr class="memdesc:a508782b7dda383cd01cd9db7dbfd1df3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a vector filled with ones.  <a href="namespacedsp_1_1signals.html#a508782b7dda383cd01cd9db7dbfd1df3">More...</a><br /></td></tr>
+<tr class="separator:a508782b7dda383cd01cd9db7dbfd1df3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae16d81991d7fe9195392aa7ca3d34297"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:ae16d81991d7fe9195392aa7ca3d34297"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedsp_1_1signals.html#ae16d81991d7fe9195392aa7ca3d34297">ones</a> (const std::vector&lt; T &gt; &amp;y)</td></tr>
+<tr class="memdesc:ae16d81991d7fe9195392aa7ca3d34297"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a vector filled with ones that has the same length as the passed vector.  <a href="namespacedsp_1_1signals.html#ae16d81991d7fe9195392aa7ca3d34297">More...</a><br /></td></tr>
+<tr class="separator:ae16d81991d7fe9195392aa7ca3d34297"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Convenience functions to generate various sampled test signals. </p>
@@ -171,6 +179,76 @@ template&lt;class T &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A signal containing the specified cosine </dd></dl>
+
+</div>
+</div>
+<a id="ae16d81991d7fe9195392aa7ca3d34297"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae16d81991d7fe9195392aa7ca3d34297">&#9670;&nbsp;</a></span>ones() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; T &gt; dsp::signals::ones </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>y</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return a vector filled with ones that has the same length as the passed vector. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Type of the samples. Should be float, double, or long double. Other types will cause undefined behavior. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">y</td><td>Reference vector whose length is used for the returned vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Vector of the same length as y consisting entirely of ones. </dd></dl>
+
+</div>
+</div>
+<a id="a508782b7dda383cd01cd9db7dbfd1df3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a508782b7dda383cd01cd9db7dbfd1df3">&#9670;&nbsp;</a></span>ones() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">template std::vector&lt; long double &gt; dsp::signals::ones </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>n</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return a vector filled with ones. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Type of the samples. Should be float, double, or long double. Other types will cause undefined behavior. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n</td><td>Length of the signal. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classdsp_1_1_signal.html" title="This class represents a scalar signal.">Signal</a> of length n consisting entirely of ones. </dd></dl>
 
 </div>
 </div>
