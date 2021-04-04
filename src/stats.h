@@ -19,6 +19,7 @@ namespace dsp
 		auto sum = std::accumulate(begin, end, T(0));
 		return sum / std::distance(begin, end);
 	}
+	
 	/// @brief Returns the mean value of a vector
 	/// @tparam T Type of the samples. Should be float, double, or long double. Other types will cause undefined behavior.
 	/// @param x Vector to calculate the mean of.
@@ -99,8 +100,7 @@ namespace dsp
 	{
 		return var<T>(x.begin(), x.end(), w);
 	}
-
-	
+		
 	/// @brief Calculates the variance of a Signal.
 	/// @tparam T Type of the samples. Should be float, double, or long double. Other types will cause undefined behavior.
 	/// @param x Signal to calculate the variance of.
@@ -122,7 +122,7 @@ namespace dsp
 	template<class T, class IterIt>
 	T std(IterIt begin, IterIt end, weight w = weight::sample)
 	{
-		return std::sqrt(var(begin, end, w));
+		return std::sqrt(dsp::var<T>(begin, end, w));
 	}
 
 	/// @brief Calculates the standard deviation of a vector.
@@ -145,5 +145,41 @@ namespace dsp
 	T std(const dsp::Signal<T>& x, weight w = weight::sample)
 	{
 		return std<T>(x.begin(), x.end(), w);
+	}
+
+	/// @brief Returns the standardized z-scores of the data in a range
+	/// @tparam InputIt Iterator type
+	/// @tparam T Data type of the samples. Should be float, double, or long double. Other types may cause undefined behavior.
+	/// @param begin Start of the range
+	/// @param end End of the range
+	/// @return A vector holding the z-scores of the data in the range (i.e., the standardized data).
+	template<class T, class InputIt>
+	std::vector<T> zscore(InputIt begin, InputIt end)
+	{
+		std::vector<T> tmp{ begin, end };
+		auto mu = dsp::mean<T>(begin, end);
+		auto std = dsp::std<T>(begin, end);
+		std::transform(tmp.begin(), tmp.end(), tmp.begin(), [mu, std](auto x) {return (x - mu) / std; });
+		return tmp;
+	}
+
+	/// @brief Returns the standardized z-scores of the data in a vector
+	/// @tparam T Data type of the samples. Should be float, double, or long double. Other types may cause undefined behavior.
+	/// @param x Vector that holds the un-standardized data.
+	/// @return Vector holding the z-scores of the data in x (i.e., the standardized data). 
+	template<class T>
+	std::vector<T> zscore(const std::vector<T>& x)
+	{
+		return zscore<T>(x.begin(), x.end());		
+	}
+
+	/// @brief Returns the standardized z-scores of the data in a Signal
+	/// @tparam T Data type of the samples. Should be float, double, or long double. Other types may cause undefined behavior.
+	/// @param x Signal that holds the un-standardized data.
+	/// @return Signal holding the z-scores of the data in x (i.e., the standardized data). 
+	template<class T>
+	dsp::Signal<T> zscore(const dsp::Signal<T>& x)
+	{
+		return dsp::Signal<T>(x.getSamplingRate_Hz(), zscore<T>(x.begin(), x.end()));
 	}
 }

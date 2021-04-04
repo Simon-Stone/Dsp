@@ -63,6 +63,30 @@ TEST_F(DspTest, Median)
 	EXPECT_EQ(dsp::median(s2), 2.5);	
 }
 
+TEST_F(DspTest, Zscore)
+{
+	std::default_random_engine generator;
+	std::normal_distribution<double> distribution(5.0, 2.0);
+	const int nsamples = 100000;
+	dsp::Signal<double> x;
+	for (int i = 0; i < nsamples; ++i)
+	{
+		x.push_back(distribution(generator));
+	}
+
+	auto standardized_x_vec = dsp::zscore<double>(x.begin(), x.end());
+	EXPECT_NEAR(dsp::mean<double>(standardized_x_vec), 0, 0.000001);
+	EXPECT_NEAR(dsp::std<double>(standardized_x_vec), 1, 0.000001);
+
+	auto standardized_x_vec2 = dsp::zscore(x.getSamples());
+	EXPECT_NEAR(dsp::mean<double>(standardized_x_vec2), 0, 0.000001);
+	EXPECT_NEAR(dsp::std<double>(standardized_x_vec2), 1, 0.000001);
+
+	auto standardized_x_sig = dsp::zscore(x);
+	EXPECT_NEAR(dsp::mean<double>(standardized_x_vec2), 0, 0.000001);
+	EXPECT_NEAR(dsp::std<double>(standardized_x_vec2), 1, 0.000001);
+	EXPECT_EQ(standardized_x_sig.getSamplingRate_Hz(), x.getSamplingRate_Hz());
+}
 
 TEST_F(DspTest, VarAndStd)
 {
