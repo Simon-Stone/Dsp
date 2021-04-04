@@ -8,8 +8,8 @@
 namespace dsp
 {
 	/// @brief Returns the mean value of the passed range
-	/// @tparam InputIt Iterator type.
 	/// @tparam T Type of the samples. Should be float, double, or long double. Other types will cause undefined behavior.
+	/// @tparam InputIt Iterator type.
 	/// @param begin Start of the range.
 	/// @param end End of the range.
 	/// @return Mean value of the range.
@@ -30,13 +30,41 @@ namespace dsp
 	}
 
 	/// @brief Returns the mean value of a signal
-	/// @tparam T Type of the samples. Should be float, double, or long double. Other types will cause undefined behavior.
+	/// @tparam T Type of the samples. Should be float, double, or long double. Other types may cause undefined behavior.
 	/// @param x Signal to calculate the mean of.
 	/// @return Mean value of the signal.
 	template<class T>
 	T mean(const Signal<T>& x)
 	{
 		return mean<T>(x.begin(), x.end());
+	}
+
+	/// @brief Returns the median of a range
+	/// @tparam T Type of the samples. Should be float, double, or long double. Other types may cause undefined behavior.
+	/// @tparam InputIt Iterator type
+	/// @param begin Start of the range
+	/// @param end End of the range
+	/// @return The median value of the range
+	template<class T, class InputIt>
+	T median(InputIt begin, InputIt end)
+	{
+		std::vector<T> tmp(std::distance(begin, end) / 2 + 1);
+		std::partial_sort_copy(begin, end, tmp.begin(), tmp.end());
+		if (std::distance(begin, end) % 2)
+		{
+			return tmp.back();
+		}
+		return static_cast<T>((tmp[tmp.size() - 1] + tmp[tmp.size() - 2]) / 2.0);
+	}
+
+	/// @brief Returns the median of a vector or Signal.
+	/// @tparam T Type of container. Should be std::vector or dsp::Signal. Other containers may cause undefined behavior.
+	/// @param x Container to calculate the median of
+	/// @return The median of the container
+	template<class T>
+	auto median(const T& x)
+	{
+		return median<typename T::value_type>(x.begin(), x.end());
 	}
 
 	/// @brief Calculate the variance or standard deviation based on a sample or based on the population

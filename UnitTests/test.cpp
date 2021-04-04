@@ -44,6 +44,26 @@ TEST_F(DspTest, Mean)
 	EXPECT_NEAR(dsp::mean<double>(c.begin(), c.end()), 0.0, 1e-16);
 }
 
+TEST_F(DspTest, Median)
+{
+	std::vector<int> v{ 3, 2, 2, 1, 7 };
+	std::vector<double> v2{ 3, 2, 3, 1};
+	auto s = dsp::Signal(v);
+	auto s2 = dsp::Signal(v2);
+	// Iterator interface
+	EXPECT_EQ(dsp::median<int>(v.begin(), v.end()), 2);
+	EXPECT_EQ(dsp::median<double>(v2.begin(), v2.end()), 2.5);
+	EXPECT_EQ(dsp::median<int>(s.begin(), s.end()), 2);
+	EXPECT_EQ(dsp::median<double>(s2.begin(), s2.end()), 2.5);
+
+	// Reference interface
+	EXPECT_EQ(dsp::median(v), 2);
+	EXPECT_EQ(dsp::median(s), 2);
+	EXPECT_EQ(dsp::median(v2), 2.5);
+	EXPECT_EQ(dsp::median(s2), 2.5);	
+}
+
+
 TEST_F(DspTest, VarAndStd)
 {
 	std::default_random_engine generator;
