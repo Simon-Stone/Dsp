@@ -1,6 +1,7 @@
 #pragma once
-#include <map>
 #include <numeric>
+#include <unordered_set>
+#include <unordered_map>
 #include <vector>
 
 #include "Signal.h"
@@ -97,6 +98,29 @@ namespace dsp
 	auto mode(const T& x)
 	{
 		return mode<typename T::value_type>(x.begin(), x.end());
+	}
+
+	/// @brief Returns the unique values in a range
+	/// @tparam T Data type of the values
+	/// @tparam InputIt Iterator type
+	/// @param begin Start of the range
+	/// @param end End of the range
+	/// @return A vector containing the unique elements in the original order
+	template<class T, class InputIt>
+	std::vector<T> unique(InputIt begin, InputIt end)
+	{
+		std::unordered_set s(begin, end);
+		return { s.begin(), s.end() };
+	}
+
+	/// @brief Returns the unique values from a container
+	/// @tparam T Type of container. Should be std::vector or dsp::Signal. Other containers may cause undefined behavior.
+	/// @param x Container holding the non-unique elements.
+	/// @return A vector containing the unique elements in the original order
+	template<class T>
+	std::vector<typename T::value_type> unique(const T& x)
+	{
+		return unique<typename T::value_type>(x.begin(), x.end());
 	}
 	
 	/// @brief Calculate the variance or standard deviation based on a sample or based on the population

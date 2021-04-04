@@ -72,6 +72,26 @@ TEST_F(DspTest, Mode)
 	EXPECT_EQ(dsp::mode(dsp::Signal<int>(v)), 2);
 }
 
+TEST_F(DspTest, Unique)
+{
+	std::vector<int> v{ 3, 4, 2, 2, 1, 7 };
+
+	auto u = dsp::unique(dsp::Signal(v));
+
+	for(const auto& x : u)
+	{
+		std::cout << x << " ";
+	}
+	std::cout << std::endl;
+
+	u = dsp::unique<int>(v.begin(), v.end());
+	for (const auto& x : u)
+	{
+		std::cout << x << " ";
+	}
+	std::cout << std::endl;
+}
+
 TEST_F(DspTest, Zscore)
 {
 	std::default_random_engine generator;
