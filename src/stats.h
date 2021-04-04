@@ -1,4 +1,5 @@
 #pragma once
+#include <map>
 #include <numeric>
 #include <vector>
 
@@ -68,6 +69,36 @@ namespace dsp
 		return median<typename T::value_type>(x.begin(), x.end());
 	}
 
+	/// @brief Returns the mode (most frequent element) of a range
+	/// @tparam T Type of the samples. Should be float, double, or long double. Other types may cause undefined behavior.
+	/// @tparam InputIt Iterator type
+	/// @param begin Start of the range
+	/// @param end End of the range
+	/// @return The mode of the range
+	template<class T, class InputIt>
+	T mode(InputIt begin, InputIt end)
+	{
+		std::unordered_map<T, unsigned> count;
+		// Count the number of occurences of each element in the range
+		for(auto it = begin; it != end; ++it)
+		{
+			++count[*it];
+		}
+
+		auto m_it = std::max_element(count.begin(), count.end(), [](auto lhs, auto rhs) { return lhs.second < rhs.second; });
+		return m_it->first;
+	}
+
+	/// @brief Returns the mode of a vector or Signal.
+	/// @tparam T Type of container. Should be std::vector or dsp::Signal. Other containers may cause undefined behavior.
+	/// @param x Container to calculate the mode of
+	/// @return The mode of the container
+	template<class T>
+	auto mode(const T& x)
+	{
+		return mode<typename T::value_type>(x.begin(), x.end());
+	}
+	
 	/// @brief Calculate the variance or standard deviation based on a sample or based on the population
 	enum class weight{sample, population};
 

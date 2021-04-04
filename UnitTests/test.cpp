@@ -63,6 +63,15 @@ TEST_F(DspTest, Median)
 	EXPECT_EQ(dsp::median(s2), 2.5);	
 }
 
+TEST_F(DspTest, Mode)
+{
+	std::vector<int> v{ 3, 2, 2, 1, 7 };
+
+	EXPECT_EQ(dsp::mode<int>(v.begin(), v.end()), 2);
+	EXPECT_EQ(dsp::mode(v), 2);
+	EXPECT_EQ(dsp::mode(dsp::Signal<int>(v)), 2);
+}
+
 TEST_F(DspTest, Zscore)
 {
 	std::default_random_engine generator;
