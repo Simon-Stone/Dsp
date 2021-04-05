@@ -122,7 +122,7 @@ namespace dsp
 		
 		Signal& assign(size_type count, const T& value);
 		template< class InputIt >
-		void assign(InputIt first, InputIt last);
+		void assign(InputIt first, InputIt last){ samples_.assign(first, last); }
 
 		// Element access
 		reference at(size_type pos);
@@ -165,12 +165,12 @@ namespace dsp
 		iterator insert(const_iterator pos, const value_type& value);
 		iterator insert(const_iterator pos, value_type&& value);
 		iterator insert(const_iterator pos, size_type count, const value_type& value);
-		template< class InputIt >
-		iterator insert(const_iterator pos, InputIt first, InputIt last);
+		template<class InputIt>
+		iterator insert(const_iterator pos, InputIt first, InputIt last) { return samples_.insert(pos, first, last); }
 		iterator insert(const_iterator pos, std::initializer_list<T> ilist);
 
 		template<class... Args>
-		iterator emplace(const_iterator pos, Args&&... args);
+		iterator emplace(const_iterator pos, Args&&... args) { return samples_.emplace(pos, args); }
 
 		iterator erase(const_iterator pos);
 		iterator erase(const_iterator first, const_iterator last);
@@ -179,7 +179,7 @@ namespace dsp
 		void push_back(T&& value);
 
 		template< class... Args >
-		void emplace_back(Args&&... args);
+		void emplace_back(Args&&... args){ samples_.emplace_back(args); }
 
 		void pop_back();
 

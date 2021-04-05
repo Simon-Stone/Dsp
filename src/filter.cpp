@@ -88,6 +88,30 @@ std::vector<T> dsp::filter::lpc(const std::vector<T>& x, unsigned N)
 	return coeff;
 }
 
+template <class T>
+std::vector<T> dsp::filter::medianfilter(const std::vector<T>& x, size_t kernel_size)
+{
+	if (kernel_size % 2 != 1) { throw std::runtime_error("Kernel size should be odd!"); }
+
+	// Pad vector with zeros at the edges
+	std::vector<T> padded_x = pad(x, { kernel_size / 2, kernel_size / 2 });
+	std::vector<T> out;
+
+	// Find median in each kernel
+	for (size_t k = 0; k < x.size(); ++k)
+	{
+		out.push_back(median<T>(padded_x.begin() + k, padded_x.begin() + k + kernel_size));
+	}
+	
+	return out;
+}
+
+template <class T>
+dsp::Signal<T> dsp::filter::medianfilter(const Signal<T>& x, typename Signal<T>::size_type kernel_size)
+{
+	return Signal(x.getSamplingRate_Hz(), medianfilter<T>(x.getSamples(), kernel_size));
+}
+
 
 // Explicit template instantiation
 template std::vector<float> dsp::filter::filter(std::vector<float> b,
@@ -100,3 +124,11 @@ template std::vector<long double> dsp::filter::filter(std::vector<long double> b
 template std::vector<float> dsp::filter::lpc(const std::vector<float>& x, unsigned N);
 template std::vector<double> dsp::filter::lpc(const std::vector<double>& x, unsigned N);
 template std::vector<long double> dsp::filter::lpc(const std::vector<long double>& x, unsigned N);
+
+template std::vector<float> dsp::filter::medianfilter(const std::vector<float>& x, size_t kernel_size);
+template std::vector<double> dsp::filter::medianfilter(const std::vector<double>& x, size_t kernel_size);
+template std::vector<long double> dsp::filter::medianfilter(const std::vector<long double>& x, size_t kernel_size);
+
+template dsp::Signal<float> dsp::filter::medianfilter(const dsp::Signal<float>& x, Signal<float>::size_type kernel_size);
+template dsp::Signal<double> dsp::filter::medianfilter(const dsp::Signal<double>& x, Signal<double>::size_type kernel_size);
+template dsp::Signal<long double> dsp::filter::medianfilter(const dsp::Signal<long double>& x, Signal<long double>::size_type kernel_size);

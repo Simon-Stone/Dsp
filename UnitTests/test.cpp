@@ -72,6 +72,62 @@ TEST_F(DspTest, Mode)
 	EXPECT_EQ(dsp::mode(dsp::Signal<int>(v)), 2);
 }
 
+TEST_F(DspTest, Pad)
+{
+	std::vector<int> v{ 1,2,4,5 };
+	auto v_pad = dsp::pad(v, { 2, 3 });
+
+	for(const auto& x : v_pad)
+	{
+		std::cout << x << " ";
+	}
+	std::cout << std::endl;
+
+	v_pad = dsp::pad(v, { 3, 4 }, {2, 8});
+
+	for (const auto& x : v_pad)
+	{
+		std::cout << x << " ";
+	}
+	std::cout << std::endl;
+
+	dsp::Signal<int> s(100, { 2, 3, 4, 5 });
+
+	auto s_pad = dsp::pad(s, { 1, 2 }, { 1, 0 });
+
+	for (const auto& x : s_pad)
+	{
+		std::cout << x << " ";
+	}
+	std::cout << std::endl;
+}
+
+TEST_F(DspTest, MedianFilter)
+{
+	std::vector<double> v{ 2.0, 3.0, 3.0, 4.0, 5.0, 3.0, 2.0 };
+	auto v_med = dsp::filter::medianfilter(v, 5);
+
+	for (const auto& x : v_med)
+	{
+		std::cout << x << " ";
+	}
+	std::cout << std::endl;
+
+	EXPECT_EQ(v.size(), v_med.size());
+
+	dsp::Signal<double> s(100, { 2.0, 3.0, 3.0, 4.0, 5.0, 3.0, 2.0 });
+	auto s_med = dsp::filter::medianfilter(s, 5);
+
+	for (const auto& x : s_med)
+	{
+		std::cout << x << " ";
+	}
+	std::cout << std::endl;
+
+	EXPECT_EQ(s.size(), s_med.size());
+
+}
+
 TEST_F(DspTest, Unique)
 {
 	std::vector<int> v{ 3, 4, 2, 2, 1, 7 };

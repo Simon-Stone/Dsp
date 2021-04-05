@@ -62,11 +62,11 @@ namespace dsp
 	std::vector<T> centered(const std::vector<T>& vec, size_t newSize);
 
 	/// @brief Join a sequence of vectors.
-/// @tparam T Type of the vector elements
-/// @param vectors Vector containing references to the vectors.
-/// @return The concatenated vector. 
+	/// @tparam T Type of the vector elements
+	/// @param vectors Vector containing references to the vectors.
+	/// @return The concatenated vector. 
 	template<class T>
-	std::vector<T> concatenate(std::vector<std::vector<T>*> vectors)
+	std::vector<T> concatenate(std::vector<const std::vector<T>*> vectors)
 	{
 		std::vector<T> concatenated_vector;
 		for (const auto& v : vectors)
@@ -75,6 +75,26 @@ namespace dsp
 		}
 
 		return concatenated_vector;
+	}
+
+	/// @brief Join a sequence of Signals.
+	/// @tparam T Type of the signal samples
+	/// @param signals Vector containing references to the signals.
+	/// @return The concatenated signal. 
+	template<class T>
+	Signal<T> concatenate(std::vector<const Signal<T>*> signals)
+	{
+		Signal<T> concatenated_signal(signals.front()->getSamplingRate_Hz());
+		for (const auto& s : signals)
+		{
+			if (s->getSamplingRate_Hz() != concatenated_signal.getSamplingRate_Hz())
+			{
+				throw std::runtime_error("Sampling rate of all concatenated signals must be the same!");
+			}
+			concatenated_signal.insert(concatenated_signal.end(), s->begin(), s->end());
+		}
+
+		return concatenated_signal;
 	}
 
 	/* Convolutions and correlations */
@@ -252,6 +272,26 @@ namespace dsp
 	/// @return Maximum number of frames to split the signal into assuming zero-padding at the end.
 	unsigned maxNumFrames(unsigned signalLength, unsigned frameLength, unsigned overlap);
 
+	template<class T>
+	std::vector<T> pad(const std::vector<T>& x, std::pair<size_t, size_t> pad_width, 
+		std::pair<T, T> values = { T(), T() })
+	{
+		std::vector<T> before(pad_width.first, values.first);
+		std::vector<T> after(pad_width.second, values.second);
+
+		return dsp::concatenate<T>({ &before, &x, &after });
+	}
+
+	template<class T>
+	Signal<T> pad(const Signal<T>& x, std::pair<typename Signal<T>::size_type, typename Signal<T>::size_type> pad_width, 
+		std::pair<T, T> values = { T(), T() })
+	{
+		Signal<T> before(x.getSamplingRate_Hz(), std::vector<T>(pad_width.first, values.first));
+		Signal<T> after(x.getSamplingRate_Hz(), std::vector<T>(pad_width.second, values.second));
+
+		return dsp::concatenate<T>({ &before, &x, &after });
+	}
+	
 	/// @brief Splits a signal into frames
 	/// @tparam T Data type of the signal's samples
 	/// @param signal Signal to split into frames (using zero-padding at the end)

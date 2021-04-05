@@ -296,13 +296,6 @@ dsp::Signal<T>& dsp::Signal<T>::assign(size_type count, const T& value)
 }
 
 template <class T>
-template <class InputIt>
-void dsp::Signal<T>::assign(InputIt first, InputIt last)
-{
-	samples_.assign(first, last);
-}
-
-template <class T>
 typename dsp::Signal<T>::reference dsp::Signal<T>::at(size_type pos)
 {
 	return samples_.at(pos);
@@ -453,23 +446,9 @@ typename dsp::Signal<T>::iterator dsp::Signal<T>::insert(const_iterator pos, siz
 }
 
 template <class T>
-template <class InputIt>
-typename dsp::Signal<T>::iterator dsp::Signal<T>::insert(const_iterator pos, InputIt first, InputIt last)
-{
-	return samples_.insert(pos, first, last);
-}
-
-template <class T>
 typename dsp::Signal<T>::iterator dsp::Signal<T>::insert(const_iterator pos, std::initializer_list<T> ilist)
 {
 	return samples_.insert(pos, ilist);
-}
-
-template <class T>
-template <class ... Args>
-typename dsp::Signal<T>::iterator dsp::Signal<T>::emplace(const_iterator pos, Args&&... args)
-{
-	return samples_.emplace(pos, args);
 }
 
 template <class T>
@@ -494,13 +473,6 @@ template <class T>
 void dsp::Signal<T>::push_back(T&& value)
 {
 	samples_.push_back(value);
-}
-
-template <class T>
-template <class ... Args>
-void dsp::Signal<T>::emplace_back(Args&&... args)
-{
-	samples_.emplace_back(args);
 }
 
 template <class T>
