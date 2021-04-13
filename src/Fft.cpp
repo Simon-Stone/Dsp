@@ -21,9 +21,9 @@ namespace dsp::fft
 	{
 		if (n == 0)
 		{
-			return static_cast<unsigned>(x.size());
+			n = static_cast<unsigned>(x.size());
 		}
-		return n;
+		return 2 << nextpow2(n);
 	}
 
 	template<class T>
@@ -39,17 +39,17 @@ namespace dsp::fft
 	{
 		if (x.empty()) return {};
 
-		unsigned N = get_fft_length(x, n);
+		int N = get_fft_length(x, n);
 
 		std::vector<std::complex<T>> X = resize_fft_input(x, N);
 		auto* in = reinterpret_cast<T*>(&X[0]);
 
 		int nm1 = N - 1;
 		int nd2 = N / 2;
-		unsigned j = nd2;
-		for (unsigned i = 1; i <= N - 2; ++i)
+		int j = nd2;
+		for (int i = 1; i <= N - 2; ++i)
 		{
-			if (i < j)
+ 			if (i < j)
 			{
 				T t[2] = { in[2 * j], in[2 * j + 1] };
 				in[2 * j] = in[2 * i];
@@ -57,7 +57,7 @@ namespace dsp::fft
 				in[2 * i] = t[0];
 				in[2 * i + 1] = t[1];
 			}
-			unsigned k = nd2;
+			int k = nd2;
 
 			while (k <= j)
 			{

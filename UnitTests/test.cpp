@@ -423,3 +423,105 @@ TEST_F(DspTest, Spectrogram)
 		}
 	}
 }
+
+TEST_F(DspTest, Benchmarking)
+{
+	auto x = 7*dsp::signals::sin<double>(100, 1, 48000);
+	
+	std::cout << "*********************************************************" << std::endl;
+	std::cout << "********             z-score                  ***********" << std::endl;
+	std::cout << "*********************************************************" << std::endl;
+	for(int j = 0; j < 10; ++j)
+	{
+		// Naive implementation
+		auto start = std::chrono::high_resolution_clock::now();
+		double sum{ 0.0 };
+		for (int i = 0; i < x.size(); ++i)
+		{
+			sum += x[i];
+		}
+		double x_mean = sum / static_cast<double>(x.size());
+
+		sum = 0.0;
+		for (int i = 0; i < x.size(); ++i)
+		{
+			sum += std::pow(x[i] - x_mean, 2);
+		}
+		double std = std::sqrt(sum) / (x.size() - 1);
+
+		std::vector<double> standardized_x;
+		for (int i = 0; i < x.size(); ++i)
+		{
+			standardized_x.push_back((x[i] - x_mean) / std);
+		}
+	
+		auto stop = std::chrono::high_resolution_clock::now();
+		auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+		std::cout << "Naive implementation: " << duration.count() << " 탎" << std::endl;
+
+		// DSP lib implementation
+		auto start_dsp = std::chrono::high_resolution_clock::now();
+		auto standardized_x_dsp = dsp::zscore(x);
+
+		auto stop_dsp = std::chrono::high_resolution_clock::now();
+		auto duration_dsp = std::chrono::duration_cast<std::chrono::microseconds>(stop_dsp - start_dsp);
+		std::cout << "Modern DSP implementation: " << duration_dsp.count() << " 탎" << std::endl;
+	}
+
+	std::cout << "*********************************************************" << std::endl;
+	std::cout << "********             energy                   ***********" << std::endl;
+	std::cout << "*********************************************************" << std::endl;
+	for (int j = 0; j < 10; ++j)
+	{
+		// Naive implementation
+		auto start = std::chrono::high_resolution_clock::now();
+		double sum{ 0.0 };
+		for (int i = 0; i < x.size(); ++i)
+		{
+			sum += x[i] * x[i];
+		}
+		double x_energy = sum / static_cast<double>(x.size());
+		auto stop = std::chrono::high_resolution_clock::now();
+		
+		auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+		std::cout << "Naive implementation: " << duration.count() << " 탎" << std::endl;
+
+		// DSP lib implementation
+		auto start_dsp = std::chrono::high_resolution_clock::now();
+		auto x_energy_dsp = dsp::calculateMeanPower<double>(x.begin(), x.end());
+
+		auto stop_dsp = std::chrono::high_resolution_clock::now();
+		auto duration_dsp = std::chrono::duration_cast<std::chrono::microseconds>(stop_dsp - start_dsp);
+		std::cout << "Modern DSP implementation: " << duration_dsp.count() << " 탎" << std::endl;
+	}
+
+	std::cout << "*********************************************************" << std::endl;
+	std::cout << "********   log-squared magnitude spectrum     ***********" << std::endl;
+	std::cout << "*********************************************************" << std::endl;
+	for (int j = 0; j < 1; ++j)
+	{
+		// Naive implementation
+		auto start = std::chrono::high_resolution_clock::now();
+
+		auto X = dsp::fft::rfft<double>({ x.begin(), x.end() }, x.size());
+
+		std::vector<double> magSpec;
+		for(int i = 0; i < X.size(); ++i)
+		{
+			magSpec.push_back(10 * std::log10(std::abs(X[i]) * std::abs(X[i])));
+		}
+		
+		auto stop = std::chrono::high_resolution_clock::now();
+
+		auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+		std::cout << "Naive implementation: " << duration.count() << " 탎" << std::endl;
+
+		// DSP lib implementation
+		auto start_dsp = std::chrono::high_resolution_clock::now();
+		auto x_magSpec = dsp::fft::logSquaredMagnitudeSpectrum(x.getSamples(), x.size(), 1.0);
+
+		auto stop_dsp = std::chrono::high_resolution_clock::now();
+		auto duration_dsp = std::chrono::duration_cast<std::chrono::microseconds>(stop_dsp - start_dsp);
+		std::cout << "Modern DSP implementation: " << duration_dsp.count() << " 탎" << std::endl;
+	}
+}
