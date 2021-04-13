@@ -503,7 +503,7 @@ TEST_F(DspTest, Benchmarking)
 		// Naive implementation
 		auto start = std::chrono::high_resolution_clock::now();
 
-		auto X = dsp::fft::rfft<double>({ x.begin(), x.end() }, x.size());
+		auto X = dsp::fft::rfft<double>({ x.begin(), x.end() }, x.size(), dsp::fft::NormalizationMode::backward, dsp::fft::backend::simple);
 
 		std::vector<double> magSpec;
 		for(int i = 0; i < X.size(); ++i)
@@ -518,7 +518,7 @@ TEST_F(DspTest, Benchmarking)
 
 		// DSP lib implementation
 		auto start_dsp = std::chrono::high_resolution_clock::now();
-		auto x_magSpec = dsp::fft::logSquaredMagnitudeSpectrum(x.getSamples(), x.size(), 1.0);
+		auto x_magSpec = dsp::fft::logSquaredMagnitudeSpectrum(x.getSamples(), x.size(), 1);
 
 		auto stop_dsp = std::chrono::high_resolution_clock::now();
 		auto duration_dsp = std::chrono::duration_cast<std::chrono::microseconds>(stop_dsp - start_dsp);

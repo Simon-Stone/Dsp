@@ -23,7 +23,7 @@ namespace dsp::fft
 		{
 			n = static_cast<unsigned>(x.size());
 		}
-		return 2 << nextpow2(n);
+		return 2 << (nextpow2(n)-1);
 	}
 
 	template<class T>
@@ -730,7 +730,7 @@ template <class T>
 std::vector<T> dsp::fft::logSquaredMagnitudeSpectrum(const std::vector<T>& signal, int N_fft,
 	double relativeCutoff)
 {
-	auto spectrum = rfft(signal, 2 << nextpow2(N_fft));
+	auto spectrum = rfft(signal, 2 << (nextpow2(N_fft)-1));
 
 	const int finalFrequencyBinIdx = static_cast<const int>(relativeCutoff * spectrum.size());
 
@@ -806,7 +806,7 @@ std::vector<std::vector<T>> dsp::fft::spectrogram(const std::vector<T>& signal, 
 		});
 
 	// Calculate squared magnitude spectrum in dB
-	const auto nFft = 2 << nextpow2(frameLength);
+	const auto nFft = 2 << (nextpow2(frameLength) - 1);
 	std::transform(std::execution::par_unseq,
 		frames.begin(), frames.end(),
 		spectrogram.begin(),
