@@ -2,6 +2,7 @@
 
 #include <numeric>
 #include <iostream>
+#include <fstream>
 #include <chrono>
 #include <random>
 
@@ -426,12 +427,16 @@ TEST_F(DspTest, Spectrogram)
 
 TEST_F(DspTest, Benchmarking)
 {
+	std::ofstream outFile("dsp_benchmark.csv", std::ios::out);
+
+	outFile << "Task\tImplementation\tExecution time [us]" << std::endl;
+		
 	auto x = 7*dsp::signals::sin<double>(100, 1, 48000);
 	
 	std::cout << "*********************************************************" << std::endl;
 	std::cout << "********             z-score                  ***********" << std::endl;
 	std::cout << "*********************************************************" << std::endl;
-	for(int j = 0; j < 10; ++j)
+	for(int j = 0; j < 100; ++j)
 	{
 		// Naive implementation
 		auto start = std::chrono::high_resolution_clock::now();
@@ -457,21 +462,25 @@ TEST_F(DspTest, Benchmarking)
 	
 		auto stop = std::chrono::high_resolution_clock::now();
 		auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-		std::cout << "Naive implementation: " << duration.count() << " 탎" << std::endl;
+		std::cout << "Naive implementation: " << "\t\t" << duration.count() << " 탎" << std::endl;
 
+		outFile << "zscore\tnaive\t" << duration.count() << std::endl;
+		
 		// DSP lib implementation
 		auto start_dsp = std::chrono::high_resolution_clock::now();
 		auto standardized_x_dsp = dsp::zscore(x);
 
 		auto stop_dsp = std::chrono::high_resolution_clock::now();
 		auto duration_dsp = std::chrono::duration_cast<std::chrono::microseconds>(stop_dsp - start_dsp);
-		std::cout << "Modern DSP implementation: " << duration_dsp.count() << " 탎" << std::endl;
+		std::cout << "Modern DSP implementation: " << "\t" << duration_dsp.count() << " 탎" << std::endl;
+
+		outFile << "zscore\tdsp\t" << duration_dsp.count() << std::endl;
 	}
 
 	std::cout << "*********************************************************" << std::endl;
 	std::cout << "********             energy                   ***********" << std::endl;
 	std::cout << "*********************************************************" << std::endl;
-	for (int j = 0; j < 10; ++j)
+	for (int j = 0; j < 100; ++j)
 	{
 		// Naive implementation
 		auto start = std::chrono::high_resolution_clock::now();
@@ -484,21 +493,24 @@ TEST_F(DspTest, Benchmarking)
 		auto stop = std::chrono::high_resolution_clock::now();
 		
 		auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-		std::cout << "Naive implementation: " << duration.count() << " 탎" << std::endl;
+		std::cout << "Naive implementation: " << "\t\t" << duration.count() << " 탎" << std::endl;
 
+		outFile << "energy\tnaive\t" << duration.count() << std::endl;
 		// DSP lib implementation
 		auto start_dsp = std::chrono::high_resolution_clock::now();
 		auto x_energy_dsp = dsp::calculateMeanPower<double>(x.begin(), x.end());
 
 		auto stop_dsp = std::chrono::high_resolution_clock::now();
 		auto duration_dsp = std::chrono::duration_cast<std::chrono::microseconds>(stop_dsp - start_dsp);
-		std::cout << "Modern DSP implementation: " << duration_dsp.count() << " 탎" << std::endl;
+		std::cout << "Modern DSP implementation: " << "\t" << duration_dsp.count() << " 탎" << std::endl;
+
+		outFile << "energy\tdsp\t" << duration_dsp.count() << std::endl;
 	}
 
 	std::cout << "*********************************************************" << std::endl;
 	std::cout << "********   log-squared magnitude spectrum     ***********" << std::endl;
 	std::cout << "*********************************************************" << std::endl;
-	for (int j = 0; j < 1; ++j)
+	for (int j = 0; j < 100; ++j)
 	{
 		// Naive implementation
 		auto start = std::chrono::high_resolution_clock::now();
@@ -514,14 +526,18 @@ TEST_F(DspTest, Benchmarking)
 		auto stop = std::chrono::high_resolution_clock::now();
 
 		auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-		std::cout << "Naive implementation: " << duration.count() << " 탎" << std::endl;
-
+		std::cout << "Naive implementation: " << "\t\t" << duration.count() << " 탎" << std::endl;
+		outFile << "magspec\tnaive\t" << duration.count() << std::endl;
+		
 		// DSP lib implementation
 		auto start_dsp = std::chrono::high_resolution_clock::now();
 		auto x_magSpec = dsp::fft::logSquaredMagnitudeSpectrum(x.getSamples(), x.size(), 1);
 
 		auto stop_dsp = std::chrono::high_resolution_clock::now();
 		auto duration_dsp = std::chrono::duration_cast<std::chrono::microseconds>(stop_dsp - start_dsp);
-		std::cout << "Modern DSP implementation: " << duration_dsp.count() << " 탎" << std::endl;
+		std::cout << "Modern DSP implementation: " << "\t" << duration_dsp.count() << " 탎" << std::endl;
+
+		outFile << "magspec\tdsp\t" << duration_dsp.count() << std::endl;
 	}
+
 }
