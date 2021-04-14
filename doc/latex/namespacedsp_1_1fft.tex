@@ -1,26 +1,26 @@
-\hypertarget{namespacedsp_1_1fft}{}\doxysection{dsp\+::fft Namespace Reference}
-\label{namespacedsp_1_1fft}\index{dsp::fft@{dsp::fft}}
+\hypertarget{namespacedsp_1_1fft}{}\section{dsp\+:\+:fft Namespace Reference}
+\label{namespacedsp_1_1fft}\index{dsp\+::fft@{dsp\+::fft}}
 
 
 Fast Fourier Transformations.  
 
 
-\doxysubsection*{Enumerations}
+\subsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{namespacedsp_1_1fft_aadeffdb34ec53320437b1c6dd1354915}\label{namespacedsp_1_1fft_aadeffdb34ec53320437b1c6dd1354915}} 
-enum class \mbox{\hyperlink{namespacedsp_1_1fft_aadeffdb34ec53320437b1c6dd1354915}{Normalization\+Mode}} \{ {\bfseries backward}
-, {\bfseries ortho}
-, {\bfseries forward}
+enum \mbox{\hyperlink{namespacedsp_1_1fft_aadeffdb34ec53320437b1c6dd1354915}{Normalization\+Mode}} \{ {\bfseries backward}, 
+{\bfseries ortho}, 
+{\bfseries forward}
  \}
 \begin{DoxyCompactList}\small\item\em Normalization mode for the various transforms\+: \char`\"{}backward\char`\"{} means normalization by n on the inverse transformation only, \char`\"{}forward\char`\"{} means on the forward transformation only, and \char`\"{}ortho\char`\"{} means divide by sqrt(n) in both directions. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{namespacedsp_1_1fft_a4fef2564f82f5eb8ea2d5c9909fb2ba4}\label{namespacedsp_1_1fft_a4fef2564f82f5eb8ea2d5c9909fb2ba4}} 
-enum class \mbox{\hyperlink{namespacedsp_1_1fft_a4fef2564f82f5eb8ea2d5c9909fb2ba4}{backend}} \{ {\bfseries automatic}
-, {\bfseries simple}
-, {\bfseries fftw}
+enum \mbox{\hyperlink{namespacedsp_1_1fft_a4fef2564f82f5eb8ea2d5c9909fb2ba4}{backend}} \{ {\bfseries automatic}, 
+{\bfseries simple}, 
+{\bfseries fftw}
  \}
 \begin{DoxyCompactList}\small\item\em Backend choices for performing the actual transformations. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Functions}
+\subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 {\footnotesize template$<$class T $>$ }\\std\+::vector$<$ std\+::complex$<$ T $>$ $>$ \mbox{\hyperlink{namespacedsp_1_1fft_ae1e8b2af8a1d75b65f349492f865631d}{cfft}} (const std\+::vector$<$ std\+::complex$<$ T $>$$>$ \&x, unsigned n=0, \mbox{\hyperlink{namespacedsp_1_1fft_aadeffdb34ec53320437b1c6dd1354915}{Normalization\+Mode}} \mbox{\hyperlink{namespacedsp_a1d4932cf0fd90a0ecde3b2deffeb740c}{mode}}=Normalization\+Mode\+::backward, \mbox{\hyperlink{namespacedsp_1_1fft_a4fef2564f82f5eb8ea2d5c9909fb2ba4}{backend}} \mbox{\hyperlink{namespacedsp_1_1fft_a4fef2564f82f5eb8ea2d5c9909fb2ba4}{backend}}=backend\+::automatic)
@@ -42,19 +42,19 @@ enum class \mbox{\hyperlink{namespacedsp_1_1fft_a4fef2564f82f5eb8ea2d5c9909fb2ba
 \item 
 \mbox{\Hypertarget{namespacedsp_1_1fft_a167c9e606b663c22f0f39e2296d1377b}\label{namespacedsp_1_1fft_a167c9e606b663c22f0f39e2296d1377b}} 
 {\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_1_1fft_a167c9e606b663c22f0f39e2296d1377b}{fftconvolution}} (const std\+::vector$<$ T $>$ \&volume, const std\+::vector$<$ T $>$ \&kernel, convolution\+\_\+mode \mbox{\hyperlink{namespacedsp_a1d4932cf0fd90a0ecde3b2deffeb740c}{mode}}=convolution\+\_\+mode\+::valid)
-\begin{DoxyCompactList}\small\item\em Fast convolution using the FFT. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Fast convolution using the F\+FT. \end{DoxyCompactList}\item 
 {\footnotesize template$<$class T $>$ }\\std\+::vector$<$ std\+::vector$<$ T $>$ $>$ \mbox{\hyperlink{namespacedsp_1_1fft_a1165887d30389fb6565efc597be66ce1}{spectrogram}} (const std\+::vector$<$ T $>$ \&signal, unsigned frame\+Length, double overlap\+\_\+pct=0.\+5, int sampling\+Rate=-\/1, double relative\+Cutoff=0.\+5, \mbox{\hyperlink{namespacedsp_1_1window_a1cc0dcec4aa9e12640771bdf41f695b8}{window\+::type}} window\+Type=window\+::type\+::hamming)
 \begin{DoxyCompactList}\small\item\em Returns a spectrogram of the passed signal. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\doxysubsection{Detailed Description}
+\subsection{Detailed Description}
 Fast Fourier Transformations. 
 
-\doxysubsection{Function Documentation}
+\subsection{Function Documentation}
 \mbox{\Hypertarget{namespacedsp_1_1fft_ae1e8b2af8a1d75b65f349492f865631d}\label{namespacedsp_1_1fft_ae1e8b2af8a1d75b65f349492f865631d}} 
-\index{dsp::fft@{dsp::fft}!cfft@{cfft}}
-\index{cfft@{cfft}!dsp::fft@{dsp::fft}}
-\doxysubsubsection{\texorpdfstring{cfft()}{cfft()}}
+\index{dsp\+::fft@{dsp\+::fft}!cfft@{cfft}}
+\index{cfft@{cfft}!dsp\+::fft@{dsp\+::fft}}
+\subsubsection{\texorpdfstring{cfft()}{cfft()}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
 std\+::vector$<$ std\+::complex$<$ T $>$ $>$ dsp\+::fft\+::cfft (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::complex$<$ T $>$$>$ \&}]{x,  }\item[{unsigned}]{n = {\ttfamily 0},  }\item[{\mbox{\hyperlink{namespacedsp_1_1fft_aadeffdb34ec53320437b1c6dd1354915}{Normalization\+Mode}}}]{mode = {\ttfamily NormalizationMode\+:\+:backward},  }\item[{\mbox{\hyperlink{namespacedsp_1_1fft_a4fef2564f82f5eb8ea2d5c9909fb2ba4}{backend}}}]{backend = {\ttfamily backend\+:\+:automatic} }\end{DoxyParamCaption})}
 
@@ -62,7 +62,7 @@ std\+::vector$<$ std\+::complex$<$ T $>$ $>$ dsp\+::fft\+::cfft (\begin{DoxyPara
 
 Compute the 1-\/D discrete Fourier Transform. 
 
-This function computes the 1-\/D n-\/point discrete Fourier Transform (DFT) with the efficient Fast Fourier Transform(\+FFT) algorithm for complex input signals. 
+This function computes the 1-\/D n-\/point discrete Fourier Transform (D\+FT) with the efficient Fast Fourier Transform(\+F\+F\+T) algorithm for complex input signals. 
 \begin{DoxyTemplParams}{Template Parameters}
 {\em T} & Data type of the complex values. Should be float, double or long double, other types will cause undefined behavior. \\
 \hline
@@ -75,16 +75,16 @@ This function computes the 1-\/D n-\/point discrete Fourier Transform (DFT) with
 \hline
 {\em mode} & The normalization mode\+: \char`\"{}backward\char`\"{} means normalization by n on the inverse transformation only, \char`\"{}forward\char`\"{} means on the forward transformation only, and \char`\"{}ortho\char`\"{} means divide by sqrt(n) in both directions. \\
 \hline
-{\em backend} & Can be automatic, simple, or fftw. \textquotesingle{}simple\textquotesingle{} is a low-\/level straight-\/forward implementation of the complex FFT and \textquotesingle{}fftw\textquotesingle{} uses the FFTW library. \textquotesingle{}simple\textquotesingle{} is best for a small number fo samples due to the overhead of the FFTW planning stage. For longer inputs, FFTW becomes significantly faster. \textquotesingle{}automatic\textquotesingle{} therefore chooses the \textquotesingle{}simple\textquotesingle{} implementation for input lengths of less than 100 000 samples and \textquotesingle{}fftw\textquotesingle{} for longer inputs. \\
+{\em backend} & Can be automatic, simple, or fftw. \textquotesingle{}simple\textquotesingle{} is a low-\/level straight-\/forward implementation of the complex F\+FT and \textquotesingle{}fftw\textquotesingle{} uses the F\+F\+TW library. \textquotesingle{}simple\textquotesingle{} is best for a small number fo samples due to the overhead of the F\+F\+TW planning stage. For longer inputs, F\+F\+TW becomes significantly faster. \textquotesingle{}automatic\textquotesingle{} therefore chooses the \textquotesingle{}simple\textquotesingle{} implementation for input lengths of less than 100 000 samples and \textquotesingle{}fftw\textquotesingle{} for longer inputs. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 The transformed truncated or zero-\/padded input. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_1_1fft_ab08ff97f7230431add10365d4c8ee820}\label{namespacedsp_1_1fft_ab08ff97f7230431add10365d4c8ee820}} 
-\index{dsp::fft@{dsp::fft}!icfft@{icfft}}
-\index{icfft@{icfft}!dsp::fft@{dsp::fft}}
-\doxysubsubsection{\texorpdfstring{icfft()}{icfft()}}
+\index{dsp\+::fft@{dsp\+::fft}!icfft@{icfft}}
+\index{icfft@{icfft}!dsp\+::fft@{dsp\+::fft}}
+\subsubsection{\texorpdfstring{icfft()}{icfft()}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
 std\+::vector$<$ std\+::complex$<$ T $>$ $>$ dsp\+::fft\+::icfft (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::complex$<$ T $>$$>$ \&}]{X,  }\item[{unsigned}]{n = {\ttfamily 0},  }\item[{\mbox{\hyperlink{namespacedsp_1_1fft_aadeffdb34ec53320437b1c6dd1354915}{Normalization\+Mode}}}]{mode = {\ttfamily NormalizationMode\+:\+:backward},  }\item[{\mbox{\hyperlink{namespacedsp_1_1fft_a4fef2564f82f5eb8ea2d5c9909fb2ba4}{backend}}}]{backend = {\ttfamily backend\+:\+:automatic} }\end{DoxyParamCaption})}
 
@@ -105,16 +105,16 @@ This function computes the inverse of the 1-\/D n-\/point discrete Fourier trans
 \hline
 {\em mode} & The normalization mode\+: \char`\"{}backward\char`\"{} means normalization by n on the inverse transformation only, \char`\"{}forward\char`\"{} means on the forward transformation only, and \char`\"{}ortho\char`\"{} means divide by sqrt(n) in both directions. \\
 \hline
-{\em backend} & Can be automatic, simple, or fftw. \textquotesingle{}simple\textquotesingle{} is a low-\/level straight-\/forward implementation of the complex FFT and \textquotesingle{}fftw\textquotesingle{} uses the FFTW library. \textquotesingle{}simple\textquotesingle{} is best for a small number fo samples due to the overhead of the FFTW planning stage. For longer inputs, FFTW becomes significantly faster. \textquotesingle{}automatic\textquotesingle{} therefore chooses the \textquotesingle{}simple\textquotesingle{} implementation for input lengths of less than 100 000 samples and \textquotesingle{}fftw\textquotesingle{} for longer inputs. \\
+{\em backend} & Can be automatic, simple, or fftw. \textquotesingle{}simple\textquotesingle{} is a low-\/level straight-\/forward implementation of the complex F\+FT and \textquotesingle{}fftw\textquotesingle{} uses the F\+F\+TW library. \textquotesingle{}simple\textquotesingle{} is best for a small number fo samples due to the overhead of the F\+F\+TW planning stage. For longer inputs, F\+F\+TW becomes significantly faster. \textquotesingle{}automatic\textquotesingle{} therefore chooses the \textquotesingle{}simple\textquotesingle{} implementation for input lengths of less than 100 000 samples and \textquotesingle{}fftw\textquotesingle{} for longer inputs. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 The transformed truncated or zero-\/padded input. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_1_1fft_a3b9c8542f82a31aa5745f9b885d8fdbc}\label{namespacedsp_1_1fft_a3b9c8542f82a31aa5745f9b885d8fdbc}} 
-\index{dsp::fft@{dsp::fft}!irfft@{irfft}}
-\index{irfft@{irfft}!dsp::fft@{dsp::fft}}
-\doxysubsubsection{\texorpdfstring{irfft()}{irfft()}}
+\index{dsp\+::fft@{dsp\+::fft}!irfft@{irfft}}
+\index{irfft@{irfft}!dsp\+::fft@{dsp\+::fft}}
+\subsubsection{\texorpdfstring{irfft()}{irfft()}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
 std\+::vector$<$ T $>$ dsp\+::fft\+::irfft (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::complex$<$ T $>$$>$ \&}]{X,  }\item[{unsigned}]{n = {\ttfamily 0},  }\item[{\mbox{\hyperlink{namespacedsp_1_1fft_aadeffdb34ec53320437b1c6dd1354915}{Normalization\+Mode}}}]{mode = {\ttfamily NormalizationMode\+:\+:backward},  }\item[{\mbox{\hyperlink{namespacedsp_1_1fft_a4fef2564f82f5eb8ea2d5c9909fb2ba4}{backend}}}]{backend = {\ttfamily backend\+:\+:automatic} }\end{DoxyParamCaption})}
 
@@ -135,16 +135,16 @@ This function computes the inverse of the 1-\/D n-\/point discrete Fourier Trans
 \hline
 {\em mode} & The normalization mode\+: \char`\"{}backward\char`\"{} means normalization by n on the inverse transformation only, \char`\"{}forward\char`\"{} means on the forward transformation only, and \char`\"{}ortho\char`\"{} means divide by sqrt(n) in both directions. \\
 \hline
-{\em backend} & Can be automatic, simple, or fftw. \textquotesingle{}simple\textquotesingle{} is a low-\/level straight-\/forward implementation of the complex FFT and \textquotesingle{}fftw\textquotesingle{} uses the FFTW library. \textquotesingle{}simple\textquotesingle{} is best for a small number fo samples due to the overhead of the FFTW planning stage. For longer inputs, FFTW becomes significantly faster. \textquotesingle{}automatic\textquotesingle{} therefore chooses the \textquotesingle{}simple\textquotesingle{} implementation for input lengths of less than 100 000 samples and \textquotesingle{}fftw\textquotesingle{} for longer inputs. \\
+{\em backend} & Can be automatic, simple, or fftw. \textquotesingle{}simple\textquotesingle{} is a low-\/level straight-\/forward implementation of the complex F\+FT and \textquotesingle{}fftw\textquotesingle{} uses the F\+F\+TW library. \textquotesingle{}simple\textquotesingle{} is best for a small number fo samples due to the overhead of the F\+F\+TW planning stage. For longer inputs, F\+F\+TW becomes significantly faster. \textquotesingle{}automatic\textquotesingle{} therefore chooses the \textquotesingle{}simple\textquotesingle{} implementation for input lengths of less than 100 000 samples and \textquotesingle{}fftw\textquotesingle{} for longer inputs. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 The backward-\/transformed truncated or zero-\/padded input. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_1_1fft_a7fd22f50ee56c93d30935f0077361450}\label{namespacedsp_1_1fft_a7fd22f50ee56c93d30935f0077361450}} 
-\index{dsp::fft@{dsp::fft}!rfft@{rfft}}
-\index{rfft@{rfft}!dsp::fft@{dsp::fft}}
-\doxysubsubsection{\texorpdfstring{rfft()}{rfft()}}
+\index{dsp\+::fft@{dsp\+::fft}!rfft@{rfft}}
+\index{rfft@{rfft}!dsp\+::fft@{dsp\+::fft}}
+\subsubsection{\texorpdfstring{rfft()}{rfft()}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
 std\+::vector$<$ std\+::complex$<$ T $>$ $>$ dsp\+::fft\+::rfft (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{x,  }\item[{unsigned}]{n = {\ttfamily 0},  }\item[{\mbox{\hyperlink{namespacedsp_1_1fft_aadeffdb34ec53320437b1c6dd1354915}{Normalization\+Mode}}}]{mode = {\ttfamily NormalizationMode\+:\+:backward},  }\item[{\mbox{\hyperlink{namespacedsp_1_1fft_a4fef2564f82f5eb8ea2d5c9909fb2ba4}{backend}}}]{backend = {\ttfamily backend\+:\+:automatic} }\end{DoxyParamCaption})}
 
@@ -152,7 +152,7 @@ std\+::vector$<$ std\+::complex$<$ T $>$ $>$ dsp\+::fft\+::rfft (\begin{DoxyPara
 
 Compute the 1-\/D discrete Fourier Transform for real input. 
 
-This function computes the 1-\/D n-\/point discrete Fourier Transform (DFT) of a real-\/valued vector by means of an efficient algorithm called the Fast Fourier Transform (FFT). 
+This function computes the 1-\/D n-\/point discrete Fourier Transform (D\+FT) of a real-\/valued vector by means of an efficient algorithm called the Fast Fourier Transform (F\+FT). 
 \begin{DoxyTemplParams}{Template Parameters}
 {\em T} & Data type of the real values. Should be float, double or long double, other types will cause undefined behavior. \\
 \hline
@@ -164,18 +164,18 @@ This function computes the 1-\/D n-\/point discrete Fourier Transform (DFT) of a
 {\em n} & Length of the transformed output. If n is smaller than the length of the input, the input is cropped. If it is larger, the input is padded with zeros. If n is 0 (default), the length of the input is used. \\
 \hline
 {\em mode} & The normalization mode\+: \char`\"{}backward\char`\"{} means normalization by n on the inverse transformation only, \char`\"{}forward\char`\"{} means on the forward transformation only, and \char`\"{}ortho\char`\"{} means divide by sqrt(n) in both directions. ~\newline
- \\
+\\
 \hline
-{\em backend} & Can be automatic, simple, or fftw. \textquotesingle{}simple\textquotesingle{} is a low-\/level straight-\/forward implementation of the complex FFT and \textquotesingle{}fftw\textquotesingle{} uses the FFTW library. \textquotesingle{}simple\textquotesingle{} is best for a small number fo samples due to the overhead of the FFTW planning stage. For longer inputs, FFTW becomes significantly faster. \textquotesingle{}automatic\textquotesingle{} therefore chooses the \textquotesingle{}simple\textquotesingle{} implementation for input lengths of less than 100 000 samples and \textquotesingle{}fftw\textquotesingle{} for longer inputs. \\
+{\em backend} & Can be automatic, simple, or fftw. \textquotesingle{}simple\textquotesingle{} is a low-\/level straight-\/forward implementation of the complex F\+FT and \textquotesingle{}fftw\textquotesingle{} uses the F\+F\+TW library. \textquotesingle{}simple\textquotesingle{} is best for a small number fo samples due to the overhead of the F\+F\+TW planning stage. For longer inputs, F\+F\+TW becomes significantly faster. \textquotesingle{}automatic\textquotesingle{} therefore chooses the \textquotesingle{}simple\textquotesingle{} implementation for input lengths of less than 100 000 samples and \textquotesingle{}fftw\textquotesingle{} for longer inputs. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 The forward-\/transformed truncated or zero-\/padded input. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_1_1fft_a1165887d30389fb6565efc597be66ce1}\label{namespacedsp_1_1fft_a1165887d30389fb6565efc597be66ce1}} 
-\index{dsp::fft@{dsp::fft}!spectrogram@{spectrogram}}
-\index{spectrogram@{spectrogram}!dsp::fft@{dsp::fft}}
-\doxysubsubsection{\texorpdfstring{spectrogram()}{spectrogram()}}
+\index{dsp\+::fft@{dsp\+::fft}!spectrogram@{spectrogram}}
+\index{spectrogram@{spectrogram}!dsp\+::fft@{dsp\+::fft}}
+\subsubsection{\texorpdfstring{spectrogram()}{spectrogram()}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
 std\+::vector$<$ std\+::vector$<$ T $>$ $>$ dsp\+::fft\+::spectrogram (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{signal,  }\item[{unsigned}]{frame\+Length,  }\item[{double}]{overlap\+\_\+pct = {\ttfamily 0.5},  }\item[{int}]{sampling\+Rate = {\ttfamily -\/1},  }\item[{double}]{relative\+Cutoff = {\ttfamily 0.5},  }\item[{\mbox{\hyperlink{namespacedsp_1_1window_a1cc0dcec4aa9e12640771bdf41f695b8}{window\+::type}}}]{window\+Type = {\ttfamily window\+:\+:type\+:\+:hamming} }\end{DoxyParamCaption})}
 

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['complexsignal_89',['ComplexSignal',['../class_complex_signal.html',1,'']]]
+  ['complexsignal',['ComplexSignal',['../class_complex_signal.html',1,'']]]
 ];

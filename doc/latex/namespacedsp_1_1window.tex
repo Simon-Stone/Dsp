@@ -1,47 +1,47 @@
-\hypertarget{namespacedsp_1_1window}{}\doxysection{dsp\+::window Namespace Reference}
-\label{namespacedsp_1_1window}\index{dsp::window@{dsp::window}}
+\hypertarget{namespacedsp_1_1window}{}\section{dsp\+:\+:window Namespace Reference}
+\label{namespacedsp_1_1window}\index{dsp\+::window@{dsp\+::window}}
 
 
 Window functions.  
 
 
-\doxysubsection*{Namespaces}
+\subsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
  \mbox{\hyperlink{namespacedsp_1_1window_1_1utilities}{utilities}}
-\begin{DoxyCompactList}\small\item\em Utility functions (probably only interesting for DSP-\/internal use) \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Enumerations}
+\begin{DoxyCompactList}\small\item\em Utility functions (probably only interesting for D\+S\+P-\/internal use) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{namespacedsp_1_1window_a1cc0dcec4aa9e12640771bdf41f695b8}\label{namespacedsp_1_1window_a1cc0dcec4aa9e12640771bdf41f695b8}} 
-enum class \mbox{\hyperlink{namespacedsp_1_1window_a1cc0dcec4aa9e12640771bdf41f695b8}{type}} \{ \newline
-{\bfseries boxcar}
-, {\bfseries triang}
-, {\bfseries blackman}
-, {\bfseries hamming}
-, \newline
-{\bfseries hann}
-, {\bfseries bartlett}
-, {\bfseries flattop}
-, {\bfseries parzen}
-, \newline
-{\bfseries bohman}
-, {\bfseries blackmanharris}
-, {\bfseries nuttal}
-, {\bfseries barthann}
-, \newline
-{\bfseries kaiser}
-, {\bfseries gaussian}
-, {\bfseries general\+\_\+gaussian}
-, {\bfseries dpss}
-, \newline
-{\bfseries chebwin}
-, {\bfseries exponential}
-, {\bfseries tukey}
-, {\bfseries taylor}
+enum \mbox{\hyperlink{namespacedsp_1_1window_a1cc0dcec4aa9e12640771bdf41f695b8}{type}} \{ \newline
+{\bfseries boxcar}, 
+{\bfseries triang}, 
+{\bfseries blackman}, 
+{\bfseries hamming}, 
+\newline
+{\bfseries hann}, 
+{\bfseries bartlett}, 
+{\bfseries flattop}, 
+{\bfseries parzen}, 
+\newline
+{\bfseries bohman}, 
+{\bfseries blackmanharris}, 
+{\bfseries nuttal}, 
+{\bfseries barthann}, 
+\newline
+{\bfseries kaiser}, 
+{\bfseries gaussian}, 
+{\bfseries general\+\_\+gaussian}, 
+{\bfseries dpss}, 
+\newline
+{\bfseries chebwin}, 
+{\bfseries exponential}, 
+{\bfseries tukey}, 
+{\bfseries taylor}
  \}
 \begin{DoxyCompactList}\small\item\em Types of windows (not all implemented yet) \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Functions}
+\subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{namespacedsp_1_1window_ae2b71102e5469df36d24f1a05bd402b4}\label{namespacedsp_1_1window_ae2b71102e5469df36d24f1a05bd402b4}} 
@@ -142,14 +142,14 @@ std\+::string \mbox{\hyperlink{namespacedsp_1_1window_a8570ba336a7b9c53c308f8061
 \begin{DoxyCompactList}\small\item\em Alias for \mbox{\hyperlink{namespacedsp_1_1window_a2aa108b39f9af85531a2870fd0229df6}{exponential()}} that provides the default value for center (which depends on N) \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\doxysubsection{Detailed Description}
+\subsection{Detailed Description}
 Window functions. 
 
-\doxysubsection{Function Documentation}
+\subsection{Function Documentation}
 \mbox{\Hypertarget{namespacedsp_1_1window_a706a651f4fc7da094026b341f20138bb}\label{namespacedsp_1_1window_a706a651f4fc7da094026b341f20138bb}} 
-\index{dsp::window@{dsp::window}!barthann@{barthann}}
-\index{barthann@{barthann}!dsp::window@{dsp::window}}
-\doxysubsubsection{\texorpdfstring{barthann()}{barthann()}}
+\index{dsp\+::window@{dsp\+::window}!barthann@{barthann}}
+\index{barthann@{barthann}!dsp\+::window@{dsp\+::window}}
+\subsubsection{\texorpdfstring{barthann()}{barthann()}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
 std\+::vector$<$ T $>$ dsp\+::window\+::barthann (\begin{DoxyParamCaption}\item[{unsigned}]{N,  }\item[{bool}]{sym = {\ttfamily true} }\end{DoxyParamCaption})}
 
@@ -173,9 +173,9 @@ Return a modified Bartlett-\/\+Hann window.
 The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is true). 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_1_1window_a7b059f993849f7e9048b274071e76335}\label{namespacedsp_1_1window_a7b059f993849f7e9048b274071e76335}} 
-\index{dsp::window@{dsp::window}!bartlett@{bartlett}}
-\index{bartlett@{bartlett}!dsp::window@{dsp::window}}
-\doxysubsubsection{\texorpdfstring{bartlett()}{bartlett()}}
+\index{dsp\+::window@{dsp\+::window}!bartlett@{bartlett}}
+\index{bartlett@{bartlett}!dsp\+::window@{dsp\+::window}}
+\subsubsection{\texorpdfstring{bartlett()}{bartlett()}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
 std\+::vector$<$ T $>$ dsp\+::window\+::bartlett (\begin{DoxyParamCaption}\item[{unsigned}]{N,  }\item[{bool}]{sym = {\ttfamily true} }\end{DoxyParamCaption})}
 
@@ -199,9 +199,9 @@ The Bartlett window is very similar to a triangular window, except that the end 
 The triangular window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is true). 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_1_1window_a10cdac66f0417d5286f11cd27b699e71}\label{namespacedsp_1_1window_a10cdac66f0417d5286f11cd27b699e71}} 
-\index{dsp::window@{dsp::window}!blackman@{blackman}}
-\index{blackman@{blackman}!dsp::window@{dsp::window}}
-\doxysubsubsection{\texorpdfstring{blackman()}{blackman()}}
+\index{dsp\+::window@{dsp\+::window}!blackman@{blackman}}
+\index{blackman@{blackman}!dsp\+::window@{dsp\+::window}}
+\subsubsection{\texorpdfstring{blackman()}{blackman()}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
 std\+::vector$<$ T $>$ dsp\+::window\+::blackman (\begin{DoxyParamCaption}\item[{unsigned}]{N,  }\item[{bool}]{sym = {\ttfamily true} }\end{DoxyParamCaption})}
 
@@ -225,9 +225,9 @@ The Blackman window is a taper formed by using the first three terms of a summat
 The window, with the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is true). 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_1_1window_a942b43c2d1291dc4216a971b594a4fcf}\label{namespacedsp_1_1window_a942b43c2d1291dc4216a971b594a4fcf}} 
-\index{dsp::window@{dsp::window}!blackmanharris@{blackmanharris}}
-\index{blackmanharris@{blackmanharris}!dsp::window@{dsp::window}}
-\doxysubsubsection{\texorpdfstring{blackmanharris()}{blackmanharris()}}
+\index{dsp\+::window@{dsp\+::window}!blackmanharris@{blackmanharris}}
+\index{blackmanharris@{blackmanharris}!dsp\+::window@{dsp\+::window}}
+\subsubsection{\texorpdfstring{blackmanharris()}{blackmanharris()}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
 std\+::vector$<$ T $>$ dsp\+::window\+::blackmanharris (\begin{DoxyParamCaption}\item[{unsigned}]{N,  }\item[{bool}]{sym = {\ttfamily true} }\end{DoxyParamCaption})}
 
@@ -251,9 +251,9 @@ Return a minimum 4-\/term Blackman-\/\+Harris window.
 The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is true). 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_1_1window_a72327b8f54fe769b2345389ddab7f575}\label{namespacedsp_1_1window_a72327b8f54fe769b2345389ddab7f575}} 
-\index{dsp::window@{dsp::window}!bohman@{bohman}}
-\index{bohman@{bohman}!dsp::window@{dsp::window}}
-\doxysubsubsection{\texorpdfstring{bohman()}{bohman()}}
+\index{dsp\+::window@{dsp\+::window}!bohman@{bohman}}
+\index{bohman@{bohman}!dsp\+::window@{dsp\+::window}}
+\subsubsection{\texorpdfstring{bohman()}{bohman()}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
 std\+::vector$<$ T $>$ dsp\+::window\+::bohman (\begin{DoxyParamCaption}\item[{unsigned}]{N,  }\item[{bool}]{sym = {\ttfamily true} }\end{DoxyParamCaption})}
 
@@ -277,9 +277,9 @@ Return a Bohman window.
 The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is true). 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_1_1window_aec4906fe8edc6620afbd2dd12fa5fa0d}\label{namespacedsp_1_1window_aec4906fe8edc6620afbd2dd12fa5fa0d}} 
-\index{dsp::window@{dsp::window}!boxcar@{boxcar}}
-\index{boxcar@{boxcar}!dsp::window@{dsp::window}}
-\doxysubsubsection{\texorpdfstring{boxcar()}{boxcar()}}
+\index{dsp\+::window@{dsp\+::window}!boxcar@{boxcar}}
+\index{boxcar@{boxcar}!dsp\+::window@{dsp\+::window}}
+\subsubsection{\texorpdfstring{boxcar()}{boxcar()}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
 std\+::vector$<$ T $>$ dsp\+::window\+::boxcar (\begin{DoxyParamCaption}\item[{unsigned}]{N,  }\item[{bool}]{sym = {\ttfamily true} }\end{DoxyParamCaption})}
 
@@ -303,9 +303,9 @@ Also known as a rectangular window or Dirichlet window, this is equivalent to no
 The window, with the maximum value normalized to 1. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_1_1window_a510689dd4613dd76c1d3808ddc2a057c}\label{namespacedsp_1_1window_a510689dd4613dd76c1d3808ddc2a057c}} 
-\index{dsp::window@{dsp::window}!chebwin@{chebwin}}
-\index{chebwin@{chebwin}!dsp::window@{dsp::window}}
-\doxysubsubsection{\texorpdfstring{chebwin()}{chebwin()}}
+\index{dsp\+::window@{dsp\+::window}!chebwin@{chebwin}}
+\index{chebwin@{chebwin}!dsp\+::window@{dsp\+::window}}
+\subsubsection{\texorpdfstring{chebwin()}{chebwin()}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
 std\+::vector$<$ T $>$ dsp\+::window\+::chebwin (\begin{DoxyParamCaption}\item[{unsigned}]{N,  }\item[{T}]{at,  }\item[{bool}]{sym = {\ttfamily true} }\end{DoxyParamCaption})}
 
@@ -331,9 +331,9 @@ Return a Dolph-\/\+Chebyshev window.
 The window, with the maximum value always normalized to 1 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_1_1window_a2aa108b39f9af85531a2870fd0229df6}\label{namespacedsp_1_1window_a2aa108b39f9af85531a2870fd0229df6}} 
-\index{dsp::window@{dsp::window}!exponential@{exponential}}
-\index{exponential@{exponential}!dsp::window@{dsp::window}}
-\doxysubsubsection{\texorpdfstring{exponential()}{exponential()}}
+\index{dsp\+::window@{dsp\+::window}!exponential@{exponential}}
+\index{exponential@{exponential}!dsp\+::window@{dsp\+::window}}
+\subsubsection{\texorpdfstring{exponential()}{exponential()}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
 std\+::vector$<$ T $>$ dsp\+::window\+::exponential (\begin{DoxyParamCaption}\item[{T}]{center,  }\item[{unsigned}]{N,  }\item[{T}]{tau = {\ttfamily 1.0},  }\item[{bool}]{sym = {\ttfamily true} }\end{DoxyParamCaption})}
 
@@ -361,9 +361,9 @@ Return an exponential (or Poisson) window.
 The window, with the maximum value normalized to 1 (though the value 1 does not appear if M is even and sym is true). 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_1_1window_adc37567364a8a61d146b3920d4113e07}\label{namespacedsp_1_1window_adc37567364a8a61d146b3920d4113e07}} 
-\index{dsp::window@{dsp::window}!flattop@{flattop}}
-\index{flattop@{flattop}!dsp::window@{dsp::window}}
-\doxysubsubsection{\texorpdfstring{flattop()}{flattop()}}
+\index{dsp\+::window@{dsp\+::window}!flattop@{flattop}}
+\index{flattop@{flattop}!dsp\+::window@{dsp\+::window}}
+\subsubsection{\texorpdfstring{flattop()}{flattop()}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
 std\+::vector$<$ T $>$ dsp\+::window\+::flattop (\begin{DoxyParamCaption}\item[{unsigned}]{N,  }\item[{bool}]{sym = {\ttfamily true} }\end{DoxyParamCaption})}
 
@@ -387,9 +387,9 @@ Return a flat top window.
 The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is true). 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_1_1window_a392d254078b3f6cac2415c394bff9f01}\label{namespacedsp_1_1window_a392d254078b3f6cac2415c394bff9f01}} 
-\index{dsp::window@{dsp::window}!gaussian@{gaussian}}
-\index{gaussian@{gaussian}!dsp::window@{dsp::window}}
-\doxysubsubsection{\texorpdfstring{gaussian()}{gaussian()}}
+\index{dsp\+::window@{dsp\+::window}!gaussian@{gaussian}}
+\index{gaussian@{gaussian}!dsp\+::window@{dsp\+::window}}
+\subsubsection{\texorpdfstring{gaussian()}{gaussian()}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
 std\+::vector$<$ T $>$ dsp\+::window\+::gaussian (\begin{DoxyParamCaption}\item[{unsigned}]{N,  }\item[{double}]{std,  }\item[{bool}]{sym = {\ttfamily true} }\end{DoxyParamCaption})}
 
@@ -415,9 +415,9 @@ Return a Gaussian window.
 The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is true). 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_1_1window_ad79b183426c99214ead4f2f88670f28b}\label{namespacedsp_1_1window_ad79b183426c99214ead4f2f88670f28b}} 
-\index{dsp::window@{dsp::window}!general\_cosine@{general\_cosine}}
-\index{general\_cosine@{general\_cosine}!dsp::window@{dsp::window}}
-\doxysubsubsection{\texorpdfstring{general\_cosine()}{general\_cosine()}}
+\index{dsp\+::window@{dsp\+::window}!general\+\_\+cosine@{general\+\_\+cosine}}
+\index{general\+\_\+cosine@{general\+\_\+cosine}!dsp\+::window@{dsp\+::window}}
+\subsubsection{\texorpdfstring{general\+\_\+cosine()}{general\_cosine()}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
 std\+::vector$<$ T $>$ dsp\+::window\+::general\+\_\+cosine (\begin{DoxyParamCaption}\item[{unsigned}]{N,  }\item[{const std\+::vector$<$ T $>$ \&}]{a,  }\item[{bool}]{sym = {\ttfamily true} }\end{DoxyParamCaption})}
 
@@ -443,9 +443,9 @@ Generic weighted sum of cosine terms window.
 The window, with the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is true). 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_1_1window_ad196fdbdcdeeac4ad1f6d35bb5b6cf44}\label{namespacedsp_1_1window_ad196fdbdcdeeac4ad1f6d35bb5b6cf44}} 
-\index{dsp::window@{dsp::window}!general\_gaussian@{general\_gaussian}}
-\index{general\_gaussian@{general\_gaussian}!dsp::window@{dsp::window}}
-\doxysubsubsection{\texorpdfstring{general\_gaussian()}{general\_gaussian()}}
+\index{dsp\+::window@{dsp\+::window}!general\+\_\+gaussian@{general\+\_\+gaussian}}
+\index{general\+\_\+gaussian@{general\+\_\+gaussian}!dsp\+::window@{dsp\+::window}}
+\subsubsection{\texorpdfstring{general\+\_\+gaussian()}{general\_gaussian()}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
 std\+::vector$<$ T $>$ dsp\+::window\+::general\+\_\+gaussian (\begin{DoxyParamCaption}\item[{unsigned}]{N,  }\item[{double}]{p,  }\item[{double}]{sig,  }\item[{bool}]{sym = {\ttfamily true} }\end{DoxyParamCaption})}
 
@@ -473,9 +473,9 @@ Return a window with a generalized Gaussian shape.
 The window, with the maximum value normalized to 1 (though the value 1 does not appear if M is even and sym is true). 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_1_1window_ab669d3d273b9edc883f4729b2e801157}\label{namespacedsp_1_1window_ab669d3d273b9edc883f4729b2e801157}} 
-\index{dsp::window@{dsp::window}!hamming@{hamming}}
-\index{hamming@{hamming}!dsp::window@{dsp::window}}
-\doxysubsubsection{\texorpdfstring{hamming()}{hamming()}}
+\index{dsp\+::window@{dsp\+::window}!hamming@{hamming}}
+\index{hamming@{hamming}!dsp\+::window@{dsp\+::window}}
+\subsubsection{\texorpdfstring{hamming()}{hamming()}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
 std\+::vector$<$ T $>$ dsp\+::window\+::hamming (\begin{DoxyParamCaption}\item[{unsigned}]{N,  }\item[{bool}]{sym = {\ttfamily true} }\end{DoxyParamCaption})}
 
@@ -499,9 +499,9 @@ The Hamming window is a taper formed by using a raised cosine with non -\/ zero 
 The window, with the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is true). 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_1_1window_a9bb07facf27b284757ddae054c8a3621}\label{namespacedsp_1_1window_a9bb07facf27b284757ddae054c8a3621}} 
-\index{dsp::window@{dsp::window}!hann@{hann}}
-\index{hann@{hann}!dsp::window@{dsp::window}}
-\doxysubsubsection{\texorpdfstring{hann()}{hann()}}
+\index{dsp\+::window@{dsp\+::window}!hann@{hann}}
+\index{hann@{hann}!dsp\+::window@{dsp\+::window}}
+\subsubsection{\texorpdfstring{hann()}{hann()}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
 std\+::vector$<$ T $>$ dsp\+::window\+::hann (\begin{DoxyParamCaption}\item[{unsigned}]{N,  }\item[{bool}]{sym = {\ttfamily true} }\end{DoxyParamCaption})}
 
@@ -525,9 +525,9 @@ The Hann window is a taper formed by using a raised cosine or sine -\/ squared w
 The window, with the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is true). 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_1_1window_a84fcea5f41eba58cf50df8569e2ac290}\label{namespacedsp_1_1window_a84fcea5f41eba58cf50df8569e2ac290}} 
-\index{dsp::window@{dsp::window}!kaiser@{kaiser}}
-\index{kaiser@{kaiser}!dsp::window@{dsp::window}}
-\doxysubsubsection{\texorpdfstring{kaiser()}{kaiser()}}
+\index{dsp\+::window@{dsp\+::window}!kaiser@{kaiser}}
+\index{kaiser@{kaiser}!dsp\+::window@{dsp\+::window}}
+\subsubsection{\texorpdfstring{kaiser()}{kaiser()}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
 std\+::vector$<$ T $>$ dsp\+::window\+::kaiser (\begin{DoxyParamCaption}\item[{unsigned}]{N,  }\item[{double}]{beta,  }\item[{bool}]{sym = {\ttfamily true} }\end{DoxyParamCaption})}
 
@@ -553,9 +553,9 @@ The Kaiser window is a taper formed by using a Bessel function.
 The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is true). 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_1_1window_a28c5c4d7e81acce1c360013c1a3f2fc9}\label{namespacedsp_1_1window_a28c5c4d7e81acce1c360013c1a3f2fc9}} 
-\index{dsp::window@{dsp::window}!nuttall@{nuttall}}
-\index{nuttall@{nuttall}!dsp::window@{dsp::window}}
-\doxysubsubsection{\texorpdfstring{nuttall()}{nuttall()}}
+\index{dsp\+::window@{dsp\+::window}!nuttall@{nuttall}}
+\index{nuttall@{nuttall}!dsp\+::window@{dsp\+::window}}
+\subsubsection{\texorpdfstring{nuttall()}{nuttall()}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
 std\+::vector$<$ T $>$ dsp\+::window\+::nuttall (\begin{DoxyParamCaption}\item[{unsigned}]{N,  }\item[{bool}]{sym = {\ttfamily true} }\end{DoxyParamCaption})}
 
@@ -579,9 +579,9 @@ Return a minimum 4-\/term Blackman-\/\+Harris window according to Nuttall.
 The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is true). 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_1_1window_a479dc86ffddf5e19d595c0c0e751edda}\label{namespacedsp_1_1window_a479dc86ffddf5e19d595c0c0e751edda}} 
-\index{dsp::window@{dsp::window}!parzen@{parzen}}
-\index{parzen@{parzen}!dsp::window@{dsp::window}}
-\doxysubsubsection{\texorpdfstring{parzen()}{parzen()}}
+\index{dsp\+::window@{dsp\+::window}!parzen@{parzen}}
+\index{parzen@{parzen}!dsp\+::window@{dsp\+::window}}
+\subsubsection{\texorpdfstring{parzen()}{parzen()}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
 std\+::vector$<$ T $>$ dsp\+::window\+::parzen (\begin{DoxyParamCaption}\item[{unsigned}]{N,  }\item[{bool}]{sym = {\ttfamily true} }\end{DoxyParamCaption})}
 
@@ -605,9 +605,9 @@ Return a Parzen window.
 The window, with the first and last samples equal to zero and the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is true). 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_1_1window_a34a63560363037f3754daa895c9821bc}\label{namespacedsp_1_1window_a34a63560363037f3754daa895c9821bc}} 
-\index{dsp::window@{dsp::window}!string2type@{string2type}}
-\index{string2type@{string2type}!dsp::window@{dsp::window}}
-\doxysubsubsection{\texorpdfstring{string2type()}{string2type()}}
+\index{dsp\+::window@{dsp\+::window}!string2type@{string2type}}
+\index{string2type@{string2type}!dsp\+::window@{dsp\+::window}}
+\subsubsection{\texorpdfstring{string2type()}{string2type()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{namespacedsp_1_1window_a1cc0dcec4aa9e12640771bdf41f695b8}{type}} dsp\+::window\+::string2type (\begin{DoxyParamCaption}\item[{std\+::string}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
@@ -623,9 +623,9 @@ Returns the window type corresponding to a string representation.
 Corresponding window type 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_1_1window_a931f388022b655420037a5e1652621d8}\label{namespacedsp_1_1window_a931f388022b655420037a5e1652621d8}} 
-\index{dsp::window@{dsp::window}!triang@{triang}}
-\index{triang@{triang}!dsp::window@{dsp::window}}
-\doxysubsubsection{\texorpdfstring{triang()}{triang()}}
+\index{dsp\+::window@{dsp\+::window}!triang@{triang}}
+\index{triang@{triang}!dsp\+::window@{dsp\+::window}}
+\subsubsection{\texorpdfstring{triang()}{triang()}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
 std\+::vector$<$ T $>$ dsp\+::window\+::triang (\begin{DoxyParamCaption}\item[{unsigned}]{N,  }\item[{bool}]{sym = {\ttfamily true} }\end{DoxyParamCaption})}
 
@@ -649,9 +649,9 @@ Return a triangular window.
 The window, with the maximum value normalized to 1 (though the value 1 does not appear if N is even and sym is true). 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_1_1window_afb244cc8f82873d0e8a8d25394266ecc}\label{namespacedsp_1_1window_afb244cc8f82873d0e8a8d25394266ecc}} 
-\index{dsp::window@{dsp::window}!tukey@{tukey}}
-\index{tukey@{tukey}!dsp::window@{dsp::window}}
-\doxysubsubsection{\texorpdfstring{tukey()}{tukey()}}
+\index{dsp\+::window@{dsp\+::window}!tukey@{tukey}}
+\index{tukey@{tukey}!dsp\+::window@{dsp\+::window}}
+\subsubsection{\texorpdfstring{tukey()}{tukey()}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
 std\+::vector$<$ T $>$ dsp\+::window\+::tukey (\begin{DoxyParamCaption}\item[{unsigned}]{N,  }\item[{T}]{alpha = {\ttfamily 0.5},  }\item[{bool}]{sym = {\ttfamily true} }\end{DoxyParamCaption})}
 
@@ -677,9 +677,9 @@ Return a Tukey window, also known as a tapered cosine window.
 The window, with the maximum value normalized to 1 (though the value 1 does not appear if M is even and sym is true). 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_1_1window_a8570ba336a7b9c53c308f80610e5fcbd}\label{namespacedsp_1_1window_a8570ba336a7b9c53c308f80610e5fcbd}} 
-\index{dsp::window@{dsp::window}!type2string@{type2string}}
-\index{type2string@{type2string}!dsp::window@{dsp::window}}
-\doxysubsubsection{\texorpdfstring{type2string()}{type2string()}}
+\index{dsp\+::window@{dsp\+::window}!type2string@{type2string}}
+\index{type2string@{type2string}!dsp\+::window@{dsp\+::window}}
+\subsubsection{\texorpdfstring{type2string()}{type2string()}}
 {\footnotesize\ttfamily std\+::string dsp\+::window\+::type2string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedsp_1_1window_a1cc0dcec4aa9e12640771bdf41f695b8}{type}}}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 

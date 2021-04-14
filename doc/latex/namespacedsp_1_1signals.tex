@@ -1,11 +1,11 @@
-\hypertarget{namespacedsp_1_1signals}{}\doxysection{dsp\+::signals Namespace Reference}
-\label{namespacedsp_1_1signals}\index{dsp::signals@{dsp::signals}}
+\hypertarget{namespacedsp_1_1signals}{}\section{dsp\+:\+:signals Namespace Reference}
+\label{namespacedsp_1_1signals}\index{dsp\+::signals@{dsp\+::signals}}
 
 
 Convenience functions to generate various sampled test signals.  
 
 
-\doxysubsection*{Functions}
+\subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 {\footnotesize template$<$class T $>$ }\\\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \mbox{\hyperlink{namespacedsp_1_1signals_a932acf8ed8375e1a15abba69badf0ee0}{sin}} (unsigned frequency\+\_\+\+Hz, double length\+\_\+s, unsigned sampling\+Rate\+\_\+\+Hz, double amplitude=1.\+0, double phase=0.\+0)
@@ -18,14 +18,14 @@ Convenience functions to generate various sampled test signals.
 \begin{DoxyCompactList}\small\item\em Return a vector filled with ones that has the same length as the passed vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\doxysubsection{Detailed Description}
+\subsection{Detailed Description}
 Convenience functions to generate various sampled test signals. 
 
-\doxysubsection{Function Documentation}
+\subsection{Function Documentation}
 \mbox{\Hypertarget{namespacedsp_1_1signals_ad1db657bf187b930ec8c53f20e20b759}\label{namespacedsp_1_1signals_ad1db657bf187b930ec8c53f20e20b759}} 
-\index{dsp::signals@{dsp::signals}!cos@{cos}}
-\index{cos@{cos}!dsp::signals@{dsp::signals}}
-\doxysubsubsection{\texorpdfstring{cos()}{cos()}}
+\index{dsp\+::signals@{dsp\+::signals}!cos@{cos}}
+\index{cos@{cos}!dsp\+::signals@{dsp\+::signals}}
+\subsubsection{\texorpdfstring{cos()}{cos()}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
 template \mbox{\hyperlink{classdsp_1_1_signal}{dsp\+::\+Signal}}$<$ long $>$ dsp\+::signals\+::cos (\begin{DoxyParamCaption}\item[{unsigned}]{frequency\+\_\+\+Hz,  }\item[{double}]{length\+\_\+s,  }\item[{unsigned}]{sampling\+Rate\+\_\+\+Hz,  }\item[{double}]{amplitude = {\ttfamily 1.0},  }\item[{double}]{phase = {\ttfamily 0.0} }\end{DoxyParamCaption})}
 
@@ -54,34 +54,10 @@ Return a sampled cosine signal.
 \begin{DoxyReturn}{Returns}
 A signal containing the specified cosine 
 \end{DoxyReturn}
-\mbox{\Hypertarget{namespacedsp_1_1signals_ae16d81991d7fe9195392aa7ca3d34297}\label{namespacedsp_1_1signals_ae16d81991d7fe9195392aa7ca3d34297}} 
-\index{dsp::signals@{dsp::signals}!ones@{ones}}
-\index{ones@{ones}!dsp::signals@{dsp::signals}}
-\doxysubsubsection{\texorpdfstring{ones()}{ones()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
-std\+::vector$<$ T $>$ dsp\+::signals\+::ones (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{y }\end{DoxyParamCaption})}
-
-
-
-Return a vector filled with ones that has the same length as the passed vector. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & Type of the samples. Should be float, double, or long double. Other types will cause undefined behavior. \\
-\hline
-\end{DoxyTemplParams}
-
-\begin{DoxyParams}{Parameters}
-{\em y} & Reference vector whose length is used for the returned vector. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-Vector of the same length as y consisting entirely of ones. 
-\end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_1_1signals_a508782b7dda383cd01cd9db7dbfd1df3}\label{namespacedsp_1_1signals_a508782b7dda383cd01cd9db7dbfd1df3}} 
-\index{dsp::signals@{dsp::signals}!ones@{ones}}
-\index{ones@{ones}!dsp::signals@{dsp::signals}}
-\doxysubsubsection{\texorpdfstring{ones()}{ones()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+\index{dsp\+::signals@{dsp\+::signals}!ones@{ones}}
+\index{ones@{ones}!dsp\+::signals@{dsp\+::signals}}
+\subsubsection{\texorpdfstring{ones()}{ones()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
 template std\+::vector$<$ long double $>$ dsp\+::signals\+::ones (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{n }\end{DoxyParamCaption})}
 
@@ -102,10 +78,34 @@ Return a vector filled with ones.
 \begin{DoxyReturn}{Returns}
 \mbox{\hyperlink{classdsp_1_1_signal}{Signal}} of length n consisting entirely of ones. 
 \end{DoxyReturn}
+\mbox{\Hypertarget{namespacedsp_1_1signals_ae16d81991d7fe9195392aa7ca3d34297}\label{namespacedsp_1_1signals_ae16d81991d7fe9195392aa7ca3d34297}} 
+\index{dsp\+::signals@{dsp\+::signals}!ones@{ones}}
+\index{ones@{ones}!dsp\+::signals@{dsp\+::signals}}
+\subsubsection{\texorpdfstring{ones()}{ones()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+std\+::vector$<$ T $>$ dsp\+::signals\+::ones (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{y }\end{DoxyParamCaption})}
+
+
+
+Return a vector filled with ones that has the same length as the passed vector. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type of the samples. Should be float, double, or long double. Other types will cause undefined behavior. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em y} & Reference vector whose length is used for the returned vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vector of the same length as y consisting entirely of ones. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_1_1signals_a932acf8ed8375e1a15abba69badf0ee0}\label{namespacedsp_1_1signals_a932acf8ed8375e1a15abba69badf0ee0}} 
-\index{dsp::signals@{dsp::signals}!sin@{sin}}
-\index{sin@{sin}!dsp::signals@{dsp::signals}}
-\doxysubsubsection{\texorpdfstring{sin()}{sin()}}
+\index{dsp\+::signals@{dsp\+::signals}!sin@{sin}}
+\index{sin@{sin}!dsp\+::signals@{dsp\+::signals}}
+\subsubsection{\texorpdfstring{sin()}{sin()}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
 template \mbox{\hyperlink{classdsp_1_1_signal}{dsp\+::\+Signal}}$<$ long $>$ dsp\+::signals\+::sin (\begin{DoxyParamCaption}\item[{unsigned}]{frequency\+\_\+\+Hz,  }\item[{double}]{length\+\_\+s,  }\item[{unsigned}]{sampling\+Rate\+\_\+\+Hz,  }\item[{double}]{amplitude = {\ttfamily 1.0},  }\item[{double}]{phase = {\ttfamily 0.0} }\end{DoxyParamCaption})}
 
