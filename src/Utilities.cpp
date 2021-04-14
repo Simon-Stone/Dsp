@@ -36,7 +36,7 @@ template <class T>
 T dsp::calculateEnergy(typename std::vector<T>::iterator start,
 	typename std::vector<T>::iterator end)
 {
-	return static_cast<T>(std::inner_product(start, end, start, T{ 0.0 }));
+	return std::inner_product(start, end, start, T(0));
 }
 
 template <class T>
@@ -45,7 +45,7 @@ T dsp::calculateMeanPower(typename std::vector<T>::iterator start,
 {
 	auto energy = calculateEnergy<T>(start, end);
 	auto numSamples = std::distance(start, end);
-	return static_cast<T>(energy / numSamples);
+	return energy / numSamples;
 }
 
 template <class T>
