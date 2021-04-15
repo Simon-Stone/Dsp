@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['templatesignal_91',['TemplateSignal',['../class_template_signal.html',1,'']]]
+  ['templatesignal',['TemplateSignal',['../class_template_signal.html',1,'']]]
 ];

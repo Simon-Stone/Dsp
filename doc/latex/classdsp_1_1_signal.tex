@@ -1,5 +1,5 @@
-\hypertarget{classdsp_1_1_signal}{}\doxysection{dsp\+::Signal$<$ T $>$ Class Template Reference}
-\label{classdsp_1_1_signal}\index{dsp::Signal$<$ T $>$@{dsp::Signal$<$ T $>$}}
+\hypertarget{classdsp_1_1_signal}{}\section{dsp\+:\+:Signal$<$ T $>$ Class Template Reference}
+\label{classdsp_1_1_signal}\index{dsp\+::\+Signal$<$ T $>$@{dsp\+::\+Signal$<$ T $>$}}
 
 
 This class represents a scalar signal.  
@@ -9,7 +9,7 @@ This class represents a scalar signal.
 
 {\ttfamily \#include $<$Signal.\+h$>$}
 
-\doxysubsection*{Public Types}
+\subsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{classdsp_1_1_signal_aaaabb30292daaf8f51f25e081ceacd59}\label{classdsp_1_1_signal_aaaabb30292daaf8f51f25e081ceacd59}} 
@@ -48,7 +48,7 @@ using {\bfseries reverse\+\_\+iterator} = typename std\+::vector$<$ T $>$\+::rev
 \mbox{\Hypertarget{classdsp_1_1_signal_af1cd92e5bf0606e024569ca98abd3600}\label{classdsp_1_1_signal_af1cd92e5bf0606e024569ca98abd3600}} 
 using {\bfseries const\+\_\+reverse\+\_\+iterator} = typename std\+::vector$<$ T $>$\+::const\+\_\+reverse\+\_\+iterator
 \end{DoxyCompactItemize}
-\doxysubsection*{Public Member Functions}
+\subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{classdsp_1_1_signal_a11921403012b1f6d3646b545306365c5}\label{classdsp_1_1_signal_a11921403012b1f6d3646b545306365c5}} 
@@ -251,14 +251,8 @@ virtual reference {\bfseries operator\mbox{[}$\,$\mbox{]}} (size\+\_\+type pos)
 \item 
 \mbox{\Hypertarget{classdsp_1_1_signal_ab2fc2e8558b97ce72dd4c2dc43a624c3}\label{classdsp_1_1_signal_ab2fc2e8558b97ce72dd4c2dc43a624c3}} 
 virtual const\+\_\+reference {\bfseries operator\mbox{[}$\,$\mbox{]}} (size\+\_\+type pos) const
-\item 
-\mbox{\Hypertarget{classdsp_1_1_signal_a3ad742acba88641b91988b514ddc88b9}\label{classdsp_1_1_signal_a3ad742acba88641b91988b514ddc88b9}} 
-{\footnotesize template$<$class Input\+It $>$ }\\\mbox{\hyperlink{classdsp_1_1_signal}{dsp\+::\+Signal}}$<$ T $>$\+::iterator {\bfseries insert} (const\+\_\+iterator pos, Input\+It first, Input\+It last)
-\item 
-\mbox{\Hypertarget{classdsp_1_1_signal_a7a394bb6eac115c6bb961386277f161b}\label{classdsp_1_1_signal_a7a394bb6eac115c6bb961386277f161b}} 
-{\footnotesize template$<$class ... Args$>$ }\\\mbox{\hyperlink{classdsp_1_1_signal}{dsp\+::\+Signal}}$<$ T $>$\+::iterator {\bfseries emplace} (const\+\_\+iterator pos, Args \&\&... args)
 \end{DoxyCompactItemize}
-\doxysubsection*{Protected Attributes}
+\subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{classdsp_1_1_signal_a7379e642c2b424d068d6288c7623c5a3}\label{classdsp_1_1_signal_a7379e642c2b424d068d6288c7623c5a3}} 
@@ -267,7 +261,7 @@ unsigned {\bfseries sampling\+Rate\+\_\+\+Hz\+\_\+} \{ 0 \}
 \mbox{\Hypertarget{classdsp_1_1_signal_a17e9746c320be9f435349c6d3ecd2e58}\label{classdsp_1_1_signal_a17e9746c320be9f435349c6d3ecd2e58}} 
 std\+::vector$<$ T $>$ \mbox{\hyperlink{classdsp_1_1_signal_a17e9746c320be9f435349c6d3ecd2e58}{samples\+\_\+}}
 \begin{DoxyCompactList}\small\item\em A vector holding the actual samples. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Friends}
+\subsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{classdsp_1_1_signal_af0b0d36b0aeab988a05ba360c6ddb89c}\label{classdsp_1_1_signal_af0b0d36b0aeab988a05ba360c6ddb89c}} 
@@ -275,13 +269,13 @@ std\+::ostream \& {\bfseries operator$<$$<$} (std\+::ostream \&os, const \mbox{\
 \end{DoxyCompactItemize}
 
 
-\doxysubsection{Detailed Description}
+\subsection{Detailed Description}
 \subsubsection*{template$<$class T$>$\newline
 class dsp\+::\+Signal$<$ T $>$}
 
 This class represents a scalar signal. 
 
-It is implemented as a facade design pattern wrapped around an STL vector. Fun fact\+: It is not derived from std\+::vector because that class does not have a virtual destructor, potentially producing memory leaks. 
+It is implemented as a facade design pattern wrapped around an S\+TL vector. Fun fact\+: It is not derived from std\+::vector because that class does not have a virtual destructor, potentially producing memory leaks. 
 \begin{DoxyTemplParams}{Template Parameters}
 {\em T} & Data type of the samples in the signal. Can be any numeric type, but mind that the arithmetic is at the same precision (which might lead to unexpected results with integer types). \\
 \hline
@@ -290,5 +284,5 @@ It is implemented as a facade design pattern wrapped around an STL vector. Fun f
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-C\+:/\+Users/\+Simon Stone/source/repos/\+Dsp/src/Signal.\+h\item 
-C\+:/\+Users/\+Simon Stone/source/repos/\+Dsp/src/Signal.\+cpp\end{DoxyCompactItemize}
+C\+:/\+Users/stone/source/repos/nullpunkt\+T\+U\+D/\+Dsp/src/Signal.\+h\item 
+C\+:/\+Users/stone/source/repos/nullpunkt\+T\+U\+D/\+Dsp/src/Signal.\+cpp\end{DoxyCompactItemize}
