@@ -114,10 +114,10 @@ namespace dsp
 	/// @param in2 The second argument passed into the convolution function.
 	/// @param mode An enum indicating the size of the output:
 	/// full:	The output is the full discrete linear cross-correlation of the inputs. (Default)
-	///	valid: 	The output consists only of those elements that do not rely on the zero-padding. In ‘valid’ mode, either in1 or in2 must be at least as large as the other in every dimension.
-	///	same:	The output is the same size as in1, centered with respect to the ‘full’ output.
+	///	valid: 	The output consists only of those elements that do not rely on the zero-padding. In â€˜validâ€™ mode, either in1 or in2 must be at least as large as the other in every dimension.
+	///	same:	The output is the same size as in1, centered with respect to the â€˜fullâ€™ output.
 	/// @param measure If true, run and time the convolution of in1 and in2 with both methods and return the fastest. If false (default), predict the fastest method using precomputed values.
-	/// @return A pair containing an enum indicating which convolution method is fastest, either ‘direct’ or ‘fft’, and a map containing the times (in seconds) needed for each method. This map is only non-empty if measure=true.
+	/// @return A pair containing an enum indicating which convolution method is fastest, either â€˜directâ€™ or â€˜fftâ€™, and a map containing the times (in seconds) needed for each method. This map is only non-empty if measure=true.
 	template<class T>
 	std::pair<convolution_method, std::map<convolution_method, double>>
 		choose_conv_method(const std::vector<T>& in1, const std::vector<T>& in2,
@@ -130,8 +130,8 @@ namespace dsp
 	/// @param in1 First input
 	/// @param in2 Second input
 	/// full:	The output is the full discrete convolution of the inputs. (Default)
-	///	valid: 	The output consists only of those elements that do not rely on the zero-padding. In ‘valid’ mode, either in1 or in2 must be at least as large as the other in every dimension.
-	///	same:	The output is the same size as in1, centered with respect to the ‘full’ output.
+	///	valid: 	The output consists only of those elements that do not rely on the zero-padding. In â€˜validâ€™ mode, either in1 or in2 must be at least as large as the other in every dimension.
+	///	same:	The output is the same size as in1, centered with respect to the â€˜fullâ€™ output.
 	/// @param method An enum indicating which method to use to calculate the convolution.
 	/// direct:	The correlation is determined directly from sums, the definition of correlation.
 	/// fft:	The Fast Fourier Transform is used to perform the correlation more quickly.
@@ -150,8 +150,8 @@ namespace dsp
 	/// @param in2 Second input
 	/// @param mode An enum indicating the size of the output:
 	/// full:	The output is the full discrete linear cross-correlation of the inputs. (Default)
-	///	valid: 	The output consists only of those elements that do not rely on the zero-padding. In ‘valid’ mode, either in1 or in2 must be at least as large as the other in every dimension.
-	///	same:	The output is the same size as in1, centered with respect to the ‘full’ output.
+	///	valid: 	The output consists only of those elements that do not rely on the zero-padding. In â€˜validâ€™ mode, either in1 or in2 must be at least as large as the other in every dimension.
+	///	same:	The output is the same size as in1, centered with respect to the â€˜fullâ€™ output.
 	/// @param method An enum indicating which method to use to calculate the correlation.
 	/// direct:	The correlation is determined directly from sums, the definition of correlation.
 	/// fft:	The Fast Fourier Transform is used to perform the correlation more quickly.
@@ -166,8 +166,8 @@ namespace dsp
 	/// @param in Input vector
 	/// @param mode An enum indicating the size of the output:
 	/// full:	The output is the full discrete linear auto-correlation of the inputs. (Default)
-	///	valid: 	The output consists only of those elements that do not rely on the zero-padding. In ‘valid’ mode, either in1 or in2 must be at least as large as the other in every dimension.
-	///	same:	The output is the same size as in1, centered with respect to the ‘full’ output.
+	///	valid: 	The output consists only of those elements that do not rely on the zero-padding. In â€˜validâ€™ mode, either in1 or in2 must be at least as large as the other in every dimension.
+	///	same:	The output is the same size as in1, centered with respect to the â€˜fullâ€™ output.
 	/// @param method An enum indicating which method to use to calculate the correlation.
 	/// direct:	The correlation is determined directly from sums, the definition of correlation.
 	/// fft:	The Fast Fourier Transform is used to perform the correlation more quickly.
