@@ -19,25 +19,25 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\convert.h" />
     <ClInclude Include="src\dsp.h" />
     <ClInclude Include="src\fft.h" />
     <ClInclude Include="src\filter.h" />
     <ClInclude Include="src\Signal.h" />
     <ClInclude Include="src\signals.h" />
     <ClInclude Include="src\special.h" />
-    <ClInclude Include="src\convert.h" />
     <ClInclude Include="src\stats.h" />
     <ClInclude Include="src\utilities.h" />
     <ClInclude Include="src\window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\convert.cpp" />
     <ClCompile Include="src\dsp.cpp" />
     <ClCompile Include="src\fft.cpp" />
     <ClCompile Include="src\filter.cpp" />
     <ClCompile Include="src\Signal.cpp" />
     <ClCompile Include="src\signals.cpp" />
     <ClCompile Include="src\special.cpp" />
-    <ClCompile Include="src\convert.cpp" />
     <ClCompile Include="src\utilities.cpp" />
     <ClCompile Include="src\window.cpp" />
   </ItemGroup>

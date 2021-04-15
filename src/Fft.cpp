@@ -732,7 +732,7 @@ std::vector<T> dsp::fft::logSquaredMagnitudeSpectrum(const std::vector<T>& signa
 {
 	auto spectrum = rfft(signal, 2 << (nextpow2(N_fft)-1));
 
-	const int finalFrequencyBinIdx = static_cast<const int>(relativeCutoff * spectrum.size());
+	const int finalFrequencyBinIdx = static_cast<const int>(relativeCutoff * static_cast<double>(spectrum.size()));
 
 	auto logSquaredSpectrum = std::vector<T>(finalFrequencyBinIdx);
 

@@ -169,8 +169,8 @@ namespace dsp
 		iterator insert(const_iterator pos, InputIt first, InputIt last) { return samples_.insert(pos, first, last); }
 		iterator insert(const_iterator pos, std::initializer_list<T> ilist);
 
-		template<class... Args>
-		iterator emplace(const_iterator pos, Args&&... args) { return samples_.emplace(pos, args); }
+		template<class ...Args>
+		iterator emplace(const_iterator pos, Args&&... args) { return samples_.emplace(pos, std::forward<Args>(args)...); }
 
 		iterator erase(const_iterator pos);
 		iterator erase(const_iterator first, const_iterator last);
@@ -178,8 +178,8 @@ namespace dsp
 		void push_back(const T& value);
 		void push_back(T&& value);
 
-		template< class... Args >
-		void emplace_back(Args&&... args){ samples_.emplace_back(args); }
+		template< class ...Args >
+		void emplace_back(Args&&... args){ samples_.emplace_back(std::forward<Args>(args)...); }
 
 		void pop_back();
 
