@@ -9,6 +9,9 @@ include_directories(${FFTW3l_INCLUDE_DIR})
 find_package(Boost REQUIRED)
 include_directories(${Boost_INCLUDE_DIR})
 
+find_package(TBB COMPONENTS tbbmalloc tbbmalloc_proxy tbb_preview)
+
+
 # Get Google Test
 include(FetchContent)
 FetchContent_Declare(
@@ -22,5 +25,16 @@ FetchContent_MakeAvailable(googletest)
 
 set(CMAKE_CXX_STANDARD 17)
 add_executable(UnitTests test.cpp)
-target_link_directories(UnitTests PUBLIC ${FFTW3_LIBRARY_DIRS} ${FFTW3f_LIBRARY_DIRS} ${FFTW3l_LIBRARY_DIRS})
-target_link_libraries(UnitTests PUBLIC gtest_main ${Boost_LIBRARIES} ${FFTW3_LIBRARIES} ${FFTW3f_LIBRARIES} ${FFTW3l_LIBRARIES} Dsp)
+list(APPEND libs "gtest_main" "dsp" "fftw3" "fftw3f" "fftw3l")
+
+if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+    # GCC currently only supports the <execution> header through a third-party library
+    list(APPEND libs "tbb")
+elseif (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+    # Clang does not yet support the <execution> header
+    message(FATAL_ERROR "Clang does not yet support the <execution> header. Please use GCC instead.")
+endif()
+
+target_link_libraries(UnitTests PUBLIC ${libs})
+
+
