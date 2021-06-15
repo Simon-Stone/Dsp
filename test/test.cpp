@@ -1,4 +1,4 @@
-#include "pch.h"
+#include "gtest/gtest.h"
 
 #include <numeric>
 #include <iostream>
@@ -462,7 +462,7 @@ TEST_F(DspTest, Benchmarking)
 	
 		auto stop = std::chrono::high_resolution_clock::now();
 		auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-		std::cout << "Naive implementation: " << "\t\t" << duration.count() << " µs" << std::endl;
+		std::cout << "Naive implementation: " << "\t\t" << duration.count() << " ï¿½s" << std::endl;
 
 		outFile << "zscore\tnaive\t" << duration.count() << std::endl;
 		
@@ -472,7 +472,7 @@ TEST_F(DspTest, Benchmarking)
 
 		auto stop_dsp = std::chrono::high_resolution_clock::now();
 		auto duration_dsp = std::chrono::duration_cast<std::chrono::microseconds>(stop_dsp - start_dsp);
-		std::cout << "Modern DSP implementation: " << "\t" << duration_dsp.count() << " µs" << std::endl;
+		std::cout << "Modern DSP implementation: " << "\t" << duration_dsp.count() << " ï¿½s" << std::endl;
 
 		outFile << "zscore\tdsp\t" << duration_dsp.count() << std::endl;
 	}
@@ -493,7 +493,7 @@ TEST_F(DspTest, Benchmarking)
 		auto stop = std::chrono::high_resolution_clock::now();
 		
 		auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-		std::cout << "Naive implementation: " << "\t\t" << duration.count() << " µs" << std::endl;
+		std::cout << "Naive implementation: " << "\t\t" << duration.count() << " ï¿½s" << std::endl;
 
 		outFile << "energy\tnaive\t" << duration.count() << std::endl;
 		// DSP lib implementation
@@ -502,7 +502,7 @@ TEST_F(DspTest, Benchmarking)
 
 		auto stop_dsp = std::chrono::high_resolution_clock::now();
 		auto duration_dsp = std::chrono::duration_cast<std::chrono::microseconds>(stop_dsp - start_dsp);
-		std::cout << "Modern DSP implementation: " << "\t" << duration_dsp.count() << " µs" << std::endl;
+		std::cout << "Modern DSP implementation: " << "\t" << duration_dsp.count() << " ï¿½s" << std::endl;
 
 		outFile << "energy\tdsp\t" << duration_dsp.count() << std::endl;
 	}
@@ -526,7 +526,7 @@ TEST_F(DspTest, Benchmarking)
 		auto stop = std::chrono::high_resolution_clock::now();
 
 		auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-		std::cout << "Naive implementation: " << "\t\t" << duration.count() << " µs" << std::endl;
+		std::cout << "Naive implementation: " << "\t\t" << duration.count() << " ï¿½s" << std::endl;
 		outFile << "magspec\tnaive\t" << duration.count() << std::endl;
 		
 		// DSP lib implementation
@@ -535,7 +535,7 @@ TEST_F(DspTest, Benchmarking)
 
 		auto stop_dsp = std::chrono::high_resolution_clock::now();
 		auto duration_dsp = std::chrono::duration_cast<std::chrono::microseconds>(stop_dsp - start_dsp);
-		std::cout << "Modern DSP implementation: " << "\t" << duration_dsp.count() << " µs" << std::endl;
+		std::cout << "Modern DSP implementation: " << "\t" << duration_dsp.count() << " ï¿½s" << std::endl;
 
 		outFile << "magspec\tdsp\t" << duration_dsp.count() << std::endl;
 	}
