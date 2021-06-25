@@ -1,11 +1,11 @@
-\hypertarget{namespacedsp_1_1filter}{}\section{dsp\+:\+:filter Namespace Reference}
-\label{namespacedsp_1_1filter}\index{dsp\+::filter@{dsp\+::filter}}
+\hypertarget{namespacedsp_1_1filter}{}\doxysection{dsp\+::filter Namespace Reference}
+\label{namespacedsp_1_1filter}\index{dsp::filter@{dsp::filter}}
 
 
 Functions to apply and design digital filters.  
 
 
-\subsection*{Functions}
+\doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 {\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_1_1filter_a859b055ad5e9bb08b0cf5f6534f2d838}{filter}} (std\+::vector$<$ T $>$ b, std\+::vector$<$ T $>$ a, const std\+::vector$<$ T $>$ \&x)
@@ -18,14 +18,14 @@ Functions to apply and design digital filters.
 \begin{DoxyCompactList}\small\item\em Perform a median filter on a \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
+\doxysubsection{Detailed Description}
 Functions to apply and design digital filters. 
 
-\subsection{Function Documentation}
+\doxysubsection{Function Documentation}
 \mbox{\Hypertarget{namespacedsp_1_1filter_a859b055ad5e9bb08b0cf5f6534f2d838}\label{namespacedsp_1_1filter_a859b055ad5e9bb08b0cf5f6534f2d838}} 
-\index{dsp\+::filter@{dsp\+::filter}!filter@{filter}}
-\index{filter@{filter}!dsp\+::filter@{dsp\+::filter}}
-\subsubsection{\texorpdfstring{filter()}{filter()}}
+\index{dsp::filter@{dsp::filter}!filter@{filter}}
+\index{filter@{filter}!dsp::filter@{dsp::filter}}
+\doxysubsubsection{\texorpdfstring{filter()}{filter()}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
 std\+::vector$<$ T $>$ dsp\+::filter\+::filter (\begin{DoxyParamCaption}\item[{std\+::vector$<$ T $>$}]{b,  }\item[{std\+::vector$<$ T $>$}]{a,  }\item[{const std\+::vector$<$ T $>$ \&}]{x }\end{DoxyParamCaption})}
 
@@ -51,9 +51,9 @@ Filters the input data x using a rational transfer function defined by the numer
 Filtered signal 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_1_1filter_a30f29b332fc860fe07b12e7b515101c5}\label{namespacedsp_1_1filter_a30f29b332fc860fe07b12e7b515101c5}} 
-\index{dsp\+::filter@{dsp\+::filter}!lpc@{lpc}}
-\index{lpc@{lpc}!dsp\+::filter@{dsp\+::filter}}
-\subsubsection{\texorpdfstring{lpc()}{lpc()}}
+\index{dsp::filter@{dsp::filter}!lpc@{lpc}}
+\index{lpc@{lpc}!dsp::filter@{dsp::filter}}
+\doxysubsubsection{\texorpdfstring{lpc()}{lpc()}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
 std\+::vector$<$ T $>$ dsp\+::filter\+::lpc (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{x,  }\item[{unsigned}]{N }\end{DoxyParamCaption})}
 
@@ -76,36 +76,10 @@ Returns linear prediction filter coefficients.
 \begin{DoxyReturn}{Returns}
 Linear predictor coefficients 
 \end{DoxyReturn}
-\mbox{\Hypertarget{namespacedsp_1_1filter_abb22b1c3577694682a3ee2915478f83b}\label{namespacedsp_1_1filter_abb22b1c3577694682a3ee2915478f83b}} 
-\index{dsp\+::filter@{dsp\+::filter}!medianfilter@{medianfilter}}
-\index{medianfilter@{medianfilter}!dsp\+::filter@{dsp\+::filter}}
-\subsubsection{\texorpdfstring{medianfilter()}{medianfilter()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
-std\+::vector$<$ T $>$ dsp\+::filter\+::medianfilter (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{x,  }\item[{size\+\_\+t}]{kernel\+\_\+size = {\ttfamily 3} }\end{DoxyParamCaption})}
-
-
-
-Perform a median filter on a vector. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & Data type of the samples \\
-\hline
-\end{DoxyTemplParams}
-
-\begin{DoxyParams}{Parameters}
-{\em x} & Input vector \\
-\hline
-{\em kernel\+\_\+size} & Size of the median filter window. Should be odd! Default\+: 3 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-Vector containing the median filtered samples (same size as input). 
-\end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_1_1filter_add1c69a61917e8767e7ea36dee5d9801}\label{namespacedsp_1_1filter_add1c69a61917e8767e7ea36dee5d9801}} 
-\index{dsp\+::filter@{dsp\+::filter}!medianfilter@{medianfilter}}
-\index{medianfilter@{medianfilter}!dsp\+::filter@{dsp\+::filter}}
-\subsubsection{\texorpdfstring{medianfilter()}{medianfilter()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+\index{dsp::filter@{dsp::filter}!medianfilter@{medianfilter}}
+\index{medianfilter@{medianfilter}!dsp::filter@{dsp::filter}}
+\doxysubsubsection{\texorpdfstring{medianfilter()}{medianfilter()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
 \mbox{\hyperlink{classdsp_1_1_signal}{dsp\+::\+Signal}}$<$ T $>$ dsp\+::filter\+::medianfilter (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \&}]{x,  }\item[{typename \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$\+::size\+\_\+type}]{kernel\+\_\+size = {\ttfamily 3} }\end{DoxyParamCaption})}
 
@@ -127,4 +101,30 @@ Perform a median filter on a \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}.
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 \mbox{\hyperlink{classdsp_1_1_signal}{Signal}} containing the median filtered samples (same size as input). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacedsp_1_1filter_abb22b1c3577694682a3ee2915478f83b}\label{namespacedsp_1_1filter_abb22b1c3577694682a3ee2915478f83b}} 
+\index{dsp::filter@{dsp::filter}!medianfilter@{medianfilter}}
+\index{medianfilter@{medianfilter}!dsp::filter@{dsp::filter}}
+\doxysubsubsection{\texorpdfstring{medianfilter()}{medianfilter()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+std\+::vector$<$ T $>$ dsp\+::filter\+::medianfilter (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{x,  }\item[{size\+\_\+t}]{kernel\+\_\+size = {\ttfamily 3} }\end{DoxyParamCaption})}
+
+
+
+Perform a median filter on a vector. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Data type of the samples \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Input vector \\
+\hline
+{\em kernel\+\_\+size} & Size of the median filter window. Should be odd! Default\+: 3 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vector containing the median filtered samples (same size as input). 
 \end{DoxyReturn}

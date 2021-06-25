@@ -1,5 +1,6 @@
 var NAVTREEINDEX1 =
 {
+"namespacedsp_1_1convert.html#a597c04e9527c14c1280a917016852b59aca89260a6f950d2149ad4aa50732aa2c":[0,0,0,0,0,2],
 "namespacedsp_1_1convert.html#ab44ee4c21ada8c728615e68891b05aa3":[0,0,0,0,1],
 "namespacedsp_1_1convert.html#ac4a9cb55357dd1aee75adf49d8181c44":[0,0,0,0,3],
 "namespacedsp_1_1convert.html#ac9b36e4ccd67735222b8fc4366612873":[0,0,0,0,6],
@@ -26,6 +27,8 @@ var NAVTREEINDEX1 =
 "namespacedsp_1_1filter.html":[0,0,0,2],
 "namespacedsp_1_1filter.html#a30f29b332fc860fe07b12e7b515101c5":[0,0,0,2,1],
 "namespacedsp_1_1filter.html#a859b055ad5e9bb08b0cf5f6534f2d838":[0,0,0,2,0],
+"namespacedsp_1_1filter.html#abb22b1c3577694682a3ee2915478f83b":[0,0,0,2,3],
+"namespacedsp_1_1filter.html#add1c69a61917e8767e7ea36dee5d9801":[0,0,0,2,2],
 "namespacedsp_1_1signals.html":[0,0,0,3],
 "namespacedsp_1_1signals.html#a508782b7dda383cd01cd9db7dbfd1df3":[0,0,0,3,2],
 "namespacedsp_1_1signals.html#a932acf8ed8375e1a15abba69badf0ee0":[0,0,0,3,3],

@@ -19,27 +19,27 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\convert.h" />
-    <ClInclude Include="src\dsp.h" />
-    <ClInclude Include="src\fft.h" />
-    <ClInclude Include="src\filter.h" />
-    <ClInclude Include="src\Signal.h" />
-    <ClInclude Include="src\signals.h" />
-    <ClInclude Include="src\special.h" />
-    <ClInclude Include="src\stats.h" />
-    <ClInclude Include="src\utilities.h" />
-    <ClInclude Include="src\window.h" />
+    <ClInclude Include="..\include\convert.h" />
+    <ClInclude Include="..\include\dsp.h" />
+    <ClInclude Include="..\include\fft.h" />
+    <ClInclude Include="..\include\filter.h" />
+    <ClInclude Include="..\include\Signal.h" />
+    <ClInclude Include="..\include\signals.h" />
+    <ClInclude Include="..\include\special.h" />
+    <ClInclude Include="..\include\stats.h" />
+    <ClInclude Include="..\include\utilities.h" />
+    <ClInclude Include="..\include\window.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\convert.cpp" />
-    <ClCompile Include="src\dsp.cpp" />
-    <ClCompile Include="src\fft.cpp" />
-    <ClCompile Include="src\filter.cpp" />
-    <ClCompile Include="src\Signal.cpp" />
-    <ClCompile Include="src\signals.cpp" />
-    <ClCompile Include="src\special.cpp" />
-    <ClCompile Include="src\utilities.cpp" />
-    <ClCompile Include="src\window.cpp" />
+    <ClCompile Include="..\src\convert.cpp" />
+    <ClCompile Include="..\src\dsp.cpp" />
+    <ClCompile Include="..\src\fft.cpp" />
+    <ClCompile Include="..\src\filter.cpp" />
+    <ClCompile Include="..\src\Signal.cpp" />
+    <ClCompile Include="..\src\signals.cpp" />
+    <ClCompile Include="..\src\special.cpp" />
+    <ClCompile Include="..\src\utilities.cpp" />
+    <ClCompile Include="..\src\window.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -101,9 +101,11 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <TargetName>dsp</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <TargetName>dsp</TargetName>
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <VcpkgUseStatic>true</VcpkgUseStatic>
@@ -167,7 +169,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeaderOutputFile />
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\source\Dsp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -194,6 +196,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeaderOutputFile />
+      <AdditionalIncludeDirectories>D:\source\Dsp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>

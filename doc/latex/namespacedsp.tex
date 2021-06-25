@@ -1,11 +1,11 @@
-\hypertarget{namespacedsp}{}\section{dsp Namespace Reference}
+\hypertarget{namespacedsp}{}\doxysection{dsp Namespace Reference}
 \label{namespacedsp}\index{dsp@{dsp}}
 
 
 Constants and convenience functions for general signal processing tasks and 1D vector operations.  
 
 
-\subsection*{Namespaces}
+\doxysubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
  \mbox{\hyperlink{namespacedsp_1_1convert}{convert}}
@@ -20,12 +20,12 @@ Constants and convenience functions for general signal processing tasks and 1D v
 \begin{DoxyCompactList}\small\item\em Special functions (generally for library-\/internal use) \end{DoxyCompactList}\item 
  \mbox{\hyperlink{namespacedsp_1_1window}{window}}
 \begin{DoxyCompactList}\small\item\em Window functions. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Classes}
+\doxysubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
 class \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}
 \begin{DoxyCompactList}\small\item\em This class represents a scalar signal. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Typedefs}
+\doxysubsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{namespacedsp_a880d958ba946cdac2fd8fd38ebfed7e0}\label{namespacedsp_a880d958ba946cdac2fd8fd38ebfed7e0}} 
@@ -34,27 +34,27 @@ using {\bfseries correlation\+\_\+mode} = convolution\+\_\+mode
 \mbox{\Hypertarget{namespacedsp_a0c4ada11cd4c1c345d7a2be1bed40bae}\label{namespacedsp_a0c4ada11cd4c1c345d7a2be1bed40bae}} 
 using {\bfseries correlation\+\_\+method} = convolution\+\_\+method
 \end{DoxyCompactItemize}
-\subsection*{Enumerations}
+\doxysubsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{namespacedsp_a6244fa34d285f00f68e00ed89d71cf85}\label{namespacedsp_a6244fa34d285f00f68e00ed89d71cf85}} 
-enum \mbox{\hyperlink{namespacedsp_a6244fa34d285f00f68e00ed89d71cf85}{weight}} \{ {\bfseries sample}, 
-{\bfseries population}
+enum class \mbox{\hyperlink{namespacedsp_a6244fa34d285f00f68e00ed89d71cf85}{weight}} \{ {\bfseries sample}
+, {\bfseries population}
  \}
 \begin{DoxyCompactList}\small\item\em Calculate the variance or standard deviation based on a sample or based on the population. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{namespacedsp_a4e4ebc11d0bd80a1aa09a7796dcf91b6}\label{namespacedsp_a4e4ebc11d0bd80a1aa09a7796dcf91b6}} 
-enum {\bfseries convolution\+\_\+mode} \{ {\bfseries full}, 
-{\bfseries valid}, 
-{\bfseries same}
+enum class {\bfseries convolution\+\_\+mode} \{ {\bfseries full}
+, {\bfseries valid}
+, {\bfseries same}
  \}
 \item 
 \mbox{\Hypertarget{namespacedsp_ab00a63d2b2f208a8ea97987898c67b2b}\label{namespacedsp_ab00a63d2b2f208a8ea97987898c67b2b}} 
-enum {\bfseries convolution\+\_\+method} \{ {\bfseries automatic}, 
-{\bfseries direct}, 
-{\bfseries fft}
+enum class {\bfseries convolution\+\_\+method} \{ {\bfseries automatic}
+, {\bfseries direct}
+, {\bfseries fft}
  \}
 \end{DoxyCompactItemize}
-\subsection*{Functions}
+\doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{namespacedsp_ac49d54afa2f2914214064372aa538495}\label{namespacedsp_ac49d54afa2f2914214064372aa538495}} 
@@ -244,9 +244,9 @@ unsigned \mbox{\hyperlink{namespacedsp_aab147e335f0c523c05a0b637eafad630}{max\+N
 \begin{DoxyCompactList}\small\item\em Returns the mean power of the passed range. \end{DoxyCompactList}\item 
 {\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_a85aadad7161656d45fec883f1aba7c56}{centered}} (const std\+::vector$<$ T $>$ \&vec, size\+\_\+t new\+Size)
 \begin{DoxyCompactList}\small\item\em Returns the center portion of a vector. \end{DoxyCompactList}\item 
-{\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_ac9aaf4ca2359cd662f5781466e387c53}{concatenate}} (std\+::vector$<$ const std\+::vector$<$ T $>$ $\ast$$>$ vectors)
+{\footnotesize template$<$class T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedsp_a06dee66d239c6936d909f44a5e41c736}{concatenate}} (std\+::vector$<$ const std\+::vector$<$ T $>$ $\ast$ $>$ vectors)
 \begin{DoxyCompactList}\small\item\em Join a sequence of vectors. \end{DoxyCompactList}\item 
-{\footnotesize template$<$class T $>$ }\\\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \mbox{\hyperlink{namespacedsp_a0ca647b123ea538e0f3d85e66c5b5336}{concatenate}} (std\+::vector$<$ const \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ $\ast$$>$ signals)
+{\footnotesize template$<$class T $>$ }\\\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \mbox{\hyperlink{namespacedsp_a6144c16b2f111aaf0bd34ebf834a22e0}{concatenate}} (std\+::vector$<$ const \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ $\ast$ $>$ signals)
 \begin{DoxyCompactList}\small\item\em Join a sequence of Signals. \end{DoxyCompactList}\item 
 {\footnotesize template$<$class T $>$ }\\std\+::pair$<$ convolution\+\_\+method, std\+::map$<$ convolution\+\_\+method, double $>$ $>$ \mbox{\hyperlink{namespacedsp_a014ebcddb5a8e374054024212fa30eac}{choose\+\_\+conv\+\_\+method}} (const std\+::vector$<$ T $>$ \&in1, const std\+::vector$<$ T $>$ \&in2, convolution\+\_\+mode \mbox{\hyperlink{namespacedsp_a1d4932cf0fd90a0ecde3b2deffeb740c}{mode}}=convolution\+\_\+mode\+::full, bool measure=false)
 \begin{DoxyCompactList}\small\item\em Find the fastest convolution/correlation method. This primarily exists to be called during the method = \textquotesingle{}auto\textquotesingle{} option in convolve and correlate. It can also be used to determine the value of method for many different convolutions of the same length. In addition, it supports timing the convolution to adapt the value of method to a particular set of inputs and/or hardware. \end{DoxyCompactList}\item 
@@ -275,7 +275,7 @@ unsigned \mbox{\hyperlink{namespacedsp_a11078b40d98913e2a044205d64c1a1a7}{nextpo
 \item 
 {\footnotesize template$<$class T $>$ }\\std\+::vector$<$ std\+::vector$<$ T $>$ $>$ \mbox{\hyperlink{namespacedsp_a39d5a51be82d6a2986925ad973b64ca8}{signal\+To\+Frames}} (const std\+::vector$<$ T $>$ \&signal, unsigned frame\+Length, unsigned overlap)
 \begin{DoxyCompactList}\small\item\em Splits a signal into frames. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Variables}
+\doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{namespacedsp_aab1a36a5c74fdc52ccdafef6511c2eb2}\label{namespacedsp_aab1a36a5c74fdc52ccdafef6511c2eb2}} 
@@ -283,14 +283,14 @@ const double {\bfseries pi} = 3.\+14159265358979311600
 \end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
+\doxysubsection{Detailed Description}
 Constants and convenience functions for general signal processing tasks and 1D vector operations. 
 
-\subsection{Function Documentation}
+\doxysubsection{Function Documentation}
 \mbox{\Hypertarget{namespacedsp_ab0cdd2fa60d4fd27ec9a72cde38811ef}\label{namespacedsp_ab0cdd2fa60d4fd27ec9a72cde38811ef}} 
 \index{dsp@{dsp}!arange@{arange}}
 \index{arange@{arange}!dsp@{dsp}}
-\subsubsection{\texorpdfstring{arange()}{arange()}}
+\doxysubsubsection{\texorpdfstring{arange()}{arange()}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
 std\+::vector$<$T$>$ dsp\+::arange (\begin{DoxyParamCaption}\item[{T}]{start,  }\item[{T}]{stop,  }\item[{T}]{step = {\ttfamily 1} }\end{DoxyParamCaption})}
 
@@ -318,7 +318,7 @@ Vector of evenly spaced values
 \mbox{\Hypertarget{namespacedsp_ad015f85c579767ffebdded0b8d149d89}\label{namespacedsp_ad015f85c579767ffebdded0b8d149d89}} 
 \index{dsp@{dsp}!autocorrelate@{autocorrelate}}
 \index{autocorrelate@{autocorrelate}!dsp@{dsp}}
-\subsubsection{\texorpdfstring{autocorrelate()}{autocorrelate()}}
+\doxysubsubsection{\texorpdfstring{autocorrelate()}{autocorrelate()}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
 std\+::vector$<$T$>$ dsp\+::autocorrelate (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{in,  }\item[{correlation\+\_\+mode}]{mode = {\ttfamily correlation\+\_\+mode\+:\+:full},  }\item[{correlation\+\_\+method}]{method = {\ttfamily correlation\+\_\+method\+:\+:automatic} }\end{DoxyParamCaption})}
 
@@ -335,7 +335,7 @@ Auto-\/correlate a vector with itself.
 \begin{DoxyParams}{Parameters}
 {\em in} & Input vector \\
 \hline
-{\em mode} & An enum indicating the size of the output\+: full\+: The output is the full discrete linear auto-\/correlation of the inputs. (Default) valid\+: The output consists only of those elements that do not rely on the zero-\/padding. In ‘valid’ mode, either in1 or in2 must be at least as large as the other in every dimension. same\+: The output is the same size as in1, centered with respect to the ‘full’ output. \\
+{\em mode} & An enum indicating the size of the output\+: full\+: The output is the full discrete linear auto-\/correlation of the inputs. (Default) valid\+: The output consists only of those elements that do not rely on the zero-\/padding. In â€˜validâ€™ mode, either in1 or in2 must be at least as large as the other in every dimension. same\+: The output is the same size as in1, centered with respect to the â€˜fullâ€™ output. \\
 \hline
 {\em method} & An enum indicating which method to use to calculate the correlation. direct\+: The correlation is determined directly from sums, the definition of correlation. fft\+: The Fast Fourier Transform is used to perform the correlation more quickly. automatic\+: Automatically chooses direct or fft method based on an estimate of which is faster (default). \\
 \hline
@@ -344,9 +344,9 @@ Auto-\/correlate a vector with itself.
 A vector containing a subset of the discrete linear auto-\/correlation of in. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_af0e593cd9ad8adf958be7d42c5643d27}\label{namespacedsp_af0e593cd9ad8adf958be7d42c5643d27}} 
-\index{dsp@{dsp}!calculate\+Energy@{calculate\+Energy}}
-\index{calculate\+Energy@{calculate\+Energy}!dsp@{dsp}}
-\subsubsection{\texorpdfstring{calculate\+Energy()}{calculateEnergy()}}
+\index{dsp@{dsp}!calculateEnergy@{calculateEnergy}}
+\index{calculateEnergy@{calculateEnergy}!dsp@{dsp}}
+\doxysubsubsection{\texorpdfstring{calculateEnergy()}{calculateEnergy()}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
 T dsp\+::calculate\+Energy (\begin{DoxyParamCaption}\item[{typename std\+::vector$<$ T $>$\+::iterator}]{start,  }\item[{typename std\+::vector$<$ T $>$\+::iterator}]{end }\end{DoxyParamCaption})}
 
@@ -370,9 +370,9 @@ Returns the energy of the passed range.
 The energy of the range (sum of the squared samples in range) 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_a378f40c2851259db31cfa27f2cbe601f}\label{namespacedsp_a378f40c2851259db31cfa27f2cbe601f}} 
-\index{dsp@{dsp}!calculate\+Mean\+Power@{calculate\+Mean\+Power}}
-\index{calculate\+Mean\+Power@{calculate\+Mean\+Power}!dsp@{dsp}}
-\subsubsection{\texorpdfstring{calculate\+Mean\+Power()}{calculateMeanPower()}}
+\index{dsp@{dsp}!calculateMeanPower@{calculateMeanPower}}
+\index{calculateMeanPower@{calculateMeanPower}!dsp@{dsp}}
+\doxysubsubsection{\texorpdfstring{calculateMeanPower()}{calculateMeanPower()}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
 T dsp\+::calculate\+Mean\+Power (\begin{DoxyParamCaption}\item[{typename std\+::vector$<$ T $>$\+::iterator}]{start,  }\item[{typename std\+::vector$<$ T $>$\+::iterator}]{end }\end{DoxyParamCaption})}
 
@@ -398,7 +398,7 @@ The mean power of the range (energy divided by length)
 \mbox{\Hypertarget{namespacedsp_a85aadad7161656d45fec883f1aba7c56}\label{namespacedsp_a85aadad7161656d45fec883f1aba7c56}} 
 \index{dsp@{dsp}!centered@{centered}}
 \index{centered@{centered}!dsp@{dsp}}
-\subsubsection{\texorpdfstring{centered()}{centered()}}
+\doxysubsubsection{\texorpdfstring{centered()}{centered()}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
 std\+::vector$<$ T $>$ dsp\+::centered (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{vec,  }\item[{size\+\_\+t}]{new\+Size }\end{DoxyParamCaption})}
 
@@ -422,9 +422,9 @@ Returns the center portion of a vector.
 Centered portion of the vector 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_a014ebcddb5a8e374054024212fa30eac}\label{namespacedsp_a014ebcddb5a8e374054024212fa30eac}} 
-\index{dsp@{dsp}!choose\+\_\+conv\+\_\+method@{choose\+\_\+conv\+\_\+method}}
-\index{choose\+\_\+conv\+\_\+method@{choose\+\_\+conv\+\_\+method}!dsp@{dsp}}
-\subsubsection{\texorpdfstring{choose\+\_\+conv\+\_\+method()}{choose\_conv\_method()}}
+\index{dsp@{dsp}!choose\_conv\_method@{choose\_conv\_method}}
+\index{choose\_conv\_method@{choose\_conv\_method}!dsp@{dsp}}
+\doxysubsubsection{\texorpdfstring{choose\_conv\_method()}{choose\_conv\_method()}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
 std\+::pair$<$convolution\+\_\+method, std\+::map$<$convolution\+\_\+method, double$>$ $>$ dsp\+::choose\+\_\+conv\+\_\+method (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{in1,  }\item[{const std\+::vector$<$ T $>$ \&}]{in2,  }\item[{convolution\+\_\+mode}]{mode = {\ttfamily convolution\+\_\+mode\+:\+:full},  }\item[{bool}]{measure = {\ttfamily false} }\end{DoxyParamCaption})}
 
@@ -443,44 +443,20 @@ Find the fastest convolution/correlation method. This primarily exists to be cal
 \hline
 {\em in2} & The second argument passed into the convolution function. \\
 \hline
-{\em mode} & An enum indicating the size of the output\+: full\+: The output is the full discrete linear cross-\/correlation of the inputs. (Default) valid\+: The output consists only of those elements that do not rely on the zero-\/padding. In ‘valid’ mode, either in1 or in2 must be at least as large as the other in every dimension. same\+: The output is the same size as in1, centered with respect to the ‘full’ output. \\
+{\em mode} & An enum indicating the size of the output\+: full\+: The output is the full discrete linear cross-\/correlation of the inputs. (Default) valid\+: The output consists only of those elements that do not rely on the zero-\/padding. In â€˜validâ€™ mode, either in1 or in2 must be at least as large as the other in every dimension. same\+: The output is the same size as in1, centered with respect to the â€˜fullâ€™ output. \\
 \hline
 {\em measure} & If true, run and time the convolution of in1 and in2 with both methods and return the fastest. If false (default), predict the fastest method using precomputed values. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-A pair containing an enum indicating which convolution method is fastest, either ‘direct’ or ‘fft’, and a map containing the times (in seconds) needed for each method. This map is only non-\/empty if measure=true. 
+A pair containing an enum indicating which convolution method is fastest, either â€˜directâ€™ or â€˜fftâ€™, and a map containing the times (in seconds) needed for each method. This map is only non-\/empty if measure=true. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{namespacedsp_ac9aaf4ca2359cd662f5781466e387c53}\label{namespacedsp_ac9aaf4ca2359cd662f5781466e387c53}} 
+\mbox{\Hypertarget{namespacedsp_a6144c16b2f111aaf0bd34ebf834a22e0}\label{namespacedsp_a6144c16b2f111aaf0bd34ebf834a22e0}} 
 \index{dsp@{dsp}!concatenate@{concatenate}}
 \index{concatenate@{concatenate}!dsp@{dsp}}
-\subsubsection{\texorpdfstring{concatenate()}{concatenate()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+\doxysubsubsection{\texorpdfstring{concatenate()}{concatenate()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
-std\+::vector$<$T$>$ dsp\+::concatenate (\begin{DoxyParamCaption}\item[{std\+::vector$<$ const std\+::vector$<$ T $>$ $\ast$$>$}]{vectors }\end{DoxyParamCaption})}
-
-
-
-Join a sequence of vectors. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & Type of the vector elements \\
-\hline
-\end{DoxyTemplParams}
-
-\begin{DoxyParams}{Parameters}
-{\em vectors} & Vector containing references to the vectors. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The concatenated vector. 
-\end{DoxyReturn}
-\mbox{\Hypertarget{namespacedsp_a0ca647b123ea538e0f3d85e66c5b5336}\label{namespacedsp_a0ca647b123ea538e0f3d85e66c5b5336}} 
-\index{dsp@{dsp}!concatenate@{concatenate}}
-\index{concatenate@{concatenate}!dsp@{dsp}}
-\subsubsection{\texorpdfstring{concatenate()}{concatenate()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
-\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$T$>$ dsp\+::concatenate (\begin{DoxyParamCaption}\item[{std\+::vector$<$ const \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ $\ast$$>$}]{signals }\end{DoxyParamCaption})}
+\mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$T$>$ dsp\+::concatenate (\begin{DoxyParamCaption}\item[{std\+::vector$<$ const \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ $\ast$ $>$}]{signals }\end{DoxyParamCaption})}
 
 
 
@@ -497,12 +473,38 @@ Join a sequence of Signals.
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-The concatenated signal. 
+The concatenated signal. ~\newline
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacedsp_a06dee66d239c6936d909f44a5e41c736}\label{namespacedsp_a06dee66d239c6936d909f44a5e41c736}} 
+\index{dsp@{dsp}!concatenate@{concatenate}}
+\index{concatenate@{concatenate}!dsp@{dsp}}
+\doxysubsubsection{\texorpdfstring{concatenate()}{concatenate()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+std\+::vector$<$T$>$ dsp\+::concatenate (\begin{DoxyParamCaption}\item[{std\+::vector$<$ const std\+::vector$<$ T $>$ $\ast$ $>$}]{vectors }\end{DoxyParamCaption})}
+
+
+
+Join a sequence of vectors. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type of the vector elements \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em vectors} & Vector containing references to the vectors. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The concatenated vector. ~\newline
+ 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_a83c98d9b699a7b705797c56afb00df53}\label{namespacedsp_a83c98d9b699a7b705797c56afb00df53}} 
 \index{dsp@{dsp}!convolve@{convolve}}
 \index{convolve@{convolve}!dsp@{dsp}}
-\subsubsection{\texorpdfstring{convolve()}{convolve()}}
+\doxysubsubsection{\texorpdfstring{convolve()}{convolve()}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
 std\+::vector$<$ T $>$ dsp\+::convolve (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{in1,  }\item[{const std\+::vector$<$ T $>$ \&}]{in2,  }\item[{convolution\+\_\+mode}]{mode = {\ttfamily convolution\+\_\+mode\+:\+:full},  }\item[{convolution\+\_\+method}]{method = {\ttfamily convolution\+\_\+method\+:\+:automatic} }\end{DoxyParamCaption})}
 
@@ -519,7 +521,7 @@ Convolve in1and in2, with the output size determined by the mode argument.
 \begin{DoxyParams}{Parameters}
 {\em in1} & First input \\
 \hline
-{\em in2} & Second input full\+: The output is the full discrete convolution of the inputs. (Default) valid\+: The output consists only of those elements that do not rely on the zero-\/padding. In ‘valid’ mode, either in1 or in2 must be at least as large as the other in every dimension. same\+: The output is the same size as in1, centered with respect to the ‘full’ output. \\
+{\em in2} & Second input full\+: The output is the full discrete convolution of the inputs. (Default) valid\+: The output consists only of those elements that do not rely on the zero-\/padding. In â€˜validâ€™ mode, either in1 or in2 must be at least as large as the other in every dimension. same\+: The output is the same size as in1, centered with respect to the â€˜fullâ€™ output. \\
 \hline
 {\em method} & An enum indicating which method to use to calculate the convolution. direct\+: The correlation is determined directly from sums, the definition of correlation. fft\+: The Fast Fourier Transform is used to perform the correlation more quickly. automatic\+: Automatically chooses direct or fft method based on an estimate of which is faster (default). \\
 \hline
@@ -530,7 +532,7 @@ A vector containing a subset of the discrete convolution of in1 with in2.
 \mbox{\Hypertarget{namespacedsp_a997c174f04e83c492ef8637b88c714bf}\label{namespacedsp_a997c174f04e83c492ef8637b88c714bf}} 
 \index{dsp@{dsp}!correlate@{correlate}}
 \index{correlate@{correlate}!dsp@{dsp}}
-\subsubsection{\texorpdfstring{correlate()}{correlate()}}
+\doxysubsubsection{\texorpdfstring{correlate()}{correlate()}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
 std\+::vector$<$ T $>$ dsp\+::correlate (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{in1,  }\item[{const std\+::vector$<$ T $>$ \&}]{in2,  }\item[{correlation\+\_\+mode}]{mode = {\ttfamily correlation\+\_\+mode\+:\+:full},  }\item[{correlation\+\_\+method}]{method = {\ttfamily correlation\+\_\+method\+:\+:automatic} }\end{DoxyParamCaption})}
 
@@ -549,7 +551,7 @@ Cross-\/correlate two vectors.
 \hline
 {\em in2} & Second input \\
 \hline
-{\em mode} & An enum indicating the size of the output\+: full\+: The output is the full discrete linear cross-\/correlation of the inputs. (Default) valid\+: The output consists only of those elements that do not rely on the zero-\/padding. In ‘valid’ mode, either in1 or in2 must be at least as large as the other in every dimension. same\+: The output is the same size as in1, centered with respect to the ‘full’ output. \\
+{\em mode} & An enum indicating the size of the output\+: full\+: The output is the full discrete linear cross-\/correlation of the inputs. (Default) valid\+: The output consists only of those elements that do not rely on the zero-\/padding. In â€˜validâ€™ mode, either in1 or in2 must be at least as large as the other in every dimension. same\+: The output is the same size as in1, centered with respect to the â€˜fullâ€™ output. \\
 \hline
 {\em method} & An enum indicating which method to use to calculate the correlation. direct\+: The correlation is determined directly from sums, the definition of correlation. fft\+: The Fast Fourier Transform is used to perform the correlation more quickly. automatic\+: Automatically chooses direct or fft method based on an estimate of which is faster (default). \\
 \hline
@@ -560,7 +562,7 @@ A vector containing a subset of the discrete linear cross-\/correlation of in1 w
 \mbox{\Hypertarget{namespacedsp_abe32d93264393a07d8b3844eed53e9c3}\label{namespacedsp_abe32d93264393a07d8b3844eed53e9c3}} 
 \index{dsp@{dsp}!extract@{extract}}
 \index{extract@{extract}!dsp@{dsp}}
-\subsubsection{\texorpdfstring{extract()}{extract()}}
+\doxysubsubsection{\texorpdfstring{extract()}{extract()}}
 {\footnotesize\ttfamily template$<$class T , class Pred $>$ \\
 std\+::vector$<$T$>$ dsp\+::extract (\begin{DoxyParamCaption}\item[{Pred}]{condition,  }\item[{const std\+::vector$<$ T $>$ \&}]{vec }\end{DoxyParamCaption})}
 
@@ -588,7 +590,7 @@ Vector of values from vec where condition is true.
 \mbox{\Hypertarget{namespacedsp_a529bdda638f4dab2d413faac208a65b9}\label{namespacedsp_a529bdda638f4dab2d413faac208a65b9}} 
 \index{dsp@{dsp}!linspace@{linspace}}
 \index{linspace@{linspace}!dsp@{dsp}}
-\subsubsection{\texorpdfstring{linspace()}{linspace()}}
+\doxysubsubsection{\texorpdfstring{linspace()}{linspace()}}
 {\footnotesize\ttfamily template$<$typename T $>$ \\
 std\+::vector$<$T$>$ dsp\+::linspace (\begin{DoxyParamCaption}\item[{T}]{start,  }\item[{T}]{stop,  }\item[{size\+\_\+t}]{num = {\ttfamily 50},  }\item[{bool}]{endpoint = {\ttfamily true} }\end{DoxyParamCaption})}
 
@@ -618,9 +620,9 @@ The endpoint of the interval can optionally be excluded.
 Vector of evenly spaced numbers over the specified interval 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_a17c570ab1aef8931c4694f8751caec21}\label{namespacedsp_a17c570ab1aef8931c4694f8751caec21}} 
-\index{dsp@{dsp}!log\+Squared\+Magnitude@{log\+Squared\+Magnitude}}
-\index{log\+Squared\+Magnitude@{log\+Squared\+Magnitude}!dsp@{dsp}}
-\subsubsection{\texorpdfstring{log\+Squared\+Magnitude()}{logSquaredMagnitude()}}
+\index{dsp@{dsp}!logSquaredMagnitude@{logSquaredMagnitude}}
+\index{logSquaredMagnitude@{logSquaredMagnitude}!dsp@{dsp}}
+\doxysubsubsection{\texorpdfstring{logSquaredMagnitude()}{logSquaredMagnitude()}}
 {\footnotesize\ttfamily template$<$typename T $>$ \\
 T dsp\+::log\+Squared\+Magnitude (\begin{DoxyParamCaption}\item[{std\+::complex$<$ T $>$}]{z }\end{DoxyParamCaption})}
 
@@ -642,9 +644,9 @@ Returns the squared magnitude of a complex number in decibel.
 10 $\ast$ log(Re(z)$^\wedge$2 + Im(z)$^\wedge$2) 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_aab147e335f0c523c05a0b637eafad630}\label{namespacedsp_aab147e335f0c523c05a0b637eafad630}} 
-\index{dsp@{dsp}!max\+Num\+Frames@{max\+Num\+Frames}}
-\index{max\+Num\+Frames@{max\+Num\+Frames}!dsp@{dsp}}
-\subsubsection{\texorpdfstring{max\+Num\+Frames()}{maxNumFrames()}}
+\index{dsp@{dsp}!maxNumFrames@{maxNumFrames}}
+\index{maxNumFrames@{maxNumFrames}!dsp@{dsp}}
+\doxysubsubsection{\texorpdfstring{maxNumFrames()}{maxNumFrames()}}
 {\footnotesize\ttfamily unsigned dsp\+::max\+Num\+Frames (\begin{DoxyParamCaption}\item[{unsigned}]{signal\+Length,  }\item[{unsigned}]{frame\+Length,  }\item[{unsigned}]{overlap }\end{DoxyParamCaption})}
 
 
@@ -663,10 +665,58 @@ Returns the maximum number of frames to get from a signal.
 \begin{DoxyReturn}{Returns}
 Maximum number of frames to split the signal into assuming zero-\/padding at the end. 
 \end{DoxyReturn}
+\mbox{\Hypertarget{namespacedsp_a68742798fcae7c7962ce81324e0de655}\label{namespacedsp_a68742798fcae7c7962ce81324e0de655}} 
+\index{dsp@{dsp}!mean@{mean}}
+\index{mean@{mean}!dsp@{dsp}}
+\doxysubsubsection{\texorpdfstring{mean()}{mean()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+T dsp\+::mean (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \&}]{x }\end{DoxyParamCaption})}
+
+
+
+Returns the mean value of a signal. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type of the samples. Should be float, double, or long double. Other types may cause undefined behavior. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em x} & \mbox{\hyperlink{classdsp_1_1_signal}{Signal}} to calculate the mean of. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Mean value of the signal. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacedsp_a274d36d1290397b24a95aff4332ba20b}\label{namespacedsp_a274d36d1290397b24a95aff4332ba20b}} 
+\index{dsp@{dsp}!mean@{mean}}
+\index{mean@{mean}!dsp@{dsp}}
+\doxysubsubsection{\texorpdfstring{mean()}{mean()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+T dsp\+::mean (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{x }\end{DoxyParamCaption})}
+
+
+
+Returns the mean value of a vector. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type of the samples. Should be float, double, or long double. Other types will cause undefined behavior. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Vector to calculate the mean of. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Mean value of the vector. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_a17cf474a7157c4ceba297d0effdd5f11}\label{namespacedsp_a17cf474a7157c4ceba297d0effdd5f11}} 
 \index{dsp@{dsp}!mean@{mean}}
 \index{mean@{mean}!dsp@{dsp}}
-\subsubsection{\texorpdfstring{mean()}{mean()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+\doxysubsubsection{\texorpdfstring{mean()}{mean()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
 {\footnotesize\ttfamily template$<$class T , class Input\+It $>$ \\
 T dsp\+::mean (\begin{DoxyParamCaption}\item[{Input\+It}]{begin,  }\item[{Input\+It}]{end }\end{DoxyParamCaption})}
 
@@ -691,58 +741,34 @@ Returns the mean value of the passed range.
 \begin{DoxyReturn}{Returns}
 Mean value of the range. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{namespacedsp_a274d36d1290397b24a95aff4332ba20b}\label{namespacedsp_a274d36d1290397b24a95aff4332ba20b}} 
-\index{dsp@{dsp}!mean@{mean}}
-\index{mean@{mean}!dsp@{dsp}}
-\subsubsection{\texorpdfstring{mean()}{mean()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+\mbox{\Hypertarget{namespacedsp_a5ae138eb44c647a8dcb8ed65552d55da}\label{namespacedsp_a5ae138eb44c647a8dcb8ed65552d55da}} 
+\index{dsp@{dsp}!median@{median}}
+\index{median@{median}!dsp@{dsp}}
+\doxysubsubsection{\texorpdfstring{median()}{median()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
-T dsp\+::mean (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{x }\end{DoxyParamCaption})}
+auto dsp\+::median (\begin{DoxyParamCaption}\item[{const T \&}]{x }\end{DoxyParamCaption})}
 
 
 
-Returns the mean value of a vector. 
+Returns the median of a vector or \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}. 
 
 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em T} & Type of the samples. Should be float, double, or long double. Other types will cause undefined behavior. \\
+{\em T} & Type of container. Should be std\+::vector or \mbox{\hyperlink{classdsp_1_1_signal}{dsp\+::\+Signal}}. Other containers may cause undefined behavior. \\
 \hline
 \end{DoxyTemplParams}
 
 \begin{DoxyParams}{Parameters}
-{\em x} & Vector to calculate the mean of. \\
+{\em x} & Container to calculate the median of \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-Mean value of the vector. 
-\end{DoxyReturn}
-\mbox{\Hypertarget{namespacedsp_a68742798fcae7c7962ce81324e0de655}\label{namespacedsp_a68742798fcae7c7962ce81324e0de655}} 
-\index{dsp@{dsp}!mean@{mean}}
-\index{mean@{mean}!dsp@{dsp}}
-\subsubsection{\texorpdfstring{mean()}{mean()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
-T dsp\+::mean (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}$<$ T $>$ \&}]{x }\end{DoxyParamCaption})}
-
-
-
-Returns the mean value of a signal. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & Type of the samples. Should be float, double, or long double. Other types may cause undefined behavior. \\
-\hline
-\end{DoxyTemplParams}
-
-\begin{DoxyParams}{Parameters}
-{\em x} & \mbox{\hyperlink{classdsp_1_1_signal}{Signal}} to calculate the mean of. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-Mean value of the signal. 
+The median of the container 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_aa40f2496333d161c5aa8471390af5f05}\label{namespacedsp_aa40f2496333d161c5aa8471390af5f05}} 
 \index{dsp@{dsp}!median@{median}}
 \index{median@{median}!dsp@{dsp}}
-\subsubsection{\texorpdfstring{median()}{median()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+\doxysubsubsection{\texorpdfstring{median()}{median()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily template$<$class T , class Input\+It $>$ \\
 T dsp\+::median (\begin{DoxyParamCaption}\item[{Input\+It}]{begin,  }\item[{Input\+It}]{end }\end{DoxyParamCaption})}
 
@@ -767,16 +793,16 @@ Returns the median of a range.
 \begin{DoxyReturn}{Returns}
 The median value of the range 
 \end{DoxyReturn}
-\mbox{\Hypertarget{namespacedsp_a5ae138eb44c647a8dcb8ed65552d55da}\label{namespacedsp_a5ae138eb44c647a8dcb8ed65552d55da}} 
-\index{dsp@{dsp}!median@{median}}
-\index{median@{median}!dsp@{dsp}}
-\subsubsection{\texorpdfstring{median()}{median()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+\mbox{\Hypertarget{namespacedsp_a0d6e31cb326aac6c7a06fe7a6a73cc74}\label{namespacedsp_a0d6e31cb326aac6c7a06fe7a6a73cc74}} 
+\index{dsp@{dsp}!mode@{mode}}
+\index{mode@{mode}!dsp@{dsp}}
+\doxysubsubsection{\texorpdfstring{mode()}{mode()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
-auto dsp\+::median (\begin{DoxyParamCaption}\item[{const T \&}]{x }\end{DoxyParamCaption})}
+auto dsp\+::mode (\begin{DoxyParamCaption}\item[{const T \&}]{x }\end{DoxyParamCaption})}
 
 
 
-Returns the median of a vector or \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}. 
+Returns the mode of a vector or \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}. 
 
 
 \begin{DoxyTemplParams}{Template Parameters}
@@ -785,16 +811,16 @@ Returns the median of a vector or \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}
 \end{DoxyTemplParams}
 
 \begin{DoxyParams}{Parameters}
-{\em x} & Container to calculate the median of \\
+{\em x} & Container to calculate the mode of \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-The median of the container 
+The mode of the container 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_a1d4932cf0fd90a0ecde3b2deffeb740c}\label{namespacedsp_a1d4932cf0fd90a0ecde3b2deffeb740c}} 
 \index{dsp@{dsp}!mode@{mode}}
 \index{mode@{mode}!dsp@{dsp}}
-\subsubsection{\texorpdfstring{mode()}{mode()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+\doxysubsubsection{\texorpdfstring{mode()}{mode()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily template$<$class T , class Input\+It $>$ \\
 T dsp\+::mode (\begin{DoxyParamCaption}\item[{Input\+It}]{begin,  }\item[{Input\+It}]{end }\end{DoxyParamCaption})}
 
@@ -819,34 +845,10 @@ Returns the mode (most frequent element) of a range.
 \begin{DoxyReturn}{Returns}
 The mode of the range 
 \end{DoxyReturn}
-\mbox{\Hypertarget{namespacedsp_a0d6e31cb326aac6c7a06fe7a6a73cc74}\label{namespacedsp_a0d6e31cb326aac6c7a06fe7a6a73cc74}} 
-\index{dsp@{dsp}!mode@{mode}}
-\index{mode@{mode}!dsp@{dsp}}
-\subsubsection{\texorpdfstring{mode()}{mode()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
-auto dsp\+::mode (\begin{DoxyParamCaption}\item[{const T \&}]{x }\end{DoxyParamCaption})}
-
-
-
-Returns the mode of a vector or \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & Type of container. Should be std\+::vector or \mbox{\hyperlink{classdsp_1_1_signal}{dsp\+::\+Signal}}. Other containers may cause undefined behavior. \\
-\hline
-\end{DoxyTemplParams}
-
-\begin{DoxyParams}{Parameters}
-{\em x} & Container to calculate the mode of \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The mode of the container 
-\end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_a11078b40d98913e2a044205d64c1a1a7}\label{namespacedsp_a11078b40d98913e2a044205d64c1a1a7}} 
 \index{dsp@{dsp}!nextpow2@{nextpow2}}
 \index{nextpow2@{nextpow2}!dsp@{dsp}}
-\subsubsection{\texorpdfstring{nextpow2()}{nextpow2()}}
+\doxysubsubsection{\texorpdfstring{nextpow2()}{nextpow2()}}
 {\footnotesize\ttfamily unsigned dsp\+::nextpow2 (\begin{DoxyParamCaption}\item[{unsigned}]{n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
@@ -859,12 +861,13 @@ Return the next-\/largest power of two k so that n $<$= 2$^\wedge$k.
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-The next-\/largest power of two so that n $<$= 2$^\wedge$k 
+The next-\/largest power of two so that n $<$= 2$^\wedge$k ~\newline
+ 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_a39d5a51be82d6a2986925ad973b64ca8}\label{namespacedsp_a39d5a51be82d6a2986925ad973b64ca8}} 
-\index{dsp@{dsp}!signal\+To\+Frames@{signal\+To\+Frames}}
-\index{signal\+To\+Frames@{signal\+To\+Frames}!dsp@{dsp}}
-\subsubsection{\texorpdfstring{signal\+To\+Frames()}{signalToFrames()}}
+\index{dsp@{dsp}!signalToFrames@{signalToFrames}}
+\index{signalToFrames@{signalToFrames}!dsp@{dsp}}
+\doxysubsubsection{\texorpdfstring{signalToFrames()}{signalToFrames()}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
 std\+::vector$<$ std\+::vector$<$ T $>$ $>$ dsp\+::signal\+To\+Frames (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{signal,  }\item[{unsigned}]{frame\+Length,  }\item[{unsigned}]{overlap }\end{DoxyParamCaption})}
 
@@ -889,10 +892,63 @@ Splits a signal into frames.
 \begin{DoxyReturn}{Returns}
 Vector containing the frames. 
 \end{DoxyReturn}
+\mbox{\Hypertarget{namespacedsp_a99d973002d4c3cefea2d0435b0d025d9}\label{namespacedsp_a99d973002d4c3cefea2d0435b0d025d9}} 
+\index{dsp@{dsp}!std@{std}}
+\index{std@{std}!dsp@{dsp}}
+\doxysubsubsection{\texorpdfstring{std()}{std()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+T dsp\+::std (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classdsp_1_1_signal}{dsp\+::\+Signal}}$<$ T $>$ \&}]{x,  }\item[{\mbox{\hyperlink{namespacedsp_a6244fa34d285f00f68e00ed89d71cf85}{weight}}}]{w = {\ttfamily weight\+:\+:sample} }\end{DoxyParamCaption})}
+
+
+
+Calculates the standard deviation of a \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type of the samples. Should be float, double, or long double. Other types will cause undefined behavior. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em x} & \mbox{\hyperlink{classdsp_1_1_signal}{Signal}} to calculate the standard deviation of. \\
+\hline
+{\em w} & Denominator to use in the calculation\+: If w == weight\+::sample, the denominator is N-\/1; if it w == population, the denominator is N. Default\+: sample. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Standard deviation of the signal. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacedsp_ab75178e59c7e72e242b73a979cf30415}\label{namespacedsp_ab75178e59c7e72e242b73a979cf30415}} 
+\index{dsp@{dsp}!std@{std}}
+\index{std@{std}!dsp@{dsp}}
+\doxysubsubsection{\texorpdfstring{std()}{std()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+T dsp\+::std (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{x,  }\item[{\mbox{\hyperlink{namespacedsp_a6244fa34d285f00f68e00ed89d71cf85}{weight}}}]{w = {\ttfamily weight\+:\+:sample} }\end{DoxyParamCaption})}
+
+
+
+Calculates the standard deviation of a vector. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type of the values. Should be float, double, or long double. Other types will cause undefined behavior. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Vector to calculate the standard deviation of. \\
+\hline
+{\em w} & Denominator to use in the calculation\+: If w == weight\+::sample, the denominator is N-\/1; if it w == population, the denominator is N. Default\+: sample. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Standard deviation of the samples in the vector. ~\newline
+ 
+\end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_a940b83e360332680bb648dcfc0fc1542}\label{namespacedsp_a940b83e360332680bb648dcfc0fc1542}} 
 \index{dsp@{dsp}!std@{std}}
 \index{std@{std}!dsp@{dsp}}
-\subsubsection{\texorpdfstring{std()}{std()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+\doxysubsubsection{\texorpdfstring{std()}{std()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
 {\footnotesize\ttfamily template$<$class T , class Iter\+It $>$ \\
 T dsp\+::std (\begin{DoxyParamCaption}\item[{Iter\+It}]{begin,  }\item[{Iter\+It}]{end,  }\item[{\mbox{\hyperlink{namespacedsp_a6244fa34d285f00f68e00ed89d71cf85}{weight}}}]{w = {\ttfamily weight\+:\+:sample} }\end{DoxyParamCaption})}
 
@@ -919,62 +975,34 @@ Calculates the standard deviation of a range.
 \begin{DoxyReturn}{Returns}
 Standard deviation of the samples in the range. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{namespacedsp_ab75178e59c7e72e242b73a979cf30415}\label{namespacedsp_ab75178e59c7e72e242b73a979cf30415}} 
-\index{dsp@{dsp}!std@{std}}
-\index{std@{std}!dsp@{dsp}}
-\subsubsection{\texorpdfstring{std()}{std()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+\mbox{\Hypertarget{namespacedsp_ad02c9fecd2e032a866f77e390b031189}\label{namespacedsp_ad02c9fecd2e032a866f77e390b031189}} 
+\index{dsp@{dsp}!unique@{unique}}
+\index{unique@{unique}!dsp@{dsp}}
+\doxysubsubsection{\texorpdfstring{unique()}{unique()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
-T dsp\+::std (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{x,  }\item[{\mbox{\hyperlink{namespacedsp_a6244fa34d285f00f68e00ed89d71cf85}{weight}}}]{w = {\ttfamily weight\+:\+:sample} }\end{DoxyParamCaption})}
+std\+::vector$<$typename T\+::value\+\_\+type$>$ dsp\+::unique (\begin{DoxyParamCaption}\item[{const T \&}]{x }\end{DoxyParamCaption})}
 
 
 
-Calculates the standard deviation of a vector. 
+Returns the unique values from a container. 
 
 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em T} & Type of the values. Should be float, double, or long double. Other types will cause undefined behavior. \\
+{\em T} & Type of container. Should be std\+::vector or \mbox{\hyperlink{classdsp_1_1_signal}{dsp\+::\+Signal}}. Other containers may cause undefined behavior. \\
 \hline
 \end{DoxyTemplParams}
 
 \begin{DoxyParams}{Parameters}
-{\em x} & Vector to calculate the standard deviation of. \\
-\hline
-{\em w} & Denominator to use in the calculation\+: If w == weight\+::sample, the denominator is N-\/1; if it w == population, the denominator is N. Default\+: sample. \\
+{\em x} & Container holding the non-\/unique elements. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-Standard deviation of the samples in the vector. 
-\end{DoxyReturn}
-\mbox{\Hypertarget{namespacedsp_a99d973002d4c3cefea2d0435b0d025d9}\label{namespacedsp_a99d973002d4c3cefea2d0435b0d025d9}} 
-\index{dsp@{dsp}!std@{std}}
-\index{std@{std}!dsp@{dsp}}
-\subsubsection{\texorpdfstring{std()}{std()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
-T dsp\+::std (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classdsp_1_1_signal}{dsp\+::\+Signal}}$<$ T $>$ \&}]{x,  }\item[{\mbox{\hyperlink{namespacedsp_a6244fa34d285f00f68e00ed89d71cf85}{weight}}}]{w = {\ttfamily weight\+:\+:sample} }\end{DoxyParamCaption})}
-
-
-
-Calculates the standard deviation of a \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & Type of the samples. Should be float, double, or long double. Other types will cause undefined behavior. \\
-\hline
-\end{DoxyTemplParams}
-
-\begin{DoxyParams}{Parameters}
-{\em x} & \mbox{\hyperlink{classdsp_1_1_signal}{Signal}} to calculate the standard deviation of. \\
-\hline
-{\em w} & Denominator to use in the calculation\+: If w == weight\+::sample, the denominator is N-\/1; if it w == population, the denominator is N. Default\+: sample. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-Standard deviation of the signal. 
+A vector containing the unique elements in the original order 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_a3880dd4b34167c070e64bd10e7c6db56}\label{namespacedsp_a3880dd4b34167c070e64bd10e7c6db56}} 
 \index{dsp@{dsp}!unique@{unique}}
 \index{unique@{unique}!dsp@{dsp}}
-\subsubsection{\texorpdfstring{unique()}{unique()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+\doxysubsubsection{\texorpdfstring{unique()}{unique()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily template$<$class T , class Input\+It $>$ \\
 std\+::vector$<$T$>$ dsp\+::unique (\begin{DoxyParamCaption}\item[{Input\+It}]{begin,  }\item[{Input\+It}]{end }\end{DoxyParamCaption})}
 
@@ -999,34 +1027,62 @@ Returns the unique values in a range.
 \begin{DoxyReturn}{Returns}
 A vector containing the unique elements in the original order 
 \end{DoxyReturn}
-\mbox{\Hypertarget{namespacedsp_ad02c9fecd2e032a866f77e390b031189}\label{namespacedsp_ad02c9fecd2e032a866f77e390b031189}} 
-\index{dsp@{dsp}!unique@{unique}}
-\index{unique@{unique}!dsp@{dsp}}
-\subsubsection{\texorpdfstring{unique()}{unique()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+\mbox{\Hypertarget{namespacedsp_a8e9c53733c0ca45ea276e67d875cdd7b}\label{namespacedsp_a8e9c53733c0ca45ea276e67d875cdd7b}} 
+\index{dsp@{dsp}!var@{var}}
+\index{var@{var}!dsp@{dsp}}
+\doxysubsubsection{\texorpdfstring{var()}{var()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
-std\+::vector$<$typename T\+::value\+\_\+type$>$ dsp\+::unique (\begin{DoxyParamCaption}\item[{const T \&}]{x }\end{DoxyParamCaption})}
+T dsp\+::var (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classdsp_1_1_signal}{dsp\+::\+Signal}}$<$ T $>$ \&}]{x,  }\item[{\mbox{\hyperlink{namespacedsp_a6244fa34d285f00f68e00ed89d71cf85}{weight}}}]{w = {\ttfamily weight\+:\+:sample} }\end{DoxyParamCaption})}
 
 
 
-Returns the unique values from a container. 
+Calculates the variance of a \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}. 
 
 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em T} & Type of container. Should be std\+::vector or \mbox{\hyperlink{classdsp_1_1_signal}{dsp\+::\+Signal}}. Other containers may cause undefined behavior. \\
+{\em T} & Type of the samples. Should be float, double, or long double. Other types will cause undefined behavior. \\
 \hline
 \end{DoxyTemplParams}
 
 \begin{DoxyParams}{Parameters}
-{\em x} & Container holding the non-\/unique elements. \\
+{\em x} & \mbox{\hyperlink{classdsp_1_1_signal}{Signal}} to calculate the variance of. \\
+\hline
+{\em w} & Denominator to use in the calculation\+: If w == weight\+::sample, the denominator is N-\/1; if it w == population, the denominator is N. Default\+: sample. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-A vector containing the unique elements in the original order 
+Variance of the signal. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacedsp_ac88085d18fc528874ed10f0444f03445}\label{namespacedsp_ac88085d18fc528874ed10f0444f03445}} 
+\index{dsp@{dsp}!var@{var}}
+\index{var@{var}!dsp@{dsp}}
+\doxysubsubsection{\texorpdfstring{var()}{var()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+T dsp\+::var (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{x,  }\item[{\mbox{\hyperlink{namespacedsp_a6244fa34d285f00f68e00ed89d71cf85}{weight}}}]{w = {\ttfamily weight\+:\+:sample} }\end{DoxyParamCaption})}
+
+
+
+Calculates the variance of a vector. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type of the values. Should be float, double, or long double. Other types will cause undefined behavior. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Vector to calculate the variance of. \\
+\hline
+{\em w} & Denominator to use in the calculation\+: If w == weight\+::sample, the denominator is N-\/1; if it w == population, the denominator is N. Default\+: sample. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Variance of the samples in the vector. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_a4ab80b27a24ba15a79545b4c84acb3c4}\label{namespacedsp_a4ab80b27a24ba15a79545b4c84acb3c4}} 
 \index{dsp@{dsp}!var@{var}}
 \index{var@{var}!dsp@{dsp}}
-\subsubsection{\texorpdfstring{var()}{var()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+\doxysubsubsection{\texorpdfstring{var()}{var()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
 {\footnotesize\ttfamily template$<$class T , class Input\+It $>$ \\
 T dsp\+::var (\begin{DoxyParamCaption}\item[{Input\+It}]{begin,  }\item[{Input\+It}]{end,  }\item[{\mbox{\hyperlink{namespacedsp_a6244fa34d285f00f68e00ed89d71cf85}{weight}}}]{w = {\ttfamily weight\+:\+:sample} }\end{DoxyParamCaption})}
 
@@ -1053,62 +1109,60 @@ Calculates the variance of a range.
 \begin{DoxyReturn}{Returns}
 Variance of the samples in the range. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{namespacedsp_ac88085d18fc528874ed10f0444f03445}\label{namespacedsp_ac88085d18fc528874ed10f0444f03445}} 
-\index{dsp@{dsp}!var@{var}}
-\index{var@{var}!dsp@{dsp}}
-\subsubsection{\texorpdfstring{var()}{var()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+\mbox{\Hypertarget{namespacedsp_a474693dcea8d0ea646c76f2fb781b918}\label{namespacedsp_a474693dcea8d0ea646c76f2fb781b918}} 
+\index{dsp@{dsp}!zscore@{zscore}}
+\index{zscore@{zscore}!dsp@{dsp}}
+\doxysubsubsection{\texorpdfstring{zscore()}{zscore()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
-T dsp\+::var (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{x,  }\item[{\mbox{\hyperlink{namespacedsp_a6244fa34d285f00f68e00ed89d71cf85}{weight}}}]{w = {\ttfamily weight\+:\+:sample} }\end{DoxyParamCaption})}
+\mbox{\hyperlink{classdsp_1_1_signal}{dsp\+::\+Signal}}$<$T$>$ dsp\+::zscore (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classdsp_1_1_signal}{dsp\+::\+Signal}}$<$ T $>$ \&}]{x }\end{DoxyParamCaption})}
 
 
 
-Calculates the variance of a vector. 
+Returns the standardized z-\/scores of the data in a \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}. 
 
 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em T} & Type of the values. Should be float, double, or long double. Other types will cause undefined behavior. \\
+{\em T} & Data type of the samples. Should be float, double, or long double. Other types may cause undefined behavior. \\
 \hline
 \end{DoxyTemplParams}
 
 \begin{DoxyParams}{Parameters}
-{\em x} & Vector to calculate the variance of. \\
-\hline
-{\em w} & Denominator to use in the calculation\+: If w == weight\+::sample, the denominator is N-\/1; if it w == population, the denominator is N. Default\+: sample. \\
+{\em x} & \mbox{\hyperlink{classdsp_1_1_signal}{Signal}} that holds the un-\/standardized data. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-Variance of the samples in the vector. 
+\mbox{\hyperlink{classdsp_1_1_signal}{Signal}} holding the z-\/scores of the data in x (i.\+e., the standardized data). ~\newline
+ 
 \end{DoxyReturn}
-\mbox{\Hypertarget{namespacedsp_a8e9c53733c0ca45ea276e67d875cdd7b}\label{namespacedsp_a8e9c53733c0ca45ea276e67d875cdd7b}} 
-\index{dsp@{dsp}!var@{var}}
-\index{var@{var}!dsp@{dsp}}
-\subsubsection{\texorpdfstring{var()}{var()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+\mbox{\Hypertarget{namespacedsp_a7f7b31f90f3c56a1c82033b622452cef}\label{namespacedsp_a7f7b31f90f3c56a1c82033b622452cef}} 
+\index{dsp@{dsp}!zscore@{zscore}}
+\index{zscore@{zscore}!dsp@{dsp}}
+\doxysubsubsection{\texorpdfstring{zscore()}{zscore()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
 {\footnotesize\ttfamily template$<$class T $>$ \\
-T dsp\+::var (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classdsp_1_1_signal}{dsp\+::\+Signal}}$<$ T $>$ \&}]{x,  }\item[{\mbox{\hyperlink{namespacedsp_a6244fa34d285f00f68e00ed89d71cf85}{weight}}}]{w = {\ttfamily weight\+:\+:sample} }\end{DoxyParamCaption})}
+std\+::vector$<$T$>$ dsp\+::zscore (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{x }\end{DoxyParamCaption})}
 
 
 
-Calculates the variance of a \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}. 
+Returns the standardized z-\/scores of the data in a vector. 
 
 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em T} & Type of the samples. Should be float, double, or long double. Other types will cause undefined behavior. \\
+{\em T} & Data type of the samples. Should be float, double, or long double. Other types may cause undefined behavior. \\
 \hline
 \end{DoxyTemplParams}
 
 \begin{DoxyParams}{Parameters}
-{\em x} & \mbox{\hyperlink{classdsp_1_1_signal}{Signal}} to calculate the variance of. \\
-\hline
-{\em w} & Denominator to use in the calculation\+: If w == weight\+::sample, the denominator is N-\/1; if it w == population, the denominator is N. Default\+: sample. \\
+{\em x} & Vector that holds the un-\/standardized data. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-Variance of the signal. 
+Vector holding the z-\/scores of the data in x (i.\+e., the standardized data). ~\newline
+ 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacedsp_a3a4070cbacba7a636ade022363726209}\label{namespacedsp_a3a4070cbacba7a636ade022363726209}} 
 \index{dsp@{dsp}!zscore@{zscore}}
 \index{zscore@{zscore}!dsp@{dsp}}
-\subsubsection{\texorpdfstring{zscore()}{zscore()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+\doxysubsubsection{\texorpdfstring{zscore()}{zscore()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
 {\footnotesize\ttfamily template$<$class T , class Input\+It $>$ \\
 std\+::vector$<$T$>$ dsp\+::zscore (\begin{DoxyParamCaption}\item[{Input\+It}]{begin,  }\item[{Input\+It}]{end }\end{DoxyParamCaption})}
 
@@ -1132,52 +1186,4 @@ Returns the standardized z-\/scores of the data in a range.
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 A vector holding the z-\/scores of the data in the range (i.\+e., the standardized data). 
-\end{DoxyReturn}
-\mbox{\Hypertarget{namespacedsp_a7f7b31f90f3c56a1c82033b622452cef}\label{namespacedsp_a7f7b31f90f3c56a1c82033b622452cef}} 
-\index{dsp@{dsp}!zscore@{zscore}}
-\index{zscore@{zscore}!dsp@{dsp}}
-\subsubsection{\texorpdfstring{zscore()}{zscore()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
-std\+::vector$<$T$>$ dsp\+::zscore (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{x }\end{DoxyParamCaption})}
-
-
-
-Returns the standardized z-\/scores of the data in a vector. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & Data type of the samples. Should be float, double, or long double. Other types may cause undefined behavior. \\
-\hline
-\end{DoxyTemplParams}
-
-\begin{DoxyParams}{Parameters}
-{\em x} & Vector that holds the un-\/standardized data. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-Vector holding the z-\/scores of the data in x (i.\+e., the standardized data). 
-\end{DoxyReturn}
-\mbox{\Hypertarget{namespacedsp_a474693dcea8d0ea646c76f2fb781b918}\label{namespacedsp_a474693dcea8d0ea646c76f2fb781b918}} 
-\index{dsp@{dsp}!zscore@{zscore}}
-\index{zscore@{zscore}!dsp@{dsp}}
-\subsubsection{\texorpdfstring{zscore()}{zscore()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
-{\footnotesize\ttfamily template$<$class T $>$ \\
-\mbox{\hyperlink{classdsp_1_1_signal}{dsp\+::\+Signal}}$<$T$>$ dsp\+::zscore (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classdsp_1_1_signal}{dsp\+::\+Signal}}$<$ T $>$ \&}]{x }\end{DoxyParamCaption})}
-
-
-
-Returns the standardized z-\/scores of the data in a \mbox{\hyperlink{classdsp_1_1_signal}{Signal}}. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & Data type of the samples. Should be float, double, or long double. Other types may cause undefined behavior. \\
-\hline
-\end{DoxyTemplParams}
-
-\begin{DoxyParams}{Parameters}
-{\em x} & \mbox{\hyperlink{classdsp_1_1_signal}{Signal}} that holds the un-\/standardized data. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-\mbox{\hyperlink{classdsp_1_1_signal}{Signal}} holding the z-\/scores of the data in x (i.\+e., the standardized data). 
 \end{DoxyReturn}
