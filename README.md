@@ -14,9 +14,14 @@ If you choose to use the dependencies, you will need the following libraries:
 **Important:** On Linux, you have to install Threading Building Blocks (TBB) because g++ relies on it for some of the C++17 parallel execution policies that are used.
 
 #### Installing dependencies on Windows
-I highly recommend using [vcpkg](https://vcpkg.info/) to install the required libraries. At long last, a package manager for C++ that works! 
+I highly recommend using [vcpkg](https://github.com/microsoft/vcpkg) to install the required libraries. At long last, a package manager for C++ that works! 
 
-TODO: Instructions using vcpkg
+After getting vcpkg (don't forget to run ``vcpkg integrate install``), you can install the depedencies using the following commands:
+
+```
+vcpkg install boost-math:x64-windows
+vcpkg install fftw3:x64-windows
+```
 
 #### Installing dependencies on Linux
 On Ubuntu:
