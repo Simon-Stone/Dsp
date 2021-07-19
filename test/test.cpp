@@ -6,6 +6,9 @@
 #include <chrono>
 #include <random>
 
+// Get some data for testing purposes
+#include "stft_test_data.h"
+
 
 #include "dsp.h"
 
@@ -416,6 +419,50 @@ TEST_F(DspTest, Spectrogram)
 			std::cout << Xik << std::endl;
 		}
 	}
+}
+
+TEST_F(DspTest, StftTest01)
+{
+	unsigned frameLength{ 128 };
+	unsigned overlap{ 64 };
+	dsp::window::type windowType{ dsp::window::type::hann };
+	unsigned fftLength{ 128 };
+	auto y = dsp::fft::stft(unittest::stft::x, frameLength, overlap, windowType, frameLength);
+	
+	EXPECT_EQ(y.size(), unittest::stft::y1.size());
+	EXPECT_EQ(y[0].size()/2+1, unittest::stft::y1[0].size());
+
+	for(unsigned i = 0; i < y.size(); ++i)
+	{
+		for(unsigned j = 0; j < y[i].size()/2+1; ++j)
+		{
+			EXPECT_FLOAT_EQ(unittest::stft::y1[i][j].real(), y[i][j].real());
+			EXPECT_FLOAT_EQ(unittest::stft::y1[i][j].imag(), y[i][j].imag());
+		}
+	}
+	
+}
+
+TEST_F(DspTest, StftTest02)
+{
+	unsigned frameLength{ 256 };
+	unsigned overlap{ 17 };
+	dsp::window::type windowType{ dsp::window::type::hamming };
+	unsigned fftLength{ 316 };
+	auto y = dsp::fft::stft(unittest::stft::x, frameLength, overlap, windowType, fftLength);
+	
+	EXPECT_EQ(y.size(), unittest::stft::y2.size());
+	EXPECT_EQ(y[0].size(), unittest::stft::y2[0].size());
+
+	for(unsigned i = 0; i < y.size(); ++i)
+	{
+		for(unsigned j = 0; j < y[i].size(); ++j)
+		{
+			EXPECT_DOUBLE_EQ(unittest::stft::y2[i][j].real(), y[i][j].real());
+			EXPECT_DOUBLE_EQ(unittest::stft::y2[i][j].imag(), y[i][j].imag());
+		}
+	}
+	
 }
 
 TEST_F(DspTest, Benchmarking)

@@ -294,12 +294,13 @@ namespace dsp
 	
 	/// @brief Splits a signal into frames
 	/// @tparam T Data type of the signal's samples
-	/// @param signal Signal to split into frames (using zero-padding at the end)
+	/// @param signal Signal to split into frames
 	/// @param frameLength Length of each frame
 	/// @param overlap Number of overlapping samples between two consecutive frames (cannot be negative!)
+	/// @param doZeroPadding Apply zero padding to the final frame(s)
 	/// @return Vector containing the frames.
 	template<class T>
-	std::vector<std::vector<T>> signalToFrames(const std::vector<T>& signal, unsigned frameLength, unsigned overlap);
+	std::vector<std::vector<T>> signalToFrames(const std::vector<T>& signal, unsigned frameLength, unsigned overlap, bool doZeroPadding = true);
 
 	
 	namespace window
