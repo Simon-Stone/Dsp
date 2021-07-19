@@ -4,7 +4,7 @@
 #include <execution>
 
 #ifndef ZERO_DEPENDENCIES
-#include <fftw3.h>
+#include <fftw3/fftw3.h>
 #endif
 
 #include "filter.h"
