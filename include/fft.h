@@ -99,6 +99,19 @@ namespace dsp
 		//hfftn();
 		//ihfftn();
 
+		/// @brief Computes the Short-Time Fourier Transform (STFT).
+		///
+		/// This function computes the Short-Time Fourier Transform of a real-valued input signal.
+		/// @tparam T Data type of the real and complex values. Should be float, double or long double, other types will cause undefined behavior.
+		/// @param x Real input
+		/// @param frameLength Length of each frame.
+		/// @param overlap Number of overlapping samples of consecutive frames.
+		/// @param window Type of window to use before applying the Fourier transform to each frame. Note: Only windows with no parameters (except length) are currently supported!
+		/// @param fftLength Length of the FFT of each frame. Must be >= frameLength
+		/// @return The complex Short-Time Fourier Transform of the input signal.
+		template<class T>
+		std::vector<std::vector<std::complex<T>>> stft(const std::vector<T>& x, unsigned frameLength, int overlap, window::type window, unsigned fftLength);
+
 		// Discrete Sin and Cosine Transforms (DST and DCT)
 		// TODO:
 		//dct();

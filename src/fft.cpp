@@ -772,6 +772,36 @@ std::vector<T> dsp::fft::fftconvolution(const std::vector<T>& volume, const std:
 	}
 }
 
+template<class T>
+std::vector<std::vector<std::complex<T>>> dsp::fft::stft(const std::vector<T>& x, unsigned frameLength, int overlap, window::type window, unsigned fftLength)
+{
+	// Algorithm:
+	// 1. Split input into frames of frameLength samples, overlapping by overlap samples. Pad with zeros at the end.
+	// 2. Window each frame using the specified window type.
+	// 3. Calculate the FFT of every frame
+
+	auto frames = signalToFrames(x, frameLength, overlap, false);
+
+	// TODO: Figure out how to allow windows with additional parameters
+	auto w = dsp::window::get_window<T>(window, frameLength, false);
+
+	for (auto& frame : frames)
+	{
+		std::transform(frame.begin(), frame.end(), w.begin(), frame.begin(), std::multiplies<>());
+	}
+
+
+	std::vector<std::vector<std::complex<T>>> stft;
+	stft.reserve(frames.size());
+	for (const auto& frame : frames)
+	{
+		stft.emplace_back(dsp::fft::rfft(frame, fftLength));
+	}
+	
+	return stft;
+}
+
+
 template <class T>
 std::vector<std::vector<T>> dsp::fft::spectrogram(const std::vector<T>& signal, unsigned frameLength,
 	double overlap_pct, int samplingRate, double relativeCutoff, window::type windowType)
@@ -836,6 +866,10 @@ template std::vector<long double> dsp::fft::irfft(const std::vector<std::complex
 template std::vector<float> dsp::fft::fftconvolution(const std::vector<float>& volume, const std::vector<float>& kernel, convolution_mode mode);
 template std::vector<double> dsp::fft::fftconvolution(const std::vector<double>& volume, const std::vector<double>& kernel, convolution_mode mode);
 template std::vector<long double> dsp::fft::fftconvolution(const std::vector<long double>& volume, const std::vector<long double>& kernel, convolution_mode mode);
+
+template std::vector<std::vector<std::complex<float>>> dsp::fft::stft(const std::vector<float> & x, unsigned frameLength, int overlap, window::type window, unsigned fftLength);
+template std::vector<std::vector<std::complex<double>>> dsp::fft::stft(const std::vector<double> & x, unsigned frameLength, int overlap, window::type window, unsigned fftLength);
+template std::vector<std::vector<std::complex<long double>>> dsp::fft::stft(const std::vector<long double> & x, unsigned frameLength, int overlap, window::type window, unsigned fftLength);
 
 template std::vector<std::vector<float>> dsp::fft::spectrogram(const std::vector<float>& signal, unsigned frameLength,
 	double overlap_pct, int samplingRate, double relativeCutoff, window::type windowType);

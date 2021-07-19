@@ -116,7 +116,7 @@ std::vector<T> dsp::correlate(const std::vector<T>& in1, const std::vector<T>& i
 }
 
 template <class T>
-std::vector<std::vector<T>> dsp::signalToFrames(const std::vector<T>& signal, unsigned frameLength, unsigned overlap)
+std::vector<std::vector<T>> dsp::signalToFrames(const std::vector<T>& signal, unsigned frameLength, unsigned overlap, bool doZeroPadding)
 {
 	std::vector<std::vector<T>> framedSignal;
 	const auto numSamples = signal.size();
@@ -126,8 +126,22 @@ std::vector<std::vector<T>> dsp::signalToFrames(const std::vector<T>& signal, un
 	{
 		const size_t finalSample = std::min(startSample + frameLength, signal.size());
 		std::vector<T> frame{ signal.begin() + startSample, signal.begin() + finalSample };
-		frame.resize(frameLength, 0);  // Make sure the frame is padded to the frame length with zeros
-		framedSignal.push_back(frame);
+		if (doZeroPadding)
+		{
+			frame.resize(frameLength, 0);  // Make sure the frame is padded to the frame length with zeros
+			framedSignal.push_back(frame);
+		}
+		else
+		{
+			if (frame.size() == frameLength)
+			{
+				framedSignal.push_back(frame);
+			}
+			else
+			{
+				break;
+			}
+		}	
 	}
 
 	return framedSignal;
@@ -176,6 +190,6 @@ template double dsp::calculateMeanPower(typename std::vector<double>::iterator s
 template long double dsp::calculateMeanPower(typename std::vector<long double>::iterator start,
 	typename std::vector<long double>::iterator end);
 
-template std::vector<std::vector<float>> dsp::signalToFrames(const std::vector<float>& signal, unsigned frameLength, unsigned overlap);
-template std::vector<std::vector<double>> dsp::signalToFrames(const std::vector<double>& signal, unsigned frameLength, unsigned overlap);
-template std::vector<std::vector<long double>> dsp::signalToFrames(const std::vector<long double>& signal, unsigned frameLength, unsigned overlap);
+template std::vector<std::vector<float>> dsp::signalToFrames(const std::vector<float>& signal, unsigned frameLength, unsigned overlap, bool doZeroPadding);
+template std::vector<std::vector<double>> dsp::signalToFrames(const std::vector<double>& signal, unsigned frameLength, unsigned overlap, bool doZeroPadding);
+template std::vector<std::vector<long double>> dsp::signalToFrames(const std::vector<long double>& signal, unsigned frameLength, unsigned overlap, bool doZeroPadding);

@@ -40,8 +40,10 @@ namespace dsp::window
 			return nuttall<T>(N, sym);
 		case type::barthann:
 			return barthann<T>(N, sym);
+		#ifndef ZERO_DEPENDENCIES
 		case type::kaiser:
 			return kaiser<T>(N, parameters[0], sym);
+		#endif
 		case type::gaussian:
 			return gaussian<T>(N, parameters[0], sym);
 		case type::general_gaussian:
