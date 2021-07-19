@@ -20,7 +20,7 @@ TEST_F(DspTest, SignalOperations)
 	auto s = dsp::signals::sin<double>(100, 0.02, 8000);
 
 	// 1 = cos^2(x) + sin^2(x) 
-	auto sum = dsp::pow(c, 2) + dsp::pow(s, 2);  
+	auto sum = dsp::pow(c, 2) + dsp::pow(s, 2);
 	auto ones = dsp::Signal<double>(sum.getSamplingRate_Hz(), dsp::signals::ones<double>(sum.size()));
 	EXPECT_TRUE((sum - ones) < 0.00001);
 
@@ -34,14 +34,14 @@ TEST_F(DspTest, SignalOperations)
 TEST_F(DspTest, Mean)
 {
 	auto c = dsp::signals::cos<double>(100, 0.02, 8000);
-	
+
 	EXPECT_NEAR(dsp::mean<double>(c.begin(), c.end()), 0.0, 1e-16);
 }
 
 TEST_F(DspTest, Median)
 {
 	std::vector<int> v{ 3, 2, 2, 1, 7 };
-	std::vector<double> v2{ 3, 2, 3, 1};
+	std::vector<double> v2{ 3, 2, 3, 1 };
 	auto s = dsp::Signal(v);
 	auto s2 = dsp::Signal(v2);
 	// Iterator interface
@@ -54,7 +54,7 @@ TEST_F(DspTest, Median)
 	EXPECT_EQ(dsp::median(v), 2);
 	EXPECT_EQ(dsp::median(s), 2);
 	EXPECT_EQ(dsp::median(v2), 2.5);
-	EXPECT_EQ(dsp::median(s2), 2.5);	
+	EXPECT_EQ(dsp::median(s2), 2.5);
 }
 
 TEST_F(DspTest, Mode)
@@ -71,13 +71,13 @@ TEST_F(DspTest, Pad)
 	std::vector<int> v{ 1,2,4,5 };
 	auto v_pad = dsp::pad(v, { 2, 3 });
 
-	for(const auto& x : v_pad)
+	for (const auto& x : v_pad)
 	{
 		std::cout << x << " ";
 	}
 	std::cout << std::endl;
 
-	v_pad = dsp::pad(v, { 3, 4 }, {2, 8});
+	v_pad = dsp::pad(v, { 3, 4 }, { 2, 8 });
 
 	for (const auto& x : v_pad)
 	{
@@ -128,7 +128,7 @@ TEST_F(DspTest, Unique)
 
 	auto u = dsp::unique(dsp::Signal(v));
 
-	for(const auto& x : u)
+	for (const auto& x : u)
 	{
 		std::cout << x << " ";
 	}
@@ -395,7 +395,7 @@ TEST_F(DspTest, UnitConversions)
 
 TEST_F(DspTest, Window)
 {
-	auto win = dsp::window::get_window<double>(dsp::window::type::gaussian, 128, true, {32.0});
+	auto win = dsp::window::get_window<double>(dsp::window::type::gaussian, 128, true, { 32.0 });
 
 	for (const auto& w : win)
 	{
@@ -423,13 +423,13 @@ TEST_F(DspTest, Benchmarking)
 	std::ofstream outFile("../scripts/dsp_benchmark.csv", std::ios::out);
 
 	outFile << "Task\tImplementation\tExecution time [us]" << std::endl;
-		
-	auto x = 7*dsp::signals::sin<double>(100, 1, 48000);
-	
+
+	auto x = 7 * dsp::signals::sin<double>(100, 1, 48000);
+
 	std::cout << "*********************************************************" << std::endl;
 	std::cout << "********             z-score                  ***********" << std::endl;
 	std::cout << "*********************************************************" << std::endl;
-	for(int j = 0; j < 100; ++j)
+	for (int j = 0; j < 100; ++j)
 	{
 		// Naive implementation
 		auto start = std::chrono::high_resolution_clock::now();
@@ -452,13 +452,13 @@ TEST_F(DspTest, Benchmarking)
 		{
 			standardized_x.push_back((x[i] - x_mean) / std);
 		}
-	
+
 		auto stop = std::chrono::high_resolution_clock::now();
 		auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
 		std::cout << "Naive implementation: " << "\t\t" << duration.count() << " µs" << std::endl;
 
 		outFile << "zscore\tnaive\t" << duration.count() << std::endl;
-		
+
 		// DSP lib implementation
 		auto start_dsp = std::chrono::high_resolution_clock::now();
 		auto standardized_x_dsp = dsp::zscore(x);
@@ -484,7 +484,7 @@ TEST_F(DspTest, Benchmarking)
 		}
 		double x_energy = sum / static_cast<double>(x.size());
 		auto stop = std::chrono::high_resolution_clock::now();
-		
+
 		auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
 		std::cout << "Naive implementation: " << "\t\t" << duration.count() << " µs" << std::endl;
 
@@ -511,17 +511,17 @@ TEST_F(DspTest, Benchmarking)
 		auto X = dsp::fft::rfft<double>({ x.begin(), x.end() }, x.size(), dsp::fft::NormalizationMode::backward, dsp::fft::backend::simple);
 
 		std::vector<double> magSpec;
-		for(int i = 0; i < X.size(); ++i)
+		for (int i = 0; i < X.size(); ++i)
 		{
 			magSpec.push_back(10 * std::log10(std::abs(X[i]) * std::abs(X[i])));
 		}
-		
+
 		auto stop = std::chrono::high_resolution_clock::now();
 
 		auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
 		std::cout << "Naive implementation: " << "\t\t" << duration.count() << " µs" << std::endl;
 		outFile << "magspec\tnaive\t" << duration.count() << std::endl;
-		
+
 		// DSP lib implementation
 		auto start_dsp = std::chrono::high_resolution_clock::now();
 		auto x_magSpec = dsp::fft::logSquaredMagnitudeSpectrum(x.getSamples(), x.size(), 1);
@@ -532,5 +532,29 @@ TEST_F(DspTest, Benchmarking)
 
 		outFile << "magspec\tdsp\t" << duration_dsp.count() << std::endl;
 	}
+
+}
+
+
+TEST_F(DspTest, DctTest)
+{
+	//const auto x = dsp::signals::cos<double>(2000, 1.0, 8000);
+	const std::vector<int> VInt{ 4, 3 };
+	//const std::vector<float> Vfloat{ 4.0, 3.0 };
+	const std::vector<double> VDouble{ 7.0, 8.0 };
+	const std::vector<long double> VLongDouble{ 12.0, 10.0 };
+
+	const unsigned int nBasisVectors = 2;
+
+	// std::vector<std::vector<double>> basisVectorCompare;
+	std::vector<std::vector<double>> basisVectors;
+	basisVectors.push_back(std::vector<double>(1, 1));
+	basisVectors.push_back(std::vector<double>(1, -1));
+
+	std::vector<std::vector<double>> basisVectorCompare = dsp::fft::calcCosineBasisVectors<double>(nBasisVectors);
+	EXPECT_EQ(basisVectors, basisVectorCompare);
+
+	auto y = dsp::fft::dct<double>(VDouble, nBasisVectors);
+	EXPECT_EQ(VDouble, y);
 
 }
