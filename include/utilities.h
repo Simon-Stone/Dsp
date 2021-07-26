@@ -265,6 +265,15 @@ namespace dsp
 		return static_cast<unsigned>(ceil(log2(n)));
 	}
 
+	/// @brief Returns if a number is a power of 2
+	/// @param n Number to check
+	/// @return True if the number is a power of 2, false if it is not.
+	inline bool ispow2(unsigned n)
+	{
+		auto log2n = log2(n);
+		return ( log2n == static_cast<unsigned>(log2n));
+	}
+
 	/// @brief Returns the maximum number of frames to get from a signal
 	/// @param signalLength Length of the signal
 	/// @param frameLength Length of each frame

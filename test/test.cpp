@@ -18,6 +18,19 @@ struct DspTest : ::testing::Test
 
 };
 
+TEST_F(DspTest, NextPow2)
+{
+	int i1 = 17;
+	int i2 = 128;
+	double d1 = 0.3;
+	double d2 = 62.0;
+
+	EXPECT_EQ(dsp::nextpow2(i1), 5);
+	EXPECT_EQ(dsp::nextpow2(i2), 7);
+	EXPECT_EQ(dsp::nextpow2(d1), 0);
+	EXPECT_EQ(dsp::nextpow2(d2), 6);	
+}
+
 TEST_F(DspTest, SignalOperations)
 {
 	auto c = dsp::signals::cos<double>(100, 0.02, 8000);
