@@ -803,6 +803,7 @@ std::vector<std::vector<std::complex<T>>> dsp::fft::stft(const std::vector<T>& x
 	stft.reserve(frames.size());
 	for (const auto& frame : frames)
 	{
+
 		stft.emplace_back(dsp::fft::rfft(frame, fftLength));
 	}
 	
@@ -824,31 +825,26 @@ std::vector<std::vector<T>> dsp::fft::spectrogram(const std::vector<T>& signal, 
 	// -> Final result is a matrix of real values, each column representing one frame's log-squared magnitude spectrum
 
 	// Pre-emphasis
-	std::vector<T> b{ 1.0, static_cast<T>(0.95) };
+	std::vector<T> b{ 1.0, static_cast<T>(-0.95) };
 	std::vector<T> a{ 1.0 };
 	auto preemph_signal = filter::filter(b, a, signal);
+	//auto preemph_signal = signal;
 
-	// Split into frames
-	auto frames = signalToFrames(signal, frameLength, static_cast<unsigned>(overlap_pct * frameLength));
-	spectrogram.resize(frames.size());
+	auto N = 2 << (nextpow2(frameLength) - 1);
 
-	// Window each frame
-	auto window = window::get_window<T>(windowType, frameLength);
-	std::transform(std::execution::par_unseq,
-		frames.begin(), frames.end(),
-		frames.begin(),
-		[window](auto& frame)
-		{
-			std::transform(frame.begin(), frame.end(), window.begin(), frame.begin(), std::multiplies<>());
-			return frame;
-		});
+	auto overlap = static_cast<int>(overlap_pct * frameLength);
 
-	// Calculate squared magnitude spectrum in dB
-	const auto nFft = 2 << (nextpow2(frameLength) - 1);
-	std::transform(std::execution::par_unseq,
-		frames.begin(), frames.end(),
-		spectrogram.begin(),
-		[=](auto frame) {return logSquaredMagnitudeSpectrum<T>(frame, nFft, relativeCutoff); });
+	auto stft = dsp::fft::stft(preemph_signal, frameLength, overlap, windowType, N);
+
+	const int finalFrequencyBinIdx = std::min(N, static_cast<const int>(relativeCutoff * static_cast<double>(N)) + 1);
+
+	spectrogram.reserve(stft.size());
+	for (const auto& frame : stft)
+	{
+		auto logSquaredSpectrum = std::vector<T>(finalFrequencyBinIdx);
+		std::transform(std::execution::par_unseq, frame.begin(), frame.begin() + finalFrequencyBinIdx, logSquaredSpectrum.begin(), &logSquaredMagnitude<T>);
+		spectrogram.push_back(logSquaredSpectrum);
+	}
 
 	return spectrogram;
 
@@ -885,3 +881,10 @@ template std::vector<std::vector<double>> dsp::fft::spectrogram(const std::vecto
 	double overlap_pct, int samplingRate, double relativeCutoff, window::type windowType);
 template std::vector<std::vector<long double>> dsp::fft::spectrogram(const std::vector<long double>& signal, unsigned frameLength,
 	double overlap_pct, int samplingRate, double relativeCutoff, window::type windowType);
+
+template std::vector<float> dsp::fft::logSquaredMagnitudeSpectrum(const std::vector<float>& signal, int N_fft,
+	double relativeCutoff);
+template std::vector<double> dsp::fft::logSquaredMagnitudeSpectrum(const std::vector<double>& signal, int N_fft,
+	double relativeCutoff);
+template std::vector<long double> dsp::fft::logSquaredMagnitudeSpectrum(const std::vector<long double>& signal, int N_fft,
+	double relativeCutoff);

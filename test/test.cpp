@@ -8,6 +8,7 @@
 
 // Get some data for testing purposes
 #include "stft_test_data.h"
+#include "spectrogram_test_data.h"
 
 
 #include "dsp.h"
@@ -408,15 +409,23 @@ TEST_F(DspTest, Window)
 
 TEST_F(DspTest, Spectrogram)
 {
-	auto x = dsp::signals::sin<double>(100, 0.02, 8000);
+	unsigned frameLength{ 128 };
+	unsigned overlap{ 64 };
+	dsp::window::type windowType{ dsp::window::type::hann };
+	unsigned fftLength{ 128 };
 
-	auto X = dsp::fft::spectrogram(x.getSamples(), 256, 0.5, 8000);
+	double overlap_pct = static_cast<double>(overlap) / frameLength;
 
-	for (const auto& Xi : X)
+	auto y = dsp::fft::spectrogram(unittest::spectrogram::x, frameLength, overlap_pct, -1, 0.5, windowType);
+
+	EXPECT_EQ(y.size(), unittest::spectrogram::yRef.size());
+	EXPECT_EQ(y[0].size(), unittest::spectrogram::yRef[0].size());
+
+	for (unsigned i = 0; i < y.size(); ++i)
 	{
-		for (const auto& Xik : Xi)
+		for (unsigned j = 0; j < y[i].size(); ++j)
 		{
-			std::cout << Xik << std::endl;
+			EXPECT_FLOAT_EQ(unittest::spectrogram::yRef[i][j], y[i][j]);
 		}
 	}
 }
