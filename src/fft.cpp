@@ -834,8 +834,6 @@ std::vector<std::vector<T>> dsp::fft::calcCosineBasisVectors(const unsigned int 
 	}
 
 	std::vector<T> b1(nBasisVectors, scalingFactorB1);
-	// b1.reserve(nBasisVectors);
-	// std::fill(b1.begin(), b1.end(), scalingFactorB1);
 	basisVectors.push_back(b1);
 
 	// i is the index of each basis vector.
@@ -860,8 +858,8 @@ std::vector<std::vector<T>> dsp::fft::calcCosineBasisVectors(const unsigned int 
 template<class T>
 std::vector<T> dsp::fft::dct(const std::vector<T>& signal, const unsigned int nBasisVectors)
 {
-	std::vector<T> y;
-	y.reserve(signal.size());
+	// Allocate output y.
+	std::vector<T> y(nBasisVectors, 0);
 
 	// Calculate B.
 	std::vector<std::vector<T>> basisVectors = calcCosineBasisVectors<T>(nBasisVectors);
@@ -869,7 +867,8 @@ std::vector<T> dsp::fft::dct(const std::vector<T>& signal, const unsigned int nB
 	// Calculate y.
 	for (unsigned i = 0; i < nBasisVectors; ++i)
 	{
-		y.push_back(std::inner_product(signal.begin(), signal.end(), y.begin(), static_cast<T>(0)));
+		// Calculate inner product between the input signal and each basis vector (basis vectors are the rows in B^T).
+		y[i] = std::inner_product(signal.begin(), signal.end(), basisVectors[i].begin(), static_cast<T>(0));
 	}
 
 	return y;

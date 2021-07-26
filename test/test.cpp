@@ -538,23 +538,86 @@ TEST_F(DspTest, Benchmarking)
 
 TEST_F(DspTest, DctTest)
 {
-	//const auto x = dsp::signals::cos<double>(2000, 1.0, 8000);
-	const std::vector<int> VInt{ 4, 3 };
-	//const std::vector<float> Vfloat{ 4.0, 3.0 };
-	const std::vector<double> VDouble{ 7.0, 8.0 };
-	const std::vector<long double> VLongDouble{ 12.0, 10.0 };
+	// Define test vectors for each data type.
+	const std::vector<int> VInt1{ 4, 3 };
+	const std::vector<int> VInt2{ 7, 8 };
+	const std::vector<int> VInt3{ 12, 10 };
+
+	const std::vector<float> Vfloat1{ 4.0, 3.0 };
+	const std::vector<float> Vfloat2{ 7.0, 8.0 };
+	const std::vector<float> Vfloat3{ 12.0, 10.0 };
+
+	const std::vector<double> VDouble1{ 4.0, 3.0 };
+	const std::vector<double> VDouble2{ 7.0, 8.0 };
+	const std::vector<double> VDouble3{ 12.0, 10.0 };
+
+	const std::vector<long double> VLongDouble1{ 4.0, 3.0 };
+	const std::vector<long double> VLongDouble2{ 7.0, 8.0 };
+	const std::vector<long double> VLongDouble3{ 12.0, 10.0 };
 
 	const unsigned int nBasisVectors = 2;
 
-	// std::vector<std::vector<double>> basisVectorCompare;
+	double epsi = 1e-5;
+	// Define test target(s) for the cosineBasisVector calculation.
 	std::vector<std::vector<double>> basisVectors;
-	basisVectors.push_back(std::vector<double>{1, 1});
-	basisVectors.push_back(std::vector<double>{1, -1});
+	basisVectors.push_back(std::vector<double>{1/ std::sqrt(2), 1/ std::sqrt(2)});
+	basisVectors.push_back(std::vector<double>{1/ std::sqrt(2), -1/ std::sqrt(2)});	
 
 	std::vector<std::vector<double>> basisVectorCompare = dsp::fft::calcCosineBasisVectors<double>(nBasisVectors);
-	EXPECT_EQ(basisVectors, basisVectorCompare);
+	ASSERT_EQ(basisVectorCompare.size(), nBasisVectors);
+	for (int i = 0; i < nBasisVectors; ++i)
+	{
+		ASSERT_EQ(basisVectorCompare[i].size(), nBasisVectors);
+		for (int k = 0; k < nBasisVectors; ++k)
+		{
+			EXPECT_TRUE((basisVectors[i][k] - basisVectorCompare[i][k]) < epsi);
+		}
+	}
 
-	auto y = dsp::fft::dct<double>(VDouble, nBasisVectors);
-	EXPECT_EQ(VDouble, y);
+	// Define test target(s) for the dsp calculation.
+	const std::vector<double> yTestTarget1{ 4.949747, 0.707106 };
+	const std::vector<double> yTestTarget2{ 10.606601, -0.707106 };
+	const std::vector<double> yTestTarget3{ 15.556349, 1.414213 };
+
+	std::vector<double> y3 = dsp::fft::dct<double>(VDouble1, nBasisVectors);
+	ASSERT_EQ(y3.size(), nBasisVectors);
+	for (int i = 0; i < nBasisVectors; ++i)
+	{
+		EXPECT_TRUE((y3[i] - yTestTarget1[i]) < epsi);
+	}
+
+	y3 = dsp::fft::dct<double>(VDouble2, nBasisVectors);
+	ASSERT_EQ(y3.size(), yTestTarget2.size());
+	for (int i = 0; i < y3.size(); ++i)
+	{
+		EXPECT_TRUE((y3[i] - yTestTarget2[i]) < epsi);
+	}
+
+	y3 = dsp::fft::dct<double>(VDouble3, nBasisVectors);
+	ASSERT_EQ(y3.size(), yTestTarget3.size());
+	for (int i = 0; i < y3.size(); ++i)
+	{
+		EXPECT_TRUE((y3[i] - yTestTarget3[i]) < epsi);
+	}
+
+	/*
+	std::vector<int> y1 = dsp::fft::dct<int>(VInt1, nBasisVectors);
+	EXPECT_EQ(yTestTarget1, y1);
+	y1 = dsp::fft::dct<int>(VInt2, nBasisVectors);
+	EXPECT_EQ(yTestTarget2, y1);
+	y1 = dsp::fft::dct<int>(VInt3, nBasisVectors);
+	EXPECT_EQ(yTestTarget3, y1);
+	
+
+	std::vector<float> y2 = dsp::fft::dct<float>(Vfloat1, nBasisVectors);
+	EXPECT_EQ(yTestTarget1, y2);
+	y2 = dsp::fft::dct<float>(Vfloat2, nBasisVectors);
+	EXPECT_EQ(yTestTarget2, y2);
+	y2 = dsp::fft::dct<float>(Vfloat3, nBasisVectors);
+	EXPECT_EQ(yTestTarget3, y2);
+	*/
+
+
+
 
 }
