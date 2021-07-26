@@ -444,6 +444,14 @@ TEST_F(DspTest, FFTW)
 		EXPECT_NEAR(Y[i].real(), unittest::fft::Yref[i].real(), 1e-6);
 		EXPECT_NEAR(Y[i].imag(), unittest::fft::Yref[i].imag(), 1e-6);
 	}
+
+	auto y = dsp::fft::ifft(Y, unittest::fft::x.size(), dsp::fft::NormalizationMode::backward, dsp::fft::backend::fftw);
+
+	EXPECT_EQ(y.size(), unittest::fft::x.size());
+	for (unsigned i = 0; i < unittest::fft::x.size(); ++i)
+	{
+		EXPECT_NEAR(y[i], unittest::fft::x[i], 1e-6);
+	}
 }
 
 TEST_F(DspTest, StftTest01)
