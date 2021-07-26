@@ -845,7 +845,7 @@ std::vector<std::vector<T>> dsp::fft::calcCosineBasisVectors(const unsigned int 
 
 		for (unsigned int n = 0; n < nBasisVectors; ++n)
 		{
-			const T elem = static_cast<T>(cos((n + 0.5) * pi * i / nBasisVectors));   // n + 0.5 b.c. index n starts at 0
+			const T elem = static_cast<T>(cos((n + 0.5) * pi * i / nBasisVectors));  
 			bn.push_back(elem * scalingFactorBn);
 		}
 
