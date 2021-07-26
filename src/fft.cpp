@@ -818,8 +818,9 @@ std::vector<std::vector<T>> dsp::fft::spectrogram(const std::vector<T>& signal, 
 
 }
 
+
 template<class T>
-std::vector<std::vector<T>> dsp::fft::calcCosineBasisVectors(const unsigned int nBasisVectors)
+std::vector<std::vector<T>> calcCosineBasisVectors(const unsigned int nBasisVectors)
 {
 	std::vector<std::vector<T>> basisVectors;
 	basisVectors.reserve(nBasisVectors);
@@ -845,7 +846,7 @@ std::vector<std::vector<T>> dsp::fft::calcCosineBasisVectors(const unsigned int 
 
 		for (unsigned int n = 0; n < nBasisVectors; ++n)
 		{
-			const T elem = static_cast<T>(cos((n + 0.5) * pi * i / nBasisVectors));  
+			const T elem = static_cast<T>(cos((n + 0.5) * dsp::pi * i / nBasisVectors));  
 			bn.push_back(elem * scalingFactorBn);
 		}
 
@@ -855,25 +856,42 @@ std::vector<std::vector<T>> dsp::fft::calcCosineBasisVectors(const unsigned int 
 	return basisVectors;
 }
 
+
 template<class T>
-std::vector<T> dsp::fft::dct(const std::vector<T>& signal, const unsigned int nBasisVectors)
+std::vector<T> dsp::fft::dct(std::vector<T>& signal, const unsigned int n, const dctType type)
 {
+
+	switch (type)
+	{
+	case dctType::dct1:
+		throw std::runtime_error("DCT1 option is not implemented yet.");
+	case dctType::dct3:
+		throw std::runtime_error("DCT3 option is not implemented yet.");
+	case dctType::dct4:
+		throw std::runtime_error("DCT4 option is not implemented yet.");
+	}
+	// TODO: use static_assert() to catch not-implemented error during compile time.
+	
+	// Resize the signal. Zero-pads for signal lengths > n and
+	// truncates for signal lengths < n.
+	signal.resize(n);
+
 	// Allocate output y.
-	std::vector<T> y(nBasisVectors, 0);
+	std::vector<T> y(n, 0);
 
 	// Calculate B.
-	std::vector<std::vector<T>> basisVectors = calcCosineBasisVectors<T>(nBasisVectors);
+	std::vector<std::vector<T>> basisVectors = calcCosineBasisVectors<T>(n);
 
 	// Calculate y.
-	for (unsigned i = 0; i < nBasisVectors; ++i)
+	for (unsigned i = 0; i < n; ++i)
 	{
 		// Calculate inner product between the input signal and each basis vector (basis vectors are the rows in B^T).
 		y[i] = std::inner_product(signal.begin(), signal.end(), basisVectors[i].begin(), static_cast<T>(0));
+
 	}
 
 	return y;
 }
-
 
 
 // Explicit template instantiation
@@ -904,10 +922,10 @@ template std::vector<std::vector<double>> dsp::fft::spectrogram(const std::vecto
 template std::vector<std::vector<long double>> dsp::fft::spectrogram(const std::vector<long double>& signal, unsigned frameLength,
 	double overlap_pct, int samplingRate, double relativeCutoff, window::type windowType);
 
-template std::vector<float> dsp::fft::dct(const std::vector<float>& signal, const unsigned int nBasisVectors);
-template std::vector<double> dsp::fft::dct(const std::vector<double>& signal, const unsigned int nBasisVectors);
-template std::vector<long double> dsp::fft::dct(const std::vector<long double>& signal, const unsigned int nBasisVectors);
+template std::vector<float> dsp::fft::dct(std::vector<float>& signal, const unsigned int n, const dsp::fft::dctType type);
+template std::vector<double> dsp::fft::dct(std::vector<double>& signal, const unsigned int n, const dsp::fft::dctType type);
+template std::vector<long double> dsp::fft::dct(std::vector<long double>& signal, const unsigned int n, const dsp::fft::dctType type);
 
-template std::vector<std::vector<float>> dsp::fft::calcCosineBasisVectors(const unsigned int nBasisVectors);
-template std::vector<std::vector<double>> dsp::fft::calcCosineBasisVectors(const unsigned int nBasisVectors);
-template std::vector<std::vector<long double>> dsp::fft::calcCosineBasisVectors(const unsigned int nBasisVectors);
+template std::vector<std::vector<float>> calcCosineBasisVectors(const unsigned int nBasisVectors);
+template std::vector<std::vector<double>> calcCosineBasisVectors(const unsigned int nBasisVectors);
+template std::vector<std::vector<long double>> calcCosineBasisVectors(const unsigned int nBasisVectors);

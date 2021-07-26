@@ -18,6 +18,9 @@ namespace dsp
 		/// @brief Backend choices for performing the actual transformations
 		enum class backend { automatic, simple, fftw };
 
+		/// @brief Options for calculating the DCT.
+		enum class dctType {dct1, dct2, dct3, dct4};
+
 		/// @brief Compute the 1-D discrete Fourier Transform.
 		///
 		/// This function computes the 1-D n-point discrete Fourier Transform (DFT) with the efficient Fast Fourier Transform(FFT) algorithm for complex input signals.
@@ -103,16 +106,14 @@ namespace dsp
 		// Discrete Sin and Cosine Transforms (DST and DCT)
 		// TODO:
 
-		/// @brief Returns the dct of the passed signal.
+		/// @brief Returns the discrete cosine transform (DCT-II) of the passed signal.
 		/// @tparam T Data type of the signal's samples.
 		/// @param signal Signal to analyse.
+		/// @param n length of the transformed signal. If n < signal length, the remaining
+		///		signal values are zero-padded.
 		/// @return a vector containing the discrete-cosine transformed signal.
-
 		template<class T>
-		std::vector<std::vector<T>> calcCosineBasisVectors(const unsigned int nBasisVectors);
-
-		template<class T>
-		std::vector<T> dct(const std::vector<T>& signal, const unsigned int nBasisVectors);
+		std::vector<T> dct(std::vector<T>& signal, const unsigned int n, const dctType type = dctType::dct2);
 
 		//idct();
 		//dctn();
@@ -150,3 +151,10 @@ namespace dsp
 
 	} // .namespace fft
 } // .namespace dsp
+
+/// @brief Returns n normalized cosine basis vectors. Helper function for the dct().
+/// @tparam T Data type of the signal's samples.
+/// @param nBasisVectors number of basis vectors to compute.
+/// @return a vector of length nBasisVectors containing the basis vectors.
+template<class T>
+std::vector<std::vector<T>> calcCosineBasisVectors(const unsigned int nBasisVectors);
