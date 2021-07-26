@@ -326,7 +326,7 @@ namespace dsp::fft
 		fftw_complex* in = reinterpret_cast<fftw_complex*>(&x_copy[0]);
 
 		auto* out = reinterpret_cast<fftw_complex*>(&X[0]);
-		const auto p = fftw_plan_dft_1d(N, in, out, sign, flags);
+		const auto p = fftw_plan_dft_1d(n, in, out, sign, flags);
 
 		fftw_execute(p);
 
@@ -394,6 +394,15 @@ namespace dsp::fft
 			break;
 		}
 
+		auto Xconj = dsp::conj(X);
+		if (n % 2 == 0)
+		{
+			X.insert(X.end(), Xconj.rbegin() + 1, Xconj.rend() - 1);
+		}
+		else
+		{
+			X.insert(X.end(), Xconj.rbegin(), Xconj.rend() - 1);
+		}
 		fftwl_destroy_plan(p);
 		return X;
 	}
@@ -427,7 +436,14 @@ namespace dsp::fft
 			break;
 		}
 		auto Xconj = dsp::conj(X);
-		X.insert(X.end(), Xconj.rbegin() + 1, Xconj.rend() - 1);
+		if (n % 2 == 0)
+		{
+			X.insert(X.end(), Xconj.rbegin() + 1, Xconj.rend() - 1);
+		}
+		else
+		{
+			X.insert(X.end(), Xconj.rbegin(), Xconj.rend() - 1);
+		}
 		fftw_destroy_plan(p);
 		return X;
 	}
@@ -462,8 +478,14 @@ namespace dsp::fft
 		}
 
 		auto Xconj = dsp::conj(X);
-		X.insert(X.end(), Xconj.rbegin() + 1, Xconj.rend() - 1);
-
+		if (n % 2 == 0)
+		{
+			X.insert(X.end(), Xconj.rbegin() + 1, Xconj.rend() - 1);
+		}
+		else
+		{
+			X.insert(X.end(), Xconj.rbegin(), Xconj.rend() - 1);
+		}
 		fftwf_destroy_plan(p);
 		return X;
 	}
@@ -679,6 +701,7 @@ std::vector<std::complex<T>> dsp::fft::rfft(const std::vector<T>& x, unsigned n,
 		}
 		else
 		{
+			throw std::length_error::length_error("Simple FFT backend can only handle FFT length that are a power of two!");
 			//return dft_(x, N, mode);
 		}
 	case backend::simple:
@@ -688,6 +711,7 @@ std::vector<std::complex<T>> dsp::fft::rfft(const std::vector<T>& x, unsigned n,
 		}
 		else
 		{
+			throw std::length_error::length_error("Simple FFT backend can only handle FFT length that are a power of two!");
 			//return dft_(x, N, mode);
 		}
 	case backend::fftw:
