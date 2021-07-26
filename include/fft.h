@@ -143,9 +143,10 @@ namespace dsp
 		/// @param samplingRate Sampling rate in Hz. Can be -1 to use normalized frequencies.
 		/// @param relativeCutoff How much of the spectrum to calculate. Default 0.5 to discard mirrored part of the spectrum (assuming real input).
 		/// @param windowType Type of the window to use to window each frame.
+		/// @param logSquared Return log-squared magnitude if true (default), otherwise return linear magnitude.
 		/// @return A vector containing the log-squared-magnitude spectrum of each windowed frame of the signal.
 		template<class T>
 		std::vector<std::vector<T>> spectrogram(const std::vector<T>& signal, unsigned frameLength, double overlap_pct = 0.5, 
-			int samplingRate = -1, double relativeCutoff = 0.5,  window::type windowType = window::type::hamming);
+			int samplingRate = -1, double relativeCutoff = 0.5,  window::type windowType = window::type::hamming, bool logSquared = true);
 	}
 }

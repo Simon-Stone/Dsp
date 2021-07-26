@@ -22,8 +22,10 @@ namespace dsp::fft
 		if (n == 0)
 		{
 			n = static_cast<unsigned>(x.size());
+			return static_cast<unsigned> (2 << (nextpow2(n) - 1));
 		}
-		return 2 << (nextpow2(n)-1);
+		
+		return n;
 	}
 
 	template<class T>
@@ -142,7 +144,8 @@ namespace dsp::fft
 	{
 		if (x.empty()) return {};
 
-		unsigned N = get_fft_length(x, n);
+		// DEBUG
+		auto N = n;
 
 		std::vector<T> x_in = resize_fft_input(x, N);
 
@@ -277,15 +280,13 @@ namespace dsp::fft
 	{
 		if (x.empty()) return std::vector<std::complex<float>>();
 
-		unsigned N = get_fft_length(x, n);
-
-		std::vector<std::complex<float>> X(N);
+		std::vector<std::complex<float>> X(n);
 		std::vector<std::complex<float>> x_copy = x;
-		x_copy.resize(N, 0.0);
+		x_copy.resize(n, 0.0);
 		fftwf_complex* in = reinterpret_cast<fftwf_complex*>(&x_copy[0]);
 
 		auto* out = reinterpret_cast<fftwf_complex*>(&X[0]);
-		const auto p = fftwf_plan_dft_1d(N, in, out, sign, flags);
+		const auto p = fftwf_plan_dft_1d(n, in, out, sign, flags);
 
 		fftwf_execute(p);
 
@@ -296,18 +297,18 @@ namespace dsp::fft
 			if (sign == FFTW_BACKWARD)
 			{
 				std::transform(X.begin(), X.end(),
-					X.begin(), [N](auto X) {return X / static_cast<float>(N); });
+					X.begin(), [n](auto X) {return X / static_cast<float>(n); });
 			}
 			break;
 		case NormalizationMode::ortho:
 			std::transform(X.begin(), X.end(),
-				X.begin(), [N](auto X) {return X / static_cast<float>(sqrt(N)); });
+				X.begin(), [n](auto X) {return X / static_cast<float>(sqrt(n)); });
 			break;
 		case NormalizationMode::forward:
 			if (sign == FFTW_FORWARD)
 			{
 				std::transform(X.begin(), X.end(),
-					X.begin(), [N](auto X) {return X / static_cast<float>(N); });
+					X.begin(), [n](auto X) {return X / static_cast<float>(n); });
 			}
 			break;
 		}
@@ -319,11 +320,9 @@ namespace dsp::fft
 	{
 		if (x.empty()) return std::vector<std::complex<double>>();
 
-		unsigned N = get_fft_length(x, n);
-
-		std::vector<std::complex<double>> X(N);
+		std::vector<std::complex<double>> X(n);
 		std::vector<std::complex<double>> x_copy = x;
-		x_copy.resize(N, 0.0);
+		x_copy.resize(n, 0.0);
 		fftw_complex* in = reinterpret_cast<fftw_complex*>(&x_copy[0]);
 
 		auto* out = reinterpret_cast<fftw_complex*>(&X[0]);
@@ -338,18 +337,18 @@ namespace dsp::fft
 			if (sign == FFTW_BACKWARD)
 			{
 				std::transform(X.begin(), X.end(),
-					X.begin(), [N](auto X) {return X / static_cast<double>(N); });
+					X.begin(), [n](auto X) {return X / static_cast<double>(n); });
 			}
 			break;
 		case NormalizationMode::ortho:
 			std::transform(X.begin(), X.end(),
-				X.begin(), [N](auto X) {return X / static_cast<double>(sqrt(N)); });
+				X.begin(), [n](auto X) {return X / static_cast<double>(sqrt(n)); });
 			break;
 		case NormalizationMode::forward:
 			if (sign == FFTW_FORWARD)
 			{
 				std::transform(X.begin(), X.end(),
-					X.begin(), [N](auto X) {return X / static_cast<double>(N); });
+					X.begin(), [n](auto X) {return X / static_cast<double>(n); });
 			}
 			break;
 		}
@@ -361,16 +360,14 @@ namespace dsp::fft
 	{
 		if (x.empty()) return std::vector<std::complex<long double>>();
 
-		unsigned N = get_fft_length(x, n);
-
-		std::vector<std::complex<long double>> X(N);
+		std::vector<std::complex<long double>> X(n);
 		std::vector<std::complex<long double>> x_copy = x;
-		x_copy.resize(N, 0.0);
+		x_copy.resize(n, 0.0);
 		fftwl_complex* in = reinterpret_cast<fftwl_complex*>(&x_copy[0]);
 
 
 		auto* out = reinterpret_cast<fftwl_complex*>(&X[0]);
-		const auto p = fftwl_plan_dft_1d(N, in, out, sign, flags);
+		const auto p = fftwl_plan_dft_1d(n, in, out, sign, flags);
 
 		fftwl_execute(p);
 
@@ -381,18 +378,18 @@ namespace dsp::fft
 			if (sign == FFTW_BACKWARD)
 			{
 				std::transform(X.begin(), X.end(),
-					X.begin(), [N](auto X) {return X / static_cast<long double>(N); });
+					X.begin(), [n](auto X) {return X / static_cast<long double>(n); });
 			}
 			break;
 		case NormalizationMode::ortho:
 			std::transform(X.begin(), X.end(),
-				X.begin(), [N](auto X) {return X / static_cast<long double>(sqrt(N)); });
+				X.begin(), [n](auto X) {return X / static_cast<long double>(sqrt(n)); });
 			break;
 		case NormalizationMode::forward:
 			if (sign == FFTW_FORWARD)
 			{
 				std::transform(X.begin(), X.end(),
-					X.begin(), [N](auto X) {return X / static_cast<long double>(N); });
+					X.begin(), [n](auto X) {return X / static_cast<long double>(n); });
 			}
 			break;
 		}
@@ -404,16 +401,14 @@ namespace dsp::fft
 	{
 		if (x.empty()) return std::vector<std::complex<double>>();
 
-		unsigned N = get_fft_length(x, n);
-
-		std::vector<std::complex<double>> X(static_cast<size_t>(N / 2 + 1));
+		std::vector<std::complex<double>> X(static_cast<size_t>(n / 2 + 1));
 		std::vector<double> x_copy = x;
-		x_copy.resize(N, 0.0);
+		x_copy.resize(n, 0.0);
 		double* in = &x_copy[0];
 
 
 		auto* out = reinterpret_cast<fftw_complex*>(&X[0]);
-		auto* p = fftw_plan_dft_r2c_1d(N, in, out, flags);
+		auto* p = fftw_plan_dft_r2c_1d(n, in, out, flags);
 
 		fftw_execute(p);
 
@@ -424,11 +419,11 @@ namespace dsp::fft
 			break;
 		case NormalizationMode::ortho:
 			std::transform(X.begin(), X.end(),
-				X.begin(), [N](auto X) {return X / static_cast<double>(sqrt(N)); });
+				X.begin(), [n](auto X) {return X / static_cast<double>(sqrt(n)); });
 			break;
 		case NormalizationMode::forward:
 			std::transform(X.begin(), X.end(),
-				X.begin(), [N](auto X) {return X / static_cast<double>(N); });
+				X.begin(), [n](auto X) {return X / static_cast<double>(n); });
 			break;
 		}
 		auto Xconj = dsp::conj(X);
@@ -440,16 +435,14 @@ namespace dsp::fft
 	{
 		if (x.empty()) return std::vector<std::complex<float>>();
 
-		unsigned N = get_fft_length(x, n);
-
-		std::vector<std::complex<float>> X(N);
+		std::vector<std::complex<float>> X(static_cast<size_t>(n / 2 + 1));
 		std::vector<float> x_copy = x;
-		x_copy.resize(N, 0.0);
+		x_copy.resize(n, 0.0);
 		float* in = &x_copy[0];
 
 
 		auto* out = reinterpret_cast<fftwf_complex*>(&X[0]);
-		const auto p = fftwf_plan_dft_r2c_1d(N, in, out, flags);
+		const auto p = fftwf_plan_dft_r2c_1d(n, in, out, flags);
 
 		fftwf_execute(p);
 
@@ -460,11 +453,11 @@ namespace dsp::fft
 			break;
 		case NormalizationMode::ortho:
 			std::transform(X.begin(), X.end(),
-				X.begin(), [N](auto X) {return X / static_cast<float>(sqrt(N)); });
+				X.begin(), [n](auto X) {return X / static_cast<float>(sqrt(n)); });
 			break;
 		case NormalizationMode::forward:
 			std::transform(X.begin(), X.end(),
-				X.begin(), [N](auto X) {return X / static_cast<float>(N); });
+				X.begin(), [n](auto X) {return X / static_cast<float>(n); });
 			break;
 		}
 
@@ -478,15 +471,13 @@ namespace dsp::fft
 	{
 		if (x.empty()) return std::vector<std::complex<long double>>();
 
-		unsigned N = get_fft_length(x, n);
-
-		std::vector<std::complex<long double>> X(N);
+		std::vector<std::complex<long double>> X(static_cast<size_t>(n / 2 + 1));
 		std::vector<long double> x_copy = x;
-		x_copy.resize(N, 0.0);
+		x_copy.resize(n, 0.0);
 		long double* in = &x_copy[0];
 
 		auto* out = reinterpret_cast<fftwl_complex*>(&X[0]);
-		const auto p = fftwl_plan_dft_r2c_1d(N, in, out, flags);
+		const auto p = fftwl_plan_dft_r2c_1d(n, in, out, flags);
 
 		fftwl_execute(p);
 
@@ -497,11 +488,11 @@ namespace dsp::fft
 			break;
 		case NormalizationMode::ortho:
 			std::transform(X.begin(), X.end(),
-				X.begin(), [N](auto X) {return X / static_cast<long double>(sqrt(N)); });
+				X.begin(), [n](auto X) {return X / static_cast<long double>(sqrt(n)); });
 			break;
 		case NormalizationMode::forward:
 			std::transform(X.begin(), X.end(),
-				X.begin(), [N](auto X) {return X / static_cast<long double>(N); });
+				X.begin(), [n](auto X) {return X / static_cast<long double>(n); });
 			break;
 		}
 
@@ -515,15 +506,13 @@ namespace dsp::fft
 	{
 		if (X.empty()) return std::vector<float>();
 
-		unsigned N = get_fft_length(X, n);
-
-		std::vector<float> x(N);
+		std::vector<float> x(n);
 		std::vector<std::complex<float>> X_copy = X;
-		X_copy.resize(N, 0.0);
+		X_copy.resize(n, 0.0);
 		fftwf_complex* in = reinterpret_cast<fftwf_complex*>(&X_copy[0]);
 
 		auto* out = &x[0];
-		const auto p = fftwf_plan_dft_c2r_1d(N, in, out, flags);
+		const auto p = fftwf_plan_dft_c2r_1d(n, in, out, flags);
 
 		fftwf_execute(p);
 
@@ -532,11 +521,11 @@ namespace dsp::fft
 		{
 		case NormalizationMode::backward:
 			std::transform(x.begin(), x.end(),
-				x.begin(), [N](auto x) {return x / static_cast<float>(N); });
+				x.begin(), [n](auto x) {return x / static_cast<float>(n); });
 			break;
 		case NormalizationMode::ortho:
 			std::transform(x.begin(), x.end(),
-				x.begin(), [N](auto x) {return x / static_cast<float>(sqrt(N)); });
+				x.begin(), [n](auto x) {return x / static_cast<float>(sqrt(n)); });
 			break;
 		case NormalizationMode::forward:
 			break;
@@ -549,16 +538,14 @@ namespace dsp::fft
 	{
 		if (X.empty()) return std::vector<double>();
 
-		unsigned N = get_fft_length(X, n);
-
-		std::vector<double> x(N);
+		std::vector<double> x(n);
 		std::vector<std::complex<double>> X_copy = X;
-		X_copy.resize(N, 0.0);
+		X_copy.resize(n, 0.0);
 		fftw_complex* in = reinterpret_cast<fftw_complex*>(&X_copy[0]);
 
 
 		auto* out = &x[0];
-		const auto p = fftw_plan_dft_c2r_1d(N, in, out, flags);
+		const auto p = fftw_plan_dft_c2r_1d(n, in, out, flags);
 
 		fftw_execute(p);
 
@@ -567,11 +554,11 @@ namespace dsp::fft
 		{
 		case NormalizationMode::backward:
 			std::transform(x.begin(), x.end(),
-				x.begin(), [N](auto x) {return x / static_cast<double>(N); });
+				x.begin(), [n](auto x) {return x / static_cast<double>(n); });
 			break;
 		case NormalizationMode::ortho:
 			std::transform(x.begin(), x.end(),
-				x.begin(), [N](auto x) {return x / static_cast<double>(sqrt(N)); });
+				x.begin(), [n](auto x) {return x / static_cast<double>(sqrt(n)); });
 			break;
 		case NormalizationMode::forward:
 			break;
@@ -584,16 +571,14 @@ namespace dsp::fft
 	{
 		if (X.empty()) return std::vector<long double>();
 
-		unsigned N = get_fft_length(X, n);
-
-		std::vector<long double> x(N);
+		std::vector<long double> x(n);
 		std::vector<std::complex<long double>> X_copy = X;
-		X_copy.resize(N, 0.0);
+		X_copy.resize(n, 0.0);
 		fftwl_complex* in = reinterpret_cast<fftwl_complex*>(&X_copy[0]);
 
 
 		auto* out = &x[0];
-		const auto p = fftwl_plan_dft_c2r_1d(N, in, out, flags);
+		const auto p = fftwl_plan_dft_c2r_1d(n, in, out, flags);
 
 		fftwl_execute(p);
 
@@ -602,11 +587,11 @@ namespace dsp::fft
 		{
 		case NormalizationMode::backward:
 			std::transform(x.begin(), x.end(),
-				x.begin(), [N](auto x) {return x / static_cast<long double>(N); });
+				x.begin(), [n](auto x) {return x / static_cast<long double>(n); });
 			break;
 		case NormalizationMode::ortho:
 			std::transform(x.begin(), x.end(),
-				x.begin(), [N](auto x) {return x / static_cast<long double>(sqrt(N)); });
+				x.begin(), [n](auto x) {return x / static_cast<long double>(sqrt(n)); });
 			break;
 		case NormalizationMode::forward:
 			break;
@@ -677,21 +662,37 @@ std::vector<std::complex<T>> dsp::fft::icfft(const std::vector<std::complex<T>>&
 template <class T>
 std::vector<std::complex<T>> dsp::fft::rfft(const std::vector<T>& x, unsigned n, NormalizationMode mode, backend backend)
 {
+	auto N = get_fft_length(x, n);
+	
 	switch (backend)
 	{
 	case backend::automatic:
 #ifndef ZERO_DEPENDENCIES
-		if (n > 100000)
+		if (N > 100000)
 		{
-			return rfftw(x, n, FFTW_ESTIMATE, mode);
+			return rfftw(x, N, FFTW_ESTIMATE, mode);
 		}
 #endif
-		return rfft_(x, n, mode);
+		if (ispow2(N))
+		{
+			return rfft_(x, N, mode);
+		}
+		else
+		{
+			//return dft_(x, N, mode);
+		}
 	case backend::simple:
-		return rfft_(x, n, mode);
+		if (ispow2(N))
+		{
+			return rfft_(x, N, mode);
+		}
+		else
+		{
+			//return dft_(x, N, mode);
+		}
 	case backend::fftw:
 #ifndef ZERO_DEPENDENCIES
-		return rfftw(x, n, FFTW_ESTIMATE, mode);
+		return rfftw(x, N, FFTW_ESTIMATE, mode);
 #else
 		throw std::runtime_error("Library built without FFTW support!");
 #endif
@@ -804,7 +805,7 @@ std::vector<std::vector<std::complex<T>>> dsp::fft::stft(const std::vector<T>& x
 
 template <class T>
 std::vector<std::vector<T>> dsp::fft::spectrogram(const std::vector<T>& signal, unsigned frameLength,
-	double overlap_pct, int samplingRate, double relativeCutoff, window::type windowType)
+	double overlap_pct, int samplingRate, double relativeCutoff, window::type windowType, bool logSquared)
 {
 	std::vector<std::vector<T>> spectrogram;
 
@@ -816,31 +817,33 @@ std::vector<std::vector<T>> dsp::fft::spectrogram(const std::vector<T>& signal, 
 	// -> Final result is a matrix of real values, each column representing one frame's log-squared magnitude spectrum
 
 	// Pre-emphasis
-	std::vector<T> b{ 1.0, static_cast<T>(0.95) };
+	std::vector<T> b{ 1.0, static_cast<T>(-0.95) };
 	std::vector<T> a{ 1.0 };
 	auto preemph_signal = filter::filter(b, a, signal);
 
-	// Split into frames
-	auto frames = signalToFrames(signal, frameLength, static_cast<unsigned>(overlap_pct * frameLength));
-	spectrogram.resize(frames.size());
+	auto N = 2 << (nextpow2(frameLength) - 1);
 
-	// Window each frame
-	auto window = window::get_window<T>(windowType, frameLength);
-	std::transform(std::execution::par_unseq,
-		frames.begin(), frames.end(),
-		frames.begin(),
-		[window](auto& frame)
+	auto overlap = static_cast<int>(overlap_pct * frameLength);
+
+	auto stft = dsp::fft::stft(preemph_signal, frameLength, overlap, windowType, N);
+
+	const int finalFrequencyBinIdx = std::min(N, static_cast<const int>(relativeCutoff * static_cast<double>(N)) + 1);
+
+	spectrogram.reserve(stft.size());
+
+	for (const auto& frame : stft)
+	{
+		auto magnitudeSpectrum = std::vector<T>(finalFrequencyBinIdx);
+		if (logSquared)
 		{
-			std::transform(frame.begin(), frame.end(), window.begin(), frame.begin(), std::multiplies<>());
-			return frame;
-		});
-
-	// Calculate squared magnitude spectrum in dB
-	const auto nFft = 2 << (nextpow2(frameLength) - 1);
-	std::transform(std::execution::par_unseq,
-		frames.begin(), frames.end(),
-		spectrogram.begin(),
-		[=](auto frame) {return logSquaredMagnitudeSpectrum<T>(frame, nFft, relativeCutoff); });
+			std::transform(std::execution::par_unseq, frame.begin(), frame.begin() + finalFrequencyBinIdx, magnitudeSpectrum.begin(), &logSquaredMagnitude<T>);
+		}
+		else
+		{
+			std::transform(std::execution::par_unseq, frame.begin(), frame.begin() + finalFrequencyBinIdx, magnitudeSpectrum.begin(), &std::abs<T>);
+		}
+		spectrogram.push_back(magnitudeSpectrum);
+	}
 
 	return spectrogram;
 
@@ -872,8 +875,15 @@ template std::vector<std::vector<std::complex<double>>> dsp::fft::stft(const std
 template std::vector<std::vector<std::complex<long double>>> dsp::fft::stft(const std::vector<long double> & x, unsigned frameLength, int overlap, window::type window, unsigned fftLength);
 
 template std::vector<std::vector<float>> dsp::fft::spectrogram(const std::vector<float>& signal, unsigned frameLength,
-	double overlap_pct, int samplingRate, double relativeCutoff, window::type windowType);
+	double overlap_pct, int samplingRate, double relativeCutoff, window::type windowType, bool logSquared);
 template std::vector<std::vector<double>> dsp::fft::spectrogram(const std::vector<double>& signal, unsigned frameLength,
-	double overlap_pct, int samplingRate, double relativeCutoff, window::type windowType);
+	double overlap_pct, int samplingRate, double relativeCutoff, window::type windowType, bool logSquared);
 template std::vector<std::vector<long double>> dsp::fft::spectrogram(const std::vector<long double>& signal, unsigned frameLength,
-	double overlap_pct, int samplingRate, double relativeCutoff, window::type windowType);
+	double overlap_pct, int samplingRate, double relativeCutoff, window::type windowType, bool logSquared);
+
+template std::vector<float> dsp::fft::logSquaredMagnitudeSpectrum(const std::vector<float>& signal, int N_fft,
+	double relativeCutoff);
+template std::vector<double> dsp::fft::logSquaredMagnitudeSpectrum(const std::vector<double>& signal, int N_fft,
+	double relativeCutoff);
+template std::vector<long double> dsp::fft::logSquaredMagnitudeSpectrum(const std::vector<long double>& signal, int N_fft,
+	double relativeCutoff);

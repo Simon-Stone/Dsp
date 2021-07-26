@@ -8,7 +8,7 @@
 
 // Get some data for testing purposes
 #include "stft_test_data.h"
-
+#include "spectrogram_test_data.h"
 
 #include "dsp.h"
 
@@ -16,6 +16,19 @@ struct DspTest : ::testing::Test
 {
 
 };
+
+TEST_F(DspTest, NextPow2)
+{
+	int i1 = 17;
+	int i2 = 128;
+	double d1 = 0.3;
+	double d2 = 62.0;
+
+	EXPECT_EQ(dsp::nextpow2(i1), 5);
+	EXPECT_EQ(dsp::nextpow2(i2), 7);
+	EXPECT_EQ(dsp::nextpow2(d1), 0);
+	EXPECT_EQ(dsp::nextpow2(d2), 6);	
+}
 
 TEST_F(DspTest, SignalOperations)
 {
@@ -408,17 +421,73 @@ TEST_F(DspTest, Window)
 
 TEST_F(DspTest, Spectrogram)
 {
-	auto x = dsp::signals::sin<double>(100, 0.02, 8000);
+	unsigned frameLength{ 128 };
+	unsigned overlap{ 64 };
+	dsp::window::type windowType{ dsp::window::type::hann };
+	unsigned fftLength{ 128 };
 
-	auto X = dsp::fft::spectrogram(x.getSamples(), 256, 0.5, 8000);
+	double overlap_pct = static_cast<double>(overlap) / frameLength;
 
-	for (const auto& Xi : X)
+	auto y = dsp::fft::spectrogram(unittest::spectrogram::x, frameLength, overlap_pct, -1, 0.5, windowType);
+
+	EXPECT_EQ(y.size(), unittest::spectrogram::yRef.size());
+	EXPECT_EQ(y[0].size(), unittest::spectrogram::yRef[0].size());
+
+	for (unsigned i = 0; i < y.size(); ++i)
 	{
-		for (const auto& Xik : Xi)
+		for (unsigned j = 0; j < y[i].size(); ++j)
 		{
-			std::cout << Xik << std::endl;
+			EXPECT_FLOAT_EQ(unittest::spectrogram::yRef[i][j], y[i][j]);
 		}
 	}
+
+	auto yMag = dsp::fft::spectrogram(unittest::spectrogram::x, frameLength, overlap_pct, -1, 0.5, windowType, false);
+
+	EXPECT_EQ(yMag.size(), unittest::spectrogram::yMagRef.size());
+	EXPECT_EQ(yMag[0].size(), unittest::spectrogram::yMagRef[0].size());
+
+	for (unsigned i = 0; i < yMag.size(); ++i)
+	{
+		for (unsigned j = 0; j < yMag[i].size(); ++j)
+		{
+			EXPECT_NEAR(unittest::spectrogram::yMagRef[i][j], yMag[i][j], 1e-5);
+		}
+	}
+
+}
+
+TEST_F(DspTest, StftTest01)
+{
+	unsigned frameLength{ 128 };
+	unsigned overlap{ 64 };
+	dsp::window::type windowType{ dsp::window::type::hann };
+	unsigned fftLength{ 128 };
+	auto y = dsp::fft::stft(unittest::stft::x, frameLength, overlap, windowType, frameLength);
+	
+	EXPECT_EQ(y.size(), unittest::stft::y1.size());
+	EXPECT_EQ(y[0].size()/2+1, unittest::stft::y1[0].size());
+
+	for(unsigned i = 0; i < y.size(); ++i)
+	{
+		for(unsigned j = 0; j < y[i].size()/2+1; ++j)
+		{
+			EXPECT_FLOAT_EQ(unittest::stft::y1[i][j].real(), y[i][j].real());
+			EXPECT_FLOAT_EQ(unittest::stft::y1[i][j].imag(), y[i][j].imag());
+		}
+	}
+	
+}
+
+TEST_F(DspTest, StftTest02)
+{
+	unsigned frameLength{ 256 };
+	unsigned overlap{ 17 };
+	dsp::window::type windowType{ dsp::window::type::hamming };
+	unsigned fftLength{ 316 };
+	EXPECT_THROW(dsp::fft::stft(unittest::stft::x, frameLength, overlap, windowType, fftLength), std::length_error);
+	
+	
+	
 }
 
 TEST_F(DspTest, StftTest01)
