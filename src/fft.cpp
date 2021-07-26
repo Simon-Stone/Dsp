@@ -796,7 +796,6 @@ std::vector<std::vector<std::complex<T>>> dsp::fft::stft(const std::vector<T>& x
 	stft.reserve(frames.size());
 	for (const auto& frame : frames)
 	{
-
 		stft.emplace_back(dsp::fft::rfft(frame, fftLength));
 	}
 	
