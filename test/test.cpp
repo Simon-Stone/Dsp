@@ -548,8 +548,8 @@ TEST_F(DspTest, DctTest)
 
 	// std::vector<std::vector<double>> basisVectorCompare;
 	std::vector<std::vector<double>> basisVectors;
-	basisVectors.push_back(std::vector<double>(1, 1));
-	basisVectors.push_back(std::vector<double>(1, -1));
+	basisVectors.push_back(std::vector<double>{1, 1});
+	basisVectors.push_back(std::vector<double>{1, -1});
 
 	std::vector<std::vector<double>> basisVectorCompare = dsp::fft::calcCosineBasisVectors<double>(nBasisVectors);
 	EXPECT_EQ(basisVectors, basisVectorCompare);
