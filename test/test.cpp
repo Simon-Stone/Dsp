@@ -428,6 +428,20 @@ TEST_F(DspTest, Spectrogram)
 			EXPECT_FLOAT_EQ(unittest::spectrogram::yRef[i][j], y[i][j]);
 		}
 	}
+
+	auto yMag = dsp::fft::spectrogram(unittest::spectrogram::x, frameLength, overlap_pct, -1, 0.5, windowType, false);
+
+	EXPECT_EQ(yMag.size(), unittest::spectrogram::yMagRef.size());
+	EXPECT_EQ(yMag[0].size(), unittest::spectrogram::yMagRef[0].size());
+
+	for (unsigned i = 0; i < yMag.size(); ++i)
+	{
+		for (unsigned j = 0; j < yMag[i].size(); ++j)
+		{
+			EXPECT_NEAR(unittest::spectrogram::yMagRef[i][j], yMag[i][j], 1e-5);
+		}
+	}
+
 }
 
 TEST_F(DspTest, StftTest01)

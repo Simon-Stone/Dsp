@@ -813,7 +813,7 @@ std::vector<std::vector<std::complex<T>>> dsp::fft::stft(const std::vector<T>& x
 
 template <class T>
 std::vector<std::vector<T>> dsp::fft::spectrogram(const std::vector<T>& signal, unsigned frameLength,
-	double overlap_pct, int samplingRate, double relativeCutoff, window::type windowType)
+	double overlap_pct, int samplingRate, double relativeCutoff, window::type windowType, bool logSquared)
 {
 	std::vector<std::vector<T>> spectrogram;
 
@@ -828,7 +828,6 @@ std::vector<std::vector<T>> dsp::fft::spectrogram(const std::vector<T>& signal, 
 	std::vector<T> b{ 1.0, static_cast<T>(-0.95) };
 	std::vector<T> a{ 1.0 };
 	auto preemph_signal = filter::filter(b, a, signal);
-	//auto preemph_signal = signal;
 
 	auto N = 2 << (nextpow2(frameLength) - 1);
 
@@ -839,11 +838,19 @@ std::vector<std::vector<T>> dsp::fft::spectrogram(const std::vector<T>& signal, 
 	const int finalFrequencyBinIdx = std::min(N, static_cast<const int>(relativeCutoff * static_cast<double>(N)) + 1);
 
 	spectrogram.reserve(stft.size());
+
 	for (const auto& frame : stft)
 	{
-		auto logSquaredSpectrum = std::vector<T>(finalFrequencyBinIdx);
-		std::transform(std::execution::par_unseq, frame.begin(), frame.begin() + finalFrequencyBinIdx, logSquaredSpectrum.begin(), &logSquaredMagnitude<T>);
-		spectrogram.push_back(logSquaredSpectrum);
+		auto magnitudeSpectrum = std::vector<T>(finalFrequencyBinIdx);
+		if (logSquared)
+		{
+			std::transform(std::execution::par_unseq, frame.begin(), frame.begin() + finalFrequencyBinIdx, magnitudeSpectrum.begin(), &logSquaredMagnitude<T>);
+		}
+		else
+		{
+			std::transform(std::execution::par_unseq, frame.begin(), frame.begin() + finalFrequencyBinIdx, magnitudeSpectrum.begin(), &std::abs<T>);
+		}
+		spectrogram.push_back(magnitudeSpectrum);
 	}
 
 	return spectrogram;
@@ -876,11 +883,11 @@ template std::vector<std::vector<std::complex<double>>> dsp::fft::stft(const std
 template std::vector<std::vector<std::complex<long double>>> dsp::fft::stft(const std::vector<long double> & x, unsigned frameLength, int overlap, window::type window, unsigned fftLength);
 
 template std::vector<std::vector<float>> dsp::fft::spectrogram(const std::vector<float>& signal, unsigned frameLength,
-	double overlap_pct, int samplingRate, double relativeCutoff, window::type windowType);
+	double overlap_pct, int samplingRate, double relativeCutoff, window::type windowType, bool logSquared);
 template std::vector<std::vector<double>> dsp::fft::spectrogram(const std::vector<double>& signal, unsigned frameLength,
-	double overlap_pct, int samplingRate, double relativeCutoff, window::type windowType);
+	double overlap_pct, int samplingRate, double relativeCutoff, window::type windowType, bool logSquared);
 template std::vector<std::vector<long double>> dsp::fft::spectrogram(const std::vector<long double>& signal, unsigned frameLength,
-	double overlap_pct, int samplingRate, double relativeCutoff, window::type windowType);
+	double overlap_pct, int samplingRate, double relativeCutoff, window::type windowType, bool logSquared);
 
 template std::vector<float> dsp::fft::logSquaredMagnitudeSpectrum(const std::vector<float>& signal, int N_fft,
 	double relativeCutoff);
