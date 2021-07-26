@@ -23,7 +23,15 @@ namespace dsp::fft
 		{
 			n = static_cast<unsigned>(x.size());
 		}
-		return 2 << (nextpow2(n)-1);
+
+		auto N = 2 << (nextpow2(n) - 1);
+
+		if (N != n)
+		{
+			throw std::length_error::length_error("Only powers of two are allowed as fft length.");
+		}
+
+		return N;
 	}
 
 	template<class T>

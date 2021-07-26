@@ -449,19 +449,9 @@ TEST_F(DspTest, StftTest02)
 	unsigned overlap{ 17 };
 	dsp::window::type windowType{ dsp::window::type::hamming };
 	unsigned fftLength{ 316 };
-	auto y = dsp::fft::stft(unittest::stft::x, frameLength, overlap, windowType, fftLength);
+	EXPECT_THROW(dsp::fft::stft(unittest::stft::x, frameLength, overlap, windowType, fftLength), std::length_error);
 	
-	EXPECT_EQ(y.size(), unittest::stft::y2.size());
-	EXPECT_EQ(y[0].size(), unittest::stft::y2[0].size());
-
-	for(unsigned i = 0; i < y.size(); ++i)
-	{
-		for(unsigned j = 0; j < y[i].size(); ++j)
-		{
-			EXPECT_DOUBLE_EQ(unittest::stft::y2[i][j].real(), y[i][j].real());
-			EXPECT_DOUBLE_EQ(unittest::stft::y2[i][j].imag(), y[i][j].imag());
-		}
-	}
+	
 	
 }
 
