@@ -14,7 +14,8 @@ yt = y1+y2+y3;
 
 %% FFT test output
 Y = fft(yt);
-%%
+
+%% Output complex data
 fid = fopen('tmp.txt','w');
 fprintf(fid, 'const std::vector<std::complex<double>> Yref = {')
 

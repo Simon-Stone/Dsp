@@ -274,6 +274,74 @@ namespace dsp::fft
 		return dsp::real(X);
 	}
 
+	template <class T>
+	std::vector<std::complex<T>> dft_(const std::vector<T>& x, unsigned n, NormalizationMode mode)
+	{
+		std::vector<std::complex<T>> X;		
+
+		for (unsigned k = 0; k <= n/2; ++k)
+		{
+			T re{ 0.0 };
+			T im{ 0.0 };
+
+			for (unsigned i = 0; i < n; ++i)
+			{
+				double angle = (2.0 * pi * k * i) / static_cast<double>(n);
+				re += static_cast<T>(x[i] * std::cos(angle));
+				im -= static_cast<T>(x[i] * std::sin(angle)); 
+			}
+
+			if (mode == NormalizationMode::forward)
+			{
+				im = -im;
+				re /= static_cast<T>(n / 2);
+				im /= static_cast<T>(n / 2);
+				if ((k == 0) || (k == n/2)) { re /= 2; }
+			}
+			X.emplace_back(re, im);
+		}
+		auto Xconj = dsp::conj(X);
+		if (n % 2 == 0)
+		{
+			X.insert(X.end(), Xconj.rbegin() + 1, Xconj.rend() - 1);
+		}
+		else
+		{
+			X.insert(X.end(), Xconj.rbegin(), Xconj.rend() - 1);
+		}
+		return X;
+	}
+
+	template <class T>
+	std::vector<T> idft_(const std::vector<std::complex<T>> X, unsigned n, NormalizationMode mode)
+	{
+		T re{ 0.0 }, im{ 0.0 };
+		
+		std::vector<T> x(n, 0.0);
+		
+		for (unsigned k = 0; k <= n / 2; ++k)
+		{
+			if (mode == NormalizationMode::backward)
+			{
+				im = -X[k].imag() / static_cast<T>(n / 2);
+				re = X[k].real() / static_cast<T>(n / 2);
+				if ((k == 0) || (k == n / 2)) { re /= 2.0; }
+			}
+			else
+			{
+				re = X[k].real();
+				im = X[k].imag();
+			}
+
+			for (unsigned i = 0; i < n; ++i)
+			{
+				T angle = static_cast<T>(2.0 * pi * k * i) / static_cast<T>(n);
+				x[i] += re * std::cos(angle) + im * std::sin(angle);
+			}
+		}
+		return x;
+	}
+
 #ifndef ZERO_DEPENDENCIES
 	/* Wrapper functions for FFTW library functions of various precisions (high-performance for long signals) */
 	auto fftw(const std::vector<std::complex<float>>& x, unsigned n, int sign, unsigned flags, NormalizationMode mode)
@@ -622,6 +690,7 @@ namespace dsp::fft
 		fftwl_destroy_plan(p);
 		return x;
 	}
+
 #endif
 	/// @endcond
 }
@@ -701,8 +770,7 @@ std::vector<std::complex<T>> dsp::fft::rfft(const std::vector<T>& x, unsigned n,
 		}
 		else
 		{
-			throw std::length_error::length_error("Simple FFT backend can only handle FFT length that are a power of two!");
-			//return dft_(x, N, mode);
+			return dft_(x, N, mode);
 		}
 	case backend::simple:
 		if (ispow2(N))
@@ -710,9 +778,8 @@ std::vector<std::complex<T>> dsp::fft::rfft(const std::vector<T>& x, unsigned n,
 			return rfft_(x, N, mode);
 		}
 		else
-		{
-			throw std::length_error::length_error("Simple FFT backend can only handle FFT length that are a power of two!");
-			//return dft_(x, N, mode);
+		{			
+			return dft_(x, N, mode);
 		}
 	case backend::fftw:
 #ifndef ZERO_DEPENDENCIES
@@ -728,21 +795,64 @@ std::vector<std::complex<T>> dsp::fft::rfft(const std::vector<T>& x, unsigned n,
 template <class T>
 std::vector<T> dsp::fft::irfft(const std::vector<std::complex<T>>& X, unsigned n, NormalizationMode mode, backend backend)
 {
+	auto N = get_fft_length(X, n);
+	switch (backend)
+	{
+	case backend::automatic:
+#ifndef ZERO_DEPENDENCIES
+		if (N > 100000)
+		{
+			return irfftw(X, N, FFTW_ESTIMATE, mode);
+		}
+#endif
+		if (ispow2(N))
+		{
+			return irfft_(X, N, mode);
+		}
+		else
+		{
+			return idft_(X, N, mode);
+		}
+	case backend::simple:
+		if (ispow2(N))
+		{
+			return irfft_(X, N, mode);
+		}
+		else
+		{
+			return idft_(X, N, mode);
+		}
+	case backend::fftw:
+#ifndef ZERO_DEPENDENCIES
+		return irfftw(X, N, FFTW_ESTIMATE, mode);
+#else
+		throw std::runtime_error("Library built without FFTW support!");
+#endif
+	default:
+		throw std::runtime_error("Unknown backend selected!");
+	}
+}
+
+template<class T>
+std::vector<std::complex<T>> dsp::fft::dft(const std::vector<T>& x, unsigned n, NormalizationMode mode, backend backend)
+{
 	switch (backend)
 	{
 	case backend::automatic:
 #ifndef ZERO_DEPENDENCIES
 		if (n > 100000)
 		{
-			return irfftw(X, n, FFTW_ESTIMATE, mode);
+			//return dftw(X, n, FFTW_ESTIMATE, mode);
+			throw std::runtime_error("Not implemented yet!");
 		}
 #endif
-		return irfft_(X, n, mode);
+		return dft_(x, n, mode);
 	case backend::simple:
-		return irfft_(X, n, mode);
+		return dft_(x, n, mode);
 	case backend::fftw:
 #ifndef ZERO_DEPENDENCIES
-		return irfftw(X, n, FFTW_ESTIMATE, mode);
+		//return dftw(X, n, FFTW_ESTIMATE, mode);
+		throw std::runtime_error("Not implemented yet!");
 #else
 		throw std::runtime_error("Library built without FFTW support!");
 #endif

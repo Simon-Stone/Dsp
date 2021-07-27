@@ -454,6 +454,26 @@ TEST_F(DspTest, FFTW)
 	}
 }
 
+TEST_F(DspTest, DFT)
+{
+	auto Y = dsp::fft::fft(unittest::fft::x, 1001, dsp::fft::NormalizationMode::backward, dsp::fft::backend::simple);
+	EXPECT_EQ(Y.size(), unittest::fft::Yref.size());
+
+	for (unsigned i = 0; i < Y.size(); ++i)
+	{
+		EXPECT_NEAR(Y[i].real(), unittest::fft::Yref[i].real(), 1e-6);
+		EXPECT_NEAR(Y[i].imag(), unittest::fft::Yref[i].imag(), 1e-6);
+	}
+
+	auto y = dsp::fft::ifft(Y, unittest::fft::x.size(), dsp::fft::NormalizationMode::backward, dsp::fft::backend::simple);
+
+	EXPECT_EQ(y.size(), unittest::fft::x.size());
+	for (unsigned i = 0; i < unittest::fft::x.size(); ++i)
+	{
+		EXPECT_NEAR(y[i], unittest::fft::x[i], 1e-2); // Warning!! Pretty bad reconstruction accuracy!
+	}
+}
+
 TEST_F(DspTest, StftTest01)
 {
 	unsigned frameLength{ 128 };

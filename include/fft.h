@@ -83,6 +83,8 @@ namespace dsp
 		template<class T>
 		std::vector<T> logSquaredMagnitudeSpectrum(const std::vector<T>& signal, int N_fft, double relativeCutoff);
 		
+		template<class T>
+		std::vector<std::complex<T>> dft(const std::vector<T>& x, unsigned n, NormalizationMode mode = NormalizationMode::backward, backend backend = backend::automatic);
 		// TODO:
 		//fft2();
 		//ifft2();
@@ -114,7 +116,7 @@ namespace dsp
 
 		// Discrete Sin and Cosine Transforms (DST and DCT)
 		// TODO:
-		//dct();
+		// dct();
 		//idct();
 		//dctn();
 		//idctn();
