@@ -140,7 +140,6 @@ namespace dsp
 
 		// Helper functions
 		// TODO:
-		//fftshift();
 		//ifftshift();
 		//fftfreq();
 		//rfftfreq();
@@ -149,6 +148,20 @@ namespace dsp
 		/// @brief Fast convolution using the FFT
 		template<class T>
 		std::vector<T> fftconvolution(const std::vector<T>& volume, const std::vector<T>& kernel, convolution_mode mode = convolution_mode::valid);
+
+		/// @brief Rearranges a Fourier transform X by shifting the zero-frequency component to the center of the vector.
+		/// @tparam T Data type of the elements
+		/// @param X Vector holding the Fourier transform
+		/// @return Fourier transform with the zero-frequency component shifted to the center
+		template<class T>
+		std::vector<T> fftshift(const std::vector<T>& X);
+
+		/// @brief Rearranges a zero-frequency-shifted Fourier transform X back to the original transform output. In other words, ifftshift undoes the result of fftshift.
+		/// @tparam T Data type of the elements
+		/// @param X Vector holding the Fourier transform
+		/// @return Fourier transform with the zero-frequency component at the lowest index
+		template<class T>
+		std::vector<T> ifftshift(const std::vector<T>& X);
 
 		/// @brief Returns a spectrogram of the passed signal
 		/// @tparam T Data type of the signal's samples

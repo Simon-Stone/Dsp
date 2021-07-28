@@ -588,6 +588,40 @@ TEST_F(DspTest, FFT_lengthNotPow2)
 	}
 }
 
+TEST_F(DspTest, FftShift)
+{
+	std::vector<double> x_even = { 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 };
+	std::vector<double> x_even_ref = { 4.0, 5.0, 6.0, 1.0, 2.0, 3.0 };
+	auto x_even_shifted = dsp::fft::fftshift(x_even);
+
+	for (unsigned i = 0; i < x_even.size(); ++i)
+	{
+		EXPECT_EQ(x_even_shifted[i], x_even_ref[i]);
+	}	
+
+	auto x_even_shifted_back = dsp::fft::ifftshift(x_even_shifted);
+	for (unsigned i = 0; i < x_even.size(); ++i)
+	{
+		EXPECT_EQ(x_even_shifted_back[i], x_even[i]);
+	}
+
+	std::vector<double> x_odd = { 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0 };
+	std::vector<double> x_odd_ref = { 5.0, 6.0, 7.0, 1.0, 2.0, 3.0, 4.0 };
+	auto x_odd_shifted = dsp::fft::fftshift(x_odd);
+
+	for (unsigned i = 0; i < x_odd.size(); ++i)
+	{
+		EXPECT_EQ(x_odd_shifted[i], x_odd_ref[i]);
+	}
+
+	auto x_odd_shifted_back = dsp::fft::ifftshift(x_odd_shifted);
+	for (unsigned i = 0; i < x_odd.size(); ++i)
+	{
+		EXPECT_EQ(x_odd_shifted_back[i], x_odd[i]);
+	}
+	
+}
+
 TEST_F(DspTest, StftTest01)
 {
 	unsigned frameLength{ 128 };

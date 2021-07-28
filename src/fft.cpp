@@ -238,7 +238,7 @@ namespace dsp::fft
 		{
 		case FrequencyRange::centered:
 		{
-			throw std::runtime_error("Not implemented yet!");
+			X = fftshift(X);
 			break;
 		}
 		case FrequencyRange::twosided:
@@ -1027,6 +1027,22 @@ std::vector<T> dsp::fft::fftconvolution(const std::vector<T>& volume, const std:
 }
 
 template<class T>
+std::vector<T> dsp::fft::fftshift(const std::vector<T>& X)
+{
+	auto X_shifted(X);
+	std::rotate(X_shifted.begin(), X_shifted.begin() + static_cast<unsigned>(std::ceil(static_cast<double>(X.size()) / 2.0)), X_shifted.end());
+	return X_shifted;
+}
+
+template<class T>
+std::vector<T> dsp::fft::ifftshift(const std::vector<T>& X)
+{
+	auto X_shifted(X);
+	std::rotate(X_shifted.begin(), X_shifted.begin() + static_cast<unsigned>(std::floor(static_cast<double>(X.size()) / 2.0)), X_shifted.end());
+	return X_shifted;
+}
+
+template<class T>
 std::vector<std::vector<std::complex<T>>> dsp::fft::stft(const std::vector<T>& x, unsigned frameLength, int overlap, window::type window, unsigned fftLength)
 {
 	// Algorithm:
@@ -1122,6 +1138,19 @@ template std::vector<long double> dsp::fft::irfft(const std::vector<std::complex
 template std::vector<float> dsp::fft::fftconvolution(const std::vector<float>& volume, const std::vector<float>& kernel, convolution_mode mode);
 template std::vector<double> dsp::fft::fftconvolution(const std::vector<double>& volume, const std::vector<double>& kernel, convolution_mode mode);
 template std::vector<long double> dsp::fft::fftconvolution(const std::vector<long double>& volume, const std::vector<long double>& kernel, convolution_mode mode);
+
+template std::vector<float> dsp::fft::fftshift(const std::vector<float>& X);
+template std::vector<double> dsp::fft::fftshift(const std::vector<double>& X);
+template std::vector<long double> dsp::fft::fftshift(const std::vector<long double>& X);
+template std::vector<std::complex<float>> dsp::fft::fftshift(const std::vector<std::complex<float>>& X);
+template std::vector<std::complex<double>> dsp::fft::fftshift(const std::vector<std::complex<double>>& X);
+template std::vector<std::complex<long double>> dsp::fft::fftshift(const std::vector<std::complex<long double>>& X);
+template std::vector<float> dsp::fft::ifftshift(const std::vector<float>& X);
+template std::vector<double> dsp::fft::ifftshift(const std::vector<double>& X);
+template std::vector<long double> dsp::fft::ifftshift(const std::vector<long double>& X);
+template std::vector<std::complex<float>> dsp::fft::ifftshift(const std::vector<std::complex<float>>& X);
+template std::vector<std::complex<double>> dsp::fft::ifftshift(const std::vector<std::complex<double>>& X);
+template std::vector<std::complex<long double>> dsp::fft::ifftshift(const std::vector<std::complex<long double>>& X);
 
 template std::vector<std::vector<std::complex<float>>> dsp::fft::stft(const std::vector<float> & x, unsigned frameLength, int overlap, window::type window, unsigned fftLength);
 template std::vector<std::vector<std::complex<double>>> dsp::fft::stft(const std::vector<double> & x, unsigned frameLength, int overlap, window::type window, unsigned fftLength);
