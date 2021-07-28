@@ -13,8 +13,22 @@ y3 = sin(2*pi*f3*k/N);
 yt = y1+y2+y3;
 
 %% FFT test output
-Y = fft(yt);
+% Y = fft(yt);
+Y = fft(yt, 1024);
+yr = ifft(Y, 1001, 'symmetric');
+%% Output real data
+fid = fopen('tmp.txt','w');
+fprintf(fid, 'const std::vector<double> x_reconstructed = {')
 
+for i = 1 : length(yr)
+    fprintf(fid, '%f', yr(i));
+    if i == length(yr)
+        fprintf(fid, '};');
+    else
+        fprintf(fid, ', ');
+    end
+end
+fclose(fid);
 %% Output complex data
 fid = fopen('tmp.txt','w');
 fprintf(fid, 'const std::vector<std::complex<double>> Yref = {')
@@ -29,10 +43,10 @@ for i = 1 : length(Y)
 end
 fclose(fid);
 %% STFT test signals
-% plot(k, yt)
+plot(k, yt)
 
 s1 = stft(yt, 'Window', hann(128, 'periodic'), 'OverlapLength', 64, 'FFTLength', 128, 'FrequencyRange', 'onesided').';
-s2 = stft(yt, 'Window', hamming(256, 'periodic'), 'OverlapLength', 17, 'FFTLength', 316, 'FrequencyRange', 'onesided').';
+%s2 = stft(yt, 'Window', hamming(256, 'periodic'), 'OverlapLength', 17, 'FFTLength', 316, 'FrequencyRange', 'onesided').';
 
 %% Spectrogram test signals
 

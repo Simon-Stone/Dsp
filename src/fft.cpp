@@ -140,7 +140,8 @@ namespace dsp::fft
 	}
 
 	template<class T>
-	std::vector<std::complex<T>> rfft_(const std::vector<T>& x, unsigned n, NormalizationMode mode)
+	std::vector<std::complex<T>> rfft_(const std::vector<T>& x, unsigned n, 
+		FrequencyRange range, NormalizationMode mode)
 	{
 		if (x.empty()) return {};
 
@@ -233,6 +234,24 @@ namespace dsp::fft
 			break;
 		}
 
+		switch (range)
+		{
+		case FrequencyRange::centered:
+		{
+			throw std::runtime_error("Not implemented yet!");
+			break;
+		}
+		case FrequencyRange::twosided:
+		{
+			// Two-sided spectrum is calculated by default
+			break;
+		}
+		case FrequencyRange::onesided:
+			// Resize spectrum
+			X.resize(N / 2 + 1);
+			break;
+		}
+
 		return X;
 	}
 
@@ -264,7 +283,7 @@ namespace dsp::fft
 			mode = NormalizationMode::backward;
 		}
 		auto xre = dsp::real(x_in);
-		auto X = rfft_(xre, N, mode);
+		auto X = rfft_(xre, N, FrequencyRange::twosided, mode);
 
 		for (unsigned i = 0; i < N; ++i)
 		{
@@ -275,7 +294,7 @@ namespace dsp::fft
 	}
 
 	template <class T>
-	std::vector<std::complex<T>> dft_(const std::vector<T>& x, unsigned n, NormalizationMode mode)
+	std::vector<std::complex<T>> dft_(const std::vector<T>& x, unsigned n, FrequencyRange range, NormalizationMode mode)
 	{
 		std::vector<std::complex<T>> X;		
 
@@ -300,15 +319,38 @@ namespace dsp::fft
 			}
 			X.emplace_back(re, im);
 		}
-		auto Xconj = dsp::conj(X);
-		if (n % 2 == 0)
+		switch (range)
 		{
-			X.insert(X.end(), Xconj.rbegin() + 1, Xconj.rend() - 1);
-		}
-		else
+		case FrequencyRange::centered:
 		{
-			X.insert(X.end(), Xconj.rbegin(), Xconj.rend() - 1);
+			auto Xconj = dsp::conj(X);
+			if (n % 2 == 0)
+			{
+				X.insert(X.begin(), Xconj.rbegin() + 1, Xconj.rend() - 1);
+			}
+			else
+			{
+				X.insert(X.begin(), Xconj.rbegin(), Xconj.rend() - 1);
+			}
+			break;
 		}
+		case FrequencyRange::twosided:
+		{
+			auto Xconj = dsp::conj(X);
+			if (n % 2 == 0)
+			{
+				X.insert(X.end(), Xconj.rbegin() + 1, Xconj.rend() - 1);
+			}
+			else
+			{
+				X.insert(X.end(), Xconj.rbegin(), Xconj.rend() - 1);
+			}
+			break;
+		}
+		case FrequencyRange::onesided:
+			break;
+		}
+
 		return X;
 	}
 
@@ -474,7 +516,7 @@ namespace dsp::fft
 		fftwl_destroy_plan(p);
 		return X;
 	}
-	auto rfftw(const std::vector<double>& x, unsigned n, unsigned flags, NormalizationMode mode)
+	auto rfftw(const std::vector<double>& x, unsigned n, FrequencyRange range, unsigned flags, NormalizationMode mode)
 	{
 		if (x.empty()) return std::vector<std::complex<double>>();
 
@@ -503,19 +545,43 @@ namespace dsp::fft
 				X.begin(), [n](auto X) {return X / static_cast<double>(n); });
 			break;
 		}
-		auto Xconj = dsp::conj(X);
-		if (n % 2 == 0)
+
+		switch (range)
 		{
-			X.insert(X.end(), Xconj.rbegin() + 1, Xconj.rend() - 1);
-		}
-		else
+		case FrequencyRange::centered:
 		{
-			X.insert(X.end(), Xconj.rbegin(), Xconj.rend() - 1);
+			auto Xconj = dsp::conj(X);
+			if (n % 2 == 0)
+			{
+				X.insert(X.begin(), Xconj.rbegin() + 1, Xconj.rend() - 1);
+			}
+			else
+			{
+				X.insert(X.begin(), Xconj.rbegin(), Xconj.rend() - 1);
+			}
+			break;
 		}
+		case FrequencyRange::twosided:
+		{
+			auto Xconj = dsp::conj(X);
+			if (n % 2 == 0)
+			{
+				X.insert(X.end(), Xconj.rbegin() + 1, Xconj.rend() - 1);
+			}
+			else
+			{
+				X.insert(X.end(), Xconj.rbegin(), Xconj.rend() - 1);
+			}
+			break;
+		}
+		case FrequencyRange::onesided:
+			break;
+		}
+
 		fftw_destroy_plan(p);
 		return X;
 	}
-	auto rfftw(const std::vector<float>& x, unsigned n, unsigned flags, NormalizationMode mode)
+	auto rfftw(const std::vector<float>& x, unsigned n, FrequencyRange range, unsigned flags, NormalizationMode mode)
 	{
 		if (x.empty()) return std::vector<std::complex<float>>();
 
@@ -545,19 +611,42 @@ namespace dsp::fft
 			break;
 		}
 
-		auto Xconj = dsp::conj(X);
-		if (n % 2 == 0)
+		switch (range)
 		{
-			X.insert(X.end(), Xconj.rbegin() + 1, Xconj.rend() - 1);
-		}
-		else
+		case FrequencyRange::centered:
 		{
-			X.insert(X.end(), Xconj.rbegin(), Xconj.rend() - 1);
+			auto Xconj = dsp::conj(X);
+			if (n % 2 == 0)
+			{
+				X.insert(X.begin(), Xconj.rbegin() + 1, Xconj.rend() - 1);
+			}
+			else
+			{
+				X.insert(X.begin(), Xconj.rbegin(), Xconj.rend() - 1);
+			}
+			break;
 		}
+		case FrequencyRange::twosided:
+		{
+			auto Xconj = dsp::conj(X);
+			if (n % 2 == 0)
+			{
+				X.insert(X.end(), Xconj.rbegin() + 1, Xconj.rend() - 1);
+			}
+			else
+			{
+				X.insert(X.end(), Xconj.rbegin(), Xconj.rend() - 1);
+			}
+			break;
+		}
+		case FrequencyRange::onesided:
+			break;
+		}
+
 		fftwf_destroy_plan(p);
 		return X;
 	}
-	auto rfftw(const std::vector<long double>& x, unsigned n, unsigned flags, NormalizationMode mode)
+	auto rfftw(const std::vector<long double>& x, unsigned n, FrequencyRange range, unsigned flags, NormalizationMode mode)
 	{
 		if (x.empty()) return std::vector<std::complex<long double>>();
 
@@ -586,8 +675,37 @@ namespace dsp::fft
 			break;
 		}
 
-		auto Xconj = dsp::conj(X);
-		X.insert(X.end(), Xconj.rbegin() + 1, Xconj.rend() - 1);
+		switch (range)
+		{
+		case FrequencyRange::centered:
+		{
+			auto Xconj = dsp::conj(X);
+			if (n % 2 == 0)
+			{
+				X.insert(X.begin(), Xconj.rbegin() + 1, Xconj.rend() - 1);
+			}
+			else
+			{
+				X.insert(X.begin(), Xconj.rbegin(), Xconj.rend() - 1);
+			}
+			break;
+		}
+		case FrequencyRange::twosided:
+		{
+			auto Xconj = dsp::conj(X);
+			if (n % 2 == 0)
+			{
+				X.insert(X.end(), Xconj.rbegin() + 1, Xconj.rend() - 1);
+			}
+			else
+			{
+				X.insert(X.end(), Xconj.rbegin(), Xconj.rend() - 1);
+			}
+			break;
+		}
+		case FrequencyRange::onesided:
+			break;
+		}
 
 		fftwl_destroy_plan(p);
 		return X;
@@ -751,7 +869,8 @@ std::vector<std::complex<T>> dsp::fft::icfft(const std::vector<std::complex<T>>&
 }
 
 template <class T>
-std::vector<std::complex<T>> dsp::fft::rfft(const std::vector<T>& x, unsigned n, NormalizationMode mode, backend backend)
+std::vector<std::complex<T>> dsp::fft::rfft(const std::vector<T>& x, unsigned n, 
+	FrequencyRange range, NormalizationMode mode, backend backend)
 {
 	auto N = get_fft_length(x, n);
 	
@@ -761,29 +880,29 @@ std::vector<std::complex<T>> dsp::fft::rfft(const std::vector<T>& x, unsigned n,
 #ifndef ZERO_DEPENDENCIES
 		if (N > 100000)
 		{
-			return rfftw(x, N, FFTW_ESTIMATE, mode);
+			return rfftw(x, N, range, FFTW_ESTIMATE, mode);
 		}
 #endif
 		if (ispow2(N))
 		{
-			return rfft_(x, N, mode);
+			return rfft_(x, N, range, mode);
 		}
 		else
 		{
-			return dft_(x, N, mode);
+			return dft_(x, N, range, mode);
 		}
 	case backend::simple:
 		if (ispow2(N))
 		{
-			return rfft_(x, N, mode);
+			return rfft_(x, N, range, mode);
 		}
 		else
 		{			
-			return dft_(x, N, mode);
+			return dft_(x, N, range, mode);
 		}
 	case backend::fftw:
 #ifndef ZERO_DEPENDENCIES
-		return rfftw(x, N, FFTW_ESTIMATE, mode);
+		return rfftw(x, N, range, FFTW_ESTIMATE, mode);
 #else
 		throw std::runtime_error("Library built without FFTW support!");
 #endif
@@ -992,9 +1111,9 @@ template std::vector<std::complex<float>> dsp::fft::icfft(const std::vector<std:
 template std::vector<std::complex<double>> dsp::fft::icfft(const std::vector<std::complex<double>>& X, unsigned n, dsp::fft::NormalizationMode mode, backend backend);
 template std::vector<std::complex<long double>> dsp::fft::icfft(const std::vector<std::complex<long double>>& X, unsigned n, dsp::fft::NormalizationMode mode, backend backend);
 
-template std::vector<std::complex<float>> dsp::fft::rfft(const std::vector<float>& x, unsigned n, dsp::fft::NormalizationMode mode, backend backend);
-template std::vector<std::complex<double>> dsp::fft::rfft(const std::vector<double>& x, unsigned n, dsp::fft::NormalizationMode mode, backend backend);
-template std::vector<std::complex<long double>> dsp::fft::rfft(const std::vector<long double>& x, unsigned n, dsp::fft::NormalizationMode mode, backend backend);
+template std::vector<std::complex<float>> dsp::fft::rfft(const std::vector<float>& x, unsigned n, dsp::fft::FrequencyRange range, dsp::fft::NormalizationMode mode, backend backend);
+template std::vector<std::complex<double>> dsp::fft::rfft(const std::vector<double>& x, unsigned n, dsp::fft::FrequencyRange range, dsp::fft::NormalizationMode mode, backend backend);
+template std::vector<std::complex<long double>> dsp::fft::rfft(const std::vector<long double>& x, unsigned n, dsp::fft::FrequencyRange range, dsp::fft::NormalizationMode mode, backend backend);
 
 template std::vector<float> dsp::fft::irfft(const std::vector<std::complex<float>>& X, unsigned n, dsp::fft::NormalizationMode mode, backend backend);
 template std::vector<double> dsp::fft::irfft(const std::vector<std::complex<double>>& X, unsigned n, dsp::fft::NormalizationMode mode, backend backend);

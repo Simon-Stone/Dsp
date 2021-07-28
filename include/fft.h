@@ -17,6 +17,14 @@ namespace dsp
 		/// @brief Backend choices for performing the actual transformations
 		enum class backend { automatic, simple, fftw };
 		
+		/// @brief Frequency range to return (for symmetric transforms)
+		enum class FrequencyRange 
+		{ 
+			centered,  // Return two-sided, centered transform where the negative frequencies are returned first, followed by the positive frequencies
+			twosided,  // Return two-sided transform where the positive frequencies are returned first, followed by the negative frequencies
+			onesided   // Return one-sided transform where only the positive frequencies are returned (does not conserve the total power!)
+		};
+
 		/// @brief Compute the 1-D discrete Fourier Transform.
 		///
 		/// This function computes the 1-D n-point discrete Fourier Transform (DFT) with the efficient Fast Fourier Transform(FFT) algorithm for complex input signals.
@@ -51,13 +59,13 @@ namespace dsp
 		/// @param backend Can be automatic, simple, or fftw. 'simple' is a low-level straight-forward implementation of the complex FFT and 'fftw' uses the FFTW library. 'simple' is best for a small number fo samples due to the overhead of the FFTW planning stage. For longer inputs, FFTW becomes significantly faster. 'automatic' therefore chooses the 'simple' implementation for input lengths of less than 100 000 samples and 'fftw' for longer inputs.
 		/// @return The forward-transformed truncated or zero-padded input.
 		template<class T>
-		std::vector<std::complex<T>> rfft(const std::vector<T>& x, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward, backend backend = backend::automatic);
+		std::vector<std::complex<T>> rfft(const std::vector<T>& x, unsigned n = 0, FrequencyRange range = FrequencyRange::twosided, NormalizationMode mode = NormalizationMode::backward, backend backend = backend::automatic);
 
 		/// @brief Alias for rfft.
 		template<class T>
-		std::vector<std::complex<T>> fft(const std::vector<T>& x, unsigned n = 0, NormalizationMode mode = NormalizationMode::backward, backend backend = backend::automatic)
+		std::vector<std::complex<T>> fft(const std::vector<T>& x, unsigned n = 0, FrequencyRange range = FrequencyRange::twosided, NormalizationMode mode = NormalizationMode::backward, backend backend = backend::automatic)
 		{
-			return rfft(x, n, mode, backend);
+			return rfft(x, n, range, mode, backend);
 		}
 		
 		/// @brief Computes the inverse of rfft.
@@ -79,7 +87,12 @@ namespace dsp
 			return irfft(X, n, mode, backend);
 		}
 
-
+		/// @brief Computes the logarithmic squared-magnitude spectrum
+		/// @tparam T Data type of the samples
+		/// @param signal the signal to be transformed
+		/// @param N_fft length of the FFT
+		/// @param relativeCutoff Determines the number of frequency containers to be returned. The highest frequency index is relativeCutoff * N_fft
+		/// @return 
 		template<class T>
 		std::vector<T> logSquaredMagnitudeSpectrum(const std::vector<T>& signal, int N_fft, double relativeCutoff);
 		

@@ -435,14 +435,14 @@ TEST_F(DspTest, Window)
 
 TEST_F(DspTest, FFTW)
 {
-	auto Y = dsp::fft::fft(unittest::fft::x, 1001, dsp::fft::NormalizationMode::backward, dsp::fft::backend::fftw);
+	auto Y = dsp::fft::fft(unittest::fft::x, 1001, dsp::fft::FrequencyRange::twosided, dsp::fft::NormalizationMode::backward, dsp::fft::backend::fftw);
 
-	EXPECT_EQ(Y.size(), unittest::fft::Yref.size());
+	EXPECT_EQ(Y.size(), unittest::fft::Yref_1001.size());
 
 	for (unsigned i = 0; i < Y.size(); ++i)
 	{
-		EXPECT_NEAR(Y[i].real(), unittest::fft::Yref[i].real(), 1e-6);
-		EXPECT_NEAR(Y[i].imag(), unittest::fft::Yref[i].imag(), 1e-6);
+		EXPECT_NEAR(Y[i].real(), unittest::fft::Yref_1001[i].real(), 1e-6);
+		EXPECT_NEAR(Y[i].imag(), unittest::fft::Yref_1001[i].imag(), 1e-6);
 	}
 
 	auto y = dsp::fft::ifft(Y, unittest::fft::x.size(), dsp::fft::NormalizationMode::backward, dsp::fft::backend::fftw);
@@ -456,13 +456,13 @@ TEST_F(DspTest, FFTW)
 
 TEST_F(DspTest, DFT)
 {
-	auto Y = dsp::fft::fft(unittest::fft::x, 1001, dsp::fft::NormalizationMode::backward, dsp::fft::backend::simple);
-	EXPECT_EQ(Y.size(), unittest::fft::Yref.size());
+	auto Y = dsp::fft::fft(unittest::fft::x, 1001, dsp::fft::FrequencyRange::twosided, dsp::fft::NormalizationMode::backward, dsp::fft::backend::simple);
+	EXPECT_EQ(Y.size(), unittest::fft::Yref_1001.size());
 
 	for (unsigned i = 0; i < Y.size(); ++i)
 	{
-		EXPECT_NEAR(Y[i].real(), unittest::fft::Yref[i].real(), 1e-6);
-		EXPECT_NEAR(Y[i].imag(), unittest::fft::Yref[i].imag(), 1e-6);
+		EXPECT_NEAR(Y[i].real(), unittest::fft::Yref_1001[i].real(), 1e-6);
+		EXPECT_NEAR(Y[i].imag(), unittest::fft::Yref_1001[i].imag(), 1e-6);
 	}
 
 	auto y = dsp::fft::ifft(Y, unittest::fft::x.size(), dsp::fft::NormalizationMode::backward, dsp::fft::backend::simple);
@@ -471,6 +471,120 @@ TEST_F(DspTest, DFT)
 	for (unsigned i = 0; i < unittest::fft::x.size(); ++i)
 	{
 		EXPECT_NEAR(y[i], unittest::fft::x[i], 1e-2); // Warning!! Pretty bad reconstruction accuracy!
+	}
+}
+
+TEST_F(DspTest, FFT_lengthAuto)
+{
+	// Testing the automatic padding to FFT length of power of 2  
+	auto Y = dsp::fft::fft(unittest::fft::x, 0, dsp::fft::FrequencyRange::twosided, dsp::fft::NormalizationMode::backward, dsp::fft::backend::simple);
+	ASSERT_EQ(Y.size(), unittest::fft::Yref_1024.size());
+
+	for (unsigned i = 0; i < Y.size(); ++i)
+	{
+		EXPECT_NEAR(Y[i].real(), unittest::fft::Yref_1024[i].real(), 1e-6);
+		EXPECT_NEAR(Y[i].imag(), unittest::fft::Yref_1024[i].imag(), 1e-6);
+	}
+
+	auto y = dsp::fft::ifft(Y, unittest::fft::x.size(), dsp::fft::NormalizationMode::backward, dsp::fft::backend::simple);
+	ASSERT_EQ(y.size(), unittest::fft::x.size());
+
+	for (unsigned i = 0; i < y.size(); ++i)
+	{
+		EXPECT_NEAR(y[i], unittest::fft::x_reconstructed[i], 1e-2); // Note the poor reconstruction accuracy!!
+	}
+
+	Y = dsp::fft::fft(unittest::fft::x, 0, dsp::fft::FrequencyRange::twosided, dsp::fft::NormalizationMode::backward, dsp::fft::backend::fftw);
+	ASSERT_EQ(Y.size(), unittest::fft::Yref_1024.size());
+
+	for (unsigned i = 0; i < Y.size(); ++i)
+	{
+		EXPECT_NEAR(Y[i].real(), unittest::fft::Yref_1024[i].real(), 1e-6);
+		EXPECT_NEAR(Y[i].imag(), unittest::fft::Yref_1024[i].imag(), 1e-6);
+	}
+
+	y = dsp::fft::ifft(Y, unittest::fft::x.size(), dsp::fft::NormalizationMode::backward, dsp::fft::backend::fftw);
+	ASSERT_EQ(y.size(), unittest::fft::x.size());
+
+	for (unsigned i = 0; i < y.size(); ++i)
+	{
+		EXPECT_NEAR(y[i], unittest::fft::x_reconstructed[i], 1e-6);
+	}
+}
+
+TEST_F(DspTest, FFT_lengthPow2)
+{
+	// Testing the FFT with an explicit FFT length of a power of 2
+	auto Y = dsp::fft::fft(unittest::fft::x, 1024, dsp::fft::FrequencyRange::twosided, dsp::fft::NormalizationMode::backward, dsp::fft::backend::simple);
+	ASSERT_EQ(Y.size(), unittest::fft::Yref_1024.size());
+
+	for (unsigned i = 0; i < Y.size(); ++i)
+	{
+		EXPECT_NEAR(Y[i].real(), unittest::fft::Yref_1024[i].real(), 1e-6);
+		EXPECT_NEAR(Y[i].imag(), unittest::fft::Yref_1024[i].imag(), 1e-6);
+	}
+
+	auto y = dsp::fft::ifft(Y, unittest::fft::x.size(), dsp::fft::NormalizationMode::backward, dsp::fft::backend::simple);
+	ASSERT_EQ(y.size(), unittest::fft::x.size());
+
+	for (unsigned i = 0; i < y.size(); ++i)
+	{
+		EXPECT_NEAR(y[i], unittest::fft::x_reconstructed[i], 1e-2); // Note the poor reconstruction accuracy!!
+	}
+
+	Y = dsp::fft::fft(unittest::fft::x, 1024, dsp::fft::FrequencyRange::twosided, dsp::fft::NormalizationMode::backward, dsp::fft::backend::fftw);
+	ASSERT_EQ(Y.size(), unittest::fft::Yref_1024.size());
+
+	for (unsigned i = 0; i < Y.size(); ++i)
+	{
+		EXPECT_NEAR(Y[i].real(), unittest::fft::Yref_1024[i].real(), 1e-6);
+		EXPECT_NEAR(Y[i].imag(), unittest::fft::Yref_1024[i].imag(), 1e-6);
+	}
+
+	y = dsp::fft::ifft(Y, unittest::fft::x.size(), dsp::fft::NormalizationMode::backward, dsp::fft::backend::fftw);
+	ASSERT_EQ(y.size(), unittest::fft::x.size());
+
+	for (unsigned i = 0; i < y.size(); ++i)
+	{
+		EXPECT_NEAR(y[i], unittest::fft::x_reconstructed[i], 1e-6);
+	}
+}
+
+TEST_F(DspTest, FFT_lengthNotPow2)
+{
+	// Testing the FFT when the FFT length is not a power of 2 (i.e. fall back to DFT)
+	auto Y = dsp::fft::fft(unittest::fft::x, 1001, dsp::fft::FrequencyRange::twosided, dsp::fft::NormalizationMode::backward, dsp::fft::backend::simple);
+	ASSERT_EQ(Y.size(), unittest::fft::Yref_1001.size());
+
+	for (unsigned i = 0; i < Y.size(); ++i)
+	{
+		EXPECT_NEAR(Y[i].real(), unittest::fft::Yref_1001[i].real(), 1e-6);
+		EXPECT_NEAR(Y[i].imag(), unittest::fft::Yref_1001[i].imag(), 1e-6);
+	}
+
+	auto y = dsp::fft::ifft(Y, unittest::fft::x.size(), dsp::fft::NormalizationMode::backward, dsp::fft::backend::simple);
+	ASSERT_EQ(y.size(), unittest::fft::x.size());
+
+	for (unsigned i = 0; i < y.size(); ++i)
+	{
+		EXPECT_NEAR(y[i], unittest::fft::x[i], 1e-2);  // Note the poor reconstruction accuracy!!
+	}
+
+	Y = dsp::fft::fft(unittest::fft::x, 1001, dsp::fft::FrequencyRange::twosided, dsp::fft::NormalizationMode::backward, dsp::fft::backend::fftw);
+	ASSERT_EQ(Y.size(), unittest::fft::Yref_1001.size());
+
+	for (unsigned i = 0; i < Y.size(); ++i)
+	{
+		EXPECT_NEAR(Y[i].real(), unittest::fft::Yref_1001[i].real(), 1e-6);
+		EXPECT_NEAR(Y[i].imag(), unittest::fft::Yref_1001[i].imag(), 1e-6);
+	}
+
+	y = dsp::fft::ifft(Y, unittest::fft::x.size(), dsp::fft::NormalizationMode::backward, dsp::fft::backend::fftw);
+	ASSERT_EQ(y.size(), unittest::fft::x.size());
+
+	for (unsigned i = 0; i < y.size(); ++i)
+	{
+		EXPECT_NEAR(y[i], unittest::fft::x[i], 1e-6);
 	}
 }
 
@@ -631,7 +745,8 @@ TEST_F(DspTest, Benchmarking)
 		// Naive implementation
 		auto start = std::chrono::high_resolution_clock::now();
 
-		auto X = dsp::fft::rfft<double>({ x.begin(), x.end() }, x.size(), dsp::fft::NormalizationMode::backward, dsp::fft::backend::simple);
+		auto X = dsp::fft::rfft<double>({ x.begin(), x.end() }, x.size(), 
+			dsp::fft::FrequencyRange::twosided, dsp::fft::NormalizationMode::backward, dsp::fft::backend::simple);
 
 		std::vector<double> magSpec;
 		for(int i = 0; i < X.size(); ++i)
