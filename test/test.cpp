@@ -14,6 +14,17 @@ struct DspTest : ::testing::Test
 
 };
 
+
+TEST_F(DspTest, SignalMethods)
+{
+	auto s = dsp::Signal<double>(1000);
+	EXPECT_TRUE(s.getSamplingRate_Hz() == 1000);
+	s.getSamplingRate_Hz() = 2000;
+	EXPECT_TRUE(s.getSamplingRate_Hz() == 2000);
+	auto sr = &s.getSamplingRate_Hz();
+	*sr = 3000;
+	EXPECT_TRUE(s.getSamplingRate_Hz() == 3000);
+}
 TEST_F(DspTest, SignalOperations)
 {
 	auto c = dsp::signals::cos<double>(100, 0.02, 8000);

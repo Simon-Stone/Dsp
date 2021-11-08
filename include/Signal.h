@@ -33,6 +33,7 @@ namespace dsp
 		auto real() const;
 		auto imag() const;
 		unsigned getSamplingRate_Hz() const;
+		unsigned& getSamplingRate_Hz();
 
 		// Setter
 		void setSamples(const std::vector<T>& samples);

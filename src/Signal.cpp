@@ -43,6 +43,12 @@ unsigned dsp::Signal<T>::getSamplingRate_Hz() const
 	return samplingRate_Hz_;
 }
 
+template<class T>
+unsigned& dsp::Signal<T>::getSamplingRate_Hz()
+{
+	return samplingRate_Hz_;
+}
+
 template <class T>
 void dsp::Signal<T>::setSamples(const std::vector<T>& samples)
 {

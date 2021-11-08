@@ -786,7 +786,7 @@ std::vector<std::vector<T>> dsp::fft::spectrogram(const std::vector<T>& signal, 
 	// -> Final result is a matrix of real values, each column representing one frame's log-squared magnitude spectrum
 
 	// Pre-emphasis
-	std::vector<T> b{ 1.0, static_cast<T>(0.95) };
+	std::vector<T> b{ 1.0, static_cast<T>(-0.95) };
 	std::vector<T> a{ 1.0 };
 	auto preemph_signal = filter::filter(b, a, signal);
 
