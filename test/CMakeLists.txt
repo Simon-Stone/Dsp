@@ -1,18 +1,32 @@
 # Some dependencies
-find_package(FFTW3 REQUIRED)
-find_package(FFTW3f REQUIRED)
-find_package(FFTW3l REQUIRED)
-include_directories(${FFTW3_INCLUDE_DIRS})
-include_directories(${FFTW3f_INCLUDE_DIRS})
-include_directories(${FFTW3l_INCLUDE_DIRS})
+find_package(FFTW3)
+if(FFTW3_FOUND)
+    include_directories(${FFTW3_INCLUDE_DIRS})
+endif()
+find_package(FFTW3f)
+if(FFTW3f_FOUND)
+    include_directories(${FFTW3f_INCLUDE_DIRS})
+endif()
+find_package(FFTW3l)
+if(FFTW3l_FOUND)
+    include_directories(${FFTW3l_INCLUDE_DIRS})
+endif()
+find_package(Boost)
+if(Boost_FOUND)
+    include_directories(${Boost_INCLUDE_DIR})
+endif()
 
-find_package(Boost REQUIRED)
-include_directories(${Boost_INCLUDE_DIR})
+if(FFTW3_FOUND AND FFTW3f_FOUND AND FFTW3l_FOUND AND Boost_FOUND)
+else()
+add_definitions(-DZERO_DEPENDENCIES)
+endif()
 
 if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
     # GCC currently only supports the <execution> header through a third-party library
     find_package(TBB COMPONENTS tbbmalloc tbbmalloc_proxy tbb_preview)
 endif()
+
+set(CMAKE_CXX_STANDARD 17)
 
 # Get Google Test
 include(FetchContent)
@@ -25,7 +39,6 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-set(CMAKE_CXX_STANDARD 17)
 add_executable(UnitTests test.cpp)
 list(APPEND libs "gtest_main" "dsp" "fftw3" "fftw3f" "fftw3l")
 
@@ -39,5 +52,8 @@ endif()
 
 target_link_directories(UnitTests PUBLIC ${FFTW3_LIBRARY_DIRS} ${FFTW3f_LIBRARY_DIRS} ${FFTW3l_LIBRARY_DIRS})
 target_link_libraries(UnitTests PUBLIC ${libs})
+
+include(GoogleTest)
+gtest_discover_tests(UnitTests WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
 
 
