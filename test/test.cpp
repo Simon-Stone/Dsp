@@ -8,6 +8,7 @@
 
 
 #include "dsp.h"
+#include "dct_ref_data.h"
 
 struct DspTest : ::testing::Test
 {
@@ -31,7 +32,7 @@ TEST_F(DspTest, SignalOperations)
 	auto s = dsp::signals::sin<double>(100, 0.02, 8000);
 
 	// 1 = cos^2(x) + sin^2(x) 
-	auto sum = dsp::pow(c, 2) + dsp::pow(s, 2);  
+	auto sum = dsp::pow(c, 2) + dsp::pow(s, 2);
 	auto ones = dsp::Signal<double>(sum.getSamplingRate_Hz(), dsp::signals::ones<double>(sum.size()));
 	EXPECT_TRUE((sum - ones) < 0.00001);
 
@@ -45,14 +46,14 @@ TEST_F(DspTest, SignalOperations)
 TEST_F(DspTest, Mean)
 {
 	auto c = dsp::signals::cos<double>(100, 0.02, 8000);
-	
+
 	EXPECT_NEAR(dsp::mean<double>(c.begin(), c.end()), 0.0, 1e-16);
 }
 
 TEST_F(DspTest, Median)
 {
 	std::vector<int> v{ 3, 2, 2, 1, 7 };
-	std::vector<double> v2{ 3, 2, 3, 1};
+	std::vector<double> v2{ 3, 2, 3, 1 };
 	auto s = dsp::Signal(v);
 	auto s2 = dsp::Signal(v2);
 	// Iterator interface
@@ -65,7 +66,7 @@ TEST_F(DspTest, Median)
 	EXPECT_EQ(dsp::median(v), 2);
 	EXPECT_EQ(dsp::median(s), 2);
 	EXPECT_EQ(dsp::median(v2), 2.5);
-	EXPECT_EQ(dsp::median(s2), 2.5);	
+	EXPECT_EQ(dsp::median(s2), 2.5);
 }
 
 TEST_F(DspTest, Mode)
@@ -82,13 +83,13 @@ TEST_F(DspTest, Pad)
 	std::vector<int> v{ 1,2,4,5 };
 	auto v_pad = dsp::pad(v, { 2, 3 });
 
-	for(const auto& x : v_pad)
+	for (const auto& x : v_pad)
 	{
 		std::cout << x << " ";
 	}
 	std::cout << std::endl;
 
-	v_pad = dsp::pad(v, { 3, 4 }, {2, 8});
+	v_pad = dsp::pad(v, { 3, 4 }, { 2, 8 });
 
 	for (const auto& x : v_pad)
 	{
@@ -139,7 +140,7 @@ TEST_F(DspTest, Unique)
 
 	auto u = dsp::unique(dsp::Signal(v));
 
-	for(const auto& x : u)
+	for (const auto& x : u)
 	{
 		std::cout << x << " ";
 	}
@@ -406,7 +407,7 @@ TEST_F(DspTest, UnitConversions)
 
 TEST_F(DspTest, Window)
 {
-	auto win = dsp::window::get_window<double>(dsp::window::type::gaussian, 128, true, {32.0});
+	auto win = dsp::window::get_window<double>(dsp::window::type::gaussian, 128, true, { 32.0 });
 
 	for (const auto& w : win)
 	{
@@ -434,13 +435,13 @@ TEST_F(DspTest, Benchmarking)
 	std::ofstream outFile("../scripts/dsp_benchmark.csv", std::ios::out);
 
 	outFile << "Task\tImplementation\tExecution time [us]" << std::endl;
-		
-	auto x = 7*dsp::signals::sin<double>(100, 1, 48000);
-	
+
+	auto x = 7 * dsp::signals::sin<double>(100, 1, 48000);
+
 	std::cout << "*********************************************************" << std::endl;
 	std::cout << "********             z-score                  ***********" << std::endl;
 	std::cout << "*********************************************************" << std::endl;
-	for(int j = 0; j < 100; ++j)
+	for (int j = 0; j < 100; ++j)
 	{
 		// Naive implementation
 		auto start = std::chrono::high_resolution_clock::now();
@@ -463,13 +464,13 @@ TEST_F(DspTest, Benchmarking)
 		{
 			standardized_x.push_back((x[i] - x_mean) / std);
 		}
-	
+
 		auto stop = std::chrono::high_resolution_clock::now();
 		auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
 		std::cout << "Naive implementation: " << "\t\t" << duration.count() << " µs" << std::endl;
 
 		outFile << "zscore\tnaive\t" << duration.count() << std::endl;
-		
+
 		// DSP lib implementation
 		auto start_dsp = std::chrono::high_resolution_clock::now();
 		auto standardized_x_dsp = dsp::zscore(x);
@@ -495,7 +496,7 @@ TEST_F(DspTest, Benchmarking)
 		}
 		double x_energy = sum / static_cast<double>(x.size());
 		auto stop = std::chrono::high_resolution_clock::now();
-		
+
 		auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
 		std::cout << "Naive implementation: " << "\t\t" << duration.count() << " µs" << std::endl;
 
@@ -522,17 +523,17 @@ TEST_F(DspTest, Benchmarking)
 		auto X = dsp::fft::rfft<double>({ x.begin(), x.end() }, x.size(), dsp::fft::NormalizationMode::backward, dsp::fft::backend::simple);
 
 		std::vector<double> magSpec;
-		for(int i = 0; i < X.size(); ++i)
+		for (int i = 0; i < X.size(); ++i)
 		{
 			magSpec.push_back(10 * std::log10(std::abs(X[i]) * std::abs(X[i])));
 		}
-		
+
 		auto stop = std::chrono::high_resolution_clock::now();
 
 		auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
 		std::cout << "Naive implementation: " << "\t\t" << duration.count() << " µs" << std::endl;
 		outFile << "magspec\tnaive\t" << duration.count() << std::endl;
-		
+
 		// DSP lib implementation
 		auto start_dsp = std::chrono::high_resolution_clock::now();
 		auto x_magSpec = dsp::fft::logSquaredMagnitudeSpectrum(x.getSamples(), x.size(), 1);
@@ -544,4 +545,79 @@ TEST_F(DspTest, Benchmarking)
 		outFile << "magspec\tdsp\t" << duration_dsp.count() << std::endl;
 	}
 
+}
+
+
+TEST_F(DspTest, DctTest)
+{
+	double epsi = 1e-5;
+
+	std::vector<std::vector<long double>> basisVectorLongDoubleCompare = calcCosineBasisVectors<long double>(20);
+	std::vector<std::vector<double>> basisVectorDoubleCompare = calcCosineBasisVectors<double>(20);
+	std::vector<std::vector<float>> basisVectorFloatCompare = calcCosineBasisVectors<float>(20);
+
+	// Test the basis vector calculation.
+	ASSERT_EQ(basisVectorLongDoubleCompare.size(), 20);
+	ASSERT_EQ(basisVectorDoubleCompare.size(), 20);
+	ASSERT_EQ(basisVectorFloatCompare.size(), 20);
+	for (int i = 0; i < 20; ++i)
+	{
+		ASSERT_EQ(basisVectorLongDoubleCompare[i].size(), 20);
+		ASSERT_EQ(basisVectorDoubleCompare[i].size(), 20);
+		ASSERT_EQ(basisVectorFloatCompare[i].size(), 20);
+		for (int k = 0; k < 20; ++k)
+		{
+			EXPECT_NEAR(basisVectorsLongDouble[i][k], basisVectorLongDoubleCompare[i][k], epsi);
+			EXPECT_NEAR(basisVectorsDouble[i][k], basisVectorDoubleCompare[i][k], epsi);
+			EXPECT_NEAR(basisVectorsFloat[i][k], basisVectorFloatCompare[i][k], epsi);
+		}
+	}
+
+	// Test the dct function when signal length == n.
+	int n = 10;
+	std::vector<long double> yLongDoubleCompare = dsp::fft::dct<long double>(xLongDouble, n, dsp::fft::dctType::dct2);
+	std::vector<double> yDoubleCompare = dsp::fft::dct<double>(xDouble, n, dsp::fft::dctType::dct2);
+	std::vector<float> yFloatCompare = dsp::fft::dct<float>(xFloat, n, dsp::fft::dctType::dct2);
+
+	ASSERT_EQ(yLongDoubleCompare.size(), n);
+	ASSERT_EQ(yDoubleCompare.size(), n);
+	ASSERT_EQ(yFloatCompare.size(), n);
+	for (int i = 0; i < n; ++i)
+	{
+		EXPECT_NEAR(yLongDoubleCompare[i], yLongDouble[i], epsi);
+		EXPECT_NEAR(yDoubleCompare[i], yDouble[i], epsi);
+		EXPECT_NEAR(yFloatCompare[i], yFloat[i], epsi);
+	}
+
+	// Test the dct function when signal length < n.
+	n = 15;
+	yLongDoubleCompare = dsp::fft::dct<long double>(xLongDouble, n, dsp::fft::dctType::dct2);
+	yDoubleCompare = dsp::fft::dct<double>(xDouble, n, dsp::fft::dctType::dct2);
+	yFloatCompare = dsp::fft::dct<float>(xFloat, n, dsp::fft::dctType::dct2);
+
+	ASSERT_EQ(yLongDoubleCompare.size(), n);
+	ASSERT_EQ(yDoubleCompare.size(), n);
+	ASSERT_EQ(yFloatCompare.size(), n);
+	for (int i = 0; i < n; ++i)
+	{
+		EXPECT_NEAR(yLongDoubleCompare[i], yLongDouble15[i], epsi);
+		EXPECT_NEAR(yDoubleCompare[i], yDouble15[i], epsi);
+		EXPECT_NEAR(yFloatCompare[i], yFloat15[i], epsi);
+	}
+
+	// Test the dct function when signal length > n.
+	n = 5;
+	yLongDoubleCompare = dsp::fft::dct<long double>(xLongDouble, n, dsp::fft::dctType::dct2);
+	yDoubleCompare = dsp::fft::dct<double>(xDouble, n, dsp::fft::dctType::dct2);
+	yFloatCompare = dsp::fft::dct<float>(xFloat, n, dsp::fft::dctType::dct2);
+
+	ASSERT_EQ(yLongDoubleCompare.size(), n);
+	ASSERT_EQ(yDoubleCompare.size(), n);
+	ASSERT_EQ(yFloatCompare.size(), n);
+	for (int i = 0; i < n; ++i)
+	{
+		EXPECT_NEAR(yLongDoubleCompare[i], yLongDouble5[i], epsi);
+		EXPECT_NEAR(yDoubleCompare[i], yDouble5[i], epsi);
+		EXPECT_NEAR(yFloatCompare[i], yFloat5[i], epsi);
+	}
 }

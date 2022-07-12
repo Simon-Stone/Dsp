@@ -4,11 +4,12 @@
 #include <execution>
 
 #ifndef ZERO_DEPENDENCIES
-#include <fftw3.h>
+#include <fftw3/fftw3.h>
 #endif
 
 #include "filter.h"
 #include "Signal.h"
+#include "signals.h"
 
 
 namespace dsp::fft
@@ -23,7 +24,7 @@ namespace dsp::fft
 		{
 			n = static_cast<unsigned>(x.size());
 		}
-		return 2 << (nextpow2(n)-1);
+		return 2 << (nextpow2(n) - 1);
 	}
 
 	template<class T>
@@ -49,7 +50,7 @@ namespace dsp::fft
 		int j = nd2;
 		for (int i = 1; i <= N - 2; ++i)
 		{
- 			if (i < j)
+			if (i < j)
 			{
 				T t[2] = { in[2 * j], in[2 * j + 1] };
 				in[2 * j] = in[2 * i];
@@ -615,9 +616,10 @@ namespace dsp::fft
 		fftwl_destroy_plan(p);
 		return x;
 	}
+
 #endif
 	/// @endcond
-}
+} // .namespace dsp::fft
 
 
 
@@ -730,7 +732,7 @@ template <class T>
 std::vector<T> dsp::fft::logSquaredMagnitudeSpectrum(const std::vector<T>& signal, int N_fft,
 	double relativeCutoff)
 {
-	auto spectrum = rfft(signal, 2 << (nextpow2(N_fft)-1));
+	auto spectrum = rfft(signal, 2 << (nextpow2(N_fft) - 1));
 
 	const int finalFrequencyBinIdx = static_cast<const int>(relativeCutoff * static_cast<double>(spectrum.size()));
 
@@ -816,6 +818,82 @@ std::vector<std::vector<T>> dsp::fft::spectrogram(const std::vector<T>& signal, 
 
 }
 
+
+template<class T>
+std::vector<std::vector<T>> calcCosineBasisVectors(const unsigned int nBasisVectors)
+{
+	std::vector<std::vector<T>> basisVectors;
+	basisVectors.reserve(nBasisVectors);
+
+	T scalingFactorBn = static_cast<T>(std::sqrt(2.0 / nBasisVectors));
+	T scalingFactorB1 = static_cast<T>(std::sqrt(1.0 / nBasisVectors));
+
+	if (typeid(T) == typeid(float))
+	{
+		scalingFactorBn = std::sqrtf(static_cast<float>(2) / nBasisVectors);
+		scalingFactorB1 = std::sqrtf(static_cast<float>(1) / nBasisVectors);
+	}
+
+	std::vector<T> b1(nBasisVectors, scalingFactorB1);
+	basisVectors.push_back(b1);
+
+	// i is the index of each basis vector.
+	// n is the index of each element within each basis vector.
+	for (unsigned int i = 1; i < nBasisVectors; ++i)
+	{
+		std::vector<T> bn;
+		bn.reserve(nBasisVectors);
+
+		for (unsigned int n = 0; n < nBasisVectors; ++n)
+		{
+			const T elem = static_cast<T>(cos((n + 0.5) * dsp::pi * i / nBasisVectors));  
+			bn.push_back(elem * scalingFactorBn);
+		}
+
+		basisVectors.push_back(bn);
+	}
+
+	return basisVectors;
+}
+
+
+template<class T>
+std::vector<T> dsp::fft::dct(std::vector<T>& signal, const unsigned int n, const dctType type)
+{
+
+	switch (type)
+	{
+	case dctType::dct1:
+		throw std::runtime_error("DCT1 option is not implemented yet.");
+	case dctType::dct3:
+		throw std::runtime_error("DCT3 option is not implemented yet.");
+	case dctType::dct4:
+		throw std::runtime_error("DCT4 option is not implemented yet.");
+	}
+	// TODO: use static_assert() to catch not-implemented error during compile time.
+	
+	// Resize the signal. Zero-pads for signal lengths > n and
+	// truncates for signal lengths < n.
+	signal.resize(n);
+
+	// Allocate output y.
+	std::vector<T> y(n, 0);
+
+	// Calculate B.
+	std::vector<std::vector<T>> basisVectors = calcCosineBasisVectors<T>(n);
+
+	// Calculate y.
+	for (unsigned i = 0; i < n; ++i)
+	{
+		// Calculate inner product between the input signal and each basis vector (basis vectors are the rows in B^T).
+		y[i] = std::inner_product(signal.begin(), signal.end(), basisVectors[i].begin(), static_cast<T>(0));
+
+	}
+
+	return y;
+}
+
+
 // Explicit template instantiation
 template std::vector<std::complex<float>> dsp::fft::cfft(const std::vector<std::complex<float>>& x, unsigned n, dsp::fft::NormalizationMode mode, backend backend);
 template std::vector<std::complex<double>> dsp::fft::cfft(const std::vector<std::complex<double>>& x, unsigned n, dsp::fft::NormalizationMode mode, backend backend);
@@ -843,3 +921,11 @@ template std::vector<std::vector<double>> dsp::fft::spectrogram(const std::vecto
 	double overlap_pct, int samplingRate, double relativeCutoff, window::type windowType);
 template std::vector<std::vector<long double>> dsp::fft::spectrogram(const std::vector<long double>& signal, unsigned frameLength,
 	double overlap_pct, int samplingRate, double relativeCutoff, window::type windowType);
+
+template std::vector<float> dsp::fft::dct(std::vector<float>& signal, const unsigned int n, const dsp::fft::dctType type);
+template std::vector<double> dsp::fft::dct(std::vector<double>& signal, const unsigned int n, const dsp::fft::dctType type);
+template std::vector<long double> dsp::fft::dct(std::vector<long double>& signal, const unsigned int n, const dsp::fft::dctType type);
+
+template std::vector<std::vector<float>> calcCosineBasisVectors(const unsigned int nBasisVectors);
+template std::vector<std::vector<double>> calcCosineBasisVectors(const unsigned int nBasisVectors);
+template std::vector<std::vector<long double>> calcCosineBasisVectors(const unsigned int nBasisVectors);

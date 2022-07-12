@@ -346,3 +346,4 @@ healthchecksdb
 /lib
 /test/CMakeFiles
 /test
+/build/out

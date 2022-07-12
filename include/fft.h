@@ -6,6 +6,7 @@
 #include "utilities.h"
 #include "window.h"
 
+
 namespace dsp
 {
 	/// @brief Fast Fourier Transformations
@@ -16,7 +17,10 @@ namespace dsp
 
 		/// @brief Backend choices for performing the actual transformations
 		enum class backend { automatic, simple, fftw };
-		
+
+		/// @brief Options for calculating the DCT.
+		enum class dctType {dct1, dct2, dct3, dct4};
+
 		/// @brief Compute the 1-D discrete Fourier Transform.
 		///
 		/// This function computes the 1-D n-point discrete Fourier Transform (DFT) with the efficient Fast Fourier Transform(FFT) algorithm for complex input signals.
@@ -59,7 +63,7 @@ namespace dsp
 		{
 			return rfft(x, n, mode, backend);
 		}
-		
+
 		/// @brief Computes the inverse of rfft.
 		///
 		/// This function computes the inverse of the 1-D n-point discrete Fourier Transform of real input computed by rfft. In other words, irfft(rfft(x), x.size()) == x to within numerical accuracy. 
@@ -82,7 +86,7 @@ namespace dsp
 
 		template<class T>
 		std::vector<T> logSquaredMagnitudeSpectrum(const std::vector<T>& signal, int N_fft, double relativeCutoff);
-		
+
 		// TODO:
 		//fft2();
 		//ifft2();
@@ -101,7 +105,16 @@ namespace dsp
 
 		// Discrete Sin and Cosine Transforms (DST and DCT)
 		// TODO:
-		//dct();
+
+		/// @brief Returns the discrete cosine transform (DCT-II) of the passed signal.
+		/// @tparam T Data type of the signal's samples.
+		/// @param signal Signal to analyse.
+		/// @param n length of the transformed signal. If n < signal length, the remaining
+		///		signal values are zero-padded.
+		/// @return a vector containing the discrete-cosine transformed signal.
+		template<class T>
+		std::vector<T> dct(std::vector<T>& signal, const unsigned int n, const dctType type = dctType::dct2);
+
 		//idct();
 		//dctn();
 		//idctn();
@@ -132,7 +145,16 @@ namespace dsp
 		/// @param windowType Type of the window to use to window each frame.
 		/// @return A vector containing the log-squared-magnitude spectrum of each windowed frame of the signal.
 		template<class T>
-		std::vector<std::vector<T>> spectrogram(const std::vector<T>& signal, unsigned frameLength, double overlap_pct = 0.5, 
-			int samplingRate = -1, double relativeCutoff = 0.5,  window::type windowType = window::type::hamming);
-	}
-}
+		std::vector<std::vector<T>> spectrogram(const std::vector<T>& signal, unsigned frameLength, double overlap_pct = 0.5,
+			int samplingRate = -1, double relativeCutoff = 0.5, window::type windowType = window::type::hamming);
+
+
+	} // .namespace fft
+} // .namespace dsp
+
+/// @brief Returns n normalized cosine basis vectors. Helper function for the dct().
+/// @tparam T Data type of the signal's samples.
+/// @param nBasisVectors number of basis vectors to compute.
+/// @return a vector of length nBasisVectors containing the basis vectors.
+template<class T>
+std::vector<std::vector<T>> calcCosineBasisVectors(const unsigned int nBasisVectors);
